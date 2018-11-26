@@ -1,0 +1,9 @@
+c:\weather-attack-2\api\src\Weatherattack.Domain\bin\Debug\netstandard2.0\Weatherattack.Domain.deps.json
+c:\weather-attack-2\api\src\Weatherattack.Domain\bin\Debug\netstandard2.0\Weatherattack.Domain.dll
+c:\weather-attack-2\api\src\Weatherattack.Domain\bin\Debug\netstandard2.0\Weatherattack.Domain.pdb
+c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.csprojAssemblyReference.cache
+c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.csproj.CoreCompileInputs.cache
+c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.AssemblyInfoInputs.cache
+c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.AssemblyInfo.cs
+c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.dll
+c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.pdb
