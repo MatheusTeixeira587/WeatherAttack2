@@ -4,6 +4,7 @@ using weatherattack2.src.Domain.Entities;
 
 namespace weatherattack2.src.Domain.Notifications.User
 {
+    //todo finish implementation of valit error => https://valitdocs.readthedocs.io/en/latest/validation-errors/index.html
     public static class UserNotifications
     {
         public static readonly Notification InvalidName = new Notification("UN-001", "Invalid name");
