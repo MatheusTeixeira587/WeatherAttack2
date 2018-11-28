@@ -10,9 +10,6 @@ namespace weatherattack2.src.Domain.Notifications.User
         public static readonly Notification InvalidEmail = new Notification("UN-002", "Invalid email");
         public static readonly Notification InvalidUsername = new Notification("UN-003", "Invalid Username");
 
-
-        public static List<Notification> Notifications = new List<Notification>() { };
-
         public static Notification GetNotification(string notificationName)
         {
             var notification = typeof(UserNotifications).GetProperty(notificationName);
