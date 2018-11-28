@@ -1,26 +1,26 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Valit;
 using weatherattack2.src.Domain.Entities;
 
 namespace weatherattack2.src.Domain.Notifications.User
 {
-    //todo finish implementation of valit error => https://valitdocs.readthedocs.io/en/latest/validation-errors/index.html
     public static class UserNotifications
     {
-        public static readonly Notification InvalidName = new Notification("UN-001", "Invalid name");
-        public static readonly Notification InvalidEmail = new Notification("UN-002", "Invalid email");
-        public static readonly Notification InvalidUsername = new Notification("UN-003", "Invalid Username");
 
-        public static Notification GetNotification(string notificationName)
+        private static readonly IReadOnlyList<Notification> _messages = new List<Notification>
         {
-            var notification = typeof(UserNotifications).GetProperty(notificationName);
+            new Notification("UN-001", "Invalid name") ,
+            new Notification("UN-002", "Invalid email") ,
+            new Notification("UN-003", "Invalid Username"),
+            new Notification("UN-004", "Email is required"),
+            new Notification("UN-005", "Name is required"),
+            new Notification("UN-006", "Username is required"),
+        };
 
-            if (notification.GetType().Equals(typeof(Notification)))
-            {
-                return (Notification)notification.GetValue(notification);
-            }
-
-            return null;
+        public static Notification GetNotification(string cod)
+        {
+            return _messages.Select(m => m).Where(m => m.Code == cod).FirstOrDefault();
         }
     }    
 }

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace weatherattack2.src.Domain.EntityValidator.Rules.User
+﻿namespace weatherattack2.src.Domain.EntityValidation.Rules.User
 {
     public static class UserRules
     {       

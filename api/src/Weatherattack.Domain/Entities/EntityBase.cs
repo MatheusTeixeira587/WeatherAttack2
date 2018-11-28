@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
+using weatherattack2.src.Domain.EntityValidation;
 
 namespace weatherattack2.src.Domain.Entities
 {
@@ -15,7 +13,13 @@ namespace weatherattack2.src.Domain.Entities
 
         public void AddNotification(Notification notification)
         {
-            Notifications.Add(notification);
+            if(!Notifications.Contains(notification))
+                Notifications.Add(notification);
+        }
+
+        public void Validate()
+        {
+            EntityValidator.Validate(this);
         }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Weatherattack.Domain.EntityValidator.Rules.Character
+﻿namespace Weatherattack.Domain.EntityValidation.Rules.Character
 {
     public static class CharacterRules
     {

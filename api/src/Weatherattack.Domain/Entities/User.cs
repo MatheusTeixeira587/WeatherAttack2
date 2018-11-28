@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Weatherattack.Domain.Entities;
+﻿using Weatherattack.Domain.Entities;
+using weatherattack2.src.Domain.EntityValidation;
 
 namespace weatherattack2.src.Domain.Entities
 {
@@ -14,14 +11,18 @@ namespace weatherattack2.src.Domain.Entities
 
         public string Username { get; private set; }
 
-        public Character Character { get; private set; }
+        public Character Character { get; private set; } = new Character();
 
         public User(string name, string email, string username)
         {
             Name = name;
             Email = email;
             Username = username;
-            Character = new Character();
+        }
+
+        public new void Validate()
+        {
+            EntityValidator.Validate(this);
         }
 
     }
