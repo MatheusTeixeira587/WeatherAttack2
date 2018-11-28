@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Valit;
+﻿using Valit;
 using weatherattack2.src.Domain.Entities;
 using weatherattack2.src.Domain.EntityValidator.Rules.User;
 using weatherattack2.src.Domain.Notifications.User;
@@ -11,28 +7,33 @@ namespace weatherattack2.src.Domain.Validator
 {
     public static class EntityValidator
     {
+       
         public static void Validate(User user)
-        {
-            if (user.Name == null || user.Name.Trim().Length < UserRules.NameRules.MinLength || user.Name.Trim().Length > UserRules.NameRules.MaxLength)
-                user.AddNotification(UserNotifications.InvalidName);
-
-            if (user.Email == null || user.Email.Trim().Length < UserRules.NameRules.MinLength || user.Email.Trim().Length > UserRules.EmailRules.MaxLength)
-                user.AddNotification(UserNotifications.InvalidEmail);
-
-            if (user.Username == null || user.Username.Trim().Length < UserRules.UsernameRules.MinLength || user.Username.Trim().Length > UserRules.UsernameRules.MaxLength)
-                user.AddNotification(UserNotifications.InvalidUsername);
-
-        }
-
-        public static void a()
         {
             var result = ValitRules<User>
                 .Create()
                 .Ensure(u => u.Email, _ => _
                     .Required()
+                    .Satisfies(u => u.Trim().Length > 0)
                     .Email()
-                    .MaxLength(UserRules.EmailRules.MaxLength));
-                    
+                    .MaxLength(UserRules.EmailRules.MaxLength)
+                    .WithMessage("InvalidEmail"))
+                .Ensure(u => u.Name, _ => _
+                    .Required()
+                    .Satisfies(u => u.Trim().Length > 0)
+                    .MaxLength(UserRules.NameRules.MaxLength)
+                    .WithMessage("InvalidName"))
+                 .Ensure(u => u.Username, _ => _
+                    .Required()
+                    .Satisfies(u => u.Trim().Length > 0)
+                    .MaxLength(UserRules.UsernameRules.MaxLength)
+                    .WithMessage("InvalidUsername"))
+                .Validate();
+
+            foreach (var m in result.ErrorMessages)
+            {
+                user.AddNotification(UserNotifications.GetNotification(m));
+            }
         }
     }
 }
