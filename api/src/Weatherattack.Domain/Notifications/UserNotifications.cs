@@ -7,6 +7,13 @@ namespace weatherattack2.src.Domain.Notifications.User
 {
     public static class UserNotifications
     {
+        public static readonly string InvalidName = "UN-001";
+        public static readonly string InvalidEmail = "UN-002";
+        public static readonly string InvalidUsername = "UN-003";
+        public static readonly string EmailIsRequired = "UN-004";
+        public static readonly string NameIsRequired = "UN-005";
+        public static readonly string UsernameIsRequired = "UN-006";
+
 
         private static readonly IReadOnlyList<Notification> _messages = new List<Notification>
         {

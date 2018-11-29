@@ -20,10 +20,5 @@ namespace weatherattack2.src.Domain.Entities
             Username = username;
         }
 
-        public new void Validate()
-        {
-            EntityValidator.Validate(this);
-        }
-
     }
 }

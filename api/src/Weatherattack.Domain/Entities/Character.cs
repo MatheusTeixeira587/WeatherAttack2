@@ -18,10 +18,5 @@ namespace Weatherattack.Domain.Entities
 
         public long Medals { get; private set; } = CharacterRules.Medals.InitialValue;
 
-        public new void Validate()
-        {
-            EntityValidator.Validate(this);
-        }
-
     }
 }
