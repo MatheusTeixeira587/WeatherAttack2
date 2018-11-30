@@ -1,5 +1,5 @@
-﻿using Weatherattack.Domain.Entities;
-using weatherattack2.src.Domain.EntityValidation;
+﻿using System;
+using Weatherattack.Domain.Entities;
 
 namespace weatherattack2.src.Domain.Entities
 {
@@ -11,6 +11,8 @@ namespace weatherattack2.src.Domain.Entities
 
         public string Username { get; private set; }
 
+        public string Password { get; private set; }
+
         public Character Character { get; private set; } = new Character();
 
         public User(string name, string email, string username)
@@ -18,6 +20,11 @@ namespace weatherattack2.src.Domain.Entities
             Name = name;
             Email = email;
             Username = username;
+        }
+
+        public void SetPassword(string password)
+        {
+            Password = password;
         }
 
     }

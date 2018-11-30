@@ -16,10 +16,5 @@ namespace weatherattack2.src.Domain.Entities
             if(!Notifications.Contains(notification))
                 Notifications.Add(notification);
         }
-
-        public void Validate()
-        {
-            EntityValidator.Validate(this);
-        }
     }
 }

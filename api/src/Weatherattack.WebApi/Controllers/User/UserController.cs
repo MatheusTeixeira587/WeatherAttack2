@@ -8,7 +8,7 @@ namespace Weatherattack.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class UserController : ControllerBase
     {
         // GET api/values
         [HttpGet]
@@ -24,15 +24,9 @@ namespace Weatherattack.WebApi.Controllers
             return "value";
         }
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
         // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] string value)
         {
         }
 
