@@ -52,7 +52,7 @@
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bLpT1f/SFlO1CzqXG12KnJzpZs6lv24uX2Rzi4Fmm0noJpNlnWRVryuO3yK18Ca04t/YHcO1e1Z0WDfjseqNzw==",
+      "sha512": "sha512-zCxd+VmGpRo2bg9HLNjq36JbRYbXBelKdpUYYY8BWhkY1TrQO9HtF9dBegV5vaJre9K8IPEMUyQX+V/tT+A+8Q==",
       "path": "microsoft.netcore.platforms/1.1.0",
       "hashPath": "microsoft.netcore.platforms.1.1.0.nupkg.sha512"
     },
@@ -66,14 +66,14 @@
     "System.Collections.Immutable/1.4.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-tmNm+CvE8Wzt3dtghUNi9ur8R1N2EUltwEBQ4nr70nhzUI9wrR1fJw0rtydtFCUktXVJHPcF5hy8s8ixVmx+8w==",
+      "sha512": "sha512-71hw5RUJRu5+q/geUY69gpXD8Upd12cH+F3MwpXV2zle7Bqqkrmc1JblOTuvUcgmdnUtQvBlV5e1d6RH+H2lvA==",
       "path": "system.collections.immutable/1.4.0",
       "hashPath": "system.collections.immutable.1.4.0.nupkg.sha512"
     },
     "Valit/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vVE8Sfq/1KASojC2c36WVRnYOi16u2q6HhMz4JeJjix4p7YJ1Z00iInXykPKiMhUeOvbXsepGHxo+kqdPm3qgw==",
+      "sha512": "sha512-sSGmB8ZO215cBnEd2wR4hqlMPPsU4rJ3mHFySUCfD6XltLl3dhF7/eYqrsP7QFT7gb7qrHbwCh14o0tDvH4/zA==",
       "path": "valit/2.0.0",
       "hashPath": "valit.2.0.0.nupkg.sha512"
     }

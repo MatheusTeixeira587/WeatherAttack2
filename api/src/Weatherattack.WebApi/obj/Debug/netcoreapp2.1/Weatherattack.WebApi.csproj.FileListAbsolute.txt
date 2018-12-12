@@ -23,3 +23,17 @@ C:\weather-attack-2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weather
 C:\weather-attack-2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.RazorTargetAssemblyInfo.cache
 C:\weather-attack-2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.dll
 C:\weather-attack-2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.WebApi.deps.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.WebApi.runtimeconfig.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.WebApi.runtimeconfig.dev.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.WebApi.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.WebApi.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.csprojResolveAssemblyReference.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.csproj.CoreCompileInputs.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.RazorAssemblyInfo.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.RazorAssemblyInfo.cs
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.AssemblyInfoInputs.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.AssemblyInfo.cs
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.RazorTargetAssemblyInfo.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.pdb

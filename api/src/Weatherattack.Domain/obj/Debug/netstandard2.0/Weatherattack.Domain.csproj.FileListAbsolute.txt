@@ -7,3 +7,12 @@ c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weathe
 c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.AssemblyInfo.cs
 c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.dll
 c:\weather-attack-2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\bin\Debug\netstandard2.0\Weatherattack.Domain.deps.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\bin\Debug\netstandard2.0\Weatherattack.Domain.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\bin\Debug\netstandard2.0\Weatherattack.Domain.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.csprojResolveAssemblyReference.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.csproj.CoreCompileInputs.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.AssemblyInfoInputs.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.AssemblyInfo.cs
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Domain\obj\Debug\netstandard2.0\Weatherattack.Domain.pdb

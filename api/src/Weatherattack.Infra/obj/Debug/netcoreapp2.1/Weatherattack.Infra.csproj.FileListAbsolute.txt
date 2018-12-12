@@ -14,3 +14,16 @@ C:\weather-attack-2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weathera
 C:\weather-attack-2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.AssemblyInfo.cs
 C:\weather-attack-2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.dll
 C:\weather-attack-2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Infra.deps.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Infra.runtimeconfig.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Infra.runtimeconfig.dev.json
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Infra.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Infra.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.csprojResolveAssemblyReference.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.csproj.CoreCompileInputs.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.AssemblyInfoInputs.cache
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.AssemblyInfo.cs
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Domain.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Domain.pdb
