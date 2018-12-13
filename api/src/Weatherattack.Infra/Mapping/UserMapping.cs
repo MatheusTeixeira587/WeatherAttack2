@@ -13,16 +13,21 @@ namespace Weatherattack.Infra.Mapping
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder.ToTable("User");
+
             builder.HasKey(u => u.Id);
+
             builder.Property(u => u.Name)
                 .IsRequired()
                 .HasMaxLength(UserRules.NameRules.MaxLength);
+
             builder.Property(u => u.Email)
                 .IsRequired()
                 .HasMaxLength(UserRules.EmailRules.MaxLength);
+
             builder.Property(u => u.Username)
                 .IsRequired()
                 .HasMaxLength(UserRules.UsernameRules.MaxLength);
+
             builder.Property(u => u.Password)
                 .IsRequired();
             builder.HasOne(u => u.Character).WithOne(u => u.user);

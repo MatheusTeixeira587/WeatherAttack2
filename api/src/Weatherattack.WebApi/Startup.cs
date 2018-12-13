@@ -6,6 +6,10 @@ using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
+using Weatherattack.Infra;
+using Microsoft.EntityFrameworkCore;
+using Weatherattack.Infra.interfaces;
+using Weatherattack.Infra.DatabaseOptions;
 
 namespace Weatherattack.WebApi
 {
@@ -26,8 +30,15 @@ namespace Weatherattack.WebApi
             {
                 c.SwaggerDoc("v1", new Info { Title = "WeatherAttack API", Version = "v1" });
             });
-        }
 
+            //database
+            var connectionString = Configuration.GetConnectionString("WeatherAttack");
+            services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
+
+            services.AddSingleton<IDatabaseOptions, DataBaseOptions>(options => new DataBaseOptions(connectionString));
+
+            services.AddCors();
+        }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
@@ -39,6 +50,8 @@ namespace Weatherattack.WebApi
             {
                 app.UseHsts();
             }
+
+            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

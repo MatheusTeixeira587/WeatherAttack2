@@ -27,3 +27,8 @@ C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infr
 C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.pdb
 C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Domain.dll
 C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Domain.pdb
+C:\weather-attack-2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Domain.dll
+C:\weather-attack-2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Weatherattack.Domain.pdb
+C:\weather-attack-2\api\src\Weatherattack.Infra\obj\Debug\netcoreapp2.1\Weatherattack.Infra.csproj.CopyComplete
+C:\weather-attack-2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Protocols.dll
+C:\weather-attack-2\api\src\Weatherattack.Infra\bin\Debug\netcoreapp2.1\Microsoft.IdentityModel.Protocols.xml

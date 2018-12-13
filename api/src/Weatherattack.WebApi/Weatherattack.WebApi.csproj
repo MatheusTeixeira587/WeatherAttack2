@@ -17,4 +17,8 @@
     <PackageReference Include="SwashBuckle.AspNetCore" Version="2.4.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Weatherattack.Infra\Weatherattack.Infra.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,15 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using Weatherattack.Domain.Contracts;
 
 namespace Weatherattack.Infra.Repositories
 {
     public abstract class GenericRepository<C, T> :
         IGenericRepository<T> where T : class where C : DbContext, new()
     {
-        private C _entities = new C();
+        private C _entities { get; set; }
+
         protected C Context { get; set; }
 
         public virtual IQueryable<T> GetAll()
