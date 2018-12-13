@@ -16,7 +16,7 @@ namespace Weatherattack.Infra
 
         public DbSet<Character> CharactersContext { get; set; }
 
-        protected internal virtual void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(DataBaseOptions.ConnectionString);
         }

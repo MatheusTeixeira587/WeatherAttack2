@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Weatherattack.Application.Command.User;
 
 namespace Weatherattack.WebApi.Controllers
 {
@@ -11,10 +12,12 @@ namespace Weatherattack.WebApi.Controllers
     public class UserController : ControllerBase
     {
         // GET api/values
+        [Route("List")]
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public GetAllUsersCommand Get(GetAllUsersCommand command)
         {
-            return new string[] { "value1", "value2" };
+            command.Execute();
+            return command;
         }
 
         // GET api/values/5

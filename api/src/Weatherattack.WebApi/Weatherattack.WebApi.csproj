@@ -14,10 +14,11 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
-    <PackageReference Include="SwashBuckle.AspNetCore" Version="2.4.0" />
+    <PackageReference Include="SwashBuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\WeatherAttack.Application\WeatherAttack.Application.csproj" />
     <ProjectReference Include="..\Weatherattack.Infra\Weatherattack.Infra.csproj" />
   </ItemGroup>
 

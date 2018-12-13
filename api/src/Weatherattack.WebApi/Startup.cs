@@ -33,7 +33,7 @@ namespace Weatherattack.WebApi
 
             //database
             var connectionString = Configuration.GetConnectionString("WeatherAttack");
-            services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
+            //services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
 
             services.AddSingleton<IDatabaseOptions, DataBaseOptions>(options => new DataBaseOptions(connectionString));
 
