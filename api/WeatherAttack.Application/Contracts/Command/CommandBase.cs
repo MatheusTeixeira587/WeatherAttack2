@@ -1,6 +1,6 @@
 ﻿using System;
 using Weatherattack.Application.Contracts.Command;
-using weatherattack2.src.Domain.Entities;
+using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Contracts.Command
 {

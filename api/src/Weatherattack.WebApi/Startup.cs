@@ -2,14 +2,20 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using Swashbuckle.AspNetCore.Swagger;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
-using Weatherattack.Infra;
-using Microsoft.EntityFrameworkCore;
-using Weatherattack.Infra.interfaces;
+using Weatherattack.Infra.Interfaces;
 using Weatherattack.Infra.DatabaseOptions;
+using WeatherAttack.Security.Services;
+using WeatherAttack.Application.Contracts.interfaces;
+using Weatherattack.Infra.Repositories;
+using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Application.Mapper;
+using WeatherAttack.Application.Contracts.Dtos.User.Request;
+using WeatherAttack.Domain.Entities;
+using Weatherattack.Application.Contracts.Dtos.User.Response;
+using WeatherAttack.Application.Mapper.User;
 
 namespace Weatherattack.WebApi
 {
@@ -34,9 +40,12 @@ namespace Weatherattack.WebApi
             //database
             var connectionString = Configuration.GetConnectionString("WeatherAttack");
             //services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
-
             services.AddSingleton<IDatabaseOptions, DataBaseOptions>(options => new DataBaseOptions(connectionString));
 
+            //services
+            services.AddScoped<IPasswordService, PasswordService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IEntityMapper<User, UserRequestDto, UserResponseDto>, UserEntityMapper>();
             services.AddCors();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

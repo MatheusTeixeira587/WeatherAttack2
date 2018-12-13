@@ -1,10 +1,9 @@
 ﻿using Valit;
-using Weatherattack.Domain.Entities;
-using weatherattack2.src.Domain.Entities;
-using weatherattack2.src.Domain.EntityValidation.Rules.User;
-using weatherattack2.src.Domain.Notifications.User;
+using Weatherattack.Domain.Notifications;
+using WeatherAttack.Domain.Entities;
+using WeatherAttack.Domain.EntityValidation.Rules.User;
 
-namespace weatherattack2.src.Domain.EntityValidation
+namespace Weatherattack.Domain.EntityValidation
 {
     public static class EntityValidator
     {

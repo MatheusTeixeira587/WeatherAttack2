@@ -946,17 +946,17 @@
           "lib/netstandard2.0/Valit.dll": {}
         }
       },
-      "Weatherattack.Domain/1.0.0": {
+      "WeatherAttack.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Valit": "2.0.0"
         },
         "compile": {
-          "bin/placeholder/Weatherattack.Domain.dll": {}
+          "bin/placeholder/WeatherAttack.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Weatherattack.Domain.dll": {}
+          "bin/placeholder/WeatherAttack.Domain.dll": {}
         }
       }
     }
@@ -3606,10 +3606,10 @@
         "valit.nuspec"
       ]
     },
-    "Weatherattack.Domain/1.0.0": {
+    "WeatherAttack.Domain/1.0.0": {
       "type": "project",
-      "path": "../Weatherattack.Domain/Weatherattack.Domain.csproj",
-      "msbuildProject": "../Weatherattack.Domain/Weatherattack.Domain.csproj"
+      "path": "../Weatherattack.Domain/WeatherAttack.Domain.csproj",
+      "msbuildProject": "../Weatherattack.Domain/WeatherAttack.Domain.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3619,7 +3619,7 @@
       "Microsoft.EntityFrameworkCore.Relational >= 2.1.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.4",
       "Microsoft.NETCore.App >= 2.1.0",
-      "Weatherattack.Domain >= 1.0.0"
+      "WeatherAttack.Domain >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3653,8 +3653,8 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\Weatherattack.Domain.csproj": {
-              "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\Weatherattack.Domain.csproj"
+            "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj": {
+              "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj"
             }
           }
         }

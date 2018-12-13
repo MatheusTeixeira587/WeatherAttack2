@@ -6,17 +6,17 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "Weatherattack.Infra/1.0.0": {
+      "WeatherAttack.Infra/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.1.4",
           "Microsoft.EntityFrameworkCore.Design": "2.1.4",
           "Microsoft.EntityFrameworkCore.Relational": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
-          "Weatherattack.Domain": "1.0.0",
+          "WeatherAttack.Domain": "1.0.0",
           "Microsoft.IdentityModel.Protocols": "5.2.0.0"
         },
         "runtime": {
-          "Weatherattack.Infra.dll": {}
+          "WeatherAttack.Infra.dll": {}
         }
       },
       "Microsoft.CSharp/4.5.0": {},
@@ -535,12 +535,12 @@
           }
         }
       },
-      "Weatherattack.Domain/1.0.0": {
+      "WeatherAttack.Domain/1.0.0": {
         "dependencies": {
           "Valit": "2.0.0"
         },
         "runtime": {
-          "Weatherattack.Domain.dll": {}
+          "WeatherAttack.Domain.dll": {}
         }
       },
       "Microsoft.IdentityModel.Protocols/5.2.0.0": {
@@ -554,7 +554,7 @@
     }
   },
   "libraries": {
-    "Weatherattack.Infra/1.0.0": {
+    "WeatherAttack.Infra/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
@@ -951,7 +951,7 @@
       "path": "valit/2.0.0",
       "hashPath": "valit.2.0.0.nupkg.sha512"
     },
-    "Weatherattack.Domain/1.0.0": {
+    "WeatherAttack.Domain/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

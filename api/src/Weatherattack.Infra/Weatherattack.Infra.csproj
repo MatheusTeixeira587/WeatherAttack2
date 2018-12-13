@@ -10,7 +10,7 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Weatherattack.Domain\Weatherattack.Domain.csproj" />
+    <ProjectReference Include="..\Weatherattack.Domain\WeatherAttack.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.IdentityModel.Protocols">

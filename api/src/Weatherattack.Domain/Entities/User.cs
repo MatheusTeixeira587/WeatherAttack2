@@ -1,7 +1,5 @@
-﻿using System;
-using Weatherattack.Domain.Entities;
-
-namespace weatherattack2.src.Domain.Entities
+﻿
+namespace WeatherAttack.Domain.Entities
 {
     public class User : EntityBase
     {
@@ -26,6 +24,5 @@ namespace weatherattack2.src.Domain.Entities
         {
             Password = password;
         }
-
     }
 }

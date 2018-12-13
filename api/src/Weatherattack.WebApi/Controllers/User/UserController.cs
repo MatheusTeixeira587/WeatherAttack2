@@ -29,8 +29,10 @@ namespace Weatherattack.WebApi.Controllers
 
         // PUT api/values/5
         [HttpPut]
-        public void Put([FromBody] string value)
+        public AddUserCommand Put([FromBody]AddUserCommand command)
         {
+            command.Execute();
+            return command;
         }
 
         // DELETE api/values/5

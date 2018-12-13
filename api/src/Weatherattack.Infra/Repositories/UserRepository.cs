@@ -1,8 +1,9 @@
-﻿using weatherattack2.src.Domain.Entities;
+﻿using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.Entities;
 
 namespace Weatherattack.Infra.Repositories
 {
-    public class UserRepository : GenericRepository<WeatherAttackContext, User>
+    public class UserRepository : GenericRepository<WeatherAttackContext, User>, IUserRepository
     {
     }
 }

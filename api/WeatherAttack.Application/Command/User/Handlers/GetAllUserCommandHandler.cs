@@ -1,15 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using Weatherattack.Application.Command.User;
-using Weatherattack.Infra.Repositories;
+using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Domain.Contracts;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
     public class GetAllUserCommandHandler
     {
-        private UserRepository Context { get; }
+        private IUserRepository Context { get; }
 
         public GetAllUsersCommand HandleAction(GetAllUsersCommand command)
         {

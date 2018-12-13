@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Valit;
-using weatherattack2.src.Domain.Entities;
 
-namespace weatherattack2.src.Domain.Notifications.User
+namespace Weatherattack.Domain.Notifications
 {
     public static class UserNotifications
     {

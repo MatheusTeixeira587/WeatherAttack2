@@ -1,8 +1,6 @@
 ﻿using Weatherattack.Domain.EntityValidation.Rules.Character;
-using weatherattack2.src.Domain.Entities;
-using weatherattack2.src.Domain.EntityValidation;
 
-namespace Weatherattack.Domain.Entities
+namespace WeatherAttack.Domain.Entities
 {
     public class Character : EntityBase
     {

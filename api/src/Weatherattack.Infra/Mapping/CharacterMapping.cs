@@ -1,10 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using Weatherattack.Domain.Entities;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Weatherattack.Domain.EntityValidation.Rules.Character;
+using WeatherAttack.Domain.Entities;
 
 namespace Weatherattack.Infra.Mapping
 {

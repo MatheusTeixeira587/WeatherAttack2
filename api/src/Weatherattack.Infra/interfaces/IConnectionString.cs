@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Weatherattack.Infra.interfaces
+namespace Weatherattack.Infra.Interfaces
 {
     public interface IDatabaseOptions 
     {

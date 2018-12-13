@@ -1,8 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Weatherattack.Domain.Entities;
-using Weatherattack.Infra.interfaces;
+using Weatherattack.Infra.Interfaces;
 using Weatherattack.Infra.Mapping;
-using weatherattack2.src.Domain.Entities;
+using WeatherAttack.Domain.Entities;
 
 namespace Weatherattack.Infra
 {

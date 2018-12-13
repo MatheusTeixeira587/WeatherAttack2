@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v2.1",
-    "signature": "62947f939e8d6467214300f6ff91d1c55d89e90a"
+    "signature": "5de48c020bd9fd3e9b728aa80d880bb7199e9949"
   },
   "compilationOptions": {
     "defines": [
@@ -22,19 +22,32 @@
   },
   "targets": {
     ".NETCoreApp,Version=v2.1": {
-      "Weatherattack.WebApi/1.0.0": {
+      "WeatherAttack.WebApi/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.App": "2.1.1",
           "Microsoft.AspNetCore.Razor.Design": "2.1.2",
           "Microsoft.NETCore.App": "2.1.0",
           "Swashbuckle.AspNetCore": "4.0.1",
-          "Weatherattack.Infra": "1.0.0"
+          "WeatherAttack.Application": "1.0.0",
+          "WeatherAttack.Infra": "1.0.0",
+          "WeatherAttack.Security": "1.0.0"
         },
         "runtime": {
-          "Weatherattack.WebApi.dll": {}
+          "WeatherAttack.WebApi.dll": {}
         },
         "compile": {
-          "Weatherattack.WebApi.dll": {}
+          "WeatherAttack.WebApi.dll": {}
+        }
+      },
+      "BCrypt-Core/2.0.0": {
+        "runtime": {
+          "lib/netcoreapp2.0/BCrypt-Core.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.0.0"
+          }
+        },
+        "compile": {
+          "lib/netcoreapp2.0/BCrypt-Core.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor.Design/2.1.2": {},
@@ -428,30 +441,53 @@
           "lib/netstandard2.0/Valit.dll": {}
         }
       },
-      "Weatherattack.Domain/1.0.0": {
+      "WeatherAttack.Application/1.0.0": {
+        "dependencies": {
+          "WeatherAttack.Infra": "1.0.0"
+        },
+        "runtime": {
+          "WeatherAttack.Application.dll": {}
+        },
+        "compile": {
+          "WeatherAttack.Application.dll": {}
+        }
+      },
+      "WeatherAttack.Domain/1.0.0": {
         "dependencies": {
           "Valit": "2.0.0"
         },
         "runtime": {
-          "Weatherattack.Domain.dll": {}
+          "WeatherAttack.Domain.dll": {}
         },
         "compile": {
-          "Weatherattack.Domain.dll": {}
+          "WeatherAttack.Domain.dll": {}
         }
       },
-      "Weatherattack.Infra/1.0.0": {
+      "WeatherAttack.Infra/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.1.4",
           "Microsoft.EntityFrameworkCore.Design": "2.1.4",
           "Microsoft.EntityFrameworkCore.Relational": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
-          "Weatherattack.Domain": "1.0.0"
+          "WeatherAttack.Domain": "1.0.0"
         },
         "runtime": {
-          "Weatherattack.Infra.dll": {}
+          "WeatherAttack.Infra.dll": {}
         },
         "compile": {
-          "Weatherattack.Infra.dll": {}
+          "WeatherAttack.Infra.dll": {}
+        }
+      },
+      "WeatherAttack.Security/1.0.0": {
+        "dependencies": {
+          "BCrypt-Core": "2.0.0",
+          "WeatherAttack.Application": "1.0.0"
+        },
+        "runtime": {
+          "WeatherAttack.Security.dll": {}
+        },
+        "compile": {
+          "WeatherAttack.Security.dll": {}
         }
       },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
@@ -3294,10 +3330,17 @@
     }
   },
   "libraries": {
-    "Weatherattack.WebApi/1.0.0": {
+    "WeatherAttack.WebApi/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "BCrypt-Core/2.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1iQC+fhZHwp9GwK2XQN6S2yh7Ae5r4J0eKMBsA47OqXKkj+ECx0c8pKb0okTLGBIrZ7qEK6c6yKdEQ0F2nbYTg==",
+      "path": "bcrypt-core/2.0.0",
+      "hashPath": "bcrypt-core.2.0.0.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Razor.Design/2.1.2": {
       "type": "package",
@@ -3467,12 +3510,22 @@
       "path": "valit/2.0.0",
       "hashPath": "valit.2.0.0.nupkg.sha512"
     },
-    "Weatherattack.Domain/1.0.0": {
+    "WeatherAttack.Application/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
     },
-    "Weatherattack.Infra/1.0.0": {
+    "WeatherAttack.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WeatherAttack.Infra/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "WeatherAttack.Security/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using weatherattack2.src.Domain.Entities;
 
 namespace Weatherattack.Domain.Notifications
 {

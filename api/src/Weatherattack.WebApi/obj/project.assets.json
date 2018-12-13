@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     ".NETCoreApp,Version=v2.1": {
+      "BCrypt-Core/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp2.0/BCrypt-Core.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/BCrypt-Core.dll": {}
+        }
+      },
       "Microsoft.AspNet.WebApi.Client/5.2.6": {
         "type": "package",
         "dependencies": {
@@ -4407,7 +4416,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
-          "Weatherattack.Infra": "1.0.0"
+          "WeatherAttack.Infra": "1.0.0"
         },
         "compile": {
           "bin/placeholder/WeatherAttack.Application.dll": {}
@@ -4416,20 +4425,20 @@
           "bin/placeholder/WeatherAttack.Application.dll": {}
         }
       },
-      "Weatherattack.Domain/1.0.0": {
+      "WeatherAttack.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
           "Valit": "2.0.0"
         },
         "compile": {
-          "bin/placeholder/Weatherattack.Domain.dll": {}
+          "bin/placeholder/WeatherAttack.Domain.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Weatherattack.Domain.dll": {}
+          "bin/placeholder/WeatherAttack.Domain.dll": {}
         }
       },
-      "Weatherattack.Infra/1.0.0": {
+      "WeatherAttack.Infra/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.1",
         "dependencies": {
@@ -4437,18 +4446,44 @@
           "Microsoft.EntityFrameworkCore.Design": "2.1.4",
           "Microsoft.EntityFrameworkCore.Relational": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
-          "Weatherattack.Domain": "1.0.0"
+          "WeatherAttack.Domain": "1.0.0"
         },
         "compile": {
-          "bin/placeholder/Weatherattack.Infra.dll": {}
+          "bin/placeholder/WeatherAttack.Infra.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Weatherattack.Infra.dll": {}
+          "bin/placeholder/WeatherAttack.Infra.dll": {}
+        }
+      },
+      "WeatherAttack.Security/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v2.1",
+        "dependencies": {
+          "BCrypt-Core": "2.0.0",
+          "WeatherAttack.Application": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/WeatherAttack.Security.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/WeatherAttack.Security.dll": {}
         }
       }
     }
   },
   "libraries": {
+    "BCrypt-Core/2.0.0": {
+      "sha512": "1iQC+fhZHwp9GwK2XQN6S2yh7Ae5r4J0eKMBsA47OqXKkj+ECx0c8pKb0okTLGBIrZ7qEK6c6yKdEQ0F2nbYTg==",
+      "type": "package",
+      "path": "bcrypt-core/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "bcrypt-core.2.0.0.nupkg.sha512",
+        "bcrypt-core.nuspec",
+        "lib/netcoreapp2.0/BCrypt-Core.dll"
+      ]
+    },
     "Microsoft.AspNet.WebApi.Client/5.2.6": {
       "sha512": "AIgEc1up4pvH8kXy+eG1x4Qfqd6piAq3yk11pveCQXWNkkYoiKdflSmcJZuWcerdMcAaoF0xC/mWGoTW4vF4Dg==",
       "type": "package",
@@ -11963,15 +11998,20 @@
       "path": "../../WeatherAttack.Application/WeatherAttack.Application.csproj",
       "msbuildProject": "../../WeatherAttack.Application/WeatherAttack.Application.csproj"
     },
-    "Weatherattack.Domain/1.0.0": {
+    "WeatherAttack.Domain/1.0.0": {
       "type": "project",
-      "path": "../Weatherattack.Domain/Weatherattack.Domain.csproj",
-      "msbuildProject": "../Weatherattack.Domain/Weatherattack.Domain.csproj"
+      "path": "../Weatherattack.Domain/WeatherAttack.Domain.csproj",
+      "msbuildProject": "../Weatherattack.Domain/WeatherAttack.Domain.csproj"
     },
-    "Weatherattack.Infra/1.0.0": {
+    "WeatherAttack.Infra/1.0.0": {
       "type": "project",
-      "path": "../Weatherattack.Infra/Weatherattack.Infra.csproj",
-      "msbuildProject": "../Weatherattack.Infra/Weatherattack.Infra.csproj"
+      "path": "../Weatherattack.Infra/WeatherAttack.Infra.csproj",
+      "msbuildProject": "../Weatherattack.Infra/WeatherAttack.Infra.csproj"
+    },
+    "WeatherAttack.Security/1.0.0": {
+      "type": "project",
+      "path": "../../WeatherAttack.Security/WeatherAttack.Security.csproj",
+      "msbuildProject": "../../WeatherAttack.Security/WeatherAttack.Security.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -11981,7 +12021,8 @@
       "Microsoft.NETCore.App >= 2.1.0",
       "SwashBuckle.AspNetCore >= 4.0.1",
       "WeatherAttack.Application >= 1.0.0",
-      "Weatherattack.Infra >= 1.0.0"
+      "WeatherAttack.Infra >= 1.0.0",
+      "WeatherAttack.Security >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -12015,11 +12056,14 @@
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\Weatherattack.Infra.csproj": {
-              "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\Weatherattack.Infra.csproj"
+            "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\WeatherAttack.Infra.csproj": {
+              "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\WeatherAttack.Infra.csproj"
             },
             "C:\\weather-attack-2\\api\\WeatherAttack.Application\\WeatherAttack.Application.csproj": {
               "projectPath": "C:\\weather-attack-2\\api\\WeatherAttack.Application\\WeatherAttack.Application.csproj"
+            },
+            "C:\\weather-attack-2\\api\\WeatherAttack.Security\\WeatherAttack.Security.csproj": {
+              "projectPath": "C:\\weather-attack-2\\api\\WeatherAttack.Security\\WeatherAttack.Security.csproj"
             }
           }
         }

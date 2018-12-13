@@ -1,4 +1,4 @@
-﻿namespace weatherattack2.src.Domain.EntityValidation.Rules.User
+﻿namespace WeatherAttack.Domain.EntityValidation.Rules.User
 {
     public static class UserRules
     {       

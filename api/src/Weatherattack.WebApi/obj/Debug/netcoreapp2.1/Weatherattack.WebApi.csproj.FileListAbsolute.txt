@@ -42,3 +42,7 @@ C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weather
 C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.Infra.pdb
 C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weatherattack.Domain.pdb
 C:\weather-attack-2\api\src\Weatherattack.WebApi\obj\Debug\netcoreapp2.1\Weatherattack.WebApi.csproj.CopyComplete
+C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Application.dll
+C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Security.dll
+C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Application.pdb
+C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Security.pdb

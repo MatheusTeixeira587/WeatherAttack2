@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using weatherattack2.src.Domain.EntityValidation;
+using Weatherattack.Domain.Notifications;
 
-namespace weatherattack2.src.Domain.Entities
+namespace WeatherAttack.Domain.Entities
 {
     public class EntityBase
     {
