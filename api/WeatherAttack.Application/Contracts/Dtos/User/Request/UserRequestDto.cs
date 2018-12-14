@@ -1,8 +1,9 @@
-﻿using Entity = WeatherAttack.Domain.Entities;
+﻿using WeatherAttack.Domain.Entities;
+using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Contracts.Dtos.User.Request
 {
-    public class UserRequestDto
+    public class UserRequestDto : EntityBase
     {
         public string Name { get; set; }
 
@@ -19,13 +20,6 @@ namespace WeatherAttack.Application.Contracts.Dtos.User.Request
             Email = email;
             Username = username;
             Password = password;
-        }
-
-        public Entity.User ToEntity()
-        {
-            var user = new Entity.User(Name,Email,Username);
-            user.SetPassword(Password);
-            return user;
         }
     }
 }

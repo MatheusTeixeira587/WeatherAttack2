@@ -45,7 +45,7 @@ namespace Weatherattack.WebApi
             //services
             services.AddScoped<IPasswordService, PasswordService>();
             services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IEntityMapper<User, UserRequestDto, UserResponseDto>, UserEntityMapper>();
+            services.AddScoped<IMapper<User, UserRequestDto, UserResponseDto>, UserEntityMapper>();
             services.AddCors();
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

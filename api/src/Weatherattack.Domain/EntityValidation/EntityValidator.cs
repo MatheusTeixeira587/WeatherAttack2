@@ -35,6 +35,9 @@ namespace Weatherattack.Domain.EntityValidation
                         .WithMessage(UserNotifications.InvalidUsername)
                     .MaxLength(UserRules.UsernameRules.MaxLength)
                         .WithMessage(UserNotifications.InvalidUsername))
+                .Ensure(u => u.Password, _=>_
+                    .Required()
+                        .WithMessage(UserNotifications.PasswordIsRequired))
                 .For(user)
                 .Validate();
 

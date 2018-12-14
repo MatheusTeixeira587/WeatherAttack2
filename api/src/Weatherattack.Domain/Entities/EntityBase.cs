@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Weatherattack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
@@ -15,6 +16,12 @@ namespace WeatherAttack.Domain.Entities
         {
             if(!Notifications.Contains(notification))
                 Notifications.Add(notification);
+        }
+
+        public void AddNotification(List<Notification> notifications)
+        {
+            if(notifications.Count > 0)
+                notifications.ForEach(n => AddNotification(n));
         }
     }
 }

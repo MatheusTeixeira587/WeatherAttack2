@@ -11,6 +11,7 @@ namespace Weatherattack.Domain.Notifications
         public static readonly string EmailIsRequired = "UN-004";
         public static readonly string NameIsRequired = "UN-005";
         public static readonly string UsernameIsRequired = "UN-006";
+        public static readonly string PasswordIsRequired = "UN-007";
 
 
         private static readonly IReadOnlyList<Notification> _messages = new List<Notification>
@@ -21,6 +22,7 @@ namespace Weatherattack.Domain.Notifications
             new Notification("UN-004", "Email is required"),
             new Notification("UN-005", "Name is required"),
             new Notification("UN-006", "Username is required"),
+            new Notification("UN-007", "Password is required"),
         };
 
         public static Notification GetNotification(string cod)

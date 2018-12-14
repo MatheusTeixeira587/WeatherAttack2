@@ -15,7 +15,6 @@ namespace Weatherattack.Application.Command.User
         public override void Execute()
         {
             Handler.HandleAction(this);
-
         }
     }
 }

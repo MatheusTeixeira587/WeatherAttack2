@@ -4,7 +4,7 @@ using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Mapper.User
 {
-    public class UserEntityMapper : IEntityMapper<Entity.User, UserRequestDto, UserResponseDto>
+    public class UserEntityMapper : IMapper<Entity.User, UserRequestDto, UserResponseDto>
     {
         public UserResponseDto ToDto(Entity.User user)
         {
