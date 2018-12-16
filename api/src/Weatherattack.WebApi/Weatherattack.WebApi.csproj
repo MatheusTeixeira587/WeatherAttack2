@@ -18,8 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\WeatherAttack.Application\WeatherAttack.Application.csproj" />
-    <ProjectReference Include="..\..\WeatherAttack.Security\WeatherAttack.Security.csproj" />
+    <ProjectReference Include="..\WeatherAttack.Application\WeatherAttack.Application.csproj" />
+    <ProjectReference Include="..\WeatherAttack.Security\WeatherAttack.Security.csproj" />
     <ProjectReference Include="..\Weatherattack.Infra\WeatherAttack.Infra.csproj" />
   </ItemGroup>
 

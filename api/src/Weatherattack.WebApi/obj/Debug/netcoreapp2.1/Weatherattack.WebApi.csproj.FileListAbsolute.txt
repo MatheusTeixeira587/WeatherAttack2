@@ -46,3 +46,11 @@ C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\Weather
 C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Security.dll
 C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Application.pdb
 C:\weather-attack-2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Security.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Application.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Domain.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Infra.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Security.dll
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Application.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Security.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Infra.pdb
+C:\Users\FabricioNote\Documents\gitlab\weatherattack2\api\src\Weatherattack.WebApi\bin\Debug\netcoreapp2.1\WeatherAttack.Domain.pdb

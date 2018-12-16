@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Mvc;
 using Weatherattack.Infra.Interfaces;
 using Weatherattack.Infra.DatabaseOptions;
-using WeatherAttack.Security.Services;
-using WeatherAttack.Application.Contracts.interfaces;
 using Weatherattack.Infra.Repositories;
 using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.Entities;
+using WeatherAttack.Application.Contracts.interfaces;
+using WeatherAttack.Security.Services;
 using WeatherAttack.Application.Mapper;
 using WeatherAttack.Application.Contracts.Dtos.User.Request;
-using WeatherAttack.Domain.Entities;
 using Weatherattack.Application.Contracts.Dtos.User.Response;
 using WeatherAttack.Application.Mapper.User;
 

@@ -12,8 +12,7 @@
           "Microsoft.EntityFrameworkCore.Design": "2.1.4",
           "Microsoft.EntityFrameworkCore.Relational": "2.1.4",
           "Microsoft.EntityFrameworkCore.SqlServer": "2.1.4",
-          "WeatherAttack.Domain": "1.0.0",
-          "Microsoft.IdentityModel.Protocols": "5.2.0.0"
+          "WeatherAttack.Domain": "1.0.0"
         },
         "runtime": {
           "WeatherAttack.Infra.dll": {}
@@ -542,14 +541,6 @@
         "runtime": {
           "WeatherAttack.Domain.dll": {}
         }
-      },
-      "Microsoft.IdentityModel.Protocols/5.2.0.0": {
-        "runtime": {
-          "Microsoft.IdentityModel.Protocols.dll": {
-            "assemblyVersion": "5.2.0.0",
-            "fileVersion": "5.2.0.50129"
-          }
-        }
       }
     }
   },
@@ -646,7 +637,7 @@
     "Microsoft.Extensions.DependencyInjection/2.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-ZPFcDUbSwaEVWMyef8+9GqiTAghHX+eLeIEW032i4LDFAdyM4J4brV0UzChlKtClT7cuip/Of6G+veDnO3/bCw==",
+      "sha512": "sha512-2nshYaLTn73Ie+/yTkb7EZIXwQeFIXsYCBy/jSY9bMayYykGNjdWa25frayhuPAGVbZpEgfgp3d4JRVEuVyEqQ==",
       "path": "microsoft.extensions.dependencyinjection/2.1.1",
       "hashPath": "microsoft.extensions.dependencyinjection.2.1.1.nupkg.sha512"
     },
@@ -695,7 +686,7 @@
     "Remotion.Linq/2.2.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-twDAH8dAXXCAf3sRv1Tf94u66eEHvgU75hfn1nn2v4fSWXD50XoDOAk8WpSrbViNuMkB4kN1ElnOGm1c519IHg==",
+      "sha512": "sha512-fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
       "path": "remotion.linq/2.2.0",
       "hashPath": "remotion.linq.2.2.0.nupkg.sha512"
     },
@@ -751,7 +742,7 @@
     "System.Data.SqlClient/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-cTPUCClr34EGBnyazUeciMD6sNm9aiE/li3uGvJ7z5dGup9QxKwysUeKXIrCO0E5KtQQAzGORFEYmowyEpcL2A==",
+      "sha512": "sha512-qXTvTFkBds7bnN+ntBMHGvmH3pCAkfT4TE1z2Xvfqo4wKMQC77O4aXsYCc7dzCESC+/Gom6l0GLuebpFx7MDvg==",
       "path": "system.data.sqlclient/4.5.1",
       "hashPath": "system.data.sqlclient.4.5.1.nupkg.sha512"
     },
@@ -779,7 +770,7 @@
     "System.Interactive.Async/3.1.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-x9y2omkjEudKbIVuhUzeWw7ZlouEzpk4W98woCEq1lq9gJxERBKRKDTHF5JPEws9E0f4/Uei/2vLxEy1IrfmMg==",
+      "sha512": "sha512-hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw==",
       "path": "system.interactive.async/3.1.1",
       "hashPath": "system.interactive.async.3.1.1.nupkg.sha512"
     },
@@ -807,7 +798,7 @@
     "System.Linq.Queryable/4.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
+      "sha512": "sha512-sBRlED2iPPd65XThBe+LDdkcEj8SnXRdg3Ee8nf8R4WGGoIAnEE0331kVF+g5Xzo8tsSOiy1+UkvmQGAIlK4UA==",
       "path": "system.linq.queryable/4.0.1",
       "hashPath": "system.linq.queryable.4.0.1.nupkg.sha512"
     },
@@ -891,7 +882,7 @@
     "System.Runtime.CompilerServices.Unsafe/4.5.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-x/3d5xb+mc9e4I2GOOT+HPRWMZLbYjNN/kYKsb0fyUKcWizn/t1CIrGRLIBhv7H0ptYEt+WTTztdPmwSUMyKig==",
+      "sha512": "sha512-qUJMNWhbm9oZ3XaMFiEMiYmRPszbnXIkRIi7+4b2Md2xZ6JUOepf0/kY3S85qistRohl9OdMe4PsO+RdG2kTIQ==",
       "path": "system.runtime.compilerservices.unsafe/4.5.1",
       "hashPath": "system.runtime.compilerservices.unsafe.4.5.1.nupkg.sha512"
     },
@@ -947,17 +938,12 @@
     "Valit/2.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vVE8Sfq/1KASojC2c36WVRnYOi16u2q6HhMz4JeJjix4p7YJ1Z00iInXykPKiMhUeOvbXsepGHxo+kqdPm3qgw==",
+      "sha512": "sha512-sSGmB8ZO215cBnEd2wR4hqlMPPsU4rJ3mHFySUCfD6XltLl3dhF7/eYqrsP7QFT7gb7qrHbwCh14o0tDvH4/zA==",
       "path": "valit/2.0.0",
       "hashPath": "valit.2.0.0.nupkg.sha512"
     },
     "WeatherAttack.Domain/1.0.0": {
       "type": "project",
-      "serviceable": false,
-      "sha512": ""
-    },
-    "Microsoft.IdentityModel.Protocols/5.2.0.0": {
-      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

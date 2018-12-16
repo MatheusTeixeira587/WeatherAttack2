@@ -1177,11 +1177,10 @@
       ]
     },
     "Microsoft.Extensions.DependencyInjection/2.1.1": {
-      "sha512": "ZPFcDUbSwaEVWMyef8+9GqiTAghHX+eLeIEW032i4LDFAdyM4J4brV0UzChlKtClT7cuip/Of6G+veDnO3/bCw==",
+      "sha512": "2nshYaLTn73Ie+/yTkb7EZIXwQeFIXsYCBy/jSY9bMayYykGNjdWa25frayhuPAGVbZpEgfgp3d4JRVEuVyEqQ==",
       "type": "package",
       "path": "microsoft.extensions.dependencyinjection/2.1.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/net461/Microsoft.Extensions.DependencyInjection.dll",
         "lib/net461/Microsoft.Extensions.DependencyInjection.xml",
@@ -1567,11 +1566,10 @@
       ]
     },
     "Microsoft.NETCore.Platforms/2.1.0": {
-      "sha512": "aSTPL94NloSiQVL5Len8wbjFKOnoAX/vOh3s3DF6g3c7GUUMLCDvnBhmA72M2iN2AedyA8hpr7m89kzSAKUnJQ==",
+      "sha512": "TT+QCi9LcxGTjBssH7S7n5+8DVcwfG4DYgXX7Dk7+BfZ4oVHj8Q0CbYk9glzAlHLsSt3bYzol+fOdra2iu6GOw==",
       "type": "package",
       "path": "microsoft.netcore.platforms/2.1.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -1769,12 +1767,10 @@
       ]
     },
     "Remotion.Linq/2.2.0": {
-      "sha512": "twDAH8dAXXCAf3sRv1Tf94u66eEHvgU75hfn1nn2v4fSWXD50XoDOAk8WpSrbViNuMkB4kN1ElnOGm1c519IHg==",
+      "sha512": "fK/76UmpC0FXBlGDFVPLJHQlDLYnGC+XY3eoDgCgbtrhi0vzbXDQ3n/IYHhqSKqXQfGw/u04A1drWs7rFVkRjw==",
       "type": "package",
       "path": "remotion.linq/2.2.0",
       "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net35/Remotion.Linq.XML",
         "lib/net35/Remotion.Linq.dll",
         "lib/net40/Remotion.Linq.XML",
@@ -2028,11 +2024,10 @@
       ]
     },
     "System.Data.SqlClient/4.5.1": {
-      "sha512": "cTPUCClr34EGBnyazUeciMD6sNm9aiE/li3uGvJ7z5dGup9QxKwysUeKXIrCO0E5KtQQAzGORFEYmowyEpcL2A==",
+      "sha512": "qXTvTFkBds7bnN+ntBMHGvmH3pCAkfT4TE1z2Xvfqo4wKMQC77O4aXsYCc7dzCESC+/Gom6l0GLuebpFx7MDvg==",
       "type": "package",
       "path": "system.data.sqlclient/4.5.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -2261,12 +2256,10 @@
       ]
     },
     "System.Interactive.Async/3.1.1": {
-      "sha512": "x9y2omkjEudKbIVuhUzeWw7ZlouEzpk4W98woCEq1lq9gJxERBKRKDTHF5JPEws9E0f4/Uei/2vLxEy1IrfmMg==",
+      "sha512": "hZccYiIE5RS1/J9Tb/BNtosAGVggdlsJm4Ojdu+gDV0p4AIi+LUfUogMKkRacljQEJd2AG6vYzvcjhQFkqoZmw==",
       "type": "package",
       "path": "system.interactive.async/3.1.1",
       "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
         "lib/net45/System.Interactive.Async.dll",
         "lib/net45/System.Interactive.Async.xml",
         "lib/net46/System.Interactive.Async.dll",
@@ -2514,11 +2507,10 @@
       ]
     },
     "System.Linq.Queryable/4.0.1": {
-      "sha512": "Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
+      "sha512": "sBRlED2iPPd65XThBe+LDdkcEj8SnXRdg3Ee8nf8R4WGGoIAnEE0331kVF+g5Xzo8tsSOiy1+UkvmQGAIlK4UA==",
       "type": "package",
       "path": "system.linq.queryable/4.0.1",
       "files": [
-        ".nupkg.metadata",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/monoandroid10/_._",
@@ -3153,11 +3145,10 @@
       ]
     },
     "System.Runtime.CompilerServices.Unsafe/4.5.1": {
-      "sha512": "x/3d5xb+mc9e4I2GOOT+HPRWMZLbYjNN/kYKsb0fyUKcWizn/t1CIrGRLIBhv7H0ptYEt+WTTztdPmwSUMyKig==",
+      "sha512": "qUJMNWhbm9oZ3XaMFiEMiYmRPszbnXIkRIi7+4b2Md2xZ6JUOepf0/kY3S85qistRohl9OdMe4PsO+RdG2kTIQ==",
       "type": "package",
       "path": "system.runtime.compilerservices.unsafe/4.5.1",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
@@ -3595,11 +3586,10 @@
       ]
     },
     "Valit/2.0.0": {
-      "sha512": "vVE8Sfq/1KASojC2c36WVRnYOi16u2q6HhMz4JeJjix4p7YJ1Z00iInXykPKiMhUeOvbXsepGHxo+kqdPm3qgw==",
+      "sha512": "sSGmB8ZO215cBnEd2wR4hqlMPPsU4rJ3mHFySUCfD6XltLl3dhF7/eYqrsP7QFT7gb7qrHbwCh14o0tDvH4/zA==",
       "type": "package",
       "path": "valit/2.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Valit.dll",
         "valit.2.0.0.nupkg.sha512",
@@ -3623,23 +3613,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\matheus.camara\\.nuget\\packages\\": {},
+    "C:\\Users\\FabricioNote\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\Weatherattack.Infra.csproj",
-      "projectName": "Weatherattack.Infra",
-      "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\Weatherattack.Infra.csproj",
-      "packagesPath": "C:\\Users\\matheus.camara\\.nuget\\packages\\",
-      "outputPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Infra\\obj\\",
+      "projectUniqueName": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Infra\\WeatherAttack.Infra.csproj",
+      "projectName": "WeatherAttack.Infra",
+      "projectPath": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Infra\\WeatherAttack.Infra.csproj",
+      "packagesPath": "C:\\Users\\FabricioNote\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Infra\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\matheus.camara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FabricioNote\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3647,14 +3640,13 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://s184:8081/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.1": {
           "projectReferences": {
-            "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj": {
-              "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj"
+            "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj": {
+              "projectPath": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj"
             }
           }
         }
@@ -3670,25 +3662,25 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[2.1.4, )"
+            "version": "2.1.4"
           },
           "Microsoft.EntityFrameworkCore.Design": {
             "target": "Package",
-            "version": "[2.1.4, )"
-          },
-          "Microsoft.EntityFrameworkCore.Relational": {
-            "target": "Package",
-            "version": "[2.1.4, )"
-          },
-          "Microsoft.EntityFrameworkCore.SqlServer": {
-            "target": "Package",
-            "version": "[2.1.4, )"
+            "version": "2.1.4"
           },
           "Microsoft.NETCore.App": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.1.0, )",
+            "version": "2.1",
             "autoReferenced": true
+          },
+          "Microsoft.EntityFrameworkCore.Relational": {
+            "target": "Package",
+            "version": "2.1.4"
+          },
+          "Microsoft.EntityFrameworkCore.SqlServer": {
+            "target": "Package",
+            "version": "2.1.4"
           }
         },
         "imports": [

@@ -51,12 +51,10 @@
   },
   "libraries": {
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "bLpT1f/SFlO1CzqXG12KnJzpZs6lv24uX2Rzi4Fmm0noJpNlnWRVryuO3yK18Ca04t/YHcO1e1Z0WDfjseqNzw==",
+      "sha512": "zCxd+VmGpRo2bg9HLNjq36JbRYbXBelKdpUYYY8BWhkY1TrQO9HtF9dBegV5vaJre9K8IPEMUyQX+V/tT+A+8Q==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -193,12 +191,10 @@
       ]
     },
     "System.Collections.Immutable/1.4.0": {
-      "sha512": "tmNm+CvE8Wzt3dtghUNi9ur8R1N2EUltwEBQ4nr70nhzUI9wrR1fJw0rtydtFCUktXVJHPcF5hy8s8ixVmx+8w==",
+      "sha512": "71hw5RUJRu5+q/geUY69gpXD8Upd12cH+F3MwpXV2zle7Bqqkrmc1JblOTuvUcgmdnUtQvBlV5e1d6RH+H2lvA==",
       "type": "package",
       "path": "system.collections.immutable/1.4.0",
       "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
         "LICENSE.TXT",
         "THIRD-PARTY-NOTICES.TXT",
         "lib/netcoreapp2.0/_._",
@@ -216,11 +212,10 @@
       ]
     },
     "Valit/2.0.0": {
-      "sha512": "vVE8Sfq/1KASojC2c36WVRnYOi16u2q6HhMz4JeJjix4p7YJ1Z00iInXykPKiMhUeOvbXsepGHxo+kqdPm3qgw==",
+      "sha512": "sSGmB8ZO215cBnEd2wR4hqlMPPsU4rJ3mHFySUCfD6XltLl3dhF7/eYqrsP7QFT7gb7qrHbwCh14o0tDvH4/zA==",
       "type": "package",
       "path": "valit/2.0.0",
       "files": [
-        ".nupkg.metadata",
         ".signature.p7s",
         "lib/netstandard2.0/Valit.dll",
         "valit.2.0.0.nupkg.sha512",
@@ -235,23 +230,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\matheus.camara\\.nuget\\packages\\": {},
+    "C:\\Users\\FabricioNote\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
+    "restoreSettings": {
+      "hideWarningsAndErrors": true
+    },
     "restore": {
-      "projectUniqueName": "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\Weatherattack.Domain.csproj",
-      "projectName": "Weatherattack.Domain",
-      "projectPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\Weatherattack.Domain.csproj",
-      "packagesPath": "C:\\Users\\matheus.camara\\.nuget\\packages\\",
-      "outputPath": "C:\\weather-attack-2\\api\\src\\Weatherattack.Domain\\obj\\",
+      "projectUniqueName": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj",
+      "projectName": "WeatherAttack.Domain",
+      "projectPath": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Domain\\WeatherAttack.Domain.csproj",
+      "packagesPath": "C:\\Users\\FabricioNote\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\FabricioNote\\Documents\\gitlab\\weatherattack2\\api\\src\\Weatherattack.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\matheus.camara\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\FabricioNote\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -259,7 +257,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "http://s184:8081/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -279,12 +276,12 @@
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.3, )",
+            "version": "2.0.3",
             "autoReferenced": true
           },
           "Valit": {
             "target": "Package",
-            "version": "[2.0.0, )"
+            "version": "2.0.0"
           }
         },
         "imports": [
