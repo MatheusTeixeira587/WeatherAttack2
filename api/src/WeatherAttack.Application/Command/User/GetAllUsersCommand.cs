@@ -10,7 +10,7 @@ namespace Weatherattack.Application.Command.User
     {
         private GetAllUserCommandHandler Handler { get; }
 
-        public IQueryable Users { get; set; }
+        public IQueryable Result { get; set; }
 
         public override void Execute()
         {

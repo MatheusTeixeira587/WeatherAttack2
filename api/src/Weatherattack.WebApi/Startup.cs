@@ -34,7 +34,7 @@ namespace Weatherattack.WebApi
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = "WeatherAttack API", Version = "v1" });
+                c.SwaggerDoc("v1", new Info { Title = "WeatherAttackAPI", Version = "v1" });
             });
 
             //database
@@ -60,7 +60,7 @@ namespace Weatherattack.WebApi
                 app.UseHsts();
             }
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4500").AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

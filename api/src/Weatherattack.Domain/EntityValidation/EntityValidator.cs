@@ -7,7 +7,6 @@ namespace Weatherattack.Domain.EntityValidation
 {
     public static class EntityValidator
     {
-       
         public static void Validate(User user)
         {
             var result = ValitRules<User>

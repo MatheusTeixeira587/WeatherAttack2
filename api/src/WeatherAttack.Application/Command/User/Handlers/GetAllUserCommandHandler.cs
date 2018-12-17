@@ -14,7 +14,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
             var users = Context.GetAll();
 
             if (users.Count() != 0)
-                command.Users = users;
+                command.Result = users;
 
             return command;
         }
