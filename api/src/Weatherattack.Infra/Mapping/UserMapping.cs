@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.EntityValidation.Rules.User;
 
-namespace Weatherattack.Infra.Mapping
+namespace WeatherAttack.Infra.Mapping
 {
     class UserMapping : IEntityTypeConfiguration<User>
     {
@@ -27,7 +27,8 @@ namespace Weatherattack.Infra.Mapping
 
             builder.Property(u => u.Password)
                 .IsRequired();
-            builder.HasOne(u => u.Character).WithOne(u => u.user);
+
+            builder.HasOne(u => u.Character).WithOne().HasForeignKey<Character>(c => c.User);
         }
     }
 }

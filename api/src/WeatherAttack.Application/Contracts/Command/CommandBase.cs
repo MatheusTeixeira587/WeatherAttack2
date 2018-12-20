@@ -1,5 +1,6 @@
 ﻿using System;
-using Weatherattack.Application.Contracts.Command;
+using System.Collections.Generic;
+using System.Text;
 using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Contracts.Command

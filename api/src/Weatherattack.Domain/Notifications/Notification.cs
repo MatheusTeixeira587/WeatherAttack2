@@ -1,4 +1,4 @@
-﻿namespace Weatherattack.Domain.Notifications
+﻿namespace WeatherAttack.Domain.Notifications
 {
     public class Notification
     {

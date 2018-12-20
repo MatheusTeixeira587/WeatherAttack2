@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace Weatherattack.Domain.Notifications
+namespace WeatherAttack.Domain.Notifications
 {
     public static class CharacterNotifications
     {

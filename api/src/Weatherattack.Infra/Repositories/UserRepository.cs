@@ -1,7 +1,7 @@
 ﻿using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Entities;
 
-namespace Weatherattack.Infra.Repositories
+namespace WeatherAttack.Infra.Repositories
 {
     public class UserRepository : GenericRepository<WeatherAttackContext, User>, IUserRepository
     {

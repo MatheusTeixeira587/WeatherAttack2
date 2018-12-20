@@ -1,5 +1,4 @@
 ﻿using WeatherAttack.Domain.Entities;
-using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Contracts.Dtos.User.Request
 {

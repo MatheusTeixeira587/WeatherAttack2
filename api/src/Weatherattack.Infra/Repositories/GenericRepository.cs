@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
-using Weatherattack.Domain.Contracts;
+using WeatherAttack.Domain.Contracts;
 
-namespace Weatherattack.Infra.Repositories
+namespace WeatherAttack.Infra.Repositories
 {
     public abstract class GenericRepository<C, T> :
-        IGenericRepository<T> where T : class where C : DbContext, new()
+        IGenericRepository<T> where T : class where C : DbContext
     {
         private C _entities { get; set; }
 

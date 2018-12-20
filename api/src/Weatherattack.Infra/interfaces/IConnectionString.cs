@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Weatherattack.Infra.Interfaces
+﻿namespace WeatherAttack.Infra.Interfaces
 {
     public interface IDatabaseOptions 
     {

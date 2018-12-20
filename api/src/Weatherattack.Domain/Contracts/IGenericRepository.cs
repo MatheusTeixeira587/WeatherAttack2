@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace Weatherattack.Domain.Contracts
+namespace WeatherAttack.Domain.Contracts
 {
     public interface IGenericRepository<T> where T : class
     {

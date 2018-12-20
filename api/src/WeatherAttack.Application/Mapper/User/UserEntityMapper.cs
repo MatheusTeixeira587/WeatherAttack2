@@ -1,4 +1,4 @@
-﻿using Weatherattack.Application.Contracts.Dtos.User.Response;
+﻿using WeatherAttack.Application.Contracts.Dtos.User.Response;
 using WeatherAttack.Application.Contracts.Dtos.User.Request;
 using Entity = WeatherAttack.Domain.Entities;    
 

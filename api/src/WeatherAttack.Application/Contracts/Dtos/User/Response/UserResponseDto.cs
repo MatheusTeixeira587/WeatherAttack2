@@ -1,7 +1,7 @@
 ﻿
 using WeatherAttack.Domain.Entities;
 
-namespace Weatherattack.Application.Contracts.Dtos.User.Response
+namespace WeatherAttack.Application.Contracts.Dtos.User.Response
 {
     public class UserResponseDto : EntityBase
     {

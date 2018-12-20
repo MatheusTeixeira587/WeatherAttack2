@@ -1,10 +1,10 @@
-﻿using Weatherattack.Domain.EntityValidation.Rules.Character;
+﻿using WeatherAttack.Domain.EntityValidation.Rules.Character;
 
 namespace WeatherAttack.Domain.Entities
 {
     public class Character : EntityBase
     {
-        public User user { get; private set; }
+        public User User { get; private set; }
 
         public long HealthPoints { get; private set; } = CharacterRules.HealthPoints.InitialValue;
 

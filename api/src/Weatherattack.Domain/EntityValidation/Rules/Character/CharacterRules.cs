@@ -1,4 +1,4 @@
-﻿namespace Weatherattack.Domain.EntityValidation.Rules.Character
+﻿namespace WeatherAttack.Domain.EntityValidation.Rules.Character
 {
     public static class CharacterRules
     {
@@ -31,7 +31,7 @@
         {
             public static readonly long InitialValue = 0;
             public static readonly long OnWinIncreaseValue = 10;
-            public static readonly long OnLossIncreaseValue = OnWinIncreaseValue / 2;
+            public static readonly long OnLossIncreaseValue = (OnWinIncreaseValue / 2);
         }
     }
 }

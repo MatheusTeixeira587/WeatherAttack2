@@ -1,21 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using LightInject;
+using LightInject.Microsoft.DependencyInjection;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.AspNetCore.Mvc;
-using Weatherattack.Infra.Interfaces;
-using Weatherattack.Infra.DatabaseOptions;
-using Weatherattack.Infra.Repositories;
-using WeatherAttack.Domain.Contracts;
-using WeatherAttack.Domain.Entities;
-using WeatherAttack.Application.Contracts.interfaces;
-using WeatherAttack.Security.Services;
-using WeatherAttack.Application.Mapper;
-using WeatherAttack.Application.Contracts.Dtos.User.Request;
-using Weatherattack.Application.Contracts.Dtos.User.Response;
-using WeatherAttack.Application.Mapper.User;
+using System;
+using WeatherAttack.Infra;
+using WeatherAttack.WebApi;
 
 namespace Weatherattack.WebApi
 {
@@ -29,7 +24,7 @@ namespace Weatherattack.WebApi
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
@@ -39,14 +34,20 @@ namespace Weatherattack.WebApi
 
             //database
             var connectionString = Configuration.GetConnectionString("WeatherAttack");
-            //services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
-            services.AddSingleton<IDatabaseOptions, DataBaseOptions>(options => new DataBaseOptions(connectionString));
+            services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
 
-            //services
-            services.AddScoped<IPasswordService, PasswordService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IMapper<User, UserRequestDto, UserResponseDto>, UserEntityMapper>();
+            var container = new ServiceContainer();
+            ConfigureContainer(container);
+
             services.AddCors();
+
+            return container.CreateServiceProvider(services);
+        }
+
+        public void ConfigureContainer(IServiceContainer container)
+        {
+            container.RegisterFrom<CompositionRoot>();
+            Console.Write(container.AvailableServices.ToString());
         }
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)

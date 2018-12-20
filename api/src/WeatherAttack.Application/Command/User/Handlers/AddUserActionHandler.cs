@@ -1,15 +1,15 @@
-﻿using Weatherattack.Application.Command.User;
-using Weatherattack.Application.Contracts.Dtos.User.Response;
-using Weatherattack.Domain.EntityValidation;
+﻿using WeatherAttack.Application.Contracts.Command;
 using WeatherAttack.Application.Contracts.Dtos.User.Request;
+using WeatherAttack.Application.Contracts.Dtos.User.Response;
 using WeatherAttack.Application.Contracts.interfaces;
 using WeatherAttack.Application.Mapper;
 using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.EntityValidation;
 using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
-    public class AddUserCommandHandler
+    public class AddUserActionHandler : IActionHandler<AddUserCommand>
     {
         private IUserRepository Context { get; }
 
@@ -17,7 +17,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         private IPasswordService PasswordService { get; }
 
-        public AddUserCommand HandleAction(AddUserCommand command)
+        public void HandleAction(AddUserCommand command)
         {
             var user = Mapper.ToEntity(command.User);
 
@@ -30,8 +30,6 @@ namespace WeatherAttack.Application.Command.User.Handlers
             }
 
             command.AddNotification(user.Notifications);
-
-            return command;
         }
     }
 }

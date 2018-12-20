@@ -1,20 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Weatherattack.Application.Command.User;
+﻿using Microsoft.AspNetCore.Mvc;
+using WeatherAttack.Application.Command.User;
 
 namespace Weatherattack.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/user")]
     [ApiController]
     public class UserController : ControllerBase
     {
         // GET api/values
-        [Route("List")]
+        [Route("list")]
         [HttpGet]
-        public GetAllUsersCommand Get(GetAllUsersCommand command)
+        public GetAllUsersCommand Get([FromRoute]GetAllUsersCommand command)
         {
             command.Execute();
             return command;

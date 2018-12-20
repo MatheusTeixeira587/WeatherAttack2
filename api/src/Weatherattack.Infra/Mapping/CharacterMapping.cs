@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Weatherattack.Domain.EntityValidation.Rules.Character;
+using WeatherAttack.Domain.EntityValidation.Rules.Character;
 using WeatherAttack.Domain.Entities;
 
-namespace Weatherattack.Infra.Mapping
+namespace WeatherAttack.Infra.Mapping
 {
     class CharacterMapping : IEntityTypeConfiguration<Character>
     {

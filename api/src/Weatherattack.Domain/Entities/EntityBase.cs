@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
-using Weatherattack.Domain.Notifications;
+using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
 {
@@ -8,7 +9,8 @@ namespace WeatherAttack.Domain.Entities
     {
         public long Id { get; private set; }
 
-        public List<Notification> Notifications { get; private set; }
+        [NotMapped]
+        public List<Notification> Notifications { get; private set; } = new List<Notification>();
 
         public bool isValid => Notifications.Count == 0;
 

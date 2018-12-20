@@ -1,5 +1,4 @@
-﻿using Weatherattack.Domain.Contracts;
-using WeatherAttack.Domain.Entities;
+﻿using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Domain.Contracts
 {

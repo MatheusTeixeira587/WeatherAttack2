@@ -1,4 +1,4 @@
-﻿namespace Weatherattack.Application.Contracts.Command
+﻿namespace WeatherAttack.Application.Contracts.Command
 {
     public interface ICommand
     {
