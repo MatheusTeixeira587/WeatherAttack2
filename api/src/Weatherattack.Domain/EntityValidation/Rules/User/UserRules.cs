@@ -2,12 +2,6 @@
 {
     public static class UserRules
     {       
-        public static class NameRules
-        {
-            public static readonly int MinLength = 1;
-            public static readonly int MaxLength = 60;
-        }
-
         public static class EmailRules
         {
             public static readonly int MinLength = 1;

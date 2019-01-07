@@ -1,15 +1,21 @@
-﻿using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.User.Response;
+﻿using Valit;
+using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Application.Contracts.Dtos.User.Request;
 
 namespace WeatherAttack.Application.Command.User
 {
     public class AddUserCommand : CommandBase
     {
-        public UserResponseDto User { get; set; }
+        public UserRequestDto User { get; set; }
 
-        private IActionHandler<AddUserCommand> Handler { get; }
-
-        public override void Execute() => Handler.HandleAction(this);
-        
+        protected override void Validate()
+        {
+            var result = ValitRules<AddUserCommand>
+                .Create()
+                .Ensure(c => c.User, _ => _
+                    .Required())
+                .For(this)
+                .Validate();
+        }
     }
 }

@@ -13,10 +13,6 @@ namespace WeatherAttack.Infra.Mapping
 
             builder.HasKey(u => u.Id);
 
-            builder.Property(u => u.Name)
-                .IsRequired()
-                .HasMaxLength(UserRules.NameRules.MaxLength);
-
             builder.Property(u => u.Email)
                 .IsRequired()
                 .HasMaxLength(UserRules.EmailRules.MaxLength);
@@ -28,7 +24,7 @@ namespace WeatherAttack.Infra.Mapping
             builder.Property(u => u.Password)
                 .IsRequired();
 
-            builder.HasOne(u => u.Character).WithOne().HasForeignKey<Character>(c => c.User);
+            builder.HasOne(u => u.Character).WithOne().HasForeignKey<Character>(c => c.UserId);
         }
     }
 }

@@ -1,7 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 <ItemGroup>
-    <PackageReference Include="LightInject.Microsoft.AspNetCore.Hosting" Version="1.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="2.1.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.4" />

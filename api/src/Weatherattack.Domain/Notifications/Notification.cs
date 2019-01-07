@@ -2,11 +2,10 @@
 {
     public class Notification
     {
-
         public Notification(string code, string message)
         {
-            this.Code = code;
-            this.Message = message;
+            Code = code;
+            Message = message;
         }
 
         public string Code { get; private set; }

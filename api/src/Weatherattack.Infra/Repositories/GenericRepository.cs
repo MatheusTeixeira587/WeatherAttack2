@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using WeatherAttack.Domain.Contracts;
 
@@ -8,40 +9,43 @@ namespace WeatherAttack.Infra.Repositories
     public abstract class GenericRepository<C, T> :
         IGenericRepository<T> where T : class where C : DbContext
     {
-        private C _entities { get; set; }
+        public GenericRepository(DbContext context)
+        {
+            Context = context;
+        }
 
-        protected C Context { get; set; }
+        protected DbContext Context { get; set; }
 
         public virtual IQueryable<T> GetAll()
         {
-            IQueryable<T> query = _entities.Set<T>();
+            IQueryable<T> query = Context.Set<T>().AsNoTracking();
             return query;
         }
 
         public IQueryable<T> FindBy(System.Linq.Expressions.Expression<Func<T, bool>> predicate)
         { 
-            IQueryable<T> query = _entities.Set<T>().Where(predicate);
+            IQueryable<T> query = Context.Set<T>().Where(predicate);
             return query;
         }
 
         public virtual void Add(T entity)
         {
-            _entities.Set<T>().Add(entity);
+            Context.Set<T>().Add(entity);          
         }
 
         public virtual void Delete(T entity)
         {
-            _entities.Set<T>().Remove(entity);
+            Context.Set<T>().Remove(entity);
         }
 
         public virtual void Edit(T entity)
         {
-            _entities.Entry(entity).State = EntityState.Modified;
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual void Save()
         {
-            _entities.SaveChanges();
+            Context.SaveChanges();
         }
     }
 }

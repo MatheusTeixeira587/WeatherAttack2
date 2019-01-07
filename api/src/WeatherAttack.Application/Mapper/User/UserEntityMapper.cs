@@ -10,7 +10,6 @@ namespace WeatherAttack.Application.Mapper.User
         {
             return new UserResponseDto()
             {
-                Name = user.Name,
                 Email = user.Email,
                 Username = user.Username,
             };
@@ -18,10 +17,7 @@ namespace WeatherAttack.Application.Mapper.User
 
         public Entity.User ToEntity(UserRequestDto dto)
         {
-            var user = new Entity.User(dto.Name,dto.Email,dto.Username);
-            user.SetPassword(dto.Password);
-
-            return user;
+            return new Entity.User(dto.Email,dto.Username);
         }
     }
 }

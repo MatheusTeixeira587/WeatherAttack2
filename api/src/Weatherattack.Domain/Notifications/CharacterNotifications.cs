@@ -5,10 +5,9 @@ namespace WeatherAttack.Domain.Notifications
 {
     public static class CharacterNotifications
     {
-
         private static readonly IReadOnlyList<Notification> _messages = new List<Notification>
         {
-            new Notification("CN-001", "Invalid character") ,
+            new Notification("CN-001", "Invalid character.") ,
         };
 
         public static Notification GetNotification(string cod)

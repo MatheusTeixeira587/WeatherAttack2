@@ -6,6 +6,8 @@ namespace WeatherAttack.Domain.Entities
     {
         public User User { get; private set; }
 
+        public long UserId { get; private set; }
+
         public long HealthPoints { get; private set; } = CharacterRules.HealthPoints.InitialValue;
 
         public long ManaPoints { get; private set; } = CharacterRules.ManaPoints.InitialValue;

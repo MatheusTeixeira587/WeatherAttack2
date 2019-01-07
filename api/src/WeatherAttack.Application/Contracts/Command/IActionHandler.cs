@@ -1,7 +1,7 @@
 ﻿namespace WeatherAttack.Application.Contracts.Command
 {
-    public interface IActionHandler<T> where T : ICommand
+    public interface IActionHandler<T> where T : CommandBase
     {
-        void HandleAction(T entity);
+        T ExecuteAction(T entity);
     }
 }

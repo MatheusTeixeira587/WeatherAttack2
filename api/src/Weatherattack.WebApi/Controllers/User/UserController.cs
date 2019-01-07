@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using WeatherAttack.Application.Command.User;
+using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Domain.Entities;
 
 namespace Weatherattack.WebApi.Controllers
 {
@@ -7,34 +10,43 @@ namespace Weatherattack.WebApi.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        // GET api/values
+        private IActionHandler<GetAllUsersCommand> GetAllUserHandler { get; }
+        private IActionHandler<AddUserCommand> AddUserHandler { get; }
+        private IActionHandler<GetUserCommand> GetUserHandler { get; }
+
         [Route("list")]
         [HttpGet]
         public GetAllUsersCommand Get([FromRoute]GetAllUsersCommand command)
-        {
-            command.Execute();
-            return command;
+        {   
+            return GetAllUserHandler.ExecuteAction(command);
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet("{Id:min(1)}")]
+        public GetUserCommand Get([FromRoute]GetUserCommand command)
         {
-            return "value";
+            return GetUserHandler.ExecuteAction(command);
         }
 
-        // PUT api/values/5
-        [HttpPut]
-        public AddUserCommand Put([FromBody]AddUserCommand command)
+        [HttpPost]
+        public AddUserCommand AddOrEdit([FromBody]AddUserCommand command)
         {
-            command.Execute();
-            return command;
+            return AddUserHandler.ExecuteAction(command);
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
+        [HttpDelete("{id:min(1)}")]
         public void Delete(int id)
         {
+        }
+
+        public UserController(
+            IActionHandler<GetAllUsersCommand> getAllUsersActionHandler,
+            IActionHandler<AddUserCommand> addUserActionHandler,
+            IActionHandler<GetUserCommand> getUserActionHandler
+            )
+        {
+            GetAllUserHandler = getAllUsersActionHandler;
+            AddUserHandler = addUserActionHandler;
+            GetUserHandler = getUserActionHandler;
         }
     }
 }

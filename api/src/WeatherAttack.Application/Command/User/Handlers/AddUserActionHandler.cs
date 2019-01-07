@@ -13,23 +13,37 @@ namespace WeatherAttack.Application.Command.User.Handlers
     {
         private IUserRepository Context { get; }
 
-        private IMapper<Entity.User, UserResponseDto, UserRequestDto> Mapper { get; }
+        private IMapper<Entity.User, UserRequestDto, UserResponseDto> Mapper { get; }
 
         private IPasswordService PasswordService { get; }
 
-        public void HandleAction(AddUserCommand command)
+        public AddUserActionHandler(IUserRepository context, IMapper<Entity.User, UserRequestDto, UserResponseDto> mapper, IPasswordService passwordService)
+        {
+            Context = context;
+            Mapper = mapper;
+            PasswordService = passwordService;
+        }
+
+        public AddUserCommand ExecuteAction(AddUserCommand command)
         {
             var user = Mapper.ToEntity(command.User);
 
-            EntityValidator.Validate(user);
-
-            if (user.isValid)
+            if (user.IsValid())
             {
-                user.SetPassword(PasswordService.HashPassword(user.Password));
-                Context.Add(user);
+                if (user.IsNew)
+                {
+                    user.SetPassword(PasswordService.HashPassword(user.Password));
+                    Context.Add(user);
+                }
+                else
+                {
+                    Context.Edit(user);
+                }
             }
 
             command.AddNotification(user.Notifications);
+
+            return command;
         }
     }
 }
