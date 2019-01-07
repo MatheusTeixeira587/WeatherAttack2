@@ -28,17 +28,17 @@ namespace WeatherAttack.Application.Command.User.Handlers
         {
             var user = Mapper.ToEntity(command.User);
 
+            if(user.IsNew)
+                user.SetPassword(PasswordService.HashPassword(user.Password));
+
             if (user.IsValid())
             {
                 if (user.IsNew)
-                {
-                    user.SetPassword(PasswordService.HashPassword(user.Password));
                     Context.Add(user);
-                }
                 else
-                {
                     Context.Edit(user);
-                }
+
+                Context.Save();
             }
 
             command.AddNotification(user.Notifications);

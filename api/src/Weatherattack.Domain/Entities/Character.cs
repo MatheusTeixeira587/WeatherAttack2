@@ -1,12 +1,11 @@
-﻿using WeatherAttack.Domain.EntityValidation.Rules.Character;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using WeatherAttack.Domain.EntityValidation.Rules.Character;
 
 namespace WeatherAttack.Domain.Entities
 {
     public class Character : EntityBase
     {
-        public User User { get; private set; }
-
-        public long UserId { get; private set; }
+        public long UserId { get; set; }
 
         public long HealthPoints { get; private set; } = CharacterRules.HealthPoints.InitialValue;
 
@@ -19,6 +18,5 @@ namespace WeatherAttack.Domain.Entities
         public long Losses { get; private set; } = CharacterRules.Losses.InitialValue;
 
         public long Medals { get; private set; } = CharacterRules.Medals.InitialValue;
-
     }
 }

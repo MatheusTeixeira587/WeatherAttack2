@@ -9,7 +9,7 @@ namespace WeatherAttack.Infra.Mapping
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.ToTable("User");
+            builder.ToTable("Users");
 
             builder.HasKey(u => u.Id);
 
