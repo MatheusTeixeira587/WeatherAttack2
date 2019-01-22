@@ -1,6 +1,6 @@
 ﻿
 using Valit;
-using WeatherAttack.Domain.EntityValidation.Rules.User;
+using WeatherAttack.Domain.EntityValidation.Rules;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
@@ -32,30 +32,27 @@ namespace WeatherAttack.Domain.Entities
                 .Create()
                 .Ensure(u => u.Email, _ => _
                     .Required()
-                        .WithMessage(UserNotifications.EmailIsRequired)
-                    .Satisfies(u => u.Trim().Length > UserRules.EmailRules.MinLength)
-                        .WithMessage(UserNotifications.InvalidEmail)
+                        .WithMessage(WeatherAttackNotifications.User.EmailIsRequired)
+                    .Satisfies(u => u.Trim().Length > Rules.User.Email.MinLength)
+                        .WithMessage(WeatherAttackNotifications.User.InvalidEmail)
                     .Email()
-                        .WithMessage(UserNotifications.InvalidEmail)
-                    .MaxLength(UserRules.EmailRules.MaxLength)
-                        .WithMessage(UserNotifications.InvalidEmail))
+                        .WithMessage(WeatherAttackNotifications.User.InvalidEmail)
+                    .MaxLength(Rules.User.Email.MaxLength)
+                        .WithMessage(WeatherAttackNotifications.User.InvalidEmail))
                  .Ensure(u => u.Username, _ => _
                     .Required()
-                        .WithMessage(UserNotifications.UsernameIsRequired)
-                    .Satisfies(u => u.Trim().Length > UserRules.UsernameRules.MinLength)
-                        .WithMessage(UserNotifications.InvalidUsername)
-                    .MaxLength(UserRules.UsernameRules.MaxLength)
-                        .WithMessage(UserNotifications.InvalidUsername))
+                        .WithMessage(WeatherAttackNotifications.User.UsernameIsRequired)
+                    .Satisfies(u => u.Trim().Length > Rules.User.Username.MinLength)
+                        .WithMessage(WeatherAttackNotifications.User.InvalidUsername)
+                    .MaxLength(Rules.User.Username.MaxLength)
+                        .WithMessage(WeatherAttackNotifications.User.InvalidUsername))
                 .Ensure(u => u.Password, _ => _
                     .Required()
-                        .WithMessage(UserNotifications.PasswordIsRequired))
+                        .WithMessage(WeatherAttackNotifications.User.PasswordIsRequired))
                 .For(this)
                 .Validate();
 
-            foreach (var m in result.ErrorMessages)
-            {
-                AddNotification(UserNotifications.GetNotification(m));
-            }
+            AddNotification(WeatherAttackNotifications.GetNotification(result.ErrorMessages));
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using WeatherAttack.Domain.Notifications;
@@ -21,6 +22,16 @@ namespace WeatherAttack.Domain.Entities
         {
             Validate();
             return Notifications.Count == 0;
+        }
+
+        public void AddNotification(string code)
+        {
+            AddNotification(WeatherAttackNotifications.GetNotification(code));
+        }
+
+        public void AddNotification(ImmutableArray<string> codeArray)
+        {
+            AddNotification(WeatherAttackNotifications.GetNotification(codeArray));
         }
 
         public void AddNotification(Notification notification)

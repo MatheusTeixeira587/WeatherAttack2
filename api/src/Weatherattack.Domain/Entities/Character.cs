@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using WeatherAttack.Domain.EntityValidation.Rules.Character;
+﻿using WeatherAttack.Domain.EntityValidation.Rules;
 
 namespace WeatherAttack.Domain.Entities
 {
@@ -7,16 +6,16 @@ namespace WeatherAttack.Domain.Entities
     {
         public long UserId { get; set; }
 
-        public long HealthPoints { get; private set; } = CharacterRules.HealthPoints.InitialValue;
+        public long HealthPoints { get; private set; } = Rules.Character.HealthPoints.InitialValue;
 
-        public long ManaPoints { get; private set; } = CharacterRules.ManaPoints.InitialValue;
+        public long ManaPoints { get; private set; } = Rules.Character.ManaPoints.InitialValue;
 
-        public long Battles { get; private set; } = CharacterRules.Battles.InitialValue;
+        public long Battles { get; private set; } = Rules.Character.Battles.InitialValue;
 
-        public long Wins { get; private set; } = CharacterRules.Wins.InitialValue;
+        public long Wins { get; private set; } = Rules.Character.Wins.InitialValue;
 
-        public long Losses { get; private set; } = CharacterRules.Losses.InitialValue;
+        public long Losses { get; private set; } = Rules.Character.Losses.InitialValue;
 
-        public long Medals { get; private set; } = CharacterRules.Medals.InitialValue;
+        public long Medals { get; private set; } = Rules.Character.Medals.InitialValue;
     }
 }

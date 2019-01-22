@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using WeatherAttack.Domain.EntityValidation.Rules.Character;
 using WeatherAttack.Domain.Entities;
+using WeatherAttack.Domain.EntityValidation.Rules;
 
 namespace WeatherAttack.Infra.Mapping
 {
@@ -14,16 +14,16 @@ namespace WeatherAttack.Infra.Mapping
             builder.HasKey(c => c.Id);
 
             builder.Property(c => c.Battles)
-                .HasDefaultValue(CharacterRules.Battles.InitialValue);
+                .HasDefaultValue(Rules.Character.Battles.InitialValue);
 
             builder.Property(c => c.Wins)
-                .HasDefaultValue(CharacterRules.Wins.InitialValue);
+                .HasDefaultValue(Rules.Character.Wins.InitialValue);
 
             builder.Property(c => c.Losses)
-                .HasDefaultValue(CharacterRules.Losses.InitialValue);
+                .HasDefaultValue(Rules.Character.Losses.InitialValue);
 
             builder.Property(c => c.Medals)
-                .HasDefaultValue(CharacterRules.Medals.InitialValue);
+                .HasDefaultValue(Rules.Character.Medals.InitialValue);
         }
     }
 }

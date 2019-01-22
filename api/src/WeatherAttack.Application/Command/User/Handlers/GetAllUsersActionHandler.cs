@@ -14,14 +14,15 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         private IMapper<Entities.User, UserRequestDto, UserResponseDto> Mapper { get; }
 
-        public GetAllUsersActionHandler(IUserRepository context)
+        public GetAllUsersActionHandler(IUserRepository context, IMapper<Entities.User, UserRequestDto, UserResponseDto> mapper)
         {
             Context = context;
+            Mapper = mapper;
         }
 
         public GetAllUsersCommand ExecuteAction(GetAllUsersCommand command)
         {
-            var users = Context.GetAll()
+            var users = Context.GetAll()?
                 .ToList()
                 .Select(f => Mapper.ToDto(f));
 

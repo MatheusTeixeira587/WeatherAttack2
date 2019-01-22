@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WeatherAttack.Domain.Entities;
-using WeatherAttack.Domain.EntityValidation.Rules.User;
+using WeatherAttack.Domain.EntityValidation.Rules;
 
 namespace WeatherAttack.Infra.Mapping
 {
@@ -15,11 +15,11 @@ namespace WeatherAttack.Infra.Mapping
 
             builder.Property(u => u.Email)
                 .IsRequired()
-                .HasMaxLength(UserRules.EmailRules.MaxLength);
+                .HasMaxLength(Rules.User.Email.MaxLength);
 
             builder.Property(u => u.Username)
                 .IsRequired()
-                .HasMaxLength(UserRules.UsernameRules.MaxLength);
+                .HasMaxLength(Rules.User.Username.MaxLength);
 
             builder.Property(u => u.Password)
                 .IsRequired();
