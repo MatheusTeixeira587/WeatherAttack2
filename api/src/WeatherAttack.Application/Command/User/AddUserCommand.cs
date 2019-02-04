@@ -19,7 +19,7 @@ namespace WeatherAttack.Application.Command.User
                 .For(this)
                 .Validate();
 
-            AddNotification(WeatherAttackNotifications.GetNotification(result.ErrorMessages));
+            AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));
         }
     }
 }

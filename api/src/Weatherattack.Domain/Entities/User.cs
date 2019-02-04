@@ -52,7 +52,7 @@ namespace WeatherAttack.Domain.Entities
                 .For(this)
                 .Validate();
 
-            AddNotification(WeatherAttackNotifications.GetNotification(result.ErrorMessages));
+            AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));
         }
     }
 }

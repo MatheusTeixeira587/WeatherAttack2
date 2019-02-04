@@ -26,12 +26,12 @@ namespace WeatherAttack.Domain.Entities
 
         public void AddNotification(string code)
         {
-            AddNotification(WeatherAttackNotifications.GetNotification(code));
+            AddNotification(WeatherAttackNotifications.Get(code));
         }
 
         public void AddNotification(ImmutableArray<string> codeArray)
         {
-            AddNotification(WeatherAttackNotifications.GetNotification(codeArray));
+            AddNotification(WeatherAttackNotifications.Get(codeArray));
         }
 
         public void AddNotification(Notification notification)

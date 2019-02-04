@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Domain.Entities;
 
 namespace Weatherattack.WebApi.Controllers
 {
@@ -33,9 +34,13 @@ namespace Weatherattack.WebApi.Controllers
             return AddUserHandler.ExecuteAction(command);
         }
 
-        [HttpDelete("{id:min(1)}")]
-        public void Delete(int id)
+        [HttpGet("{id:min(1)}/drop")]
+        public DateTime? Delete([FromRoute] long id)
         {
+            DateTime? data = null;
+            List<DateTime?> dataList = null;
+            data = dataList.FirstOrDefault();
+            return data;
         }
 
         public UserController(

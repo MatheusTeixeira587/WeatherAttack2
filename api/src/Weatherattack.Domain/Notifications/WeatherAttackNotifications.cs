@@ -50,12 +50,12 @@ namespace WeatherAttack.Domain.Notifications
             };
         }
 
-        public static Notification GetNotification(string cod)
+        public static Notification Get(string cod)
         {            
             return List.Select(m => m).Where(m => m.Code == cod).First();
         }
 
-        public static List<Notification> GetNotification(ImmutableArray<string> codArray)
+        public static List<Notification> Get(ImmutableArray<string> codArray)
         {
             return List.Select(m => m).Where(m => codArray.Contains(m.Code)).ToList();
         }
