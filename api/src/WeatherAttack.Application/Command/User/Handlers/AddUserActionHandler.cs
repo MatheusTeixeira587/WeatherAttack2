@@ -31,7 +31,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
             if(user.IsNew)
                 user.SetPassword(PasswordService.HashPassword(user.Password));
 
-            if (user.IsValid())
+            if (user.IsValid)
             {
                 if (user.IsNew)
                     Context.Add(user);

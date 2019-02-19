@@ -2,7 +2,7 @@
 
 namespace WeatherAttack.Domain.Contracts
 {
-    public interface IUserRepository : IRepository<User>
+    public interface ISpellRepository : IRepository<Spell>
     {
     }
 }

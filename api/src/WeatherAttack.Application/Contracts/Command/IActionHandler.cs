@@ -2,6 +2,6 @@
 {
     public interface IActionHandler<T> where T : CommandBase
     {
-        T ExecuteAction(T entity);
+        T ExecuteAction(T command);
     }
 }

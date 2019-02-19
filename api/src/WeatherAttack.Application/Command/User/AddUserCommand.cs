@@ -9,7 +9,7 @@ namespace WeatherAttack.Application.Command.User
     {
         public UserRequestDto User { get; set; }
 
-        protected override void Validate()
+        protected override bool Validate()
         {
             var result = ValitRules<AddUserCommand>
                 .Create()
@@ -20,6 +20,8 @@ namespace WeatherAttack.Application.Command.User
                 .Validate();
 
             AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));
+
+            return Notifications.Count == 0;
         }
     }
 }

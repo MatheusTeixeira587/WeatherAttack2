@@ -11,15 +11,20 @@ namespace WeatherAttack.Infra
             Database.Migrate();         
         }
 
-        public DbSet<User> UsersContext { get; set; }
+        public DbSet<User> UsersContext { get; }
 
-        public DbSet<Character> CharactersContext { get; set; }
+        public DbSet<Character> CharactersContext { get; }
+
+        public DbSet<Spell> SpellsContext { get; }
+
+        public DbSet<SpellRule> SpellsRulesContext { get; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new CharacterMapping());
+            modelBuilder.ApplyConfiguration(new SpellMapping());
+            modelBuilder.ApplyConfiguration(new SpellRuleMapping());
         }
     }
-
 }

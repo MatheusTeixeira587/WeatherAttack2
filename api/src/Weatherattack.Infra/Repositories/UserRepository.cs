@@ -5,10 +5,8 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Repositories
 {
-    public class UserRepository : GenericRepository<WeatherAttackContext, User>, IUserRepository
+    public class UserRepository : Repository<WeatherAttackContext, User>, IUserRepository
     {
-        public UserRepository(DbContext context) : base(context)
-        {
-        }
+        public UserRepository(DbContext context) : base(context) { }
     }
 }

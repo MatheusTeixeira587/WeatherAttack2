@@ -15,7 +15,7 @@ namespace WeatherAttack.Domain.Entities
 
         public Character Character { get; private set; } = new Character();
 
-        public User(string email, string username)
+        public User(long Id, string email, string username) : base(Id)
         {
             Email = email;
             Username = username;
@@ -26,7 +26,7 @@ namespace WeatherAttack.Domain.Entities
             Password = password;
         }
 
-        protected override void Validate()
+        protected override bool Validate()
         {
             var result = ValitRules<User>
                 .Create()
@@ -53,6 +53,8 @@ namespace WeatherAttack.Domain.Entities
                 .Validate();
 
             AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));
+
+            return Notifications.Count == 0;
         }
     }
 }

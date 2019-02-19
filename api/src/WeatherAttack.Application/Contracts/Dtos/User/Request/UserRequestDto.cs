@@ -2,8 +2,10 @@
 
 namespace WeatherAttack.Application.Contracts.Dtos.User.Request
 {
-    public class UserRequestDto : EntityBase
+    public class UserRequestDto
     {
+        public long Id { get; set; }
+
         public string Email { get; set; }
 
         public string Username { get; set; }

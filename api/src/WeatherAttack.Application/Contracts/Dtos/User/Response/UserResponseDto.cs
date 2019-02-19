@@ -3,8 +3,10 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Contracts.Dtos.User.Response
 {
-    public class UserResponseDto : EntityBase
+    public class UserResponseDto
     {
+        public long Id { get; set; }
+
         public string Email { get;  set; }
 
         public string Username { get;  set; }

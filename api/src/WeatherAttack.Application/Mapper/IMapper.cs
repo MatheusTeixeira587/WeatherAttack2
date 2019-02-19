@@ -1,9 +1,9 @@
 ﻿namespace WeatherAttack.Application.Mapper
 {
-    public interface IMapper<E, D, R> where E : class where D : class where R : class
+    public interface IMapper<Entity, Request, Response> where Entity : class where Request : class where Response : class
     {
-        R ToDto(E e);
+        Response ToDto(Entity entity);
 
-        E ToEntity(D d);
+        Entity ToEntity(Request request);
     }
 }

@@ -1,57 +1,66 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Application.Contracts.Command;
 
 namespace Weatherattack.WebApi.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
         private IActionHandler<GetAllUsersCommand> GetAllUserHandler { get; }
         private IActionHandler<AddUserCommand> AddUserHandler { get; }
         private IActionHandler<GetUserCommand> GetUserHandler { get; }
+        private IActionHandler<DeleteUserCommand> DeleteUserHandler { get; }
 
-        [Route("list")]
         [HttpGet]
-        public GetAllUsersCommand Get([FromRoute]GetAllUsersCommand command)
-        {   
-            return GetAllUserHandler.ExecuteAction(command);
+        public async Task<GetAllUsersCommand> Get([FromRoute]GetAllUsersCommand command)
+        {
+            return await Task.Run(() =>
+            {
+                return GetAllUserHandler.ExecuteAction(command);
+            });
         }
 
         [HttpGet("{Id:min(1)}")]
-        public GetUserCommand Get([FromRoute]GetUserCommand command)
+        public async Task<GetUserCommand> Get([FromRoute]GetUserCommand command)
         {
-            return GetUserHandler.ExecuteAction(command);
+            return await Task.Run(() =>
+            {
+                return GetUserHandler.ExecuteAction(command);
+            });
         }
 
-        [HttpPost]
-        public AddUserCommand AddOrEdit([FromBody]AddUserCommand command)
+        [HttpPut]
+        public async Task<AddUserCommand> AddOrEdit([FromBody]AddUserCommand command)
         {
-            return AddUserHandler.ExecuteAction(command);
+            return await Task.Run(() =>
+            {
+                return AddUserHandler.ExecuteAction(command);
+            });
         }
 
-        [HttpGet("{id:min(1)}/drop")]
-        public DateTime? Delete([FromRoute] long id)
+        [HttpDelete("{id:min(1)}/drop")]
+        public async Task<DeleteUserCommand> Delete([FromRoute] DeleteUserCommand command)
         {
-            DateTime? data = null;
-            List<DateTime?> dataList = null;
-            data = dataList.FirstOrDefault();
-            return data;
+            return await Task.Run(() =>
+            {
+                return DeleteUserHandler.ExecuteAction(command);
+            });
         }
 
         public UserController(
             IActionHandler<GetAllUsersCommand> getAllUsersActionHandler,
             IActionHandler<AddUserCommand> addUserActionHandler,
-            IActionHandler<GetUserCommand> getUserActionHandler
+            IActionHandler<GetUserCommand> getUserActionHandler,
+            IActionHandler<DeleteUserCommand> deleteUserActionHandler
             )
         {
             GetAllUserHandler = getAllUsersActionHandler;
             AddUserHandler = addUserActionHandler;
             GetUserHandler = getUserActionHandler;
+            DeleteUserHandler = deleteUserActionHandler;
         }
     }
 }

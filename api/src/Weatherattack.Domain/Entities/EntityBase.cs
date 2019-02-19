@@ -11,18 +11,16 @@ namespace WeatherAttack.Domain.Entities
     {
         protected EntityBase() { }
 
+        public EntityBase(long id) => Id = id;
+
         public long Id { get; private set; }
 
         public bool IsNew => Id == 0;
 
+        public bool IsValid => Validate();
+
         [NotMapped]
         public List<Notification> Notifications { get; private set; } = new List<Notification>();
-
-        public virtual bool IsValid()
-        {
-            Validate();
-            return Notifications.Count == 0;
-        }
 
         public void AddNotification(string code)
         {
@@ -46,9 +44,9 @@ namespace WeatherAttack.Domain.Entities
                 notifications.ForEach(n => AddNotification(n));
         }
 
-        protected virtual void Validate()
+        protected virtual bool Validate()
         {
-            throw new NotImplementedException();
+            return Notifications.Count == 0;
         }
     }
 }
