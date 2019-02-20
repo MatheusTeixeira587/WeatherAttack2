@@ -41,7 +41,7 @@ namespace Weatherattack.WebApi.Controllers
             });
         }
 
-        [HttpDelete("{id:min(1)}/drop")]
+        [HttpDelete("{Id:min(1)}")]
         public async Task<DeleteUserCommand> Delete([FromRoute] DeleteUserCommand command)
         {
             return await Task.Run(() =>

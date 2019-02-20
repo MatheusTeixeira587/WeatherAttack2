@@ -40,12 +40,23 @@ namespace WeatherAttack.Domain.Entities
             var result = ValitRules<Spell>
                 .Create()
                 .Ensure(s => s.BaseDamage, _=>_
-                    .IsPositive()
-                        .WithMessage(WeatherAttackNotifications.Spell.MustBePositive)
                     .IsLessThanOrEqualTo(ValidationRules.Spell.BaseDamage.MaxDamage)
-                        .WithMessage(WeatherAttackNotifications.Spell.ShouldBeLowerThan)
+                        .WithMessage(WeatherAttackNotifications.Spell.BaseDamageShouldBeLowerThan)
                     .IsGreaterThanOrEqualTo(ValidationRules.Spell.BaseDamage.MinDamage)
-                        .WithMessage(WeatherAttackNotifications.Spell.ShouldBeHigherThan))
+                        .WithMessage(WeatherAttackNotifications.Spell.BaseDamageShouldBeHigherThan))
+                .Ensure(s => s.BaseManaCost, _=>_
+                    .IsGreaterThanOrEqualTo(ValidationRules.Spell.BaseManaCost.MinCost)
+                        .WithMessage(WeatherAttackNotifications.Spell.BaseManaCostShouldBeHigherThan)
+                    .IsLessThanOrEqualTo(ValidationRules.Spell.BaseManaCost.MaxCost)
+                        .WithMessage(WeatherAttackNotifications.Spell.BaseManaCostShouldBeLowerThan))
+                .Ensure(s => s.Name, _=>_
+                    .Required()
+                        .WithMessage(WeatherAttackNotifications.Spell.NameIsRequired)
+                    .MinLength(ValidationRules.Spell.Name.MinLenght)
+                        .WithMessage(WeatherAttackNotifications.Spell.InvalidName)
+                    .MaxLength(ValidationRules.Spell.Name.MaxLenght)
+                        .WithMessage(WeatherAttackNotifications.Spell.InvalidName))
+                .For(this)
                 .Validate();
 
             AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));

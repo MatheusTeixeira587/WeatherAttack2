@@ -54,7 +54,7 @@ namespace WeatherAttack.Domain.Entities
 
             AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));
 
-            return Notifications.Count == 0;
+            return base.Validate();
         }
     }
 }

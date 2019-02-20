@@ -20,5 +20,10 @@ namespace WeatherAttack.Domain.Entities
         public Operator Operator { get; private set; }
 
         public WeatherCondition WeatherCondition { get; private set; }
+
+        protected override bool Validate()
+        {
+            return base.Validate();
+        }
     }
 }

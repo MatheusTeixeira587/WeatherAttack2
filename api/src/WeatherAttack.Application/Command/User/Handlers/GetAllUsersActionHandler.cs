@@ -23,8 +23,8 @@ namespace WeatherAttack.Application.Command.User.Handlers
         public GetAllUsersCommand ExecuteAction(GetAllUsersCommand command)
         {
             var users = Context.GetAll()?
-                .ToList()
-                .Select(f => Mapper.ToDto(f));
+                .Select(f => Mapper.ToDto(f))
+                .ToList();
 
             if (users != null || users.Count() != 0)
                 command.Result = users;

@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
+using System.Threading.Tasks;
+using WeatherAttack.Application.Command.Spell;
+using WeatherAttack.Application.Contracts.Command;
 
 namespace WeatherAttack.WebApi.Controllers.Spell
 {
@@ -7,36 +9,59 @@ namespace WeatherAttack.WebApi.Controllers.Spell
     [ApiController]
     public class SpellController : ControllerBase
     {
-        // GET: api/Spell
+        private IActionHandler<AddSpellCommand> AddSpellActionHandler { get; }
+
+        private IActionHandler<GetSpellCommand> GetSpellActionHandler { get; }
+
+        private IActionHandler<GetAllSpellsCommand> GetAllSpellsActionHandler { get; }
+
+        private IActionHandler<DeleteSpellCommand> DeleteSpellActionHandler { get; }
+
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<GetAllSpellsCommand> Get([FromRoute] GetAllSpellsCommand command)
         {
-            return new string[] { "value1", "value2" };
+            return await Task.Run(() => 
+            {
+                return GetAllSpellsActionHandler.ExecuteAction(command);
+            });
         }
 
-        // GET: api/Spell/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{Id:min(1)}")]
+        public async Task<GetSpellCommand> Get([FromRoute] GetSpellCommand command)
         {
-            return "value";
+            return await Task.Run(() =>
+            {
+                return GetSpellActionHandler.ExecuteAction(command);
+            });
         }
 
-        // POST: api/Spell
-        [HttpPost]
-        public void Post([FromBody] string value)
+        [HttpPut]
+        public async Task<AddSpellCommand> Add([FromBody] AddSpellCommand command)
         {
+            return await Task.Run(() =>
+            {
+                return AddSpellActionHandler.ExecuteAction(command);
+            });
         }
 
-        // PUT: api/Spell/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpDelete("{Id:min(1)}")]
+        public async Task<DeleteSpellCommand> Delete([FromRoute] DeleteSpellCommand command)
         {
+            return await Task.Run(() => 
+            {
+                return DeleteSpellActionHandler.ExecuteAction(command);
+            });
         }
 
-        // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        public SpellController(IActionHandler<AddSpellCommand> addSpellActionHandler,
+            IActionHandler<GetSpellCommand> getSpellActionHandler,
+            IActionHandler<GetAllSpellsCommand> getAllSpellsActionHandler,
+            IActionHandler<DeleteSpellCommand> deleteSpellActionHandler)
         {
+            AddSpellActionHandler = addSpellActionHandler;
+            GetSpellActionHandler = getSpellActionHandler;
+            GetAllSpellsActionHandler = getAllSpellsActionHandler;
+            DeleteSpellActionHandler = deleteSpellActionHandler;
         }
     }
 }

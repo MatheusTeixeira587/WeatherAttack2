@@ -24,12 +24,10 @@ namespace WeatherAttack.Application.Command.User.Handlers
         {
             var result = Context.FindBy(u => u.Id == command.Id)?
                 .Select(u => Mapper.ToDto(u))
-                .FirstOrDefault();
+                .First();
 
             if (result == null)
-            {
                 command.AddNotification(WeatherAttackNotifications.User.UserNotFound);
-            }
 
             command.Result = result;
 

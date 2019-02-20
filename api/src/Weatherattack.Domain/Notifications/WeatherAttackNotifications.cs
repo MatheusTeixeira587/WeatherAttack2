@@ -25,7 +25,7 @@ namespace WeatherAttack.Domain.Notifications
                 new Notification(EmailIsRequired, "Email is required."),
                 new Notification(UsernameIsRequired, "Username is required."),
                 new Notification(PasswordIsRequired, "Password is required."),
-                new Notification(UserNotFound, "Couldn't found any user with specified Id.")
+                new Notification(UserNotFound, "Couldn't find any User with specified Id.")
             };
         }
 
@@ -41,16 +41,23 @@ namespace WeatherAttack.Domain.Notifications
 
         public static class Spell
         {
-            public const string MustBePositive = "SPL-001";
-            public const string ShouldBeHigherThan = "SPL-002";
-            public const string ShouldBeLowerThan = "SPL-003";
-
+            public const string BaseDamageShouldBeHigherThan = "SPL-001";
+            public const string BaseDamageShouldBeLowerThan = "SPL-002";
+            public const string BaseManaCostShouldBeHigherThan = "SPL-003";
+            public const string BaseManaCostShouldBeLowerThan = "SPL-004";
+            public const string InvalidName = "SPL-005";
+            public const string NameIsRequired = "SPL-006";
+            public const string NotFound = "SPL-007";
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
-                new Notification(MustBePositive, "Base Damage must be a positive integer."),
-                new Notification(ShouldBeHigherThan, $"Base Damage must be higher than {Rules.Spell.BaseDamage.MinDamage}."),
-                new Notification(ShouldBeLowerThan, $"Base Damage must be lower than {Rules.Spell.BaseDamage.MaxDamage}."),
+                new Notification(BaseDamageShouldBeHigherThan, $"Base Damage must be higher than {Rules.Spell.BaseDamage.MinDamage}."),
+                new Notification(BaseDamageShouldBeLowerThan, $"Base Damage must be lower than {Rules.Spell.BaseDamage.MaxDamage}."),
+                new Notification(BaseManaCostShouldBeHigherThan, $"Base Mana Cost must be higher than {Rules.Spell.BaseManaCost.MinCost}"),
+                new Notification(BaseManaCostShouldBeLowerThan, $"Base Mana Cost must be lower than {Rules.Spell.BaseManaCost.MaxCost}"),
+                new Notification(InvalidName, "Invalid name"),
+                new Notification(NameIsRequired, "Name is required"),
+                new Notification(NotFound, "Couldn't find any Spell with specified Id.")
             };
         }
 
@@ -58,22 +65,24 @@ namespace WeatherAttack.Domain.Notifications
         {
             public const string InvalidId = "COM-001";
             public const string UserIsRequired = "COM-002";
+            public const string InvalidValue = "COM-003";
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
                 new Notification(InvalidId, "Invalid Id."),
                 new Notification(UserIsRequired, "User is required."),
+                new Notification(InvalidValue, "One or more values are invalid."),
             };
         }
 
         public static Notification Get(string cod)
         {            
-            return List.Where(m => m.Code == cod).Select(m => m).First();
+            return List.FirstOrDefault(c => c.Code == cod);
         }
 
         public static List<Notification> Get(ImmutableArray<string> codArray)
         {
-            return List.Where(m => codArray.Contains(m.Code)).Select(m => m).ToList();
+            return List.FindAll(c => codArray.Contains(c.Code));
         }
 
 
@@ -84,6 +93,7 @@ namespace WeatherAttack.Domain.Notifications
             list.AddRange(User.Messages);
             list.AddRange(Command.Messages);
             list.AddRange(Character.Messages);
+            list.AddRange(Spell.Messages);
 
             return list;
         }

@@ -6,6 +6,6 @@ namespace WeatherAttack.Application.Command.User
 {
     public class GetAllUsersCommand : CommandBase
     {
-        public IEnumerable<UserResponseDto> Result { get; set; }
+        public ICollection<UserResponseDto> Result { get; set; }
     }
 }

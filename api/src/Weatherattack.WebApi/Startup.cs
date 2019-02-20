@@ -6,6 +6,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Swashbuckle.AspNetCore.Swagger;
+using WeatherAttack.Application.Command.Spell;
+using WeatherAttack.Application.Command.Spell.Handlers;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Application.Command.User.Handlers;
 using WeatherAttack.Application.Contracts.Command;
@@ -55,8 +57,8 @@ namespace Weatherattack.WebApi
 
         public void ConfigureRepositories(IServiceCollection services)
         {
-            services.AddTransient<IUserRepository, UserRepository>();
-            services.AddTransient<ISpellRepository, SpellRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISpellRepository, SpellRepository>();
         }
 
         public void ConfigureDatabase(IServiceCollection services)
@@ -85,6 +87,11 @@ namespace Weatherattack.WebApi
             services.AddTransient<IActionHandler<GetAllUsersCommand>, GetAllUsersActionHandler>();
             services.AddTransient<IActionHandler<GetUserCommand>, GetUserActionHandler>();
             services.AddTransient<IActionHandler<DeleteUserCommand>, DeleteUserActionHandler>();
+
+            services.AddTransient<IActionHandler<GetSpellCommand>, GetSpellActionHandler>();
+            services.AddTransient<IActionHandler<GetAllSpellsCommand>, GetAllSpellsActionHandler>();
+            services.AddTransient<IActionHandler<AddSpellCommand>, AddSpellActionHandler>();
+            services.AddTransient<IActionHandler<DeleteSpellCommand>, DeleteSpellActionHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

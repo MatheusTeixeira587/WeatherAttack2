@@ -4,7 +4,6 @@ using WeatherAttack.Application.Contracts.Dtos.User.Response;
 using WeatherAttack.Application.Contracts.interfaces;
 using WeatherAttack.Application.Mapper;
 using WeatherAttack.Domain.Contracts;
-using WeatherAttack.Domain.EntityValidation;
 using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
