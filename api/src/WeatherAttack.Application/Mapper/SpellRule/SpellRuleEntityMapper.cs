@@ -7,13 +7,6 @@ namespace WeatherAttack.Application.Mapper.SpellRule
 {
     public class SpellRuleEntityMapper : IMapper<Entities.SpellRule, SpellRuleRequestDto, SpellRuleRequestDto>
     {
-        private readonly IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto> SpellMapper;
-
-        public SpellRuleEntityMapper(IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto> spellMapper)
-        {
-            SpellMapper = spellMapper;
-        }
-
         public SpellRuleRequestDto ToDto(Entities.SpellRule entity)
         {
             return new SpellRuleRequestDto()
@@ -29,7 +22,7 @@ namespace WeatherAttack.Application.Mapper.SpellRule
         {
             return new Entities.SpellRule(
                 request.Id,
-                SpellMapper.ToEntity(request.Spell),
+                new Entities.Spell(request.Id),
                 request.Value,
                 (Operator)request.Operator,
                 (WeatherCondition)request.WeatherCondition

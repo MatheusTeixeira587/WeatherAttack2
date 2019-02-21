@@ -24,10 +24,12 @@ namespace Weatherattack.WebApi.Controllers
         }
 
         [HttpGet("{Id:min(1)}")]
-        public async Task<GetUserCommand> Get([FromRoute]GetUserCommand command)
+        public async Task<GetUserCommand> Get([FromRoute]GetUserCommand command, long id)
         {
             return await Task.Run(() =>
             {
+                command.Id = id;
+
                 return GetUserHandler.ExecuteAction(command);
             });
         }
@@ -42,10 +44,12 @@ namespace Weatherattack.WebApi.Controllers
         }
 
         [HttpDelete("{Id:min(1)}")]
-        public async Task<DeleteUserCommand> Delete([FromRoute] DeleteUserCommand command)
+        public async Task<DeleteUserCommand> Delete([FromRoute] DeleteUserCommand command, long id)
         {
             return await Task.Run(() =>
             {
+                command.Id = id;
+
                 return DeleteUserHandler.ExecuteAction(command);
             });
         }

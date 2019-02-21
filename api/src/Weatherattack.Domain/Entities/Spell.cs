@@ -8,6 +8,8 @@ namespace WeatherAttack.Domain.Entities
 {
     public class Spell : EntityBase
     {
+        public Spell(long id) : base(id) => Id = id;
+
         public Spell(long id, string name, int baseDamage, int baseManaCost, Element element) : base(id)
         {
             Name = name;

@@ -1,4 +1,6 @@
-﻿namespace WeatherAttack.Domain.Enums
+﻿using System;
+
+namespace WeatherAttack.Domain.Enums
 {
     public enum Operator : byte
     {

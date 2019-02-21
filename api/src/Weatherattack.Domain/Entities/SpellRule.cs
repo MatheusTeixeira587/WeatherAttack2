@@ -13,6 +13,13 @@ namespace WeatherAttack.Domain.Entities
             WeatherCondition = WeatherCondition;
         }
 
+        public SpellRule(long id, int value, Operator @operator, WeatherCondition weatherCondition) : base(id)
+        {
+            Value = value;
+            Operator = @operator;
+            WeatherCondition = WeatherCondition;
+        }
+
         public Spell Spell { get; private set; }
 
         public int Value { get; private set; }

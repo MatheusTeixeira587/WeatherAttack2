@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Valit;
 using WeatherAttack.Application.Contracts.Command;
 using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
@@ -13,17 +14,21 @@ namespace WeatherAttack.Application.Command.Spell
 
         protected override bool Validate()
         {
+            HashSet<byte> operatorValues = new HashSet<byte>((byte[])Enum.GetValues(typeof(Operator)));
+            HashSet<byte> weatherConditionValues = new HashSet<byte>((byte[])Enum.GetValues(typeof(WeatherCondition)));
+            object possibleToConvert = false;
+
             var result = ValitRules<SpellRequestDto>
                 .Create()
                 .Ensure(s => s.Element, _ => _
-                    .Satisfies(s => Enum.IsDefined(typeof(Element), s))
+                    .Satisfies(s => Enum.TryParse(typeof(Element), s.ToString(), out possibleToConvert))
                     .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
                 .For(Spell)
                 .Ensure(s => s.Rules, _ => _
                     .Satisfies(
                         r => r.TrueForAll(
-                            sr => Enum.IsDefined(typeof(Operator), sr.Operator)
-                                && Enum.IsDefined(typeof(WeatherCondition), sr.WeatherCondition)))
+                            sr => operatorValues.Contains(sr.Operator)
+                                && weatherConditionValues.Contains(sr.WeatherCondition)))
                                 .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
                 .Validate();
 

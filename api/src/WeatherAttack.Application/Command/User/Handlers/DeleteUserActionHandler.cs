@@ -8,9 +8,9 @@ namespace WeatherAttack.Application.Command.User.Handlers
 {
     public class DeleteUserActionHandler : IActionHandler<DeleteUserCommand>
     {
-        private IRepository<Entities.User> Context { get; }
+        private IUserRepository Context { get; }
 
-        public DeleteUserActionHandler(IRepository<Entities.User> context)
+        public DeleteUserActionHandler(IUserRepository context)
         {
             Context = context;
         }

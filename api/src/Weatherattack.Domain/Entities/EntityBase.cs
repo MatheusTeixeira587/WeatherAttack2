@@ -9,11 +9,11 @@ namespace WeatherAttack.Domain.Entities
 {
     public class EntityBase
     {
-        protected EntityBase() { }
+        public EntityBase() { }
 
         public EntityBase(long id) => Id = id;
 
-        public long Id { get; private set; }
+        public long Id { get; protected set; }
 
         public bool IsNew => Id == 0;
 

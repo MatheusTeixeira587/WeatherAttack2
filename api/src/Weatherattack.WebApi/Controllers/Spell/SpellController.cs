@@ -27,10 +27,12 @@ namespace WeatherAttack.WebApi.Controllers.Spell
         }
 
         [HttpGet("{Id:min(1)}")]
-        public async Task<GetSpellCommand> Get([FromRoute] GetSpellCommand command)
+        public async Task<GetSpellCommand> Get([FromRoute] GetSpellCommand command, long id)
         {
             return await Task.Run(() =>
             {
+                command.Id = id;
+
                 return GetSpellActionHandler.ExecuteAction(command);
             });
         }
@@ -45,10 +47,12 @@ namespace WeatherAttack.WebApi.Controllers.Spell
         }
 
         [HttpDelete("{Id:min(1)}")]
-        public async Task<DeleteSpellCommand> Delete([FromRoute] DeleteSpellCommand command)
+        public async Task<DeleteSpellCommand> Delete([FromRoute] DeleteSpellCommand command, long id)
         {
             return await Task.Run(() => 
             {
+                command.Id = id;
+
                 return DeleteSpellActionHandler.ExecuteAction(command);
             });
         }

@@ -22,14 +22,12 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         public GetUserCommand ExecuteAction(GetUserCommand command)
         {
-            var result = Context.FindBy(u => u.Id == command.Id)?
-                .Select(u => Mapper.ToDto(u))
-                .First();
+            var result = Context.FindBy(u => u.Id == command.Id).FirstOrDefault();
 
             if (result == null)
                 command.AddNotification(WeatherAttackNotifications.User.UserNotFound);
 
-            command.Result = result;
+            command.Result = result == null ? null : Mapper.ToDto(result);
 
             return command;
         }

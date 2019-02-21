@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using WeatherAttack.Application.Contracts.Command;
 using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
 using WeatherAttack.Application.Mapper;
@@ -20,11 +21,11 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
         public GetAllSpellsCommand ExecuteAction(GetAllSpellsCommand command)
         {
-            var result = Context.GetAll()?
-                .Select(s => Mapper.ToDto(s))
-                .ToList();
+            var result = Context.GetAll()
+                .ToList()
+                .Select(s => Mapper.ToDto(s));
 
-            command.Result = result;
+            command.Result = result as ICollection<SpellRequestDto>;
 
             return command;
         }
