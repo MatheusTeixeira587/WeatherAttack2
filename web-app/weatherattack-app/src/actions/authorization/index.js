@@ -1,9 +1,9 @@
 import { AUTHORIZED, UNAUTHORIZED } from "../../constants";
 
-export const setAuthorized = () => ({
+export const setAuthorizedAction = () => ({
     type: AUTHORIZED
 })
 
-export const setUnauthorized = () => ({
+export const setUnauthorizedAction = () => ({
     type: UNAUTHORIZED
 })

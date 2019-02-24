@@ -59,7 +59,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispath =>
-bindActionCreators({showLoaderAction, hideLoaderAction}, dispath)
+bindActionCreators({showLoaderAction, hideLoaderAction, setAuthorizedAction}, dispath)
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
