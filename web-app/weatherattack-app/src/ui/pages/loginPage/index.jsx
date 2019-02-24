@@ -1,21 +1,40 @@
 import React, { Component } from 'react'
-import { Loader } from "app-components";
+import { connect } from 'react-redux'
+import { showLoaderAction, hideLoaderAction } from '../../../actions/loader';
+import { bindActionCreators } from 'redux'
 
-export class LoginPage extends Component {
+class LoginPage extends Component {
 
   constructor(props) {
     super(props)
-  
     this.state = {
-       loading:false
-    }
+    } 
+
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(){
+    this.props.showLoaderAction()
+    setTimeout(() => {
+      this.props.hideLoaderAction()
+    }, 5000);
   }
   
   render() {
     return (
       <div className="container-login">
-        <Loader showLoader={this.state.loading}/>
+      <button text="a" onClick={this.handleClick}/>
+        {console.log(this)}
       </div>
     )
   }
 }
+
+const mapStateToProps = state => ({ 
+  loader: state.loaderReducer 
+});
+
+const mapDispatchToProps = dispath =>
+bindActionCreators({showLoaderAction, hideLoaderAction}, dispath)
+
+export default connect(mapStateToProps,mapDispatchToProps)(LoginPage)

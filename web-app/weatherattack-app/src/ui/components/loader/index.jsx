@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./index.css";
 
-export class Loading extends Component {
+export class Loader extends Component {
   getClasses() {
     const showLoaderClass = this.props.showLoader
       ? "show-loader"
