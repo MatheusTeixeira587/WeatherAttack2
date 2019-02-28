@@ -1,5 +1,6 @@
-﻿using WeatherAttack.Application.Contracts.Dtos.User.Request;
-using WeatherAttack.Application.Contracts.Dtos.User.Response;
+﻿using WeatherAttack.Contracts.Dtos.User.Request;
+using WeatherAttack.Contracts.Dtos.User.Response;
+using WeatherAttack.Contracts.Mapper;
 using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Mapper.User

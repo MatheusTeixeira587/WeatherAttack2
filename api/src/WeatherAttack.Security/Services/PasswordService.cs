@@ -1,5 +1,5 @@
 ﻿using BCrypt;
-using WeatherAttack.Application.Contracts.interfaces;
+using WeatherAttack.Contracts.interfaces;
 
 namespace WeatherAttack.Security.Services
 {

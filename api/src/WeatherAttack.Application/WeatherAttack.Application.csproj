@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\\WeatherAttack.Contracts\WeatherAttack.Contracts.csproj" />
     <ProjectReference Include="..\Weatherattack.Domain\WeatherAttack.Domain.csproj" />
   </ItemGroup>
 

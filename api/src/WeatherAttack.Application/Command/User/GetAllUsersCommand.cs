@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
-using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.User.Response;
+using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.User.Response;
 
 namespace WeatherAttack.Application.Command.User
 {

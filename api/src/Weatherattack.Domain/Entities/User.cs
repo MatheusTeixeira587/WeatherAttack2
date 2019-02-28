@@ -15,10 +15,20 @@ namespace WeatherAttack.Domain.Entities
 
         public Character Character { get; private set; } = new Character();
 
+        public byte PermissionLevel { get; private set; } = Rules.User.PermissionLevel.User;
+
         public User(long Id, string email, string username) : base(Id)
         {
             Email = email;
             Username = username;
+        }
+
+        public User(long id, string username, byte permissionLevel, string password) : base(id)
+        {
+            Id = id;
+            Username = username;
+            PermissionLevel = permissionLevel;
+            Password = password;
         }
 
         public void SetPassword(string password)

@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
-using WeatherAttack.Application.Mapper;
+using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
-using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Spell.Handlers

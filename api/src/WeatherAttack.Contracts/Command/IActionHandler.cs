@@ -1,4 +1,4 @@
-﻿namespace WeatherAttack.Application.Contracts.Command
+﻿namespace WeatherAttack.Contracts.Command
 {
     public interface IActionHandler<T> where T : CommandBase
     {

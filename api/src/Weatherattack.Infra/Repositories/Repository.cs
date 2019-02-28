@@ -28,6 +28,12 @@ namespace WeatherAttack.Infra.Repositories
             return query;
         }
 
+        public IQueryable<Entity> FindBy(System.Linq.Expressions.Expression<Func<Entity, bool>> predicate, System.Linq.Expressions.Expression<Func<Entity, Entity>> selectField)
+        {
+            IQueryable<Entity> query = Context.Set<Entity>().Where(predicate).Select(selectField);
+            return query;
+        }
+
         public virtual void Add(Entity entity)
         {
             Context.Set<Entity>().Add(entity);          

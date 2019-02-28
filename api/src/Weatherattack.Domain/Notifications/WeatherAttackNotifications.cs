@@ -66,12 +66,14 @@ namespace WeatherAttack.Domain.Notifications
             public const string InvalidId = "COM-001";
             public const string UserIsRequired = "COM-002";
             public const string InvalidValue = "COM-003";
+            public const string InvalidCredentials = "COM-004";
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
                 new Notification(InvalidId, "Invalid Id."),
                 new Notification(UserIsRequired, "User is required."),
                 new Notification(InvalidValue, "One or more values are invalid."),
+                new Notification(InvalidCredentials, "Invalid credentials."),
             };
         }
 

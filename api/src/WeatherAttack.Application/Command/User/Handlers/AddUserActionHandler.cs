@@ -1,8 +1,8 @@
-﻿using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.User.Request;
-using WeatherAttack.Application.Contracts.Dtos.User.Response;
-using WeatherAttack.Application.Contracts.interfaces;
-using WeatherAttack.Application.Mapper;
+﻿using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.User.Request;
+using WeatherAttack.Contracts.Dtos.User.Response;
+using WeatherAttack.Contracts.interfaces;
+using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
 using Entity = WeatherAttack.Domain.Entities;
 

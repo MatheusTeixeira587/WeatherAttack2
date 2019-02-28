@@ -55,6 +55,12 @@ namespace WeatherAttack.Domain.EntityValidation.Rules
                 public const int MaxLength = 20;
             }
 
+            public static class PermissionLevel
+            {
+                public const byte User = 0;
+                public const byte Admin = 1;
+            }
+
         }
 
         public static class Command

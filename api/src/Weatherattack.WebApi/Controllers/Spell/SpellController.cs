@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Spell;
-using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Contracts.Command;
 
 namespace WeatherAttack.WebApi.Controllers.Spell
 {

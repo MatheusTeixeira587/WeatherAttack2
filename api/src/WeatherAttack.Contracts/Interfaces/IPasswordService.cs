@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace WeatherAttack.Application.Contracts.interfaces
+﻿namespace WeatherAttack.Contracts.interfaces
 {
     public interface IPasswordService
     {

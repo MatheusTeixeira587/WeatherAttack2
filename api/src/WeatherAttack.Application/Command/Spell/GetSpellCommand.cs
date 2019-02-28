@@ -1,5 +1,5 @@
-﻿using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
+﻿using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.Spell.Request;
 
 namespace WeatherAttack.Application.Command.Spell
 {

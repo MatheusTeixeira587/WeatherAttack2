@@ -1,6 +1,6 @@
 ﻿using Valit;
-using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.User.Request;
+using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.User

@@ -10,6 +10,8 @@ namespace WeatherAttack.Domain.Contracts
 
         IQueryable<Entity> FindBy(Expression<Func<Entity, bool>> predicate);
 
+        IQueryable<Entity> FindBy(Expression<Func<Entity, bool>> predicate, Expression<Func<Entity, Entity>> selectField);
+
         void Add(Entity entity);
 
         void Delete(Entity entity);

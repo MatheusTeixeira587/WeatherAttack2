@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using WeatherAttack.Application.Contracts.Dtos.SpellRule.Request;
+using WeatherAttack.Contracts.Dtos.SpellRule.Request;
 
-namespace WeatherAttack.Application.Contracts.Dtos.Spell.Request
+namespace WeatherAttack.Contracts.Dtos.Spell.Request
 {
     public class SpellRequestDto
     {

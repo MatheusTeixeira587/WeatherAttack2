@@ -1,6 +1,6 @@
-﻿using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
+﻿using WeatherAttack.Contracts.Dtos.Spell.Request;
 
-namespace WeatherAttack.Application.Contracts.Dtos.SpellRule.Request
+namespace WeatherAttack.Contracts.Dtos.SpellRule.Request
 {
     public class SpellRuleRequestDto
     {

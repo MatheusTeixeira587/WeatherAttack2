@@ -1,4 +1,4 @@
-﻿namespace WeatherAttack.Application.Mapper
+﻿namespace WeatherAttack.Contracts.Mapper
 {
     public interface IMapper<Entity, Request, Response> where Entity : class where Request : class where Response : class
     {

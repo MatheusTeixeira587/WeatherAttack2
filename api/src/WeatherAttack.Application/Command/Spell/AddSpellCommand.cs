@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using Valit;
-using WeatherAttack.Application.Contracts.Command;
-using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.Spell.Request;
 using WeatherAttack.Domain.Enums;
 using WeatherAttack.Domain.Notifications;
 

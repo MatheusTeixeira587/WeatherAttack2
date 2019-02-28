@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Contracts.Command;
 
 namespace WeatherAttack.Application.Command.User
 {

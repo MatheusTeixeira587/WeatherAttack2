@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.User;
-using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Contracts.Command;
 
 namespace Weatherattack.WebApi.Controllers
 {
@@ -14,7 +15,7 @@ namespace Weatherattack.WebApi.Controllers
         private IActionHandler<GetUserCommand> GetUserHandler { get; }
         private IActionHandler<DeleteUserCommand> DeleteUserHandler { get; }
 
-        [HttpGet]
+        [Authorize, HttpGet]
         public async Task<GetAllUsersCommand> Get([FromRoute]GetAllUsersCommand command)
         {
             return await Task.Run(() =>

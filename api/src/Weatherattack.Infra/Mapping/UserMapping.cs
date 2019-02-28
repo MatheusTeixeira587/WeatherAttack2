@@ -24,6 +24,9 @@ namespace WeatherAttack.Infra.Mapping
             builder.Property(u => u.Password)
                 .IsRequired();
 
+            builder.Property(u => u.PermissionLevel)
+                .IsRequired();
+
             builder.HasOne(u => u.Character).WithOne().HasForeignKey<Character>(c => c.UserId);
         }
     }

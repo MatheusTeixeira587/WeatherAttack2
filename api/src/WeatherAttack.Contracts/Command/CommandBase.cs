@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
-using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Notifications;
 
-namespace WeatherAttack.Application.Contracts.Command
+namespace WeatherAttack.Contracts.Command
 {
     public class CommandBase
     {

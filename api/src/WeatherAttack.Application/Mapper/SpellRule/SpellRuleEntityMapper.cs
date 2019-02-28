@@ -1,5 +1,5 @@
-﻿using WeatherAttack.Application.Contracts.Dtos.Spell.Request;
-using WeatherAttack.Application.Contracts.Dtos.SpellRule.Request;
+﻿using WeatherAttack.Contracts.Dtos.SpellRule.Request;
+using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Enums;
 using Entities = WeatherAttack.Domain.Entities;
 

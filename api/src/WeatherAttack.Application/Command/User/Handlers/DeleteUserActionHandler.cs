@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-using WeatherAttack.Application.Contracts.Command;
+using WeatherAttack.Contracts.Command;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
 using Entities = WeatherAttack.Domain.Entities;

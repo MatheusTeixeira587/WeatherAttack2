@@ -1,4 +1,4 @@
-﻿using WeatherAttack.Application.Contracts.Command;
+﻿using WeatherAttack.Contracts.Command;
 
 namespace WeatherAttack.Application.Command.Spell
 {
