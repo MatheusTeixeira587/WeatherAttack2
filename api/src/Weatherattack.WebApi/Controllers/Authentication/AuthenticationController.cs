@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
-using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Security.Commands;
+using WeatherAttack.WebApi.Extensions.Controller;
 
 namespace WeatherAttack.WebApi.Controllers.Authorization
 {
@@ -20,15 +20,10 @@ namespace WeatherAttack.WebApi.Controllers.Authorization
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginCommand command)
         {
-            var result = await Task.Run(() =>
+            return await Task.Run(() =>
             {
-                return LoginActionHandler.ExecuteAction(command);               
-            });
-
-            if (result.IsValid)
-                return Ok(result);
-            else
-                return BadRequest(result);
+                return this.Response(LoginActionHandler.ExecuteAction(command));
+            });          
         }
     }
 }

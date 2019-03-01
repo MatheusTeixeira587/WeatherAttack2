@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Contracts.Command

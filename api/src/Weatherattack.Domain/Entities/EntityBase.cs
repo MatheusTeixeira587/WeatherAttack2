@@ -38,15 +38,20 @@ namespace WeatherAttack.Domain.Entities
                 Notifications.Add(notification);
         }
 
+        public bool HasNotification()
+        {
+            return Notifications.Count > 0;
+        }
+
         public void AddNotification(List<Notification> notifications)
         {
             if(notifications.Count > 0)
                 notifications.ForEach(n => AddNotification(n));
-        }
+        }      
 
         protected virtual bool Validate()
         {
-            return Notifications.Count == 0;
+            return !HasNotification();
         }
     }
 }

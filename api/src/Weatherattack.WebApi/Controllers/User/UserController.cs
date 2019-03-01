@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.User;
+using WeatherAttack.Application.Enum;
 using WeatherAttack.Contracts.Command;
+using WeatherAttack.WebApi.Extensions.Controller;
 
 namespace Weatherattack.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, Authorize]
     public class UserController : ControllerBase
     {
         private IActionHandler<GetAllUsersCommand> GetAllUserHandler { get; }
@@ -15,43 +17,54 @@ namespace Weatherattack.WebApi.Controllers
         private IActionHandler<GetUserCommand> GetUserHandler { get; }
         private IActionHandler<DeleteUserCommand> DeleteUserHandler { get; }
 
-        [Authorize, HttpGet]
-        public async Task<GetAllUsersCommand> Get([FromRoute]GetAllUsersCommand command)
+        [HttpGet]
+        public async Task<IActionResult> Get([FromRoute]GetAllUsersCommand command)
         {
             return await Task.Run(() =>
             {
-                return GetAllUserHandler.ExecuteAction(command);
+                return this.Response(GetAllUserHandler.ExecuteAction(command));
             });
         }
 
         [HttpGet("{Id:min(1)}")]
-        public async Task<GetUserCommand> Get([FromRoute]GetUserCommand command, long id)
+        public async Task<IActionResult> Get([FromRoute]GetUserCommand command, long id)
         {
             return await Task.Run(() =>
             {
                 command.Id = id;
 
-                return GetUserHandler.ExecuteAction(command);
+                return this.Response(GetUserHandler.ExecuteAction(command));
+            });
+        }
+
+        [HttpPost, AllowAnonymous]
+        public async Task<IActionResult> Add([FromBody]AddUserCommand command)
+        {
+            return await Task.Run(() =>
+            {
+                command.User.Id = 0;
+                return this.Response(AddUserHandler.ExecuteAction(command));
             });
         }
 
         [HttpPut]
-        public async Task<AddUserCommand> AddOrEdit([FromBody]AddUserCommand command)
+        public async Task<IActionResult> Edit([FromBody] AddUserCommand command, long id)
         {
             return await Task.Run(() =>
             {
-                return AddUserHandler.ExecuteAction(command);
+                command.User.Id = id;
+                return this.Response(AddUserHandler.ExecuteAction(command));
             });
         }
 
         [HttpDelete("{Id:min(1)}")]
-        public async Task<DeleteUserCommand> Delete([FromRoute] DeleteUserCommand command, long id)
+        public async Task<IActionResult> Delete([FromRoute] DeleteUserCommand command, long id)
         {
             return await Task.Run(() =>
             {
                 command.Id = id;
 
-                return DeleteUserHandler.ExecuteAction(command);
+                return this.Response(DeleteUserHandler.ExecuteAction(command));
             });
         }
 

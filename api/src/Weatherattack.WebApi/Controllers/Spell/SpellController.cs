@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Spell;
 using WeatherAttack.Contracts.Command;
+using WeatherAttack.WebApi.Extensions.Controller;
 
 namespace WeatherAttack.WebApi.Controllers.Spell
 {
@@ -18,42 +19,42 @@ namespace WeatherAttack.WebApi.Controllers.Spell
         private IActionHandler<DeleteSpellCommand> DeleteSpellActionHandler { get; }
 
         [HttpGet]
-        public async Task<GetAllSpellsCommand> Get([FromRoute] GetAllSpellsCommand command)
+        public async Task<IActionResult> Get([FromRoute] GetAllSpellsCommand command)
         {
             return await Task.Run(() => 
             {
-                return GetAllSpellsActionHandler.ExecuteAction(command);
+                return this.Response(GetAllSpellsActionHandler.ExecuteAction(command));
             });
         }
 
         [HttpGet("{Id:min(1)}")]
-        public async Task<GetSpellCommand> Get([FromRoute] GetSpellCommand command, long id)
+        public async Task<IActionResult> Get([FromRoute] GetSpellCommand command, long id)
         {
             return await Task.Run(() =>
             {
                 command.Id = id;
 
-                return GetSpellActionHandler.ExecuteAction(command);
+                return this.Response(GetSpellActionHandler.ExecuteAction(command));
             });
         }
 
         [HttpPut]
-        public async Task<AddSpellCommand> Add([FromBody] AddSpellCommand command)
+        public async Task<IActionResult> Add([FromBody] AddSpellCommand command)
         {
             return await Task.Run(() =>
             {
-                return AddSpellActionHandler.ExecuteAction(command);
+                return this.Response(AddSpellActionHandler.ExecuteAction(command));
             });
         }
 
         [HttpDelete("{Id:min(1)}")]
-        public async Task<DeleteSpellCommand> Delete([FromRoute] DeleteSpellCommand command, long id)
+        public async Task<IActionResult> Delete([FromRoute] DeleteSpellCommand command, long id)
         {
             return await Task.Run(() => 
             {
                 command.Id = id;
 
-                return DeleteSpellActionHandler.ExecuteAction(command);
+                return this.Response(DeleteSpellActionHandler.ExecuteAction(command));
             });
         }
 

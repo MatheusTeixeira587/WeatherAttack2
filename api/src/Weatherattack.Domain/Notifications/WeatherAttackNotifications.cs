@@ -17,6 +17,8 @@ namespace WeatherAttack.Domain.Notifications
             public const string UsernameIsRequired = "USN-004";
             public const string PasswordIsRequired = "USN-005";
             public const string UserNotFound = "USN-006";
+            public const string UsernameAlreadyInUse = "USN-007";
+            public const string EmailAlreadyInUse = "USN-008";
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
@@ -25,7 +27,9 @@ namespace WeatherAttack.Domain.Notifications
                 new Notification(EmailIsRequired, "Email is required."),
                 new Notification(UsernameIsRequired, "Username is required."),
                 new Notification(PasswordIsRequired, "Password is required."),
-                new Notification(UserNotFound, "Couldn't find any User with specified Id.")
+                new Notification(UserNotFound, "Couldn't find any User with specified Id."),
+                new Notification(UsernameAlreadyInUse, "This username was already being taken."),
+                new Notification(EmailAlreadyInUse, "Email already in use."),
             };
         }
 

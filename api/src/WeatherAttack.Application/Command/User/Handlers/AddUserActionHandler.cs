@@ -1,9 +1,11 @@
-﻿using WeatherAttack.Contracts.Command;
+﻿using System.Linq;
+using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.interfaces;
 using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.Notifications;
 using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
@@ -27,15 +29,23 @@ namespace WeatherAttack.Application.Command.User.Handlers
         {
             var user = Mapper.ToEntity(command.User);
 
-            if(user.IsNew)
-                user.SetPassword(PasswordService.HashPassword(user.Password));
+            user.SetPassword(PasswordService.HashPassword(user.Password));
 
             if (user.IsValid)
             {
                 if (user.IsNew)
-                    Context.Add(user);
+                {
+                    EnsureUniquenessOfEmailAndUsername(user);
+
+                    if (!user.HasNotification())
+                    {
+                        Context.Add(user);
+                    }                  
+                }
                 else
+                {
                     Context.Edit(user);
+                }
 
                 Context.Save();
             }
@@ -43,6 +53,22 @@ namespace WeatherAttack.Application.Command.User.Handlers
             command.AddNotification(user.Notifications);
 
             return command;
+        }
+
+        private void EnsureUniquenessOfEmailAndUsername(Entity.User user)
+        {
+            var result = Context.FindBy(u => u.Username == user.Username
+                                                    || u.Email == user.Email)
+                                                    .FirstOrDefault();
+
+            if (result != null)
+            {
+                if (result.Email == user.Email)
+                    user.AddNotification(WeatherAttackNotifications.User.EmailAlreadyInUse);
+
+                if (result.Username == user.Username)
+                    user.AddNotification(WeatherAttackNotifications.User.UsernameAlreadyInUse);
+            }
         }
     }
 }
