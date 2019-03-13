@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { showLoaderAction, hideLoaderAction } from '../../../actions/loader';
-import { bindActionCreators } from 'redux'
+import { bindActionCreators } from 'redux';
+import { Input } from '../../components/index';
 
 class LoginPage extends Component {
 
@@ -24,7 +25,12 @@ class LoginPage extends Component {
     return (
       <div className="container-login">
       <button text="a" onClick={this.handleClick}/>
-        {console.log(this)}
+        {process.env.API_URL}
+        {console.log(process.env)}
+
+        <Input
+          name={this.state.name}
+        />
       </div>
     )
   }

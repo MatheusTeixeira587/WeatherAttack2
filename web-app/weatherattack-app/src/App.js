@@ -6,7 +6,7 @@ import LoginPage from './ui/pages/loginPage';
 import { Loader } from './ui/components';
 import axios from 'axios';
 import { bindActionCreators } from 'redux';
-import { showLoaderAction, hideLoaderAction } from '../../../actions/loader';
+import { showLoaderAction, hideLoaderAction, setAuthorizedAction } from "./actions/index";
 
 class App extends Component {
 

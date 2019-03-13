@@ -1,7 +1,8 @@
 import { AUTHORIZED } from "../../constants";
+import { UNAUTHORIZED } from "../../constants"
 
 const initialState = {
-    authorized = false,
+    authorized: false,
 }
 
 export function authorizationReducer(state = initialState, action){

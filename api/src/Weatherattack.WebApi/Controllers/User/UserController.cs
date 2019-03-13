@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.User;
-using WeatherAttack.Application.Enum;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.WebApi.Extensions.Controller;
 
@@ -63,7 +62,6 @@ namespace Weatherattack.WebApi.Controllers
             return await Task.Run(() =>
             {
                 command.Id = id;
-
                 return this.Response(DeleteUserHandler.ExecuteAction(command));
             });
         }
