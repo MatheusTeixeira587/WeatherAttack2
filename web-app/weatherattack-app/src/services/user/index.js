@@ -1,12 +1,12 @@
 import { BaseService } from "../_base";
 
-export class LoginService extends BaseService {
+export class UserService extends BaseService {
     
     constructor() {
-        super("api/Authentication");
+        super("api/User");
     }
 
-    login(user) {
+    add(user) {
         //todo
         console.log(user);
     }

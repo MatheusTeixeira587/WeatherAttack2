@@ -1,4 +1,3 @@
-export { showLoaderAction } from './loader'
-export { hideLoaderAction } from './loader'
-export { setAuthorizedAction } from './authorization'
-export { setUnauthorizedAction } from './authorization'
+export { showLoaderAction, hideLoaderAction } from './loader'
+export { setAuthorizedAction, setUnauthorizedAction } from './authorization'
+export { changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from './loginPage'

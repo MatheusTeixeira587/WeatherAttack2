@@ -1,12 +1,19 @@
-import { LOGIN_REQUEST } from "../../constants";
-import { CHANGE_FIELD } from "../../constants/loginPageStates";
+import { LOGIN_REQUEST, CHANGE_FIELD, REGISTER_REQUEST, SHOULD_RENDER_REGISTER } from "../../constants";
 
 export const requestLoginAction = () => ({
     type: LOGIN_REQUEST
 })
 
-export const changeField = (fieldname, value) => ({
+export const changeFieldAction = (event) => ({
     type: CHANGE_FIELD,
-    fieldname: fieldname,
-    value: value
+    fieldname: event.target.name,
+    value: event.target.value
+})
+
+export const requestRegisterAction = () => ({
+    type: REGISTER_REQUEST,
+})
+
+export const triggerRegisterDisplayAction = () => ({
+    type: SHOULD_RENDER_REGISTER,
 })
