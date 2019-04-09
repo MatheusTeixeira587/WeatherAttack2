@@ -6,8 +6,9 @@ export class UserService extends BaseService {
         super("api/User");
     }
 
-    add(user) {
-        //todo
-        console.log(user);
+    add(command) {
+        this.post({
+            user: command
+        });
     }
 }

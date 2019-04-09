@@ -38,7 +38,7 @@ namespace WeatherAttack.Security.Services
 
             var result = Context.FindBy(u =>
             u.Username == loginCommand.Username,
-            s => new User(s.Id, s.Username, s.PermissionLevel, s.Password)).FirstOrDefault();
+            s => new User(s.Id, s.Username, s.PermissionLevel, s.Password)).SingleOrDefault();
 
             if (result != null && PasswordService.CheckPassword(loginCommand.Password, result.Password))
             {

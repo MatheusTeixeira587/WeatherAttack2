@@ -31,7 +31,9 @@ export function loginPageReducer(state = initialState, action){
         case REGISTER_REQUEST:
             const register = () => {
                 userService.add({
-                    state
+                    username: state.username,
+                    email: state.email,
+                    password: state.password
                 })
 
                 return Object.assign({}, state, initialState)

@@ -148,7 +148,7 @@ namespace Weatherattack.WebApi
 
             app.UseAuthentication();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4500").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

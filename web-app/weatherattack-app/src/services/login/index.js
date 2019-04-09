@@ -7,7 +7,8 @@ export class LoginService extends BaseService {
     }
 
     login(user) {
-        //todo
-        console.log(user);
+        this.post(user).then(result => {
+            localStorage.setItem("logged_user", result.token);
+        })   
     }
 }
