@@ -45,7 +45,7 @@ namespace WeatherAttack.Domain.Entities
 
         public void AddNotification(List<Notification> notifications)
         {
-            if(notifications.Count > 0)
+            if (HasNotification())
                 notifications.ForEach(n => AddNotification(n));
         }      
 

@@ -1,10 +1,19 @@
-﻿namespace WeatherAttack.Infra.Services
+﻿using Newtonsoft.Json;
+using System;
+using System.IO;
+using System.Net;
+using WeatherAttack.Contracts.Dtos.Weather.Request;
+using WeatherAttack.Contracts.Interfaces;
+
+namespace WeatherAttack.Infra.Services
 {
-    public class OpenWeatherMapWebService
+    public class OpenWeatherMapWebService : IOpenWeatherMapService
     {
         private string OpenWeatherMapUrl { get; }
 
         private string OpenWeatherMapKey { get; }
+
+        private string ApplicationJson { get; } = "application/json";
 
         public OpenWeatherMapWebService(string openWeatherMapUrl, string openWeatherMapKey)
         {
@@ -12,9 +21,29 @@
             OpenWeatherMapUrl = openWeatherMapUrl;
         }
 
-        public void GetCurrentWeatherByCoordinates(string lat, string lon)
+        public CurrentWeatherRequestDto GetCurrentWeatherByCoordinates(double latitude, double longitude)
         {
+            var uriString = $"{OpenWeatherMapUrl}?lat={latitude.ToString()}&lon={longitude.ToString()}&units=metric&appid={OpenWeatherMapKey}";
 
+            Uri uri = new Uri(uriString);
+
+            var request = WebRequest.CreateHttp(uri);
+            request.Accept = ApplicationJson;
+            request.ContentType = ApplicationJson;
+
+            using (var response = request.GetResponse())
+            {
+                using (var responseContent = response.GetResponseStream())
+                {
+                    using (var streamReader = new StreamReader(responseContent))
+                    {
+                        var a = streamReader.ReadToEnd();
+                        return JsonConvert.DeserializeObject<CurrentWeatherRequestDto>(
+                            a
+                        );
+                    }
+                }
+            }
         }
     }
 }

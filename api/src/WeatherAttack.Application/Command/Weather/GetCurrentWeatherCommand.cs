@@ -1,32 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Valit;
+﻿using Valit;
 using WeatherAttack.Contracts.Command;
+using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Weather
 {
     public class GetCurrentWeatherCommand : CommandBase
     {
-        public string Latitude { get; set; }
+        public double Latitude { get; set; }
 
-        public string Longitude { get; set; }
+        public double Longitude { get; set; }
+
+        public CurrentWeather Result { get; set; }
 
         protected override bool Validate()
         {
             var result = ValitRules<GetCurrentWeatherCommand>
                 .Create()
                 .Ensure(c => c.Latitude, _ => _
-                    .Required()
-                        .WithMessage(WeatherAttackNotifications.Command.InvalidValue)
-                    .Satisfies(l => !string.IsNullOrEmpty(l))
+                    .IsNumber()
                         .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
                 .Ensure(c => c.Longitude, _ => _
-                    .Required()
-                        .WithMessage(WeatherAttackNotifications.Command.InvalidValue)
-                    .Satisfies(l => !string.IsNullOrEmpty(l))
+                    .IsNumber()
                         .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
+                .For(this)
                 .Validate();
 
             AddNotification(result.ErrorMessages);

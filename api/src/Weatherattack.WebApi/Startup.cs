@@ -14,21 +14,27 @@ using WeatherAttack.Application.Command.Spell;
 using WeatherAttack.Application.Command.Spell.Handlers;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Application.Command.User.Handlers;
+using WeatherAttack.Application.Command.Weather;
+using WeatherAttack.Application.Command.Weather.Handlers;
 using WeatherAttack.Application.Mapper.Spell;
 using WeatherAttack.Application.Mapper.SpellRule;
 using WeatherAttack.Application.Mapper.User;
+using WeatherAttack.Application.Mapper.Weather;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Spell.Request;
 using WeatherAttack.Contracts.Dtos.SpellRule.Request;
 using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Contracts.Dtos.User.Response;
+using WeatherAttack.Contracts.Dtos.Weather.Request;
 using WeatherAttack.Contracts.interfaces;
 using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Entities;
+using WeatherAttack.Domain.Entities.Weather;
 using WeatherAttack.Infra;
 using WeatherAttack.Infra.Repositories;
+using WeatherAttack.Infra.Services;
 using WeatherAttack.Security.Commands;
 using WeatherAttack.Security.Commands.Handlers;
 using WeatherAttack.Security.Entities;
@@ -102,14 +108,19 @@ namespace Weatherattack.WebApi
         public void ConfigureDatabase(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("WeatherAttack");
+
             services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
             services.AddDbContext<DbContext, WeatherAttackContext>(options => options.UseSqlServer(connectionString));
         }
 
         public void ConfigureCommonServices(IServiceCollection services)
         {
+            string OpenWeatherMapApiKey = Configuration["WebServices:OpenWeatherMap:ApiKey"];
+            string OpenWeatherMapUrl = Configuration["WebServices:OpenWeatherMap:Url"];
+
             services.AddTransient<IPasswordService, PasswordService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
+            services.AddTransient<IOpenWeatherMapService, OpenWeatherMapWebService>(p => new OpenWeatherMapWebService(OpenWeatherMapUrl, OpenWeatherMapApiKey));
         }
 
         public void ConfigureMappers(IServiceCollection services)
@@ -117,6 +128,13 @@ namespace Weatherattack.WebApi
             services.AddTransient<IMapper<User, UserRequestDto, UserResponseDto>, UserEntityMapper>();
             services.AddTransient<IMapper<SpellRule, SpellRuleRequestDto, SpellRuleRequestDto>, SpellRuleEntityMapper>();
             services.AddTransient<IMapper<Spell, SpellRequestDto, SpellRequestDto>, SpellEntityMapper>();
+            services.AddTransient<IMapper<Wind, WindRequestDto, WindRequestDto>, WindEntityMapper>();
+            services.AddTransient<IMapper<Rain, RainRequestDto, RainRequestDto>, RainEntityMapper>();
+            services.AddTransient<IMapper<Coordinates, CoordinatesRequestDto, CoordinatesRequestDto>, CoordinatesEntityMapper>();
+            services.AddTransient<IMapper<Weather, WeatherRequestDto, WeatherRequestDto>, WeatherEntityMapper>();
+            services.AddTransient<IMapper<Main, MainRequestDto, MainRequestDto>, MainWeatherEntityMapper>();
+            services.AddTransient<IMapper<CurrentWeather, CurrentWeatherRequestDto, CurrentWeatherRequestDto>, CurrentWeatherEntityMapper>();
+            services.AddTransient<IMapper<CountryInfo, CountryInfoRequestDto, CountryInfoRequestDto>, CountryInfoEntityMapper>();
         }
 
         public void ConfigureActionHandlers(IServiceCollection services)
@@ -132,6 +150,8 @@ namespace Weatherattack.WebApi
             services.AddTransient<IActionHandler<GetAllSpellsCommand>, GetAllSpellsActionHandler>();
             services.AddTransient<IActionHandler<AddSpellCommand>, AddSpellActionHandler>();
             services.AddTransient<IActionHandler<DeleteSpellCommand>, DeleteSpellActionHandler>();
+
+            services.AddTransient<IActionHandler<GetCurrentWeatherCommand>, GetCurrentWeatherActionHandler>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
