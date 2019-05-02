@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
-import { Grid, TextField, Button, FormLabel } from '@material-ui/core'
-
-const styles = {
-    registerContainer: {
-        padding: "40px"
-    },
-    button:{
-      marginTop: '8px'
-    }
-}
+import { Grid, TextField, FormLabel } from '@material-ui/core'
+import { Button } from '../';
 
 export class RegisterComponent extends Component {
   
@@ -41,7 +33,6 @@ export class RegisterComponent extends Component {
         lg={12}
         sm={12}
         item
-        style={styles.registerContainer}
       >
         <Grid
           component="div"
@@ -51,8 +42,8 @@ export class RegisterComponent extends Component {
           alignItems="center"
           justify="center"
           item
-          lg={12}
-          sm={12}
+          lg={10}
+          sm={10}
         >
           <FormLabel>
             <h1>Create your account!</h1>
@@ -106,11 +97,9 @@ export class RegisterComponent extends Component {
             variant="outlined"
             color="primary"
             onClick={this.props.requestRegisterAction}
-            style={styles.button}
             fullWidth={true}
-          >
-            <span> Register </span>
-          </Button>
+            text={"Register"}
+          />
         </Grid>
       </Grid>
     )

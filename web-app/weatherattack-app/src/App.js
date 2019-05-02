@@ -1,76 +1,55 @@
 import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 
-import { Loader, WeatherCard } from './ui/components';
-import { showLoaderAction, hideLoaderAction, setUnauthorizedAction, addNotificationAction, removeNotificationAction } from "./actions/index";
-
 import { Snackbar } from '@material-ui/core';
-import axios from 'axios';
-
-import SnackbarContentWrapper from './ui/components/snackbar';
-import LoginPage from './ui/pages/loginPage';
+import { Loader, SnackBarContentWrapper, LoginPage, Interceptor, DashboardPage } from './ui';
+import { showLoaderAction, hideLoaderAction, setAuthorizedAction, addNotificationAction, removeNotificationAction, getLocationAction, assignLocationAction, assignWeatherDataAction } from "./actions";
+import { GeolocationService, WeatherService } from './services';
 
 class App extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props)
-
-    this.configureRequestInterceptor();
+    
     this.renderNotifications = this.renderNotifications.bind(this);
-    this.handleNotifications = this.handleNotifications.bind(this);
+    this.configureServices = this.configureServices.bind(this);
+    this.getWeather = this.getWeather.bind(this);
   }
 
-  configureRequestInterceptor() {
-    const self = this
-    axios.interceptors.request.use((config) => {
-      self.props.showLoaderAction()
-      return config
-    });
+  componentDidMount() {
+    this.configureServices();
+    this.getWeather();
+  }
 
-    axios.interceptors.response.use((response) => {
-      self.props.hideLoaderAction()
-      return response;
-    }, (error) => {
-      if (!!error.response) {
+  configureServices() {
+    this.geolocationService = new GeolocationService();
+    this.weatherService = new WeatherService();
+  }
 
-        if(error.response.status === 401) {
-          self.props.setUnauthorizedAction()
-        }
+  getWeather() {
+    this.geolocationService.get().then((result) => {
+      this.props.assignLocationAction(result)
 
-        if(error.response.data.notifications.length) {
-          this.handleNotifications(error.response.data.notifications)
-        }
-        
-      }
-
-      self.props.hideLoaderAction()
-
-      return Promise.reject(error)
+      this.weatherService.get(this.props.geolocation)
+        .then((result) => {
+          this.props.assignWeatherDataAction(result)
+        })
     })
   }
 
-  handleNotifications(notifications) {
-    this.props.addNotificationAction(notifications)
-
-    setTimeout(() => {
-      this.props.removeNotificationAction(notifications)
-    }, 4000);
-
-  }
-
   renderNotifications() {
-    if(!!this.props.notification && this.props.notification.notifications.length) {
+    if (!!this.props.notification && this.props.notification.notifications.length) {
       return this.props.notification.notifications.map((n, k) => {
         return (
           <Snackbar
             id={k}
             open={true}
-            anchorOrigin={{vertical: 'top', horizontal: 'right'}}
-          >  
-            <SnackbarContentWrapper
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+          >
+            <SnackBarContentWrapper
               variant='error'
               message={n.message}
             />
@@ -83,35 +62,41 @@ class App extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className="App">    
-        <WeatherCard/> 
-        <Loader showLoader={this.props.loader.showLoader}/>
+      <div className="App">
+        <Interceptor/>
+        <Loader showLoader={this.props.loader.showLoader} />
         {
-            this.renderNotifications()
-        }  
+          this.renderNotifications()
+        }
         <Switch>
-          <Route path="/" exact component={LoginPage}/>
+          <Route path="/" exact render={() => <LoginPage getWeather={this.getWeather}/>} />
+          <Route path="/dashboard" exact component={DashboardPage} />
           <Route path="/404" />
-          <Redirect to ="/"/>
+          <Redirect to="/" />
         </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => ({ 
+const mapStateToProps = state => ({
   loader: state.loaderReducer,
-  notification: state.notificationReducer
+  notification: state.notificationReducer,
+  geolocation: state.geolocationReducer,
+  authorization: state.authorizationReducer
 });
 
 const mapDispatchToProps = dispath =>
   bindActionCreators(
     {
-      showLoaderAction, 
-      hideLoaderAction, 
-      setUnauthorizedAction, 
-      addNotificationAction, 
-      removeNotificationAction
+      showLoaderAction,
+      hideLoaderAction,
+      setAuthorizedAction,
+      addNotificationAction,
+      removeNotificationAction,
+      getLocationAction,
+      assignLocationAction,
+      assignWeatherDataAction
     }, dispath)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -25,13 +25,15 @@ namespace WeatherAttack.Application.Mapper.Weather
             IMapper<Wind, WindRequestDto, WindRequestDto> windMapper, 
             IMapper<Rain, RainRequestDto, RainRequestDto> rainMapper, 
             IMapper<Coordinates, CoordinatesRequestDto, CoordinatesRequestDto> coordinatesMapper, 
-            IMapper<Entities.Weather.Weather, WeatherRequestDto, WeatherRequestDto> weatherMapper)
+            IMapper<Entities.Weather.Weather, WeatherRequestDto, WeatherRequestDto> weatherMapper,
+            IMapper<CountryInfo, CountryInfoRequestDto, CountryInfoRequestDto> countryMapper)
         {
             MainMapper = mainMapper;
             WindMapper = windMapper;
             RainMapper = rainMapper;
             CoordinatesMapper = coordinatesMapper;
             WeatherMapper = weatherMapper;
+            CountryMapper = countryMapper;
         }
 
         public CurrentWeatherRequestDto ToDto(Entities.CurrentWeather entity)

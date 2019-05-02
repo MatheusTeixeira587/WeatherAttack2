@@ -5,10 +5,7 @@ export class BaseService {
     this.baseUrl = process.env.REACT_APP_API_URL + baseUrl;
   }
 
-  get(token, query) {
-    if (token === null) {
-      token = "";
-    }
+  get(token = "", query) {
     return axios
       .get(`${this.baseUrl}${token}`, query)
       .then(result => result.data);
@@ -18,10 +15,7 @@ export class BaseService {
     return axios.post(this.baseUrl, object).then(result => result.data);
   }
 
-  getById(id, token) {
-    if (token === null) {
-      token = "";
-    }
+  getById(id, token = "") {
     return axios
       .get(`${this.baseUrl}/${id}${token}`)
       .then(result => result.data);

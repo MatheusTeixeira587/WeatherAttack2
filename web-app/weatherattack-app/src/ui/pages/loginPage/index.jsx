@@ -2,9 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { showLoaderAction, hideLoaderAction, changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from '../../../actions';
 import { bindActionCreators } from 'redux';
-import { LoginComponent, RegisterComponent } from '../../components';
+import { LoginComponent, RegisterComponent, Link, WeatherCardComponent } from '../../';
 import { Grid } from '@material-ui/core';
-import { createAccountMessage, alreadyHaveAccountMessage } from '../../../constants';
+import { createAccountMessage, alreadyHaveAccountMessage, noWeatherDescriptionAvailableMessage } from '../../../constants';
 
 import backgroundImageSvg  from '../../../static/img/background.svg';
 import logoSvg from '../../../static/img/logo.svg';
@@ -32,20 +32,6 @@ const styles = {
   logoContainer: {
     height: '200px', 
   },
-  link: {
-    textDecoration: 'underline',
-    color: '#666666',
-    fontFamily: 'Roboto',
-    fontStyle: 'normal',
-    lineHeight: 'normal',
-    fontSize: '12px',
-    textDecorationLine: 'underline',
-    cursor: 'pointer',
-    position: 'relative',
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-  },
 }
 
 class LoginPage extends Component {
@@ -54,6 +40,7 @@ class LoginPage extends Component {
     super(props)
 
     this.renderLoginOrRegisterComponent = this.renderLoginOrRegisterComponent.bind(this);
+    this.renderWeatherCard = this.renderWeatherCard.bind(this);
   }
 
   renderLoginOrRegisterComponent() {
@@ -73,6 +60,20 @@ class LoginPage extends Component {
         requestLoginAction={this.props.requestLoginAction}
       />
     )
+  }
+
+  renderWeatherCard() {
+    if (this.props.weather.cityName) {
+      return (
+        <WeatherCardComponent 
+          city={this.props.weather.cityName}
+          wind={parseInt(this.props.weather.wind.speed, 10)}
+          description={this.props.weather.weather.length > 0 ? this.props.weather.weather[0].description : noWeatherDescriptionAvailableMessage}
+          temperature={parseInt(this.props.weather.main.temperature, 10)}
+          onClick={this.props.getWeather}
+        />
+      )
+    }
   }
   
   render() {
@@ -114,19 +115,19 @@ class LoginPage extends Component {
           </Grid>
           </Grid>
           {this.renderLoginOrRegisterComponent()}
-          <button 
-            style={styles.link} 
+          <Link
             onClick={this.props.triggerRegisterDisplayAction}
-          >
-            {this.props.login.shouldRenderRegister ? alreadyHaveAccountMessage : createAccountMessage}
-          </button>
+            message={this.props.login.shouldRenderRegister ? alreadyHaveAccountMessage : createAccountMessage}
+          />
         </Grid>
         <Grid
           item
           lg={8}
           container
           style={styles.background}
-        />     
+        >
+        {this.renderWeatherCard()}
+        </Grid>     
       </Grid>
     )
   }
@@ -134,7 +135,9 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => ({ 
   loader: state.loaderReducer,
-  login: state.loginPageReducer
+  login: state.loginPageReducer,
+  geolocation: state.geolocationReducer,
+  weather: state.weatherReducer
 });
 
 const mapDispatchToProps = dispath =>

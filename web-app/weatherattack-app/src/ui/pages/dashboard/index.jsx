@@ -1,15 +1,16 @@
 import React, { Component } from 'react'
-import { connect } from 'redux'
-import { bindActionCreators } from 'react-redux'
+import { Redirect } from 'react-router-dom'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import { showLoaderAction, hideLoaderAction } from '../../../actions';
-import { Grid } from '@material-ui/core';
+import { Grid, AppBar } from '@material-ui/core';
 
 class DashboardPage extends Component {
 
     render() {
         return (
             <Grid>
-
+              <AppBar />
             </Grid>
         )
     }
@@ -17,6 +18,7 @@ class DashboardPage extends Component {
 
 const mapStateToProps = state => ({ 
     loader: state.loaderReducer,
+    authorization: state.authorizationReducer
   });
   
 const mapDispatchToProps = dispath =>
