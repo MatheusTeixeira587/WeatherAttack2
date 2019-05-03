@@ -2,7 +2,7 @@ import { AUTHORIZED } from "../../constants";
 import { UNAUTHORIZED } from "../../constants"
 
 const initialState = {
-    authorized: false,
+    authorized: !!localStorage.getItem("logged_user"),
 }
 
 export function authorizationReducer(state = initialState, action){

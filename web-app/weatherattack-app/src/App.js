@@ -69,10 +69,10 @@ class App extends Component {
           this.renderNotifications()
         }
         <Switch>
-          <Route path="/" exact render={() => <LoginPage getWeather={this.getWeather}/>} />
+          <Route path="/#" exact render={() => <LoginPage getWeather={this.getWeather}/>} />
           <Route path="/dashboard" exact component={DashboardPage} />
-          <Route path="/404" />
-          <Redirect to="/" />
+          <Route path="/404"/>
+          <Redirect to="/#"/>
         </Switch>
       </div>
     );

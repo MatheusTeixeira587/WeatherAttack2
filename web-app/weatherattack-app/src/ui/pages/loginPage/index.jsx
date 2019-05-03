@@ -75,6 +75,14 @@ class LoginPage extends Component {
       )
     }
   }
+
+  componentDidMount() {
+      console.log('montei porra')
+  }
+
+  componentDidUpdate() {
+      console.log('updatei porra')
+  }
   
   render() {
     return (

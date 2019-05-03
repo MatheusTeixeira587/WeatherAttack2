@@ -7,4 +7,5 @@ export const getLocationAction = () => ({
 export const assignLocationAction = (location) => ({
     type: ASSIGN_LOCATION,
     location: location
+
 })
