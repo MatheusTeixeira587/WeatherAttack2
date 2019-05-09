@@ -1,6 +1,6 @@
-import { ASSIGN_WEATHER_DATA } from '../../constants';
+import { types } from '../../constants';
 
 export const assignWeatherDataAction = (weather) => ({
-    type: ASSIGN_WEATHER_DATA,
+    type: types.ASSIGN_WEATHER_DATA,
     weather: weather
 })

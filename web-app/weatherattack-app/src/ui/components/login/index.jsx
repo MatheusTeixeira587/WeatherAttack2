@@ -78,7 +78,7 @@ export class LoginComponent extends Component {
               disabled={!this.props.login.username || !this.props.login.password}
               variant="outlined"
               color="primary"
-              onClick={this.props.requestLoginAction}
+              onClick={() => this.props.requestLoginAction({username: this.props.login.username, password: this.props.login.password})}
               fullWidth={true}
               text={"Login"}
             />

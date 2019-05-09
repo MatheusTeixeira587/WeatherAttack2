@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { LOCATION_PERMISSION_DENIED, LOCATION_UNAVAILABLE, LOCATION_TIMEOUT, LOCATION_UNKNOWN_ERROR } from '../../../constants';
-import { showLoaderAction, hideLoaderAction, setUnauthorizedAction, addNotificationAction, removeNotificationAction } from '../../../actions';
+import { LOCATION_PERMISSION_DENIED, LOCATION_TIMEOUT, LOCATION_UNAVAILABLE, LOCATION_UNKNOWN_ERROR } from '../../constants';
+import { showLoaderAction, requestLogoutAction, hideLoaderAction, addNotificationAction, removeNotificationAction } from '../../actions';
 import axios from 'axios';
 
 class Interceptor extends React.Component {
@@ -33,23 +33,23 @@ class Interceptor extends React.Component {
             switch (this.props.geolocation.error) {
     
                 case error.PERMISSION_DENIED:
-                notification = LOCATION_PERMISSION_DENIED;
-                break;
+                    notification = LOCATION_PERMISSION_DENIED;
+                    break;
         
                 case error.POSITION_UNAVAILABLE:
-                notification = LOCATION_UNAVAILABLE;
-                break;
+                    notification = LOCATION_UNAVAILABLE;
+                    break;
         
                 case error.TIMEOUT:
-                notification = LOCATION_TIMEOUT;
-                break;
+                    notification = LOCATION_TIMEOUT;
+                    break;
         
                 case error.UNKNOWN_ERROR:
-                notification = LOCATION_UNKNOWN_ERROR
-                break;
+                    notification = LOCATION_UNKNOWN_ERROR
+                    break;
         
                 default:
-                break;
+                    break;
             }
     
             if (notification.code) {
@@ -63,11 +63,14 @@ class Interceptor extends React.Component {
     }
 
     configureRequestInterceptor() {
-        axios.interceptors.request.use((config) => {
+        axios.interceptors.request.use((response) => {
 
             this.props.showLoaderAction()
-
-            return config
+            return response
+            
+        }, (error) => {
+            debugger
+            console.log(error)
         });
     
         axios.interceptors.response.use((response) => {
@@ -77,14 +80,15 @@ class Interceptor extends React.Component {
 
         }, (error) => {
 
+            debugger
             if (!!error.response) {
     
                 if (error.response.status === 401) {
-                    this.props.setUnauthorizedAction()
+                    this.props.requestLogoutAction()
                 }
         
                 if (error.response.data.notifications.length) {
-                this.handleNotifications(error.response.data.notifications)
+                    this.handleNotifications(error.response.data.notifications)
                 }
 
             }
@@ -112,7 +116,7 @@ const mapDispatchToProps = dispath =>
         {
             showLoaderAction,
             hideLoaderAction,
-            setUnauthorizedAction,
+            requestLogoutAction,
             addNotificationAction,
             removeNotificationAction,
         }, dispath

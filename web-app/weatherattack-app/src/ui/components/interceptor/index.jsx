@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { LOCATION_PERMISSION_DENIED, LOCATION_UNAVAILABLE, LOCATION_TIMEOUT, LOCATION_UNKNOWN_ERROR } from '../../../constants';
-import { showLoaderAction, hideLoaderAction, setUnauthorizedAction, addNotificationAction, removeNotificationAction } from '../../../actions';
+import { showLoaderAction, hideLoaderAction, requestLogoutAction, addNotificationAction, removeNotificationAction } from '../../../actions';
 import axios from 'axios';
 
 class Interceptor extends React.PureComponent {
@@ -68,6 +68,10 @@ class Interceptor extends React.PureComponent {
             this.props.showLoaderAction()
 
             return config
+        }, (error) => {
+            debugger
+            console.log("hello");
+            console.log(error);
         });
     
         axios.interceptors.response.use((response) => {
@@ -80,7 +84,7 @@ class Interceptor extends React.PureComponent {
             if (!!error.response) {
     
                 if (error.response.status === 401) {
-                    this.props.setUnauthorizedAction()
+                    this.props.requestLogoutAction()
                 }
         
                 if (error.response.data.notifications.length) {
@@ -112,7 +116,7 @@ const mapDispatchToProps = dispath =>
         {
             showLoaderAction,
             hideLoaderAction,
-            setUnauthorizedAction,
+            requestLogoutAction,
             addNotificationAction,
             removeNotificationAction,
         }, dispath

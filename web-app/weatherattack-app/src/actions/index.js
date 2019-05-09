@@ -1,6 +1,5 @@
 export * from './loader'
-export * from './authorization'
-export * from './loginPage'
+export * from './login'
 export * from './notification'
 export * from './geolocation'
 export * from './weather'

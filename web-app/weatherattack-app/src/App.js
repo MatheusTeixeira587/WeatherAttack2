@@ -1,13 +1,12 @@
 import './App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
-
 import { Snackbar } from '@material-ui/core';
+
 import { Loader, SnackBarContentWrapper, LoginPage, Interceptor, DashboardPage } from './ui';
-import { showLoaderAction, hideLoaderAction, setAuthorizedAction, addNotificationAction, removeNotificationAction, getLocationAction, assignLocationAction, assignWeatherDataAction } from "./actions";
-import { GeolocationService, WeatherService } from './services';
+import { showLoaderAction, hideLoaderAction, addNotificationAction, removeNotificationAction, getLocationAction, assignLocationAction, assignWeatherDataAction } from "./actions";
 
 class App extends Component {
 
@@ -15,29 +14,15 @@ class App extends Component {
     super(props)
     
     this.renderNotifications = this.renderNotifications.bind(this);
-    this.configureServices = this.configureServices.bind(this);
     this.getWeather = this.getWeather.bind(this);
   }
 
   componentDidMount() {
-    this.configureServices();
     this.getWeather();
   }
 
-  configureServices() {
-    this.geolocationService = new GeolocationService();
-    this.weatherService = new WeatherService();
-  }
-
   getWeather() {
-    this.geolocationService.get().then((result) => {
-      this.props.assignLocationAction(result)
-
-      this.weatherService.get(this.props.geolocation)
-        .then((result) => {
-          this.props.assignWeatherDataAction(result)
-        })
-    })
+    this.props.getLocationAction();
   }
 
   renderNotifications() {
@@ -69,10 +54,10 @@ class App extends Component {
           this.renderNotifications()
         }
         <Switch>
-          <Route path="/#" exact render={() => <LoginPage getWeather={this.getWeather}/>} />
+          <Route path="/" exact render={() => <LoginPage getWeather={this.getWeather}/>} />
           <Route path="/dashboard" exact component={DashboardPage} />
           <Route path="/404"/>
-          <Redirect to="/#"/>
+          <Redirect to="/"/>
         </Switch>
       </div>
     );
@@ -83,7 +68,6 @@ const mapStateToProps = state => ({
   loader: state.loaderReducer,
   notification: state.notificationReducer,
   geolocation: state.geolocationReducer,
-  authorization: state.authorizationReducer
 });
 
 const mapDispatchToProps = dispath =>
@@ -91,12 +75,11 @@ const mapDispatchToProps = dispath =>
     {
       showLoaderAction,
       hideLoaderAction,
-      setAuthorizedAction,
       addNotificationAction,
       removeNotificationAction,
       getLocationAction,
       assignLocationAction,
-      assignWeatherDataAction
+      assignWeatherDataAction,
     }, dispath)
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

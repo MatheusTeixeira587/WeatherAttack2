@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { showLoaderAction, hideLoaderAction, changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from '../../../actions';
+import { withRouter, Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
+import { showLoaderAction, hideLoaderAction, changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from '../../../actions';
 import { LoginComponent, RegisterComponent, Link, WeatherCardComponent } from '../../';
 import { Grid } from '@material-ui/core';
 import { createAccountMessage, alreadyHaveAccountMessage, noWeatherDescriptionAvailableMessage } from '../../../constants';
@@ -38,7 +39,6 @@ class LoginPage extends Component {
 
   constructor(props) {
     super(props)
-
     this.renderLoginOrRegisterComponent = this.renderLoginOrRegisterComponent.bind(this);
     this.renderWeatherCard = this.renderWeatherCard.bind(this);
   }
@@ -75,16 +75,12 @@ class LoginPage extends Component {
       )
     }
   }
-
-  componentDidMount() {
-      console.log('montei porra')
-  }
-
-  componentDidUpdate() {
-      console.log('updatei porra')
-  }
   
   render() {
+    console.log(this.props)
+    if (this.props.login.token) {
+        return <Redirect to="/dashboard" />
+    }
     return (
       <Grid
         container
@@ -143,9 +139,10 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => ({ 
   loader: state.loaderReducer,
-  login: state.loginPageReducer,
+  login: state.loginReducer,
   geolocation: state.geolocationReducer,
-  weather: state.weatherReducer
+  weather: state.weatherReducer,
+  authorization: state.authorizationReducer
 });
 
 const mapDispatchToProps = dispath =>
@@ -160,4 +157,4 @@ bindActionCreators(
 
   }, dispath)
 
-export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginPage))

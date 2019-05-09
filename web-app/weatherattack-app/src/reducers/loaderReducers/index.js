@@ -1,4 +1,4 @@
-import { SHOW_LOADER, HIDE_LOADER } from "../../constants";
+import { types } from "../../constants";
 
 const initialState = {
     showLoader: false,
@@ -7,12 +7,12 @@ const initialState = {
 export function loaderReducer(state = initialState, action) {
     switch(action.type) {
 
-        case SHOW_LOADER:
+        case types.SHOW_LOADER:
             return Object.assign({}, state, {
                 showLoader: true,
             })
 
-        case HIDE_LOADER:
+        case types.HIDE_LOADER:
             return Object.assign({}, state, {
                 showLoader: false,
             })

@@ -16,7 +16,7 @@ class DashboardPage extends Component {
     }
 
     requiredAuthorization() {
-        if (!this.props.authorization.authorized) {
+        if (!this.props.login.token) {
             return <Redirect to='/'/>
         }
     }
@@ -34,7 +34,7 @@ class DashboardPage extends Component {
 
 const mapStateToProps = state => ({ 
     loader: state.loaderReducer,
-    authorization: state.authorizationReducer
+    login: state.loginReducer
   });
   
 const mapDispatchToProps = dispath =>

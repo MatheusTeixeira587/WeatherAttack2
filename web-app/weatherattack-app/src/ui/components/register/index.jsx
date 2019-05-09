@@ -96,7 +96,11 @@ export class RegisterComponent extends Component {
             disabled={this.shouldDisableRegisterButton()}
             variant="outlined"
             color="primary"
-            onClick={this.props.requestRegisterAction}
+            onClick={() => this.props.requestRegisterAction({
+                username: this.props.login.username,
+                email: this.props.login.email,
+                password: this.props.login.password
+            })}
             fullWidth={true}
             text={"Register"}
           />

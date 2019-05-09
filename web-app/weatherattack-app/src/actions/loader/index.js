@@ -1,8 +1,8 @@
-import { SHOW_LOADER, HIDE_LOADER } from "../../constants";
+import { types } from "../../constants";
 
 export const showLoaderAction = () => ({
-    type: SHOW_LOADER
+    type: types.SHOW_LOADER
 })
 export const hideLoaderAction = () => ({
-    type: HIDE_LOADER
+    type: types.HIDE_LOADER
 })

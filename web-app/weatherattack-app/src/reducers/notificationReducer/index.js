@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from '../../constants';
+import { types } from '../../constants';
 
 const initialState = {
     notifications: []
@@ -8,7 +8,7 @@ export function notificationReducer(state = initialState, action) {
     
     switch(action.type) {
 
-        case ADD_NOTIFICATION:
+        case types.ADD_NOTIFICATION:
             const addNotification = () => {
 
                 const newList = state.notifications;
@@ -20,7 +20,7 @@ export function notificationReducer(state = initialState, action) {
 
             return Object.assign({}, state, addNotification());
 
-        case REMOVE_NOTIFICATION:
+        case types.REMOVE_NOTIFICATION:
             const removeNotification = () => {
                 
                 let newList = state.notifications;

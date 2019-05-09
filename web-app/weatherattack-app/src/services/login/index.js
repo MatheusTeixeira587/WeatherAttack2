@@ -4,11 +4,13 @@ export class LoginService extends BaseService {
     
     constructor() {
         super("api/Authentication");
+
+        this.login = this.login.bind(this);
     }
 
     login(user) {
-        this.post(user).then(result => {
-            localStorage.setItem("logged_user", result.token);
+        return this.post(user).then(result => {
+            return result.token
         })   
     }
 }

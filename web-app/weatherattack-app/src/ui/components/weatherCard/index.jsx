@@ -24,7 +24,8 @@ const styles = theme => ({
   content: {
     flex: '1 0 auto',
     opacity: 1,
-    color: 'white'
+    color: 'white',
+    paddingBottom: '0px'
   },
   '@keyframes spin-0': {
     from: {
@@ -37,63 +38,71 @@ const styles = theme => ({
   },
   cover: {
     width: 121,
+    height: '70%',
     opacity: 1,
     backgroundSize: 'contain 100%',
-    overflow: 'hidden',
+    overflow: 'visible',
     animationName: '$spin-0',
   },
+  coverWrapper: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
+  }
 });
 
 const WeatherCard = props => {
-  const { classes, temperature, description, wind, city, onClick } = props;
-  let icon = props.icon;
+    const { classes, temperature, description, wind, city, onClick } = props;
+        let icon = props.icon;
 
-  switch (icon) {
-    
-    default:
-      icon = sun;
-  }
+    switch (icon) {
+
+        default:
+            icon = sun;
+        }
 
   return (
     <Card className={classes.card}>
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5" color="inherit">
-            {temperature+"°C"}
-          </Typography>
-          <Typography variant="body1" color="inherit">
-            {description}
-          </Typography>
-          <Typography variant="subtitle2" color="inherit">
-            {wind+"km/h"}
-          </Typography>
-          <Typography variant="body2" color="inherit">
-            {city}
-          </Typography>
-          <Button
-            variant="contained"
-            onClick={onClick}
-          >
-            <span>{weatherButtonText}</span>
-          </Button>
-        </CardContent>
-      </div>
-      <CardMedia
-        className={classes.cover}
-        image={icon}
-        title="Weather Icon"
-      />
+        <div className={classes.details}>
+            <CardContent className={classes.content}>
+                <Typography component="h5" variant="h5" color="inherit">
+                    {temperature+"°C"}
+                </Typography>
+                <Typography variant="body1" color="inherit">
+                    {description}
+                </Typography>
+                <Typography variant="subtitle2" color="inherit">
+                    {wind+"km/h"}
+                </Typography>
+                <Typography variant="body2" color="inherit">
+                    {city}
+                </Typography>
+                <Button
+                    variant="contained"
+                    onClick={onClick}
+                >
+                    <span>{weatherButtonText}</span>
+                </Button>
+            </CardContent>
+        </div>
+        <div className={classes.coverWrapper}>
+            <CardMedia
+                className={classes.cover}
+                image={icon}
+                title="Weather Icon"
+            />
+        </div>
     </Card>
-  );
+);
 }
 
 WeatherCard.propTypes = {
-  classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired,
-  temperature: PropTypes.number.isRequired,
-  description: PropTypes.string.isRequired,
-  wind: PropTypes.number.isRequired,
-  city: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired
+    classes: PropTypes.object.isRequired,
+    theme: PropTypes.object.isRequired,
+    temperature: PropTypes.number.isRequired,
+    description: PropTypes.string.isRequired,
+    wind: PropTypes.number.isRequired,
+    city: PropTypes.string.isRequired,
+    onClick: PropTypes.func.isRequired
 };
 export default withStyles(styles, { withTheme: true })(WeatherCard);

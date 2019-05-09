@@ -1,9 +1,17 @@
-export * from './loaderStates'
-export * from './weatherStates'
-export * from './geolocationStates'
-export * from './authorizationStates'
-export * from './loginPageStates'
-export * from './notificationStates'
-export * from './messages'
-export * from './appNotifications'
+import { HIDE_LOADER, SHOW_LOADER } from './loaderStates'
+import { ASSIGN_WEATHER_DATA } from './weatherStates'
+import { GET_LOCATION , ASSIGN_LOCATION} from './geolocationStates'
+import { REGISTER_REQUEST, LOGIN_REQUEST, LOGOUT_REQUEST, SHOULD_RENDER_REGISTER, CHANGE_FIELD, LOGIN_SUCESS } from './loginStates'
+import { ADD_NOTIFICATION, REMOVE_NOTIFICATION } from './notificationStates'
+
 export * from './colors'
+export * from './appNotifications'
+export * from './messages'
+
+export const types = {
+    HIDE_LOADER, SHOW_LOADER,
+    ASSIGN_WEATHER_DATA,
+    GET_LOCATION, ASSIGN_LOCATION,
+    REGISTER_REQUEST, LOGIN_REQUEST, LOGOUT_REQUEST, SHOULD_RENDER_REGISTER, CHANGE_FIELD, LOGIN_SUCESS,
+    ADD_NOTIFICATION, REMOVE_NOTIFICATION
+}

@@ -1,15 +1,13 @@
 import { loaderReducer } from './loaderReducers';
-import { authorizationReducer } from './authorizationReducer';
-import { loginPageReducer } from './loginPageReducer';
+import { loginReducer } from './loginReducer';
 import { notificationReducer } from './notificationReducer';
 import { geolocationReducer } from './geolocationReducer'; 
-import {weatherReducer } from './weatherReducer';
+import { weatherReducer } from './weatherReducer';
 import { combineReducers } from 'redux';
 
 const rootState = combineReducers({
     loaderReducer,
-    authorizationReducer,
-    loginPageReducer,
+    loginReducer,
     notificationReducer,
     geolocationReducer,
     weatherReducer

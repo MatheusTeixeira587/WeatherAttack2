@@ -1,11 +1,10 @@
-import { GET_LOCATION, ASSIGN_LOCATION } from '../../constants'
+import { types } from '../../constants'
 
 export const getLocationAction = () => ({
-    type: GET_LOCATION
+    type: types.GET_LOCATION
 })
 
 export const assignLocationAction = (location) => ({
-    type: ASSIGN_LOCATION,
+    type: types.ASSIGN_LOCATION,
     location: location
-
 })

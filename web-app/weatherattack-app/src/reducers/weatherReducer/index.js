@@ -1,4 +1,4 @@
-import { ASSIGN_WEATHER_DATA } from '../../constants';
+import { types } from '../../constants';
 
 const initialState = {
     cityName:"",
@@ -12,7 +12,7 @@ const initialState = {
 export function weatherReducer(state = initialState, action) {
 
     switch(action.type) {
-        case ASSIGN_WEATHER_DATA:
+        case types.ASSIGN_WEATHER_DATA:
             const weather = action.weather
             return Object.assign({}, state,{
                 cityName: weather.cityName,
