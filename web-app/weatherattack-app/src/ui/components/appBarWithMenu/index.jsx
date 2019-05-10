@@ -12,8 +12,8 @@ import { requestLogoutAction } from '../../../actions'
 
 const styles = {
     root: {    
-        flexGrow: 1,
         color: 'white',
+        width: '100%'
     },
     grow: {
         flexGrow: 1,
@@ -27,7 +27,8 @@ const styles = {
     },
     menuColor: {
         flexDirection: 'row',
-        backgroundColor: THEME_COLOR
+        backgroundColor: THEME_COLOR,
+        overflow: 'hidden'
     },
     menuItem: {
         background:'white',

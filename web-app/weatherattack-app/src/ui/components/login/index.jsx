@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { TextField, Grid, FormLabel } from '@material-ui/core'
-import './index.css';
 import { Button } from '../';
 
 export class LoginComponent extends Component {

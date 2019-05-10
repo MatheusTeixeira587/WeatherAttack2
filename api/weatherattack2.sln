@@ -17,6 +17,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherAttack.Security", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherAttack.Contracts", "src\WeatherAttack.Contracts\WeatherAttack.Contracts.csproj", "{AAC23953-876B-4749-B777-4E637EDE3664}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAttack.Hub", "src\WeatherAttack.Hub\WeatherAttack.Hub.csproj", "{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,18 @@ Global
 		{AAC23953-876B-4749-B777-4E637EDE3664}.Release|x64.Build.0 = Release|Any CPU
 		{AAC23953-876B-4749-B777-4E637EDE3664}.Release|x86.ActiveCfg = Release|Any CPU
 		{AAC23953-876B-4749-B777-4E637EDE3664}.Release|x86.Build.0 = Release|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Debug|x64.Build.0 = Debug|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Debug|x86.Build.0 = Debug|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Release|x64.ActiveCfg = Release|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Release|x64.Build.0 = Release|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Release|x86.ActiveCfg = Release|Any CPU
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +124,7 @@ Global
 		{A90CE0D9-CADD-44DF-8217-390132CD9B73} = {E7902FA7-7FA6-4E92-853C-85BBB88E5FD0}
 		{15C82082-CE3E-4539-9AC1-C31368420F8D} = {E7902FA7-7FA6-4E92-853C-85BBB88E5FD0}
 		{AAC23953-876B-4749-B777-4E637EDE3664} = {E7902FA7-7FA6-4E92-853C-85BBB88E5FD0}
+		{B9294052-BA3A-4B1D-AF45-AF8EFB7143AF} = {E7902FA7-7FA6-4E92-853C-85BBB88E5FD0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {139D2413-CC55-44E1-B224-21788B7F2D00}

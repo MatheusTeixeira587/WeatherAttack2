@@ -3,10 +3,15 @@ import { Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { showLoaderAction, hideLoaderAction } from '../../../actions';
-import { Grid } from '@material-ui/core';
+import { Grid, withStyles } from '@material-ui/core';
 
-import { AppBarWithMenu } from '../../';
+import { AppBarWithMenu, DashboardContent } from '../../';
 
+const styles = {
+    page: {
+        height: '100%'
+    }
+}
 
 class DashboardPage extends Component {
 
@@ -22,11 +27,22 @@ class DashboardPage extends Component {
     }
 
     render() {
+
+        const { classes } = this.props
         return (
-            <Grid>
+            <Grid className={classes.page}
+                container
+                direction="column"
+                justify="center"
+                lg={12}
+                sm={12}
+            >
                 {this.requiredAuthorization()}
-                <AppBarWithMenu 
-                />
+                    <AppBarWithMenu 
+                    />
+                    <DashboardContent>
+<span></span>
+                    </DashboardContent>
             </Grid>     
         )
     }
@@ -44,4 +60,4 @@ const mapDispatchToProps = dispath =>
       hideLoaderAction
     }, dispath)
   
-export default connect(mapStateToProps, mapDispatchToProps)(DashboardPage)
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardPage))
