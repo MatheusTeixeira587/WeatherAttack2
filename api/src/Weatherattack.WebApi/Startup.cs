@@ -32,6 +32,7 @@ using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Entities.Weather;
+using WeatherAttack.Hub.Hubs.Challenge;
 using WeatherAttack.Infra;
 using WeatherAttack.Infra.Repositories;
 using WeatherAttack.Infra.Services;
@@ -95,6 +96,8 @@ namespace Weatherattack.WebApi
             ConfigureMappers(services);
             ConfigureCommonServices(services);
             ConfigureActionHandlers(services);
+
+            services.AddSignalR();
 
             services.AddCors();
         }
@@ -179,6 +182,11 @@ namespace Weatherattack.WebApi
             app.UseRewriter(new RewriteOptions().AddRedirect("^$", "swagger"));
             app.UseHttpsRedirection();
             app.UseMvc();
+
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<Challenge>("/challenge");
+            });
         }
     }
 }

@@ -12,15 +12,16 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
     <PackageReference Include="SwashBuckle.AspNetCore" Version="4.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\WeatherAttack.Application\WeatherAttack.Application.csproj" />
+    <ProjectReference Include="..\WeatherAttack.Hub\WeatherAttack.Hub.csproj" />
     <ProjectReference Include="..\Weatherattack.Infra\WeatherAttack.Infra.csproj" />
     <ProjectReference Include="..\WeatherAttack.Security\WeatherAttack.Security.csproj" />
   </ItemGroup>

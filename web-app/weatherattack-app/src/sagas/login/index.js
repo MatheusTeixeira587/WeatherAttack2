@@ -14,9 +14,7 @@ function* loginSaga(action) {
 }
 
 function* registerSaga(action) {
-    debugger
     const response = yield userService.post({user:action.user});
-    debugger
 
     if (!!response.notifications.length) {
         return;
