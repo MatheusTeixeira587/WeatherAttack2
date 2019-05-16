@@ -8,7 +8,8 @@ import { types } from '../../constants';
 const weatherService = new WeatherService();
 const geolocationService = new GeolocationService();
 
-function* getWeatherSaga(action) {
+function* getWeatherSaga() {
+    debugger
     const location = yield geolocationService.get();
 
     yield put(assignLocationAction(location));

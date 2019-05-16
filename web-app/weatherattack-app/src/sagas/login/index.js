@@ -9,7 +9,7 @@ const userService = new UserService();
 function* loginSaga(action) {
     const response = yield loginService.login(action.user);
     localStorage.setItem("logged_user", response)
-
+ 
     yield put(onLoginSucessAction(response))
 }
 

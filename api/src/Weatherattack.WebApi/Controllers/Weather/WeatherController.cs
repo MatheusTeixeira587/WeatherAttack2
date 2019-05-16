@@ -8,7 +8,7 @@ using WeatherAttack.WebApi.Extensions.Controller;
 namespace WeatherAttack.WebApi.Controllers.Weather
 {
     [Route("api/[controller]")]
-    [ApiController, Authorize]
+    [ApiController, AllowAnonymous]
     public class WeatherController : ControllerBase
     {
         private IActionHandler<GetCurrentWeatherCommand> GetCurrentWeatherActionHandler { get; }

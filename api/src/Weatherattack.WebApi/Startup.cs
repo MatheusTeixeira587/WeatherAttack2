@@ -10,6 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Spell;
 using WeatherAttack.Application.Command.Spell.Handlers;
 using WeatherAttack.Application.Command.User;
@@ -67,6 +68,24 @@ namespace Weatherattack.WebApi
                         IssuerSigningKey = new SymmetricSecurityKey(
                             Encoding.UTF8.GetBytes(Configuration["SecuritySettings:SigningKey"])
                         )
+                    };
+
+                    options.Events = new JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            var accessToken = context.Request.Query["access_token"];
+
+                            var path = context.HttpContext.Request.Path;
+
+                            if (!string.IsNullOrEmpty(accessToken) 
+                                && path.StartsWithSegments("/challenge"))
+                            {
+                                context.Token = accessToken;
+                            }
+
+                            return Task.CompletedTask;
+                        }
                     };
                 });
 
@@ -171,7 +190,11 @@ namespace Weatherattack.WebApi
 
             app.UseAuthentication();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost:3000").AllowAnyMethod().AllowAnyHeader());
+            app.UseCors(builder => 
+                builder.WithOrigins("http://localhost:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseSwagger();
             app.UseSwaggerUI(c =>

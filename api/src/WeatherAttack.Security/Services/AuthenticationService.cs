@@ -66,8 +66,7 @@ namespace WeatherAttack.Security.Services
             (
                 claims: new[]
                 {
-                    new Claim(claimIdentity.ClaimsIdentity.UserIdClaimType, id.ToString()),
-                    new Claim(claimIdentity.ClaimsIdentity.UserNameClaimType, username),
+                    new Claim(ClaimTypes.PrimarySid, id.ToString()),
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role, permissionLevel)
                 },

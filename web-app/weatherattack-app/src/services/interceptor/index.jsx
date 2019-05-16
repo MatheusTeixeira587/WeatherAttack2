@@ -80,7 +80,6 @@ class Interceptor extends React.Component {
 
         }, (error) => {
 
-            debugger
             if (!!error.response) {
     
                 if (error.response.status === 401) {

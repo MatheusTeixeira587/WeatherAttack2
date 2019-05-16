@@ -69,7 +69,6 @@ class Interceptor extends React.PureComponent {
 
             return config
         }, (error) => {
-            debugger
             console.log("hello");
             console.log(error);
         });

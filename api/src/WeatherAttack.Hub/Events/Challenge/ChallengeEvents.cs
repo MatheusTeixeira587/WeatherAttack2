@@ -7,7 +7,7 @@ namespace WeatherAttack.Hub.Events.Challenge
 {
     public static class ChallengeEvents
     {
-        public static string UserJoinedChannel = "UserJoinedChannel";
-        public static string UserLeftChannel = "UserLeftChannel";
+        public const string USER_JOINED_CHANNEL = "USER_JOINED_CHANNEL";
+        public const string USER_LEFT_CHANNEL = "USER_LEFT_CHANNEL";
     }
 }

@@ -15,9 +15,10 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         private IMapper<Entities.User, UserRequestDto, UserResponseDto> Mapper { get; }
 
-        public GetUserActionHandler(IUserRepository context)
+        public GetUserActionHandler(IUserRepository context, IMapper<Entities.User, UserRequestDto, UserResponseDto> mapper)
         {
             Context = context;
+            Mapper = mapper;
         }
 
         public GetUserCommand ExecuteAction(GetUserCommand command)

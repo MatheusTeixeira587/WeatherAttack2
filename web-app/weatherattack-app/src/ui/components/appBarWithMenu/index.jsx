@@ -8,7 +8,7 @@ import { AppBar, Toolbar, Typography, CardMedia} from '@material-ui/core'
 
 import { THEME_COLOR } from '../../../constants'
 import { LOGOUT_ICON } from '../../../static'
-import { requestLogoutAction } from '../../../actions'
+import { startChannelAction, requestLogoutAction } from '../../../actions'
 
 const styles = {
     root: {    
@@ -66,12 +66,15 @@ class MenuAppBar extends React.Component {
         this.onClickLogout = this.onClickLogout.bind(this);
     }
 
+    componentDidMount() {
+        this.props.startChannelAction();
+    }
+
     onClickLogout() {
         this.props.requestLogoutAction();
     }
 
     render() {
-        console.log(this.props)
         if (!this.props.login.token) {
             return <Redirect to="/#"/>
         }
@@ -112,7 +115,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispath =>
   bindActionCreators(
     {
-        requestLogoutAction
+        requestLogoutAction,
+        startChannelAction,
     }, dispath)
   
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(MenuAppBar)));

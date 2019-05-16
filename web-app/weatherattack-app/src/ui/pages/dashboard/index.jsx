@@ -27,22 +27,19 @@ class DashboardPage extends Component {
     }
 
     render() {
-
         const { classes } = this.props
         return (
             <Grid className={classes.page}
                 container
                 direction="column"
                 justify="center"
-                lg={12}
-                sm={12}
             >
                 {this.requiredAuthorization()}
-                    <AppBarWithMenu 
-                    />
-                    <DashboardContent>
-<span></span>
-                    </DashboardContent>
+                <AppBarWithMenu 
+                />
+                <DashboardContent>
+                    <span></span>
+                </DashboardContent>
             </Grid>     
         )
     }

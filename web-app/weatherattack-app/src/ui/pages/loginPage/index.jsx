@@ -77,7 +77,6 @@ class LoginPage extends Component {
   }
   
   render() {
-    console.log(this.props)
     if (this.props.login.token) {
         return <Redirect to="/dashboard" />
     }

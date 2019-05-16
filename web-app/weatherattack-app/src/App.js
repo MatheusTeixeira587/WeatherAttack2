@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { Snackbar } from '@material-ui/core';
 
 import { Loader, SnackBarContentWrapper, LoginPage, Interceptor, DashboardPage } from './ui';
-import { showLoaderAction, hideLoaderAction, addNotificationAction, removeNotificationAction, getLocationAction, assignLocationAction, assignWeatherDataAction } from "./actions";
+import { startChannelAction, showLoaderAction, hideLoaderAction, addNotificationAction, removeNotificationAction, getLocationAction, assignLocationAction, assignWeatherDataAction } from "./actions";
 
 class App extends Component {
 
@@ -68,6 +68,7 @@ const mapStateToProps = state => ({
   loader: state.loaderReducer,
   notification: state.notificationReducer,
   geolocation: state.geolocationReducer,
+  challenge: state.challengeReducer
 });
 
 const mapDispatchToProps = dispath =>
@@ -80,6 +81,7 @@ const mapDispatchToProps = dispath =>
       getLocationAction,
       assignLocationAction,
       assignWeatherDataAction,
+      startChannelAction
     }, dispath)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
