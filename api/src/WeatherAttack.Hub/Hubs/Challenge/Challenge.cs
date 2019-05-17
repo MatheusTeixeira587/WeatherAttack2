@@ -29,7 +29,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         public override async Task OnConnectedAsync()
         {
-            var id = getUserId();
+            var id = GetUserId();
 
             var response = GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id });
 
@@ -38,14 +38,14 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            var id = getUserId();
+            var id = GetUserId();
 
             var response = GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id });
 
             await Clients.All.SendAsync(ChallengeEvents.USER_LEFT_CHANNEL, response.Result);
         }
 
-        private long getUserId()
+        private long GetUserId()
         {
             return int.Parse(
                 this.Context.User

@@ -9,7 +9,7 @@ import { AppBarWithMenu, DashboardContent } from '../../';
 
 const styles = {
     page: {
-        height: '100%'
+        height: '100%',
     }
 }
 
@@ -30,15 +30,13 @@ class DashboardPage extends Component {
         const { classes } = this.props
         return (
             <Grid className={classes.page}
-                container
-                direction="column"
-                justify="center"
             >
                 {this.requiredAuthorization()}
                 <AppBarWithMenu 
                 />
                 <DashboardContent>
-                    <span></span>
+                    <span>
+                    </span>
                 </DashboardContent>
             </Grid>     
         )
@@ -47,7 +45,8 @@ class DashboardPage extends Component {
 
 const mapStateToProps = state => ({ 
     loader: state.loaderReducer,
-    login: state.loginReducer
+    login: state.loginReducer,
+    challenge: state.challengeReducer
   });
   
 const mapDispatchToProps = dispath =>
@@ -57,4 +56,4 @@ const mapDispatchToProps = dispath =>
       hideLoaderAction
     }, dispath)
   
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardPage))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardPage));

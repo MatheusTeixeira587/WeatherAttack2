@@ -9,7 +9,6 @@ const weatherService = new WeatherService();
 const geolocationService = new GeolocationService();
 
 function* getWeatherSaga() {
-    debugger
     const location = yield geolocationService.get();
 
     yield put(assignLocationAction(location));

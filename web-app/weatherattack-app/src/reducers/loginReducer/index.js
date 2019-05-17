@@ -22,7 +22,6 @@ export function loginReducer(state = initialState, action){
             return Object.assign({}, state, initialState)
 
         case types.LOGOUT_REQUEST:
-            localStorage.removeItem("logged_user")
             return Object.assign({}, state, {
                 token: null
             })

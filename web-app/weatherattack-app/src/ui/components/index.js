@@ -5,6 +5,7 @@ import Interceptor from './interceptor';
 import Button from './button'
 import AppBarWithMenu from './appBarWithMenu'
 import DashboardContent from './dashboardContent';
+import UserCard from './userCard';
 
 export { Loader } from './loader';
 export { LoginComponent } from './login';
@@ -16,5 +17,6 @@ export {
     WeatherCardComponent,
     Interceptor, 
     AppBarWithMenu,
-    DashboardContent
+    DashboardContent,
+    UserCard
 };

@@ -13,7 +13,8 @@ import { startChannelAction, requestLogoutAction } from '../../../actions'
 const styles = {
     root: {    
         color: 'white',
-        width: '100%'
+        width: '100%',
+        height: 'min-content'
     },
     grow: {
         flexGrow: 1,
