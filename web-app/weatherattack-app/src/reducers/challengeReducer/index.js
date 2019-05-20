@@ -23,6 +23,11 @@ export function challengeReducer(state = initialState, action) {
                 loggedUsers: users
             });
 
+        case challengeEvents.GET_ONLINE_USERS:
+            return Object.assign({}, state, {
+                loggedUsers: action.payload
+            })
+
 
         default:
             return state;

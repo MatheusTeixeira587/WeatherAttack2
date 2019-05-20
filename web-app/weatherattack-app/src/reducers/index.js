@@ -4,6 +4,7 @@ import { notificationReducer } from './notificationReducer';
 import { geolocationReducer } from './geolocationReducer'; 
 import { weatherReducer } from './weatherReducer';
 import { challengeReducer } from './challengeReducer';
+import { characterReducer } from './characterReducer'
 import { combineReducers } from 'redux';
 
 const rootState = combineReducers({
@@ -12,7 +13,8 @@ const rootState = combineReducers({
     notificationReducer,
     geolocationReducer,
     weatherReducer,
-    challengeReducer
+    challengeReducer,
+    characterReducer
 });
 
 export default rootState;

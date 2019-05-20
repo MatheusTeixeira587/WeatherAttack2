@@ -6,6 +6,7 @@ import Button from './button'
 import AppBarWithMenu from './appBarWithMenu'
 import DashboardContent from './dashboardContent';
 import UserCard from './userCard';
+import PlayerProfile from './playerProfile';
 
 export { Loader } from './loader';
 export { LoginComponent } from './login';
@@ -18,5 +19,6 @@ export {
     Interceptor, 
     AppBarWithMenu,
     DashboardContent,
-    UserCard
+    UserCard,
+    PlayerProfile
 };

@@ -11,6 +11,8 @@ using Swashbuckle.AspNetCore.Swagger;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using WeatherAttack.Application.Command.Character;
+using WeatherAttack.Application.Command.Character.Handlers;
 using WeatherAttack.Application.Command.Spell;
 using WeatherAttack.Application.Command.Spell.Handlers;
 using WeatherAttack.Application.Command.User;
@@ -125,6 +127,7 @@ namespace Weatherattack.WebApi
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISpellRepository, SpellRepository>();
+            services.AddScoped<ICharacterRepository, CharacterRepository>();
         }
 
         public void ConfigureDatabase(IServiceCollection services)
@@ -172,6 +175,8 @@ namespace Weatherattack.WebApi
             services.AddTransient<IActionHandler<GetAllSpellsCommand>, GetAllSpellsActionHandler>();
             services.AddTransient<IActionHandler<AddSpellCommand>, AddSpellActionHandler>();
             services.AddTransient<IActionHandler<DeleteSpellCommand>, DeleteSpellActionHandler>();
+
+            services.AddTransient<IActionHandler<GetCharacterCommand>, GetCharacterActionHandler>();
 
             services.AddTransient<IActionHandler<GetCurrentWeatherCommand>, GetCurrentWeatherActionHandler>();
         }

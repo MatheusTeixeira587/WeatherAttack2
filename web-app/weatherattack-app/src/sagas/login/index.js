@@ -1,16 +1,20 @@
-import { takeLatest, put } from 'redux-saga/effects'
+import { takeLatest, put, all } from 'redux-saga/effects'
 import { LoginService, UserService } from '../../services'
 import { types } from '../../constants';
-import { onLoginSucessAction, requestLoginAction, startChannelAction, closeChannelAction } from '../../actions'
+import { onLoginSucessAction, requestLoginAction, startChannelAction, closeChannelAction, getCharacterAction } from '../../actions'
 
 const loginService = new LoginService();
 const userService = new UserService();
 
 function* loginSaga(action) {
     const response = yield loginService.login(action.user);
-    localStorage.setItem("logged_user", response)
+    localStorage.setItem("logged_user", response.token)
  
-    yield put(onLoginSucessAction(response))
+    yield all([
+        put(onLoginSucessAction(response)),
+        put(startChannelAction()),
+        put(getCharacterAction()),
+    ])
 }
 
 function* registerSaga(action) {
@@ -20,13 +24,10 @@ function* registerSaga(action) {
         return;
     }
 
-    yield [
-        put(requestLoginAction(response.user)),
-        put(startChannelAction())
-    ]
+    yield put(requestLoginAction(response.user))
 }
 
-function* logoutSaga(action) {
+function* logoutSaga() {
     localStorage.removeItem("logged_user");
 
     yield put(closeChannelAction())

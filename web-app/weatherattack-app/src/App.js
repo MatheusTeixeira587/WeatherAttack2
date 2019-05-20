@@ -68,7 +68,10 @@ const mapStateToProps = state => ({
   loader: state.loaderReducer,
   notification: state.notificationReducer,
   geolocation: state.geolocationReducer,
-  challenge: state.challengeReducer
+  challenge: state.challengeReducer,
+
+  login: state.loginReducer,
+  character: state.characterReducer
 });
 
 const mapDispatchToProps = dispath =>

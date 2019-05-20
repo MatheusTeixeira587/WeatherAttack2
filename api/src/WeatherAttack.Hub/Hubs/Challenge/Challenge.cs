@@ -2,10 +2,12 @@
 using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using WeatherAttack.Application.Command.Character;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Hub.Events.Challenge;
+using WeatherAttack.Hub.Services;
 using SignalRHub = Microsoft.AspNetCore.SignalR.Hub;
 
 namespace WeatherAttack.Hub.Hubs.Challenge
@@ -14,9 +16,15 @@ namespace WeatherAttack.Hub.Hubs.Challenge
     {
         private IActionHandler<GetUserCommand> GetUserActionHandler { get; }
 
-        public Challenge(IActionHandler<GetUserCommand> getUserActionHandler)
+        private IActionHandler<GetCharacterCommand> GetCharacterActionHandler { get; }
+
+        private static ConnectionInMemoryDatabase _connections { get; } = new ConnectionInMemoryDatabase();
+
+        [HubMethodName(ChallengeEvents.GET_ONLINE_USERS)]
+        public async Task GetOnlineUsers(UserResponseDto user)
         {
-            GetUserActionHandler = getUserActionHandler;
+            await Clients.Caller
+                .SendAsync(ChallengeEvents.GET_ONLINE_USERS, _connections.Get());    
         }
 
         [HubMethodName(ChallengeEvents.USER_JOINED_CHANNEL)]
@@ -29,29 +37,46 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         public override async Task OnConnectedAsync()
         {
-            var id = GetUserId();
+            var user = GetUser();
 
-            var response = GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id });
+            _connections.Add(user, Context.ConnectionId);
 
-            await Clients.All.SendAsync(ChallengeEvents.USER_JOINED_CHANNEL, response.Result);
+            var connectionId =_connections.Get(user);
+
+            await Clients.AllExcept(connectionId).SendAsync(ChallengeEvents.USER_JOINED_CHANNEL, user);
+
+            await GetOnlineUsers(user);
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            var id = GetUserId();
+            var user = GetUser();
 
-            var response = GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id });
+            _connections.Remove(user);
 
-            await Clients.All.SendAsync(ChallengeEvents.USER_LEFT_CHANNEL, response.Result);
+            await Clients.All.SendAsync(ChallengeEvents.USER_LEFT_CHANNEL, user);
         }
 
         private long GetUserId()
         {
             return int.Parse(
-                this.Context.User
+                Context.User
                     .FindFirst(claim => 
                         claim.Type == ClaimTypes.PrimarySid)
                     .Value);
+        }
+
+        private UserResponseDto GetUser()
+        {
+            var id = GetUserId();
+
+            return GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id }).Result;
+        }
+
+        public Challenge(IActionHandler<GetUserCommand> getUserActionHandler, IActionHandler<GetCharacterCommand> getCharacterActionHandler)
+        {
+            GetUserActionHandler = getUserActionHandler;
+            GetCharacterActionHandler = getCharacterActionHandler;
         }
     }
 }

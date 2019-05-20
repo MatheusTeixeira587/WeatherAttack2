@@ -4,12 +4,19 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { showLoaderAction, hideLoaderAction } from '../../../actions';
 import { Grid, withStyles } from '@material-ui/core';
-
 import { AppBarWithMenu, DashboardContent } from '../../';
+import { BACKGROUND } from '../../../static'
 
 const styles = {
     page: {
         height: '100%',
+    },
+    contentWrapper: {
+        background:`url('${BACKGROUND}')`,
+        height: '100%',
+        width: '100%',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat'
     }
 }
 
@@ -31,6 +38,8 @@ class DashboardPage extends Component {
         return (
             <Grid className={classes.page}
             >
+            <div className={classes.contentWrapper}>
+
                 {this.requiredAuthorization()}
                 <AppBarWithMenu 
                 />
@@ -38,6 +47,7 @@ class DashboardPage extends Component {
                     <span>
                     </span>
                 </DashboardContent>
+            </div>
             </Grid>     
         )
     }

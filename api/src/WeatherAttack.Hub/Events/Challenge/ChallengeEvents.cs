@@ -9,5 +9,6 @@ namespace WeatherAttack.Hub.Events.Challenge
     {
         public const string USER_JOINED_CHANNEL = "USER_JOINED_CHANNEL";
         public const string USER_LEFT_CHANNEL = "USER_LEFT_CHANNEL";
+        public const string GET_ONLINE_USERS = "GET_ONLINE_USERS";
     }
 }

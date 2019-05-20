@@ -17,7 +17,12 @@ export class BaseService {
 
   getById(id, token = "") {
     return axios
-      .get(`${this.baseUrl}/${id}${token}`)
+      .get(`${this.baseUrl}/${id}`, {
+          headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-type': 'application/json'
+          }
+      })
       .then(result => result.data);
   }
 

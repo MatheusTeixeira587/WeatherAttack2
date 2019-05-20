@@ -1,7 +1,7 @@
 import { types } from '../../constants'
 
 export const startChannelAction = () => ({
-  type: types.START_CHANNEL
+    type: types.START_CHANNEL
 })
 
 export const closeChannelAction = () => ({

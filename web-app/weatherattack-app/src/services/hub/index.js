@@ -1,6 +1,6 @@
 import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
 import { eventChannel } from "redux-saga";
-import { challengeEvents } from "../../constants";
+import { challengeEvents, types } from "../../constants";
 
 const challengeChannel = "challenge";
 
@@ -31,7 +31,7 @@ export class HubService {
                 hub = HubService._subscribeToChallengeEvents(hub, eventHandler);
             }
 
-            return () => hub.off('endTask');
+            return () => hub.off(types.STOP_CHANNEL);
         });
     }
 

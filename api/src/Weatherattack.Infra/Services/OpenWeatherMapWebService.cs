@@ -37,9 +37,8 @@ namespace WeatherAttack.Infra.Services
                 {
                     using (var streamReader = new StreamReader(responseContent))
                     {
-                        var a = streamReader.ReadToEnd();
                         return JsonConvert.DeserializeObject<CurrentWeatherRequestDto>(
-                            a
+                            streamReader.ReadToEnd()
                         );
                     }
                 }

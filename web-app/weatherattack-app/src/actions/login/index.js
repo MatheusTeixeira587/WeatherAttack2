@@ -5,9 +5,10 @@ export const requestLoginAction = (user) => ({
     user: user
 })
 
-export const onLoginSucessAction = (token) => ({
+export const onLoginSucessAction = (response) => ({
     type: types.LOGIN_SUCESS,
-    token: token
+    token: response.token,
+    user: response.user
 })
 
 export const changeFieldAction = (event) => ({

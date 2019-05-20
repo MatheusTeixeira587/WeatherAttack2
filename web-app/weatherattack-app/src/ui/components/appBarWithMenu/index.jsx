@@ -86,7 +86,7 @@ class MenuAppBar extends React.Component {
             <AppBar position="static" color="inherit" className={classes.menuColor}>
             <Toolbar className={classes.menuBar}>
                 <Typography variant="h6" color="inherit" className={classes.grow}>
-                    Placeholder
+                    Weather Attack
                 </Typography>
             </Toolbar>
                     <div className={classes.menuItemDiagonalWrapper}>

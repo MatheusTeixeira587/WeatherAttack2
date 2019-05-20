@@ -2,9 +2,8 @@ import React, { Component } from 'react'
 import { Grid, withStyles } from '@material-ui/core';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { UserCard } from '../';
+import { UserCard, PlayerProfile } from '../';
 import { showLoaderAction, hideLoaderAction } from '../../../actions';
-
 
 const styles = {
     dashboardContentWrapper: {
@@ -14,7 +13,6 @@ const styles = {
         alignItems: 'start',
         flexWrap: 'wrap',
         margin: 10,
-        justifyContent: 'space-evenly',
         overflowY: 'scroll',
         maxHeight: '40%',
         '&::-webkit-scrollbar': {
@@ -26,7 +24,10 @@ const styles = {
         '&::-webkit-scrollbar-track': {
             background: '#efeded',
         },
-
+    },
+    profileWrapper: {
+        margin: 10,
+        flex: 1
     }
 }
 
@@ -35,6 +36,7 @@ class DashboardContentComponent extends Component {
     constructor(props) {
         super(props)
         this.renderOnlinePlayers = this.renderOnlinePlayers.bind(this);
+        this.renderUserProfile = this.renderUserProfile.bind(this);
     }
     
     renderOnlinePlayers() {
@@ -43,16 +45,37 @@ class DashboardContentComponent extends Component {
         })
     }
 
+    renderUserProfile() {
+        return (
+            <PlayerProfile 
+                user={
+                    {
+                        username: this.props.login.username,
+                    }
+                }
+
+                character={this.props.character}
+            />
+        )
+    }
+
     render() {
 
         const { classes } = this.props;
 
         return (
-        <Grid className={classes.dashboardContentWrapper}>
-            {
-                this.renderOnlinePlayers()
-            }
-        </Grid>
+            <div>
+                <Grid className={classes.profileWrapper}>
+                    {
+                        this.renderUserProfile()
+                    }
+                </Grid>
+                <Grid className={classes.dashboardContentWrapper}>
+                    {
+                        this.renderOnlinePlayers()
+                    }
+                </Grid>  
+            </div>
         )
   }
 }
@@ -60,7 +83,8 @@ class DashboardContentComponent extends Component {
 const mapStateToProps = state => ({ 
     loader: state.loaderReducer,
     login: state.loginReducer,
-    challenge: state.challengeReducer
+    challenge: state.challengeReducer,
+    character: state.characterReducer
   });
   
 const mapDispatchToProps = dispath =>

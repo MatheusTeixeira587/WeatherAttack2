@@ -13,17 +13,18 @@ function* listenServerSaga() {
         const payload = yield take(hubChannel);
 
         console.log(payload);
-
         yield put(payload);
     }
 }
+
 
 export function* watchListenServerSaga() {
     while(true) {
         yield take(types.START_CHANNEL);
         yield race({
             task: call(listenServerSaga),
-            cancel: take(types.STOP_CHANNEL),
-        })
+            cancel: take(types.STOP_CHANNEL)
+        },
+        take(types.STOP_CHANNEL))
     }
 }

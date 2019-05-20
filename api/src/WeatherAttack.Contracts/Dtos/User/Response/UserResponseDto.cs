@@ -1,4 +1,5 @@
 ﻿
+using System;
 using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Contracts.Dtos.User.Response

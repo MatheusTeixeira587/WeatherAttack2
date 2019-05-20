@@ -6,7 +6,9 @@ const initialState = {
     email:"",
     confirmPassword:"",
     shouldRenderRegister: false,
-    token: localStorage.getItem("logged_user")
+    token: localStorage.getItem("logged_user"),
+    id: 0,
+    permissionLevel: "User"
 }
 
 export function loginReducer(state = initialState, action){
@@ -15,7 +17,10 @@ export function loginReducer(state = initialState, action){
 
         case types.LOGIN_SUCESS:
             return Object.assign({}, state, {
-                token: action.token
+                token: action.token,
+                username: action.user.username,
+                id: action.user.id,
+                permissionLevel: action.user.permissionLevel
             })
 
         case types.REGISTER_REQUEST:
