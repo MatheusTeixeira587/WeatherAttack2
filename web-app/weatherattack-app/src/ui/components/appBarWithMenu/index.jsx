@@ -76,9 +76,11 @@ class MenuAppBar extends React.Component {
     }
 
     render() {
+
         if (!this.props.login.token) {
             return <Redirect to="/#"/>
         }
+        
         const { classes } = this.props;
 
         return (

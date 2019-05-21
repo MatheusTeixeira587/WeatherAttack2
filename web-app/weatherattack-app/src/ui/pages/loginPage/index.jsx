@@ -71,6 +71,7 @@ class LoginPage extends Component {
           description={this.props.weather.weather.length > 0 ? this.props.weather.weather[0].description : noWeatherDescriptionAvailableMessage}
           temperature={parseInt(this.props.weather.main.temperature, 10)}
           onClick={this.props.getWeather}
+          icon={this.props.weather.weather[0].icon}
         />
       )
     }

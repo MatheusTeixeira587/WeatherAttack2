@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { Card, CardContent, CardMedia, Typography, Button } from '@material-ui/core';
 import { weatherButtonText } from '../../../constants'
-import sun from '../../../static/icons/sun.svg';
+import { RAINY_ICON, SUNNY_ICON } from '../../../static';
 
 const styles = theme => ({
   card: {
@@ -27,24 +27,15 @@ const styles = theme => ({
     color: 'white',
     paddingBottom: '0px'
   },
-  '@keyframes spin-0': {
-    from: {
-      transform: 'rotate(0deg)',
-      opacity: 1,
-    },
-    to: {
-      transform: 'rotate(360deg)',opacity: 0,
-    }
-  },
   cover: {
     width: 121,
     height: '70%',
     opacity: 1,
-    backgroundSize: 'contain 100%',
-    overflow: 'visible',
-    animationName: '$spin-0',
+    backgroundSize: 'contain',
+    overflow: 'hidden',
   },
   coverWrapper: {
+      padding: 10,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center'
@@ -53,12 +44,17 @@ const styles = theme => ({
 
 const WeatherCard = props => {
     const { classes, temperature, description, wind, city, onClick } = props;
-        let icon = props.icon;
+    let icon = props.icon;
 
     switch (icon) {
 
+        case "09d":
+            icon = RAINY_ICON;
+            break;
+
         default:
-            icon = sun;
+            icon = SUNNY_ICON;
+            break;
         }
 
   return (

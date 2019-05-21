@@ -13,7 +13,7 @@ namespace WeatherAttack.Domain.Entities
 
         public string Password { get; private set; }
 
-        public Character Character { get; private set; } = new Character();
+        public Character Character { get; private set; }
 
         public byte PermissionLevel { get; private set; } = Rules.User.PermissionLevel.User;
 
@@ -31,10 +31,9 @@ namespace WeatherAttack.Domain.Entities
             Password = password;
         }
 
-        public void SetPassword(string password)
-        {
-            Password = password;
-        }
+        public void SetPassword(string password) => Password = password;
+
+        public void SetCharacter(Character character) => Character = character;
 
         protected override bool Validate()
         {

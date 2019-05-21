@@ -26,6 +26,5 @@ namespace WeatherAttack.WebApi.Controllers.Character
                 return this.Response(GetCharacterActionHandler.ExecuteAction(command));
             });
         }
-        
     }
 }

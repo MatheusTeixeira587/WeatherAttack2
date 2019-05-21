@@ -40,7 +40,7 @@ class DashboardContentComponent extends Component {
     }
     
     renderOnlinePlayers() {
-        return this.props.challenge.loggedUsers.map((i, k) => {
+        return this.props.challenge.loggedUsers.filter(u => u.id !== this.props.login.id).map((i, k) => {
             return <UserCard user={i} key={k}/>
         })
     }
@@ -48,12 +48,9 @@ class DashboardContentComponent extends Component {
     renderUserProfile() {
         return (
             <PlayerProfile 
-                user={
-                    {
+                user={{
                         username: this.props.login.username,
-                    }
-                }
-
+                    }} 
                 character={this.props.character}
             />
         )

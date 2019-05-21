@@ -39,6 +39,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
                     if (!user.HasNotification())
                     {
+                        user.SetCharacter(new Entity.Character());
                         Context.Add(user);
                     }                  
                 }
@@ -58,15 +59,14 @@ namespace WeatherAttack.Application.Command.User.Handlers
         private void EnsureUniquenessOfEmailAndUsername(Entity.User user)
         {
             var result = Context.FindBy(u => u.Username == user.Username
-                                                    || u.Email == user.Email)
-                                                    .FirstOrDefault();
+                                                    || u.Email == user.Email)?.ToList();
 
             if (result != null)
             {
-                if (result.Email == user.Email)
+                if (result.Any(r => r.Email == user.Email))
                     user.AddNotification(WeatherAttackNotifications.User.EmailAlreadyInUse);
 
-                if (result.Username == user.Username)
+                if (result.Any(r => r.Username == user.Username))
                     user.AddNotification(WeatherAttackNotifications.User.UsernameAlreadyInUse);
             }
         }

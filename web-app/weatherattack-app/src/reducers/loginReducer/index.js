@@ -6,7 +6,7 @@ const initialState = {
     email:"",
     confirmPassword:"",
     shouldRenderRegister: false,
-    token: localStorage.getItem("logged_user"),
+    token: "",
     id: 0,
     permissionLevel: "User"
 }
@@ -14,12 +14,11 @@ const initialState = {
 export function loginReducer(state = initialState, action){
 
     switch(action.type) {
-
         case types.LOGIN_SUCESS:
             return Object.assign({}, state, {
                 token: action.token,
                 username: action.user.username,
-                id: action.user.id,
+                id: parseInt(action.user.id),
                 permissionLevel: action.user.permissionLevel
             })
 
