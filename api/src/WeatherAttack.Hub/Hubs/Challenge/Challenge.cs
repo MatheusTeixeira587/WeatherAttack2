@@ -22,10 +22,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         [HubMethodName(ChallengeEvents.GET_ONLINE_USERS)]
         public async Task GetOnlineUsers(UserResponseDto user)
-        {
-            await Clients.Caller
-                .SendAsync(ChallengeEvents.GET_ONLINE_USERS, _connections.Get());    
-        }
+            => await Clients.Caller.SendAsync(ChallengeEvents.GET_ONLINE_USERS, _connections.Get());    
 
         [HubMethodName(ChallengeEvents.USER_JOINED_CHANNEL)]
         public async Task JoinChannel(UserResponseDto user)
@@ -43,11 +40,9 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
             var connectionId =_connections.Get(user);
 
-            await Clients.Caller
-                .SendAsync(ChallengeEvents.GET_ONLINE_USERS, _connections.Get());
+            await GetOnlineUsers(user);
 
-            await Clients.Others
-                .SendAsync(ChallengeEvents.USER_JOINED_CHANNEL, user);
+            await JoinChannel(user);
         }
 
         public override async Task OnDisconnectedAsync(Exception exception)
@@ -56,7 +51,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
             _connections.Remove(user);
 
-            await Clients.All.SendAsync(ChallengeEvents.USER_LEFT_CHANNEL, user);
+            await QuitChannel(user);
         }
 
         private long GetUserId()

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import { Snackbar } from '@material-ui/core';
-
-import { Loader, SnackBarContentWrapper, LoginPage, Interceptor, DashboardPage } from './ui';
-import { startChannelAction, showLoaderAction, hideLoaderAction, addNotificationAction, removeNotificationAction, getLocationAction, assignLocationAction, assignWeatherDataAction } from "./actions";
+import { Loader, SnackBarContentWrapper, LoginPage, AdministratorPage, Interceptor, DashboardPage } from './ui';
+import { startChannelAction, showLoaderAction, hideLoaderAction, addNotificationAction, removeNotificationAction, getLocationAction } from "./actions";
+import { routes } from './constants';
 
 class App extends Component {
 
@@ -14,15 +14,10 @@ class App extends Component {
     super(props)
     
     this.renderNotifications = this.renderNotifications.bind(this);
-    this.getWeather = this.getWeather.bind(this);
   }
 
   componentDidMount() {
-    this.getWeather();
-  }
-
-  getWeather() {
-    this.props.getLocationAction();
+      this.props.getLocationAction();
   }
 
   renderNotifications() {
@@ -54,10 +49,11 @@ class App extends Component {
           this.renderNotifications()
         }
         <Switch>
-          <Route path="/" exact render={() => <LoginPage getWeather={this.getWeather}/>} />
-          <Route path="/dashboard" exact component={DashboardPage} />
-          <Route path="/404"/>
-          <Redirect to="/"/>
+          <Route path={routes.LOGIN_PAGE} exact component={LoginPage} />
+          <Route path={routes.DASHBOARD_PAGE} exact component={DashboardPage} />
+          <Route path={routes.ADMINISTRATION_PAGE} exact component={AdministratorPage} />
+          <Route path={routes.NOT_FOUND}/>
+          <Redirect to={routes.LOGIN_PAGE}/>
         </Switch>
       </div>
     );
@@ -82,8 +78,6 @@ const mapDispatchToProps = dispath =>
       addNotificationAction,
       removeNotificationAction,
       getLocationAction,
-      assignLocationAction,
-      assignWeatherDataAction,
       startChannelAction
     }, dispath)
 

@@ -78,7 +78,6 @@ class DashboardContentComponent extends Component {
 }
 
 const mapStateToProps = state => ({ 
-    loader: state.loaderReducer,
     login: state.loginReducer,
     challenge: state.challengeReducer,
     character: state.characterReducer

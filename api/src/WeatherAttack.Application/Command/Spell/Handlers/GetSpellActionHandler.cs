@@ -25,10 +25,10 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
                 .Select(c => Mapper.ToDto(c))
                 .First();
 
-            if (result == null)
+            if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);
-            else
-                command.Result = result;
+
+            command.Result = result;
 
             return command;
         }

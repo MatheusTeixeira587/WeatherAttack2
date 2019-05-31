@@ -11,8 +11,18 @@ export class BaseService {
       .then(result => result.data);
   }
 
-  post(object) {
-    return axios.post(this.baseUrl, object).then(result => result.data);
+  post(object, token = "") {
+    if (!token) {
+        return axios.post(this.baseUrl, object).then(result => result.data);
+    }
+
+    return axios.post(this.baseUrl, {
+        headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-type': 'application/json'
+        },
+        object
+    }).then(result => result.data);
   }
 
   getById(id, token = "") {

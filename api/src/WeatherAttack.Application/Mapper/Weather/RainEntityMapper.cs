@@ -17,7 +17,7 @@ namespace WeatherAttack.Application.Mapper.Weather
 
         public Rain ToEntity(RainRequestDto request)
         {
-            return request == null ? null : new Rain(request.Volume);
+            return request is null ? null : new Rain(request.Volume);
         }
     }
 }

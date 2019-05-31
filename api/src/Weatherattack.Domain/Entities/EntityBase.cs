@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
 {
-    public class EntityBase
+    public abstract class EntityBase
     {
         public EntityBase() { }
 
@@ -23,14 +21,10 @@ namespace WeatherAttack.Domain.Entities
         public List<Notification> Notifications { get; private set; } = new List<Notification>();
 
         public void AddNotification(string code)
-        {
-            AddNotification(WeatherAttackNotifications.Get(code));
-        }
+            => AddNotification(WeatherAttackNotifications.Get(code));
 
         public void AddNotification(ImmutableArray<string> codeArray)
-        {
-            AddNotification(WeatherAttackNotifications.Get(codeArray));
-        }
+            => AddNotification(WeatherAttackNotifications.Get(codeArray));
 
         public void AddNotification(Notification notification)
         {
@@ -39,9 +33,7 @@ namespace WeatherAttack.Domain.Entities
         }
 
         public bool HasNotification()
-        {
-            return Notifications.Count > 0;
-        }
+            => Notifications.Count > 0;
 
         public void AddNotification(List<Notification> notifications)
         {
@@ -50,8 +42,6 @@ namespace WeatherAttack.Domain.Entities
         }      
 
         protected virtual bool Validate()
-        {
-            return !HasNotification();
-        }
+            => !HasNotification();
     }
 }

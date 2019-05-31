@@ -1,4 +1,5 @@
-﻿using WeatherAttack.Contracts.Dtos.User.Request;
+﻿using WeatherAttack.Contracts.Dtos.Character;
+using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.Mapper;
 using Entities = WeatherAttack.Domain.Entities;
@@ -7,6 +8,13 @@ namespace WeatherAttack.Application.Mapper.User
 {
     public class UserEntityMapper : IMapper<Entities.User, UserRequestDto, UserResponseDto>
     {
+        IMapper<Entities.Character, CharacterDto, CharacterDto> CharacterMapper { get; }
+
+        public UserEntityMapper(IMapper<Entities.Character, CharacterDto, CharacterDto> characterMapper)
+        {
+            CharacterMapper = characterMapper;
+        }
+
         public UserResponseDto ToDto(Entities.User user)
         {
             return new UserResponseDto()
@@ -14,7 +22,7 @@ namespace WeatherAttack.Application.Mapper.User
                 Id = user.Id,
                 Email = user.Email,
                 Username = user.Username,
-                Character = user.Character
+                Character = CharacterMapper.ToDto(user.Character)
             };
         }
 

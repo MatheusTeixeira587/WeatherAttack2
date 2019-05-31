@@ -1,12 +1,16 @@
 import SnackBarContentWrapper from './snackbar';
 import Link from './link';
-import  WeatherCardComponent from './weatherCard';
+import WeatherCardComponent from './weatherCard';
+import WeatherBarComponent from './weatherBar';
 import Interceptor from './interceptor';
 import Button from './button'
 import AppBarWithMenu from './appBarWithMenu'
 import DashboardContent from './dashboardContent';
 import UserCard from './userCard';
 import PlayerProfile from './playerProfile';
+import AdministrationContent from './administrationContent';
+import AddSpellComponent from './addSpellComponent';
+import SpellAreaComponent from './spellArea';
 
 export { Loader } from './loader';
 export { LoginComponent } from './login';
@@ -16,9 +20,13 @@ export {
     Button, 
     Link, 
     WeatherCardComponent,
+    WeatherBarComponent,
     Interceptor, 
     AppBarWithMenu,
     DashboardContent,
     UserCard,
-    PlayerProfile
+    PlayerProfile,
+    AdministrationContent,
+    AddSpellComponent,
+    SpellAreaComponent
 };

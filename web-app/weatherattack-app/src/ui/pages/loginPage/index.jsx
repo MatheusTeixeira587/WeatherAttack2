@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import { bindActionCreators } from 'redux';
-import { showLoaderAction, hideLoaderAction, changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from '../../../actions';
+import { getLocationAction, showLoaderAction, hideLoaderAction, changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from '../../../actions';
 import { LoginComponent, RegisterComponent, Link, WeatherCardComponent } from '../../';
 import { Grid } from '@material-ui/core';
-import { createAccountMessage, alreadyHaveAccountMessage, noWeatherDescriptionAvailableMessage } from '../../../constants';
+import { routes, createAccountMessage, alreadyHaveAccountMessage, noWeatherDescriptionAvailableMessage } from '../../../constants';
 
 import backgroundImageSvg  from '../../../static/img/background.svg';
 import logoSvg from '../../../static/img/logo.svg';
@@ -70,7 +70,7 @@ class LoginPage extends Component {
           wind={parseInt(this.props.weather.wind.speed, 10)}
           description={this.props.weather.weather.length > 0 ? this.props.weather.weather[0].description : noWeatherDescriptionAvailableMessage}
           temperature={parseInt(this.props.weather.main.temperature, 10)}
-          onClick={this.props.getWeather}
+          onClick={this.props.getLocationAction}
           icon={this.props.weather.weather[0].icon}
         />
       )
@@ -79,7 +79,7 @@ class LoginPage extends Component {
   
   render() {
     if (this.props.login.token) {
-        return <Redirect to="/dashboard" />
+        return <Redirect to={routes.DASHBOARD_PAGE} />
     }
     return (
       <Grid
@@ -153,8 +153,8 @@ bindActionCreators(
     changeFieldAction, 
     requestLoginAction, 
     triggerRegisterDisplayAction, 
-    requestRegisterAction
-
+    requestRegisterAction,
+    getLocationAction
   }, dispath)
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LoginPage))

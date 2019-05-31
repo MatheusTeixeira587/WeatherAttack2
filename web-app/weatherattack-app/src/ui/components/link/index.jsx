@@ -24,7 +24,7 @@ const styles = ({
     }
 })
 
-let Link = (props) => {
+const Link = (props) => {
     const { onClick, classes, message } = props
 
     return (
@@ -42,6 +42,4 @@ Link.propTypes = {
     message: PropTypes.string.isRequired,
 };
 
-Link =  withStyles(styles)(Link);
-
-export default Link;
+export default withStyles(styles)(Link);

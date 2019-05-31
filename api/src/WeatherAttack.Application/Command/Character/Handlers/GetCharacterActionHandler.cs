@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using WeatherAttack.Contracts.Command;
+using WeatherAttack.Contracts.Dtos.Character;
+using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Character.Handlers
@@ -12,19 +12,22 @@ namespace WeatherAttack.Application.Command.Character.Handlers
     {
         private ICharacterRepository Context { get; }
 
-        public GetCharacterActionHandler(ICharacterRepository context)
+        private IMapper<Domain.Entities.Character, CharacterDto, CharacterDto> Mapper { get; }
+
+        public GetCharacterActionHandler(ICharacterRepository context, IMapper<Domain.Entities.Character, CharacterDto, CharacterDto> mapper)
         {
             Context = context;
+            Mapper = mapper;
         }
 
         public GetCharacterCommand ExecuteAction(GetCharacterCommand command)
         {
             var result = Context.FindBy(c => c.UserId == command.Id).SingleOrDefault();
 
-            if (result == null)
+            if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Character.InvalidCharacter);
-
-            command.Result = result;
+            else 
+                command.Result = Mapper.ToDto(result);
 
             return command;
         }

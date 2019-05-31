@@ -1,10 +1,10 @@
 ﻿using WeatherAttack.Contracts.Command;
-using Entities = WeatherAttack.Domain.Entities;
+using WeatherAttack.Contracts.Dtos.Character;
 
 namespace WeatherAttack.Application.Command.Character
 {
     public class GetCharacterCommand : CommandBase
     {
-        public Entities.Character Result { get; set; }
+        public CharacterDto Result { get; set; }
     }
 }

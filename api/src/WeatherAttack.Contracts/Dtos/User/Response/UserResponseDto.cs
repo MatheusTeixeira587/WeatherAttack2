@@ -1,8 +1,4 @@
-﻿
-using System;
-using WeatherAttack.Domain.Entities;
-
-namespace WeatherAttack.Contracts.Dtos.User.Response
+﻿namespace WeatherAttack.Contracts.Dtos.User.Response
 {
     public class UserResponseDto
     {
@@ -12,7 +8,7 @@ namespace WeatherAttack.Contracts.Dtos.User.Response
 
         public string Username { get;  set; }
 
-        public Character Character { get; set; }
+        public Character.CharacterDto Character { get; set; }
 
         public UserResponseDto(string email, string username)
         {
@@ -20,7 +16,7 @@ namespace WeatherAttack.Contracts.Dtos.User.Response
             Username = username;
         }
 
-        public UserResponseDto(string email, string username, Character character)
+        public UserResponseDto(string email, string username, Character.CharacterDto character)
         {
             Email = email;
             Username = username;

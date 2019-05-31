@@ -4,6 +4,20 @@ namespace WeatherAttack.Domain.Entities
 {
     public class Character : EntityBase
     {
+        public Character() { }
+
+        public Character(long id, long userId, long healthPoints, long manaPoints, long battles, long wins, long losses, long medals)
+        {
+            Id = id;
+            UserId = userId;
+            HealthPoints = healthPoints;
+            ManaPoints = manaPoints;
+            Battles = battles;
+            Wins = wins;
+            Losses = losses;
+            Medals = medals;
+        }
+
         public long UserId { get; set; }
 
         public long HealthPoints { get; private set; } = Rules.Character.HealthPoints.InitialValue;

@@ -10,5 +10,6 @@ namespace WeatherAttack.Domain.Enums
         Ice = 2,
         Lightning = 4,
         Water = 8,
+        Wind = 16,
     }
 }

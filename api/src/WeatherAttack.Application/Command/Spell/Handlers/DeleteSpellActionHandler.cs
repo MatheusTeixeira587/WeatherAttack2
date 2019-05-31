@@ -17,7 +17,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
             var result = Context.FindBy(c => c.Id == command.Id)
                 .FirstOrDefault();
 
-            if (result == null)
+            if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);
             else
                 Context.Delete(result);

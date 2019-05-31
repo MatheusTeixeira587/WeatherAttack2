@@ -30,7 +30,7 @@ namespace WeatherAttack.Domain.Entities
 
         protected override bool Validate()
         {
-            return base.Validate();
+            return !HasNotification();
         }
     }
 }

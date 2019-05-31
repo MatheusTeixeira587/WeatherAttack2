@@ -31,7 +31,6 @@ namespace Weatherattack.WebApi.Controllers
             return await Task.Run(() =>
             {
                 command.Id = id;
-
                 return this.Response(GetUserHandler.ExecuteAction(command));
             });
         }
@@ -71,7 +70,7 @@ namespace Weatherattack.WebApi.Controllers
             IActionHandler<AddUserCommand> addUserActionHandler,
             IActionHandler<GetUserCommand> getUserActionHandler,
             IActionHandler<DeleteUserCommand> deleteUserActionHandler
-            )
+        )
         {
             GetAllUserHandler = getAllUsersActionHandler;
             AddUserHandler = addUserActionHandler;

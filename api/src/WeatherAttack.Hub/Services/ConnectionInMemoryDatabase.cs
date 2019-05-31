@@ -10,34 +10,30 @@ namespace WeatherAttack.Hub.Services
         private readonly Dictionary<UserResponseDto, string> _connections;
 
         public ConnectionInMemoryDatabase()
-        {
-            _connections = new Dictionary<UserResponseDto, string>(new UserComparer());
-        }
+            => _connections = new Dictionary<UserResponseDto, string>(new UserComparer());
 
-        public int Count => _connections.Count;
+        public int Count 
+            => _connections.Count;
 
-        public void Add(UserResponseDto key, string value)
-        {
-                _connections.TryAdd(key, value);
-        }
+        public void Add(UserResponseDto key, string value) 
+            =>  _connections.Add(key, value);
 
-        public void Remove(UserResponseDto key) => _connections.Remove(key);
+        public void Remove(UserResponseDto key) 
+            => _connections.Remove(key);
 
-        public string Get(UserResponseDto key) => _connections.GetValueOrDefault(key);
+        public string Get(UserResponseDto key) 
+            => _connections.GetValueOrDefault(key);
 
-        public ICollection<UserResponseDto> Get() => _connections.Keys;
+        public ICollection<UserResponseDto> Get() 
+            => _connections.Keys;
 
         private class UserComparer : IEqualityComparer<UserResponseDto>
         {
-            public bool Equals(UserResponseDto x, UserResponseDto y)
-            {
-                return x.Id == y.Id;
-            }
-
-            public int GetHashCode(UserResponseDto obj)
-            {
-                return HashCode.Combine(obj.Id);
-            }
+            public bool Equals(UserResponseDto x, UserResponseDto y) 
+                => x.Id == y.Id;
+            
+            public int GetHashCode(UserResponseDto obj) 
+                => HashCode.Combine(obj.Id);
         }
     }
 }

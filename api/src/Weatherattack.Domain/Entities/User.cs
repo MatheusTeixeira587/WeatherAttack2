@@ -63,7 +63,7 @@ namespace WeatherAttack.Domain.Entities
 
             AddNotification(WeatherAttackNotifications.Get(result.ErrorMessages));
 
-            return base.Validate();
+            return !HasNotification();
         }
     }
 }

@@ -24,13 +24,13 @@ namespace WeatherAttack.Infra.Repositories
 
         public virtual IQueryable<Entity> FindBy(System.Linq.Expressions.Expression<Func<Entity, bool>> predicate)
         { 
-            IQueryable<Entity> query = Context.Set<Entity>().Where(predicate);
+            IQueryable<Entity> query = Context.Set<Entity>().Where(predicate).AsNoTracking();
             return query;
         }
 
         public virtual IQueryable<Entity> FindBy(System.Linq.Expressions.Expression<Func<Entity, bool>> predicate, System.Linq.Expressions.Expression<Func<Entity, Entity>> selectField)
         {
-            IQueryable<Entity> query = Context.Set<Entity>().Where(predicate).Select(selectField);
+            IQueryable<Entity> query = Context.Set<Entity>().Where(predicate).Select(selectField).AsNoTracking();
             return query;
         }
 
