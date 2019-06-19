@@ -18,7 +18,7 @@ namespace WeatherAttack.WebApi.Controllers.Weather
             GetCurrentWeatherActionHandler = getCurrentWeatherActionHandler;
         }
 
-        [HttpPost, AllowAnonymous]
+        [HttpPost]
         public async Task<IActionResult> Get([FromBody] GetCurrentWeatherCommand command)
         {
             return await Task.Run(() =>

@@ -12,7 +12,7 @@ export function characterReducer(state = initialState, action) {
     switch (action.type) {
         
         case (types.ASSIGN_CHARACTER):
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 battles: action.character.battles,
                 wins: action.character.wins,
                 losses: action.character.losses,

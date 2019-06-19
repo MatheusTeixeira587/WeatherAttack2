@@ -20,7 +20,6 @@ function* listenServerSaga() {
 }
 
 function* closeConnectionSaga() {
-    debugger
     yield put(hubChannel, types.STOP_CHANNEL);
 }
 

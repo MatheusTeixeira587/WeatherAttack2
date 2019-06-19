@@ -14,10 +14,10 @@ const styles = {
     },
     contentWrapper: {
         background:`url('${BACKGROUND}')`,
-        height: '100%',
         width: '100%',
         backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100%'
     }
 }
 
@@ -54,8 +54,6 @@ class AdministratorPage extends React.Component {
             </Grid>
         )
     }
-
-    
 }
 
 const mapStateToProps = state => ({ 

@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WeatherAttack.Infra;
 
 namespace WeatherAttack.Infra.Migrations
 {
     [DbContext(typeof(WeatherAttackContext))]
-    partial class WeatherAttackContextModelSnapshot : ModelSnapshot
+    [Migration("20190619162342_creatingIndex")]
+    partial class creatingIndex
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -118,8 +120,6 @@ namespace WeatherAttack.Infra.Migrations
                         .HasMaxLength(20);
 
                     b.HasKey("Id");
-
-                    b.HasAlternateKey("Email");
 
                     b.HasIndex("Email", "Username")
                         .IsUnique()

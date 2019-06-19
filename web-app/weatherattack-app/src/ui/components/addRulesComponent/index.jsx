@@ -1,12 +1,42 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { FormControl, InputLabel, Select, Input, Chip, MenuItem, TextField } from '@material-ui/core'
+import { TextField, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import { elementList } from '../../../constants';  
+import { DeleteOutlined, AddBoxOutlined } from '@material-ui/icons';
+import { operators, weatherConditions } from '../../../constants';
+import { changeRuleAction, addRuleAction, removeRuleAction } from '../../../actions';
+import { Button } from '..';
 
 const styles = {
-    
+    ruleForm: {
+        display: "flex",
+        padding: 10,
+        margin: 2
+    },
+    valueInput: {
+        margin: 0,
+        marginTop: 3
+    },
+    rulesFormListWrapper: {
+        display: "flex",
+        flexDirection: "column"
+    },
+    deleteIcon: {
+        border: "none",
+        background: "inherit",
+        cursor: "pointer"
+    },
+    addRuleButton: {
+        display: "flex",
+        border: "none",
+        background: "inherit",
+        width: "fit-content",
+        cursor: "pointer",
+    },
+    addRuleButtonText: {
+        alignSelf: "center",
+    }
 }
 
 class AddRulesComponent extends Component {
@@ -14,73 +44,111 @@ class AddRulesComponent extends Component {
     constructor(props) {
         super(props)
 
-        this.state = {
-            rules: [],
-        }
-
-        this.setRule = this.setRule.bind(this)
-        this.handleChange = this.handleChange.bind(this)
         this.addNewRule = this.addNewRule.bind(this)
-        this.renderFormNewRule = this.renderFormNewRule.bind(this)
-    }
-
-    setRule(rule) {
-        const rules = this.state.rules.filter(r => r.id !== rule.id);
-        rules.push(rule);
-
-        this.setState({
-            rules
-        });
-    }
-
-    handleChange(event, id) {
-        debugger;
+        this.renderFormRule = this.renderFormRule.bind(this)
     }
 
     addNewRule() {
         const rule = {
-            id: this.state.rules.length,
+            id: 0,
             operator: 0,
-            weatherCondition: 0
+            weatherCondition: 0,
+            value: 0
         }
 
-        this.setRule(rule);
+        this.props.addRuleAction(rule);
     }
 
-    renderFormNewRule(id) {
-        return (
-            <div>
-                <TextField 
-                    id="name"
-                    type="number"
-                    value={this.state.baseManaCost || 0}
-                    label="base mana cost"
-                    required
-                    name="baseManaCost"
-                    margin="dense"
-                    onChange={this.onChangeInput}
-                    fullWidth={false}
-                />
-            </div>
-        )
+    renderFormRule() {
+ 
+        return this.props.rules.rules.map((i, k) => {
+            return (
+                <div key={i.id} className={this.props.classes.ruleForm}>
+                    <FormControl>
+                        <InputLabel htmlFor="weatherCondition"> Weather condition  </InputLabel>
+                        <Select
+                            value={this.props.rules.rules[k].weatherCondition || 0}
+                            onChange={(event => this.props.changeRuleAction(event, k))}
+                            inputProps={{name: "weatherCondition", id:"weatherCondition"}}
+                        >
+                            {
+                                weatherConditions.map((c, i) => <MenuItem key={i} value={c.value}>{c.name}</MenuItem>)
+                            }
+                        </Select>
+                    </FormControl>
+                    <FormControl>
+                        <InputLabel htmlFor="operator"> Operator  </InputLabel>
+                        <Select
+                            value={this.props.rules.rules[k].operator || 0}
+                            onChange={(event => this.props.changeRuleAction(event, k))}
+                            inputProps={{name: "operator", id:"operator"}}
+                        >
+                            {
+                                operators.map((c,i) => <MenuItem key={i} value={c.value}>{c.name}</MenuItem>)
+                            }
+                        </Select>
+                    </FormControl>
+                    <TextField
+                        id="name"
+                        type="number"
+                        value={this.props.rules.rules[k].value || 0}
+                        label="value"
+                        required
+                        name="value"
+                        margin="dense"
+                        onChange={
+                            (event) => this.props.changeRuleAction(event, k)
+                        }
+                        fullWidth={false}
+                        className={this.props.classes.valueInput}
+                    />
+                    <button
+                        className={this.props.classes.deleteIcon}
+                        onClick={
+                            () => this.props.removeRuleAction(i.id)
+                        }
+                    > 
+                        <DeleteOutlined 
+                            titleAccess="delete button"
+                        />
+                    </button>
+                </div>               
+            )
+        })
     }
 
     render() {
-        const { classes } = this.props;
-
+        console.log(this.props)
         return (
-            <div>
-
+            <div className={this.props.classes.rulesFormListWrapper}>
+                <button 
+                    onClick={() => this.addNewRule()}
+                    className={this.props.classes.addRuleButton}
+                > 
+                    <AddBoxOutlined
+                        titleAccess="add new rule button"
+                    />
+                    <span className={this.props.classes.addRuleButtonText}>
+                        Add rule
+                    </span>
+                </button>
+                {
+                    this.renderFormRule()
+                }
             </div>                 
         )
     }
 }
 
 const mapStateToProps = state => ({
-    
+    rules: state.rulesReducer
 })
 
 const mapDispatchToProps = dispath =>
-    bindActionCreators({}, dispath)
+    bindActionCreators({
+        addRuleAction,
+        removeRuleAction,
+        changeRuleAction
+    }, dispath)
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AddRulesComponent))

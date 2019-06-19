@@ -11,10 +11,9 @@ export function geolocationReducer(state = initialState, action) {
 
         case types.ASSIGN_LOCATION:
             const location = action.location;
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 latitude: location.latitude,
                 longitude: location.longitude,
-                error: location.error
             })
 
         default:

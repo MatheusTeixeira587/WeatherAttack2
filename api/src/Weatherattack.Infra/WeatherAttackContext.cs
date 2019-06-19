@@ -8,7 +8,8 @@ namespace WeatherAttack.Infra
     {
         public WeatherAttackContext(DbContextOptions optionsBuilder) : base(optionsBuilder)
         {
-            Database.Migrate();         
+            Database.EnsureCreated();
+            Database.Migrate();
         }
 
         public DbSet<User> UsersContext { get; }

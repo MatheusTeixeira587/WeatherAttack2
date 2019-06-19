@@ -11,7 +11,7 @@ const styles = {
         flexDirection: 'column',
         alignItems: 'center',
         flex: 1,
-        padding: 10
+        padding: 10,
     },
     tabsWrapper: {
         backgroundColor: 'white',

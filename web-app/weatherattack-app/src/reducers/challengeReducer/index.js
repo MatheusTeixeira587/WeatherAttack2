@@ -11,7 +11,7 @@ export function challengeReducer(state = initialState, action) {
         case challengeEvents.USER_LEFT_CHANNEL:
             const new_users = state.loggedUsers.filter(u => u.id !== action.payload.id)
             
-            return Object.assign({},state, {
+            return Object.assign({},{...state}, {
                 loggedUsers: new_users
             });
 
@@ -19,12 +19,12 @@ export function challengeReducer(state = initialState, action) {
             const users = state.loggedUsers;
             users.push(action.payload)
             
-            return Object.assign({},state, {
+            return Object.assign({},{...state}, {
                 loggedUsers: users
             });
 
         case challengeEvents.GET_ONLINE_USERS:
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 loggedUsers: action.payload
             })
 

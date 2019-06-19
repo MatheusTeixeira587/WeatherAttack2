@@ -21,13 +21,24 @@ namespace WeatherAttack.Infra.Mapping
                 .IsRequired()
                 .HasMaxLength(Rules.User.Username.MaxLength);
 
+            builder.HasIndex(u => new { u.Email, u.Username })
+                .HasName("IX_USER")
+                .IsUnique();
+
             builder.Property(u => u.Password)
                 .IsRequired();
 
             builder.Property(u => u.PermissionLevel)
                 .IsRequired();
 
-            builder.HasOne(u => u.Character).WithOne().HasForeignKey<Character>(c => c.UserId);
+            builder.Ignore(u => u.Notifications);
+
+            builder.HasAlternateKey(u => u.Email);
+
+            builder.HasOne(u => u.Character)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Cascade)
+                .HasForeignKey<Character>(c => c.UserId);
         }
     }
 }

@@ -15,7 +15,7 @@ export function loginReducer(state = initialState, action){
 
     switch(action.type) {
         case types.LOGIN_SUCESS:
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 token: action.token,
                 username: action.user.username,
                 id: parseInt(action.user.id),
@@ -23,10 +23,10 @@ export function loginReducer(state = initialState, action){
             })
 
         case types.REGISTER_REQUEST:
-            return Object.assign({}, state, initialState)
+            return Object.assign({}, {...state}, initialState)
 
         case types.LOGOUT_REQUEST:
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 token: null
             })
 

@@ -18,7 +18,7 @@ export function notificationReducer(state = initialState, action) {
                 return { notifications: newList };
             }
 
-            return Object.assign({}, state, addNotification());
+            return Object.assign({}, {...state}, addNotification());
 
         case types.REMOVE_NOTIFICATION:
             const removeNotification = () => {
@@ -34,7 +34,7 @@ export function notificationReducer(state = initialState, action) {
                 return { notifications: newList };
             }
 
-            return Object.assign({}, state, removeNotification());
+            return Object.assign({}, {...state}, removeNotification());
         
         default:
             return state;

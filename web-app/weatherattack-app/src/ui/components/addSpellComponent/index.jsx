@@ -4,12 +4,13 @@ import { bindActionCreators } from 'redux'
 import { FormControl, InputLabel, Select, Input, Chip, MenuItem, TextField } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { elementList } from '../../../constants';  
+import { AddRulesComponent, Button } from '..';
+import { addSpellAction } from '../../../actions';
 
 const styles = {
     menuItem: {
     },
     formWrapper: {
-        width: '50%',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -19,6 +20,11 @@ const styles = {
         display: 'flex',
         justifyContent: 'space-between',
         width: '100%'
+    },
+    addRulesComponentWrapper: {
+        display: 'flex',
+        flexDirection: 'column',
+        alignSelf: 'flex-start',
     }
 }
 
@@ -39,6 +45,24 @@ class AddSpellComponent extends Component {
         this.setElement = this.setElement.bind(this)
         this.onChangeInput = this.onChangeInput.bind(this)
         this.sumSelectedElements = this.sumSelectedElements.bind(this)
+        this.submitSpell = this.submitSpell.bind(this)
+    }
+
+    submitSpell() {
+
+        debugger
+        const spell = {
+            Id: 0,
+            Name: this.state.spellname,
+            BaseDamage: parseInt(this.state.baseDamage),
+            BaseManaCost: parseInt(this.state.baseManaCost),
+            Element: this.sumSelectedElements(),
+            Rules: [...this.props.rules.rules]
+        }
+
+        spell.Rules.forEach(r => r.value = parseInt(r.value));
+
+        this.props.addSpellAction(spell);
     }
 
     setElement(event) {
@@ -58,16 +82,11 @@ class AddSpellComponent extends Component {
     }
 
     sumSelectedElements() {
-        let total = 0;
-        this.state.selectedElements.forEach(e => total += e.value);
-        this.setState({
-            elements: total
-        });
+        return this.state.selectedElements.map(e => e.value).reduce((e1, e2) => e1 + e2);
     }
 
     render() {
         const { classes } = this.props;
-
         return (
             <div className={classes.formWrapper}>
                 <TextField 
@@ -136,23 +155,30 @@ class AddSpellComponent extends Component {
                         }
                     </Select>
                 </FormControl>
-                <button onClick={() => {
-                    
-                }}>
-                    click me
-                </button>
-
-
+                <div className={this.props.classes.addRulesComponentWrapper}>
+                    <AddRulesComponent 
+                    />
+                </div>
+                <Button 
+                    disabled={false}
+                    variant="outlined"
+                    color="primary"
+                    onClick={this.submitSpell}
+                    fullWidth={false}
+                    text={"Done"}
+                />
             </div>
         )
     }
 }
 
 const mapStateToProps = state => ({
-    
+    rules: state.rulesReducer,
 })
 
 const mapDispatchToProps = dispath =>
-    bindActionCreators({}, dispath)
+    bindActionCreators({
+        addSpellAction
+    }, dispath)
 
 export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(AddSpellComponent))

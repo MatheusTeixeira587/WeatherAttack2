@@ -15,6 +15,6 @@ namespace WeatherAttack.Contracts.Dtos.Spell.Request
 
         public byte Element { get; set; }
 
-        public List<SpellRuleRequestDto> Rules { get; set; } = new List<SpellRuleRequestDto>();
+        public List<SpellRuleRequestDto> Rules { get; set; }
     }
 }

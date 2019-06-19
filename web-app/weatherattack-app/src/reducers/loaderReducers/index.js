@@ -8,12 +8,12 @@ export function loaderReducer(state = initialState, action) {
     switch(action.type) {
 
         case types.SHOW_LOADER:
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 showLoader: true,
             })
 
         case types.HIDE_LOADER:
-            return Object.assign({}, state, {
+            return Object.assign({}, {...state}, {
                 showLoader: false,
             })
 

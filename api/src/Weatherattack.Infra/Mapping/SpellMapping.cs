@@ -32,6 +32,8 @@ namespace WeatherAttack.Infra.Mapping
                     v => (Element)v
                 );
 
+            builder.Ignore(u => u.Notifications);
+
             builder.HasMany(m => m.Rules)
                 .WithOne(m => m.Spell)
                 .OnDelete(DeleteBehavior.Cascade)

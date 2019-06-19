@@ -16,13 +16,15 @@ namespace WeatherAttack.Application.Command.Spell
         {
             HashSet<byte> operatorValues = new HashSet<byte>((byte[])Enum.GetValues(typeof(Operator)));
             HashSet<byte> weatherConditionValues = new HashSet<byte>((byte[])Enum.GetValues(typeof(WeatherCondition)));
-            object possibleToConvert = false;
 
             var result = ValitRules<SpellRequestDto>
                 .Create()
+                .Ensure(s => s, _=>_
+                    .Required()
+                        .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
                 .Ensure(s => s.Element, _ => _
-                    .Satisfies(s => Enum.TryParse(typeof(Element), s.ToString(), out possibleToConvert))
-                    .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
+                    .Satisfies(s => Enum.Parse(typeof(Element), s.ToString()) != null)
+                        .WithMessage(WeatherAttackNotifications.Command.InvalidValue))
                 .For(Spell)
                 .Ensure(s => s.Rules, _ => _
                     .Satisfies(

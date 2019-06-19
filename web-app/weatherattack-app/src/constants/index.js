@@ -7,12 +7,15 @@ import { START_CHANNEL, STOP_CHANNEL } from './socket'
 import { GET_CHARACTER, ASSIGN_CHARACTER } from './character'
 import {  NOT_FOUND, LOGIN_PAGE, DASHBOARD_PAGE, ADMINISTRATION_PAGE } from './routes'
 import { USER, ADMIN } from './permissions'
+import { ADD_RULE, REMOVE_RULE, CHANGE_RULE } from './rules'
+import { ADD_SPELL } from './spell'
 
 export * from './colors'
 export * from './appNotifications'
 export * from './messages'
 export * from './socket'
 export * from './spell'
+export { weatherConditions, operators} from './rules'
 
 export const types = {
     HIDE_LOADER, SHOW_LOADER,
@@ -21,7 +24,9 @@ export const types = {
     REGISTER_REQUEST, LOGIN_REQUEST, LOGOUT_REQUEST, SHOULD_RENDER_REGISTER, CHANGE_FIELD, LOGIN_SUCESS,
     ADD_NOTIFICATION, REMOVE_NOTIFICATION,
     START_CHANNEL, STOP_CHANNEL,
-    GET_CHARACTER, ASSIGN_CHARACTER
+    GET_CHARACTER, ASSIGN_CHARACTER,
+    ADD_RULE, REMOVE_RULE, CHANGE_RULE,
+    ADD_SPELL,
 }
 
 export const routes = {

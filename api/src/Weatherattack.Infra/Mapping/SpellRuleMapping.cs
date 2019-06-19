@@ -23,6 +23,8 @@ namespace WeatherAttack.Infra.Mapping
                     v => (Operator)v
                 );
 
+            builder.Ignore(u => u.Notifications);
+
             builder.Property(u => u.WeatherCondition)
                 .IsRequired()
                 .HasConversion(

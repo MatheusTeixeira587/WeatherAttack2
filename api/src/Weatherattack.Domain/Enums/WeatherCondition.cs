@@ -5,5 +5,6 @@
         Temperature,
         Rain,
         Storm,
+        Wind
     }
 }

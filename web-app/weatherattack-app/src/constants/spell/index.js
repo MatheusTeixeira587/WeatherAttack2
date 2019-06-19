@@ -22,3 +22,5 @@ export const elementList = [
     WATER,
     WIND
 ]
+
+export const ADD_SPELL = "ADD_SPELL";

@@ -24,7 +24,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
                 return command;
 
             var spell = Mapper.ToEntity(command.Spell);
-
+            spell.Element.ToString();
             if (spell.IsValid)
             {
                 if (spell.IsNew)

@@ -13,6 +13,8 @@ namespace WeatherAttack.Infra.Mapping
 
             builder.HasKey(c => c.Id);
 
+            builder.Ignore(c => c.Notifications);
+
             builder.Property(c => c.Battles)
                 .HasDefaultValue(Rules.Character.Battles.InitialValue);
 

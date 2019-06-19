@@ -11,6 +11,7 @@ import PlayerProfile from './playerProfile';
 import AdministrationContent from './administrationContent';
 import AddSpellComponent from './addSpellComponent';
 import SpellAreaComponent from './spellArea';
+import AddRulesComponent from './addRulesComponent';
 
 export { Loader } from './loader';
 export { LoginComponent } from './login';
@@ -28,5 +29,6 @@ export {
     PlayerProfile,
     AdministrationContent,
     AddSpellComponent,
-    SpellAreaComponent
+    SpellAreaComponent,
+    AddRulesComponent,
 };
