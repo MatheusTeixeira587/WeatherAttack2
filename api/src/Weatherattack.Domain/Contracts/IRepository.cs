@@ -14,6 +14,16 @@ namespace WeatherAttack.Domain.Contracts
 
         IQueryable<Entity> FindBy(Expression<Func<Entity, bool>> predicate, Expression<Func<Entity, Entity>> selectField);
 
+        IQueryable<Entity> Include(Expression<Func<Entity, object>> predicate);
+
+        IQueryable<Entity> Take(int count);
+
+        IQueryable<Entity> Skip(int count);
+
+        IQueryable<Entity> PagedGet(int skip, int take);
+
+        long Count();
+
         void Add(Entity entity);
 
         void Delete(Entity entity);

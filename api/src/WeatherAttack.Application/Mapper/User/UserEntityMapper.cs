@@ -22,6 +22,7 @@ namespace WeatherAttack.Application.Mapper.User
                 Id = user.Id,
                 Email = user.Email,
                 Username = user.Username,
+                PermissionLevel = user.PermissionLevel,
                 Character = user.Character is null ? null : CharacterMapper.ToDto(user.Character)
             };
         }

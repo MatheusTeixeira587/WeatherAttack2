@@ -17,7 +17,6 @@ namespace WeatherAttack.Domain.Entities
 
         public bool IsValid => Validate();
 
-        [NotMapped]
         public List<Notification> Notifications { get; private set; } = new List<Notification>();
 
         public void AddNotification(string code)

@@ -11,7 +11,12 @@ namespace WeatherAttack.Infra.Mapping
         {
             builder.ToTable("SpellRules");
 
-            builder.HasKey(u => u.Id);
+            builder.HasKey(u => u.Id)
+                .ForSqlServerIsClustered();
+
+            builder.Property(m => m.Id)
+                .UseSqlServerIdentityColumn()
+                .IsRequired();
 
             builder.Property(u => u.Value)
                 .IsRequired();

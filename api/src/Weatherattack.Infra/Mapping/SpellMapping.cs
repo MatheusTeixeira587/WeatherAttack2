@@ -13,7 +13,12 @@ namespace WeatherAttack.Infra.Mapping
         {
             builder.ToTable("Spells");
 
-            builder.HasKey(m => m.Id);
+            builder.HasKey(m => m.Id)
+                .ForSqlServerIsClustered();
+
+            builder.Property(m => m.Id)
+                .UseSqlServerIdentityColumn()
+                .ValueGeneratedOnAdd();
 
             builder.Property(m => m.BaseDamage)
                 .IsRequired();
@@ -36,6 +41,7 @@ namespace WeatherAttack.Infra.Mapping
 
             builder.HasMany(m => m.Rules)
                 .WithOne(m => m.Spell)
+                .HasForeignKey(m => m.SpellId)
                 .OnDelete(DeleteBehavior.Cascade)
                 .IsRequired();
         }

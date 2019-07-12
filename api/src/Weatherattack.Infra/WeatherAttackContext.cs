@@ -8,7 +8,6 @@ namespace WeatherAttack.Infra
     {
         public WeatherAttackContext(DbContextOptions optionsBuilder) : base(optionsBuilder)
         {
-            Database.EnsureCreated();
             Database.Migrate();
         }
 
@@ -22,6 +21,8 @@ namespace WeatherAttack.Infra
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+
+            modelBuilder.ForSqlServerUseIdentityColumns();
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new CharacterMapping());
             modelBuilder.ApplyConfiguration(new SpellMapping());

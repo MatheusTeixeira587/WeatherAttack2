@@ -1,4 +1,6 @@
-﻿namespace WeatherAttack.Contracts.Dtos.Character
+﻿using WeatherAttack.Contracts.Dtos.User.Response;
+
+namespace WeatherAttack.Contracts.Dtos.Character
 {
     public class CharacterDto
     {

@@ -11,7 +11,8 @@ namespace WeatherAttack.Infra.Mapping
         {
             builder.ToTable("Users");
 
-            builder.HasKey(u => u.Id);
+            builder.HasKey(u => u.Id)
+                .ForSqlServerIsClustered();
 
             builder.Property(u => u.Email)
                 .IsRequired()
@@ -20,10 +21,6 @@ namespace WeatherAttack.Infra.Mapping
             builder.Property(u => u.Username)
                 .IsRequired()
                 .HasMaxLength(Rules.User.Username.MaxLength);
-
-            builder.HasIndex(u => new { u.Email, u.Username })
-                .HasName("IX_USER")
-                .IsUnique();
 
             builder.Property(u => u.Password)
                 .IsRequired();
@@ -35,10 +32,16 @@ namespace WeatherAttack.Infra.Mapping
 
             builder.HasAlternateKey(u => u.Email);
 
+            builder.HasAlternateKey(u => u.Username);
+
             builder.HasOne(u => u.Character)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Cascade)
                 .HasForeignKey<Character>(c => c.UserId);
+
+            builder.HasIndex(u => new { u.Email, u.Username })
+               .HasName("IX_USER")
+               .IsUnique();
         }
     }
 }

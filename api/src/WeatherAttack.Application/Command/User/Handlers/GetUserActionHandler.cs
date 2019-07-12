@@ -23,7 +23,8 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         public GetUserCommand ExecuteAction(GetUserCommand command)
         {
-            var result = Context.FindBy(u => u.Id == command.Id).SingleOrDefault();
+            var result = Context.FindBy(u => u.Id == command.Id)
+                            .SingleOrDefault();
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.User.UserNotFound);
@@ -32,6 +33,5 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
             return command;
         }
-
     }
 }

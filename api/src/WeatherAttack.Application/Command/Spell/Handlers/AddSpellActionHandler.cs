@@ -1,7 +1,10 @@
-﻿using WeatherAttack.Contracts.Command;
+﻿using System.Collections.Generic;
+using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Spell.Request;
 using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.Entities;
+using System.Linq;
 using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.Spell.Handlers
@@ -24,7 +27,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
                 return command;
 
             var spell = Mapper.ToEntity(command.Spell);
-            spell.Element.ToString();
+        
             if (spell.IsValid)
             {
                 if (spell.IsNew)

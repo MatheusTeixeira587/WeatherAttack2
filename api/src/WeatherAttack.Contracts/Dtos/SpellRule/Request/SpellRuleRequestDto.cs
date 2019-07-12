@@ -6,9 +6,7 @@ namespace WeatherAttack.Contracts.Dtos.SpellRule.Request
     {
         public long Id { get; set; }
 
-        public long MagicId { get; set; }
-
-        public SpellRequestDto Spell { get; set; }
+        public long SpellId { get; set; }
 
         public int Value { get; set; }
 

@@ -6,6 +6,6 @@ namespace WeatherAttack.Infra.Repositories
 {
     public class CharacterRepository : Repository<WeatherAttackContext, Character>, ICharacterRepository
     {
-        public CharacterRepository(DbContext context) : base(context) { }
+        public CharacterRepository(WeatherAttackContext context) : base(context) { }
     }
 }

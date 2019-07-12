@@ -12,6 +12,7 @@ namespace Weatherattack.WebApi.Controllers
     public class UserController : ControllerBase
     {
         private IActionHandler<GetAllUsersCommand> GetAllUserHandler { get; }
+        private IActionHandler<GetPagedUsersCommand> GetPagedUsersHandler { get; }
         private IActionHandler<AddUserCommand> AddUserHandler { get; }
         private IActionHandler<GetUserCommand> GetUserHandler { get; }
         private IActionHandler<DeleteUserCommand> DeleteUserHandler { get; }
@@ -22,6 +23,16 @@ namespace Weatherattack.WebApi.Controllers
             return await Task.Run(() =>
             {
                 return this.Response(GetAllUserHandler.ExecuteAction(command));
+            });
+        }
+
+        [HttpGet("Page-{Page:min(1)}")]
+        public async Task<IActionResult> Get([FromRoute]GetPagedUsersCommand command, long page)
+        {
+            return await Task.Run(() =>
+            {
+                command.PageNumber = page;
+                return this.Response(GetPagedUsersHandler.ExecuteAction(command));
             });
         }
 
@@ -69,13 +80,15 @@ namespace Weatherattack.WebApi.Controllers
             IActionHandler<GetAllUsersCommand> getAllUsersActionHandler,
             IActionHandler<AddUserCommand> addUserActionHandler,
             IActionHandler<GetUserCommand> getUserActionHandler,
-            IActionHandler<DeleteUserCommand> deleteUserActionHandler
+            IActionHandler<DeleteUserCommand> deleteUserActionHandler,
+            IActionHandler<GetPagedUsersCommand> getPagedUsersHandler
         )
         {
             GetAllUserHandler = getAllUsersActionHandler;
             AddUserHandler = addUserActionHandler;
             GetUserHandler = getUserActionHandler;
             DeleteUserHandler = deleteUserActionHandler;
+            GetPagedUsersHandler = getPagedUsersHandler;
         }
     }
 }

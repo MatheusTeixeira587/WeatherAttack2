@@ -144,8 +144,9 @@ namespace Weatherattack.WebApi
         {
             string OpenWeatherMapApiKey = Configuration["WebServices:OpenWeatherMap:ApiKey"];
             string OpenWeatherMapUrl = Configuration["WebServices:OpenWeatherMap:Url"];
+            byte WorkFactor = byte.Parse(Configuration["SecuritySettings:SaltWorkFactor"]);
 
-            services.AddTransient<IPasswordService, PasswordService>();
+            services.AddTransient<IPasswordService, PasswordService>(p => new PasswordService(WorkFactor));
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IOpenWeatherMapService, OpenWeatherMapWebService>(p => new OpenWeatherMapWebService(OpenWeatherMapUrl, OpenWeatherMapApiKey));
         }
@@ -171,6 +172,7 @@ namespace Weatherattack.WebApi
 
             services.AddTransient<IActionHandler<AddUserCommand>, AddUserActionHandler>();
             services.AddTransient<IActionHandler<GetAllUsersCommand>, GetAllUsersActionHandler>();
+            services.AddTransient<IActionHandler<GetPagedUsersCommand>, GetPagedUsersActionHandler>();
             services.AddTransient<IActionHandler<GetUserCommand>, GetUserActionHandler>();
             services.AddTransient<IActionHandler<DeleteUserCommand>, DeleteUserActionHandler>();
 

@@ -22,7 +22,7 @@ namespace WeatherAttack.Application.Mapper.SpellRule
         {
             return new Entities.SpellRule(
                 request.Id,
-                new Entities.Spell(request.Id),
+                request.SpellId,
                 request.Value,
                 (Operator)request.Operator,
                 (WeatherCondition)request.WeatherCondition

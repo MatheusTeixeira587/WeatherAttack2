@@ -35,7 +35,7 @@ namespace WeatherAttack.Domain.Entities
 
         public Element Element { get; private set; }
 
-        public List<SpellRule> Rules { get; private set; } = new List<SpellRule>();
+        public List<SpellRule> Rules { get; set; } = new List<SpellRule>();
 
         protected override bool Validate()
         {

@@ -5,9 +5,9 @@ namespace WeatherAttack.Domain.Entities
 {
     public class SpellRule : EntityBase
     {
-        public SpellRule(long id, Spell spell, int value, Operator @operator, WeatherCondition weatherCondition) : base(id)
+        public SpellRule(long id, long spellId, int value, Operator @operator, WeatherCondition weatherCondition) : base(id)
         {
-            Spell = spell;
+            SpellId = spellId;
             Value = value;
             Operator = @operator;
             WeatherCondition = WeatherCondition;
@@ -21,6 +21,8 @@ namespace WeatherAttack.Domain.Entities
         }
 
         public Spell Spell { get; private set; }
+
+        public long SpellId { get; set; }
 
         public int Value { get; private set; }
 

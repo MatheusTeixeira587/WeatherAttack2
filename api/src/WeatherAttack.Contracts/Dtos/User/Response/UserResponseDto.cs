@@ -8,6 +8,8 @@
 
         public string Username { get;  set; }
 
+        public byte PermissionLevel { get; set; }
+
         public Character.CharacterDto Character { get; set; }
 
         public UserResponseDto(string email, string username)
