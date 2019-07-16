@@ -30,6 +30,7 @@ class AdministratorPage extends React.Component {
     }
 
     requiredAuthorization() {
+        console.log(this.props)
         if (!this.props.login.token) {
             return <Redirect to={routes.LOGIN_PAGE} />
         }
@@ -40,14 +41,13 @@ class AdministratorPage extends React.Component {
     }
 
     render() {
-        this.requiredAuthorization();
         const { classes } = this.props;
         return (
             <Grid className={classes.page}>
+                {this.requiredAuthorization()}
                 <div className={classes.contentWrapper}>
                     <AppBarWithMenu 
                     />
-
                     <AdministrationContent 
                     />
                 </div>

@@ -13,6 +13,9 @@ const styles = {
         padding: 10,
         margin: 2
     },
+    ruleFormFields: {
+        minWidth: '30%',
+    },
     valueInput: {
         margin: 0,
         marginTop: 3
@@ -63,7 +66,7 @@ class AddRulesComponent extends Component {
         return this.props.rules.rules.map((i, k) => {
             return (
                 <div key={k} className={this.props.classes.ruleForm}>
-                    <FormControl>
+                    <FormControl className={this.props.classes.ruleFormFields}>
                         <InputLabel htmlFor="weatherCondition"> Weather condition  </InputLabel>
                         <Select
                             value={this.props.rules.rules[k].weatherCondition || 0}
@@ -75,7 +78,7 @@ class AddRulesComponent extends Component {
                             }
                         </Select>
                     </FormControl>
-                    <FormControl>
+                    <FormControl className={this.props.classes.ruleFormFields}>
                         <InputLabel htmlFor="operator"> Operator  </InputLabel>
                         <Select
                             value={this.props.rules.rules[k].operator || 0}

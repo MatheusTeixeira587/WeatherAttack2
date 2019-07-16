@@ -4,6 +4,7 @@ using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.Interfaces;
 using SignalRHub = Microsoft.AspNetCore.SignalR.Hub;
+using Microsoft.AspNetCore.SignalR;
 
 namespace WeatherAttack.Hub.Hubs
 {
@@ -24,7 +25,10 @@ namespace WeatherAttack.Hub.Hubs
         {
             var id = GetUserId();
 
-            return GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id }).Result;
+            var user = GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id }).Result;
+            user.Email = null;
+
+            return user;
         }
 
         protected HubBase(IActionHandler<GetUserCommand> getUserActionHandler)

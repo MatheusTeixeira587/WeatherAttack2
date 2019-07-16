@@ -65,6 +65,7 @@ class Interceptor extends React.PureComponent {
 
             return config
         }, (error) => {
+            this.props.hideLoaderAction();
             console.log(error);
         });
     

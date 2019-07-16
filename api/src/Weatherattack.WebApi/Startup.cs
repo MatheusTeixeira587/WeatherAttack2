@@ -19,6 +19,7 @@ using WeatherAttack.Application.Command.User;
 using WeatherAttack.Application.Command.User.Handlers;
 using WeatherAttack.Application.Command.Weather;
 using WeatherAttack.Application.Command.Weather.Handlers;
+using WeatherAttack.Application.Comparer.User;
 using WeatherAttack.Application.Mapper.Character;
 using WeatherAttack.Application.Mapper.Spell;
 using WeatherAttack.Application.Mapper.SpellRule;
@@ -38,6 +39,7 @@ using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Entities.Weather;
 using WeatherAttack.Hub.Hubs.Challenge;
+using WeatherAttack.Hub.Repositories;
 using WeatherAttack.Infra;
 using WeatherAttack.Infra.Repositories;
 using WeatherAttack.Infra.Services;
@@ -119,8 +121,9 @@ namespace Weatherattack.WebApi
             ConfigureMappers(services);
             ConfigureCommonServices(services);
             ConfigureActionHandlers(services);
+            ConfigureComparers(services);
 
-            services.AddSignalR();
+            services.AddSignalR(s => s.EnableDetailedErrors = true);
 
             services.AddCors();
         }
@@ -130,6 +133,7 @@ namespace Weatherattack.WebApi
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ISpellRepository, SpellRepository>();
             services.AddScoped<ICharacterRepository, CharacterRepository>();
+            services.AddSingleton<IConnectionRepository<UserResponseDto>, ConnectionInMemoryDatabase>();
         }
 
         public void ConfigureDatabase(IServiceCollection services)
@@ -164,6 +168,11 @@ namespace Weatherattack.WebApi
             services.AddTransient<IMapper<Main, MainRequestDto, MainRequestDto>, MainWeatherEntityMapper>();
             services.AddTransient<IMapper<CurrentWeather, CurrentWeatherRequestDto, CurrentWeatherRequestDto>, CurrentWeatherEntityMapper>();
             services.AddTransient<IMapper<CountryInfo, CountryInfoRequestDto, CountryInfoRequestDto>, CountryInfoEntityMapper>();
+        }
+
+        public void ConfigureComparers(IServiceCollection services)
+        {
+            services.AddTransient<IEqualityComparer<UserResponseDto>, UserDtoComparer>();
         }
 
         public void ConfigureActionHandlers(IServiceCollection services)

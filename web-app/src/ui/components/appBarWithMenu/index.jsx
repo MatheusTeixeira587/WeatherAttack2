@@ -1,11 +1,11 @@
 import React from 'react'
-import { Redirect, withRouter, Link } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import { withStyles } from '@material-ui/core/styles'
 import { AppBar, Toolbar, Typography, CardMedia, Menu, MenuItem } from '@material-ui/core'
-import { THEME_COLOR, routes } from '../../../constants'
+import { THEME_COLOR, routes, permissionLevel } from '../../../constants'
 import { LOGOUT_ICON, MENU_ICON } from '../../../static'
 import { startChannelAction, requestLogoutAction } from '../../../actions'
 import { WeatherBarComponent } from '..';
@@ -112,13 +112,8 @@ class MenuAppBar extends React.Component {
     }
 
     render() {
-
-        if (!this.props.login.token) {
-            return <Redirect to={routes.LOGIN_PAGE}/>
-        }
-        
         const { classes } = this.props
-
+        
         return (
         <div className={classes.root}>
             <AppBar position="static" color="inherit" className={classes.menuColor}>
@@ -128,7 +123,7 @@ class MenuAppBar extends React.Component {
                         <Typography variant="h6" color="inherit" className={classes.grow}>
                             <Link to={routes.DASHBOARD_PAGE} className={classes.link}> Weather Attack </Link>
                         </Typography>
-                        {this.renderMenu()}
+                        {this.props.login.permissionLevel === permissionLevel.ADMIN ? this.renderMenu() : <></>}
                     </div>
                 </Toolbar>
                 <div className={classes.menuIconDiagonalWrapper}>

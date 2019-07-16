@@ -49,7 +49,15 @@ const styles = () => ({
 const WeatherBarComponent = props => {
 
     const { classes } = props
-    let icon = props.weather.weather[0].icon.substring(0,2)
+    let icon;
+
+    if(!!props.weather.weather.length && props.weather.weather[0].icon) {
+        icon = props.weather.weather[0].icon.substring(0,2)
+    } else {
+        props.getLocationAction();
+
+        return (<></>)
+    }
 
     switch (icon) {
 

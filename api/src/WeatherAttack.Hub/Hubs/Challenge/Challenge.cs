@@ -5,9 +5,10 @@ using WeatherAttack.Application.Command.Character;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
+using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Hub.Commands.Challenge;
 using WeatherAttack.Hub.Events.Challenge;
-using WeatherAttack.Hub.Services;
+using WeatherAttack.Hub.Repositories;
 
 namespace WeatherAttack.Hub.Hubs.Challenge
 {
@@ -17,11 +18,11 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         private IActionHandler<GetCharacterCommand> GetCharacterActionHandler { get; }
 
-        private static ConnectionInMemoryDatabase _connections { get; } = new ConnectionInMemoryDatabase();
+        private IConnectionRepository<UserResponseDto> ConnectionRepository { get; }
 
         [HubMethodName(ChallengeEvents.GET_ONLINE_USERS)]
         public async Task GetOnlineUsersAsync(UserResponseDto user)
-            => await Clients.Caller.SendAsync(ChallengeEvents.GET_ONLINE_USERS, _connections.Get());
+            => await Clients.Caller.SendAsync(ChallengeEvents.GET_ONLINE_USERS, ConnectionRepository.Get());
 
         [HubMethodName(ChallengeEvents.USER_JOINED_CHANNEL)]
         public async Task JoinChannelAsync(UserResponseDto user)
@@ -29,63 +30,74 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         [HubMethodName(ChallengeEvents.USER_LEFT_CHANNEL)]
         public async Task QuitChannelAsync(UserResponseDto user)
-            => await Clients.All.SendAsync(ChallengeEvents.USER_LEFT_CHANNEL, user);
+        {
+            ConnectionRepository.Remove(user);
+            await Clients.All.SendAsync(ChallengeEvents.USER_LEFT_CHANNEL, user);
+        }
 
         [HubMethodName(ChallengeEvents.CHALLENGE_USER)]
-        public async Task SendChallenge(SendChallengeCommand command)
+        public async Task SendChallengeAsync(SendChallengeCommand command)
         {
-            var by = _connections.Get(command.By);
-            var to = _connections.Get(command.To);
+            var to = ConnectionRepository.GetConnection(command.To);
+
+            command.By = ConnectionRepository.Find(command.By);
+            command.To = ConnectionRepository.Find(command.To);
 
             await Clients.Client(to).SendAsync(ChallengeEvents.CHALLENGE_USER, command);
         }
 
         [HubMethodName(ChallengeEvents.REFUSE_CHALLENGE)]
-        public async Task RefuseChallenge(SendChallengeCommand command)
+        public async Task RefuseChallengeAsync(SendChallengeCommand command)
         {
-            var by = _connections.Get(command.By);
-            var to = _connections.Get(command.To);
+            var by = ConnectionRepository.GetConnection(command.By);
             command.Accepted = false;
 
             await Clients.Client(by).SendAsync(ChallengeEvents.REFUSE_CHALLENGE, command);
         }
 
         [HubMethodName(ChallengeEvents.ACCEPT_CHALLENGE)]
-        public async Task AcceptChallenge(SendChallengeCommand command)
+        public async Task AcceptChallengeAsync(SendChallengeCommand command)
         {
-            var by = _connections.Get(command.By);
-            var to = _connections.Get(command.To);
+            var by = ConnectionRepository.GetConnection(command.By);
             command.Accepted = true;
 
-            await Clients.Client(by).SendAsync(ChallengeEvents.REFUSE_CHALLENGE, command);
+            await Clients.Client(by).SendAsync(ChallengeEvents.ACCEPT_CHALLENGE, command);
         }
 
         public override async Task OnConnectedAsync()
         {
             var user = GetUser();
 
-            _connections.Add(user, Context.ConnectionId);
-
-            var connectionId = _connections.Get(user);
+            ConnectionRepository.Add(user, Context.ConnectionId);
 
             await GetOnlineUsersAsync(user);
 
             await JoinChannelAsync(user);
+
+            await base.OnConnectedAsync();
         }
+
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
             var user = GetUser();
 
-            _connections.Remove(user);
+            ConnectionRepository.Remove(user);
 
             await QuitChannelAsync(user);
+
+            await base.OnDisconnectedAsync(exception);
         }
 
-        public Challenge(IActionHandler<GetUserCommand> getUserActionHandler, IActionHandler<GetCharacterCommand> getCharacterActionHandler) : base(getUserActionHandler)
+        public Challenge(
+            IActionHandler<GetUserCommand> getUserActionHandler, 
+            IActionHandler<GetCharacterCommand> getCharacterActionHandler,
+            IConnectionRepository<UserResponseDto> connectionRepository
+            ) : base(getUserActionHandler)
         {
             GetUserActionHandler = getUserActionHandler;
             GetCharacterActionHandler = getCharacterActionHandler;
+            ConnectionRepository = connectionRepository;
         }
     }
 }
