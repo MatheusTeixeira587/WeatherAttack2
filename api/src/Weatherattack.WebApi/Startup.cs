@@ -91,7 +91,7 @@ namespace Weatherattack.WebApi
                             }
 
                             return Task.CompletedTask;
-                        }
+                        },
                     };
                 });
 

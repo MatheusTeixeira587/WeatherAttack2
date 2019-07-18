@@ -22,14 +22,14 @@ namespace WeatherAttack.Domain.Notifications
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
-                new Notification(InvalidEmail, "Invalid email.") ,
-                new Notification(InvalidUsername, "Invalid Username."),
-                new Notification(EmailIsRequired, "Email is required."),
-                new Notification(UsernameIsRequired, "Username is required."),
-                new Notification(PasswordIsRequired, "Password is required."),
-                new Notification(UserNotFound, "Couldn't find any User with specified Id."),
-                new Notification(UsernameAlreadyInUse, "This username was already being taken."),
-                new Notification(EmailAlreadyInUse, "Email already in use."),
+                new Notification(InvalidEmail, "Invalid email.", "Email inválido.") ,
+                new Notification(InvalidUsername, "Invalid Username.", "Username inválido."),
+                new Notification(EmailIsRequired, "Email is required.", "Email é obrigatório."),
+                new Notification(UsernameIsRequired, "Username is required.", "Nome de usuário é obrigatório."),
+                new Notification(PasswordIsRequired, "Password is required.", "Senha é obrigatória."),
+                new Notification(UserNotFound, "User not found.", "Usuario não encontrado."),
+                new Notification(UsernameAlreadyInUse, "This username was already being taken.", "Nome já está em uso."),
+                new Notification(EmailAlreadyInUse, "Email already in use.", "Email já está em uso."),
             };
         }
 
@@ -39,7 +39,7 @@ namespace WeatherAttack.Domain.Notifications
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
-                new Notification(InvalidCharacter, "Invalid character."),
+                new Notification(InvalidCharacter, "Invalid character.", "Personagem inválido."),
             };
         }
 
@@ -55,13 +55,13 @@ namespace WeatherAttack.Domain.Notifications
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
-                new Notification(BaseDamageShouldBeHigherThan, $"Base Damage must be higher than {Rules.Spell.BaseDamage.MinDamage}."),
-                new Notification(BaseDamageShouldBeLowerThan, $"Base Damage must be lower than {Rules.Spell.BaseDamage.MaxDamage}."),
-                new Notification(BaseManaCostShouldBeHigherThan, $"Base Mana Cost must be higher than {Rules.Spell.BaseManaCost.MinCost}"),
-                new Notification(BaseManaCostShouldBeLowerThan, $"Base Mana Cost must be lower than {Rules.Spell.BaseManaCost.MaxCost}"),
-                new Notification(InvalidName, "Invalid name"),
-                new Notification(NameIsRequired, "Name is required"),
-                new Notification(NotFound, "Couldn't find any Spell with specified Id.")
+                new Notification(BaseDamageShouldBeHigherThan, $"Base Damage must be higher than {Rules.Spell.BaseDamage.MinDamage}.", $"O Dano base deve ser maior que {Rules.Spell.BaseDamage.MinDamage}."),
+                new Notification(BaseDamageShouldBeLowerThan, $"Base Damage must be lower than {Rules.Spell.BaseDamage.MaxDamage}.", $"O Dano base deve ser menor que {Rules.Spell.BaseDamage.MaxDamage}."),
+                new Notification(BaseManaCostShouldBeHigherThan, $"Base Mana Cost must be higher than {Rules.Spell.BaseManaCost.MinCost}.", $"O Custo de mana base deve ser maior que {Rules.Spell.BaseManaCost.MinCost}."),
+                new Notification(BaseManaCostShouldBeLowerThan, $"Base Mana Cost must be lower than {Rules.Spell.BaseManaCost.MaxCost}.", $"O Custo de mana base deve ser menor que {Rules.Spell.BaseManaCost.MaxCost}."),
+                new Notification(InvalidName, "Invalid name", "Nome inválido."),
+                new Notification(NameIsRequired, "Name is required", "Nome é obrigatório."),
+                new Notification(NotFound, "Spell not found.", "Magia não encontrada."),
             };
         }
 
@@ -74,10 +74,10 @@ namespace WeatherAttack.Domain.Notifications
 
             public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
             {
-                new Notification(InvalidId, "Invalid Id."),
-                new Notification(UserIsRequired, "User is required."),
-                new Notification(InvalidValue, "One or more values are invalid."),
-                new Notification(InvalidCredentials, "Invalid credentials."),
+                new Notification(InvalidId, "Invalid Id.", "Id inválido."),
+                new Notification(UserIsRequired, "User is required.", "Usuário é obrigatório."),
+                new Notification(InvalidValue, "One or more values are invalid.", "Todos os campos devem ser preenchidos corretamente."),
+                new Notification(InvalidCredentials, "Invalid credentials.", "Credenciais inválidas."),
             };
         }
 

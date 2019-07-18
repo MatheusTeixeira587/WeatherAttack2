@@ -1,6 +1,6 @@
-import { takeEvery, put, delay } from 'redux-saga/effects'
-import { types } from '../../constants'
-import { removeNotificationAction } from '../../actions'
+import { takeEvery, put, delay } from "redux-saga/effects"
+import { types } from "../../constants"
+import { removeNotificationAction } from "../../actions"
 
 function* removeNotificationSaga(action) {
     yield delay(4000)
@@ -9,5 +9,5 @@ function* removeNotificationSaga(action) {
 
 
 export function* watchNotificationSaga() {
-    yield takeEvery(types.ADD_NOTIFICATION, removeNotificationSaga);
+    yield takeEvery(types.ADD_NOTIFICATION, removeNotificationSaga)
 }

@@ -1,17 +1,18 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { withStyles } from '@material-ui/core/styles'
-import { withRouter } from 'react-router-dom'
-import { AddSpellComponent, Button } from '../../components'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { withStyles } from "@material-ui/core/styles"
+import { withRouter } from "react-router-dom"
+import { AddSpellComponent, Button } from "../../components"
+import { APP_TEXTS } from "../../../constants"
 
 const styles = {
     component: {
-        width: '90%',
+        width: "90%",
         flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'white',
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "white",
         marginTop: 10,
         bordeRadius: 4
     },
@@ -19,16 +20,16 @@ const styles = {
         marginBottom: 5
     },
     spellComponentWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
     }
 }
 
 class SpellArea extends Component {
    
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
         return (
             <div className={classes.component}>
                 <div className={classes.actionBar}>
@@ -36,9 +37,9 @@ class SpellArea extends Component {
                         disabled={false}
                         variant="outlined"
                         color="primary"
-                        onClick={() => console.log('clicked')}
+                        onClick={() => console.log("clicked")}
                         fullWidth={false}
-                        text={"Add a new one!"}
+                        text={APP_TEXTS.addText[this.props.language.selected]}
                     />
                 </div>
                 <div className={classes.spellComponentWrapper}>
@@ -50,10 +51,10 @@ class SpellArea extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    
+    language: state.languageReducer
 })
 
 const mapDispatchToProps = dispath =>
     bindActionCreators({}, dispath)
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SpellArea)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SpellArea)))

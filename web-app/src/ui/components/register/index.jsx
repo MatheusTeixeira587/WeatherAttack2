@@ -1,13 +1,14 @@
-import React, { Component } from 'react'
-import { Grid, TextField, FormLabel } from '@material-ui/core'
-import { Button } from '../';
+import React, { Component } from "react"
+import { Grid, TextField, FormLabel } from "@material-ui/core"
+import { Button } from "../"
+import { APP_TEXTS } from "../../../constants";
 
 export class RegisterComponent extends Component {
   
     constructor(props){
       super(props)
 
-      this.shouldDisableRegisterButton = this.shouldDisableRegisterButton.bind(this);
+      this.shouldDisableRegisterButton = this.shouldDisableRegisterButton.bind(this)
     }
 
     shouldDisableRegisterButton() {
@@ -46,12 +47,12 @@ export class RegisterComponent extends Component {
           sm={10}
         >
           <FormLabel>
-            <h1>Create your account!</h1>
+            <h1>{APP_TEXTS.createYourAccountText[this.props.language]}</h1>
           </FormLabel>
           <TextField
             id="email"
             type="email"
-            value={this.props.login.email || ''}
+            value={this.props.login.email || ""}
             label="email"
             required
             name="email"
@@ -62,8 +63,8 @@ export class RegisterComponent extends Component {
           <TextField
             id="username"
             type="text"
-            value={this.props.login.username || ''}
-            label="username"
+            value={this.props.login.username || ""}
+            label={APP_TEXTS.usernameLabelText[this.props.language]}
             required
             name="username"
             margin="dense"
@@ -73,8 +74,8 @@ export class RegisterComponent extends Component {
           <TextField
             id="password"
             type="password"
-            value={this.props.login.password || ''}
-            label="password"
+            value={this.props.login.password || ""}
+            label={APP_TEXTS.passwordLabelText[this.props.language]}
             required
             name="password"
             margin="dense"
@@ -84,8 +85,8 @@ export class RegisterComponent extends Component {
           <TextField
             id="confirmPassword"
             type="password"
-            value={this.props.login.confirmPassword || ''}
-            label="password"
+            value={this.props.login.confirmPassword || ""}
+            label={APP_TEXTS.confirmPasswordLabelText[this.props.language]}
             required
             name="confirmPassword"
             margin="dense"
@@ -102,7 +103,7 @@ export class RegisterComponent extends Component {
                 password: this.props.login.password
             })}
             fullWidth={true}
-            text={"Register"}
+            text={APP_TEXTS.createAccountButtonText[this.props.language]}
           />
         </Grid>
       </Grid>

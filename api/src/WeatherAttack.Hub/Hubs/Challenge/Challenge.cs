@@ -8,7 +8,6 @@ using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Hub.Commands.Challenge;
 using WeatherAttack.Hub.Events.Challenge;
-using WeatherAttack.Hub.Repositories;
 
 namespace WeatherAttack.Hub.Hubs.Challenge
 {

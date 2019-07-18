@@ -1,4 +1,4 @@
-import { types } from "../../constants";
+import { types } from "../../constants"
 
 const initialState = {
     battles: 0,
@@ -20,6 +20,6 @@ export function characterReducer(state = initialState, action) {
             })
 
         default:
-            return state;
+            return state
     }
 }

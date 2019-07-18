@@ -1,2 +1,0 @@
-export const GET_LOCATION = "GET_LOCATION";
-export const ASSIGN_LOCATION = "ASSIGN_LOCATION";

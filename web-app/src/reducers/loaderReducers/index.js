@@ -1,4 +1,4 @@
-import { types } from "../../constants";
+import { types } from "../../constants"
 
 const initialState = {
     showLoader: false,
@@ -18,6 +18,6 @@ export function loaderReducer(state = initialState, action) {
             })
 
         default:
-            return state;
+            return state
     }
 }

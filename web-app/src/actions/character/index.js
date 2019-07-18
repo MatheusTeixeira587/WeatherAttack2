@@ -1,4 +1,4 @@
-import { types } from '../../constants'
+import { types } from "../../constants"
 
 export const getCharacterAction = () => ({
     type: types.GET_CHARACTER

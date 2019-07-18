@@ -2,14 +2,14 @@
 {
     public class Notification
     {
-        public Notification(string code, string message)
+        public Notification(string code, string message_EN_US, string message_PT_BR)
         {
             Code = code;
-            Message = message;
+            Message = new Message() { EN_US = message_EN_US, PT_BR = message_PT_BR };
         }
 
         public string Code { get; private set; }
 
-        public string Message { get; private set; }
+        public Message Message { get; private set; }
     }
 }

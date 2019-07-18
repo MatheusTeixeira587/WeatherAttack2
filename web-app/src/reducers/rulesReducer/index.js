@@ -1,4 +1,4 @@
-import { types } from '../../constants';
+import { types } from "../../constants"
 
 const initialState = {
     rules: []
@@ -20,14 +20,14 @@ export function rulesReducer(state = initialState, action) {
             })
 
         case types.CHANGE_RULE:
-            const rules = [...state.rules];
-            rules[action.key][action.fieldname] = action.value;
+            const rules = [...state.rules]
+            rules[action.key][action.fieldname] = action.value
         
             return Object.assign({}, {...state}, {
                 rules
-            });
+            })
 
         default:
-            return state;
+            return state
     }
 }

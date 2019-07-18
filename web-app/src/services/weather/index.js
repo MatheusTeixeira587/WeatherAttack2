@@ -1,4 +1,4 @@
-import { BaseService } from "../_base";
+import { BaseService } from "../_base"
 
 export class WeatherService extends BaseService {
 

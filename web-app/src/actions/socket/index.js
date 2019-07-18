@@ -1,11 +1,11 @@
-import { types, challengeEvents } from '../../constants'
+import { types, challengeEvents } from "../../constants"
 
 export const startChannelAction = () => ({
-    type: types.START_CHANNEL
+    type: types.START_CHALLENGE_CHANNEL
 })
 
 export const closeChannelAction = () => ({
-    type: types.STOP_CHANNEL
+    type: types.STOP_CHALLENGE_CHANNEL
 })
 
 export const sendChallengeAction = command => ({

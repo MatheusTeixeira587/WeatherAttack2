@@ -1,5 +1,5 @@
-import { types } from '../../constants';
-import { isArray } from 'util';
+import { types } from "../../constants"
+import { isArray } from "util"
 
 export const addNotificationAction = (object) => {
     return {

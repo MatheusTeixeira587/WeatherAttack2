@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import "./index.css";
+import React, { Component } from "react"
+import "./index.css"
 
 export class Loader extends Component {
   getClasses() {
     const showLoaderClass = this.props.showLoader
       ? "show-loader"
-      : "hide-loader";
-    return `loading ${showLoaderClass}`;
+      : "hide-loader"
+    return `loading ${showLoaderClass}`
   }
 
   render() {
@@ -22,6 +22,6 @@ export class Loader extends Component {
           <div>L</div>
         </div>
       </div>
-    );
+    )
   }
 }

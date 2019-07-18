@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import { Card, Typography, CardMedia, CardActionArea, CardActions, CardContent, Button } from '@material-ui/core'
+import React from "react"
+import PropTypes from "prop-types"
+import { withStyles } from "@material-ui/core/styles"
+import { Card, Typography, CardMedia, CardActionArea, CardActions, CardContent, Button } from "@material-ui/core"
 
-import { AVATAR } from '../../../static'
-import { showLoaderAction, hideLoaderAction, sendChallengeAction } from '../../../actions'
+import { AVATAR } from "../../../static"
+import { showLoaderAction, hideLoaderAction, sendChallengeAction } from "../../../actions"
 
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
 
 const styles = {
     cardWrapper: {
@@ -17,35 +17,35 @@ const styles = {
     width: 150,
     minWidth: 150,
     height: 180,
-    border: 'gray 0.5px solid'
+    border: "gray 0.5px solid"
     },
     media: {
     height: 40,
-    backgroundSize: 'contain',
-    marginTop: '10%',
+    backgroundSize: "contain",
+    marginTop: "10%",
     },
     cardContent: {
-        padding: '10px'
+        padding: "10px"
     },
     statusDisplay: {
-        height: '10px',
-        width: '10px',
-        backgroundColor: 'green',
-        borderRadius: '50%',
-        marginRight: '5px',
+        height: "10px",
+        width: "10px",
+        backgroundColor: "green",
+        borderRadius: "50%",
+        marginRight: "5px",
     },
     statusDisplayWrapper: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center"
     },
     CardActions: {
-        justifyContent: 'center'
+        justifyContent: "center"
     }
-};
+}
 
 function MediaCard(props) {
-    const { classes, user } = props;
+    const { classes, user } = props
     return (
         <div className={classes.cardWrapper}>
             <Card className={classes.card}>
@@ -67,7 +67,7 @@ function MediaCard(props) {
                     </CardContent>
                 </CardActionArea>
                 <CardActions className={classes.CardActions}>
-                    <Button size="small" color="primary" variant='outlined'
+                    <Button size="small" color="primary" variant="outlined"
                         onClick={() => props.sendChallengeAction({
                             by: {
                                 id: props.login.id
@@ -82,12 +82,12 @@ function MediaCard(props) {
                 </CardActions>
             </Card>
         </div>
-    );
+    )
 }
 
 const mapStateToProps = state => ({ 
     login: state.loginReducer
-});
+})
   
 const mapDispatchToProps = dispath =>
   bindActionCreators(
@@ -95,11 +95,11 @@ const mapDispatchToProps = dispath =>
       showLoaderAction, 
       hideLoaderAction,
       sendChallengeAction
-    }, dispath);
+    }, dispath)
 
 MediaCard.propTypes = {
   classes: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired,
-};
+}
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(MediaCard));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(MediaCard))

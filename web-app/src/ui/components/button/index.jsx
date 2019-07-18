@@ -1,20 +1,20 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
+import React from "react"
+import PropTypes from "prop-types"
+import { withStyles } from "@material-ui/core/styles"
+import Button from "@material-ui/core/Button"
 
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
-    marginTop: '8px'
+    marginTop: "8px"
   },
   input: {
-    display: 'none',
+    display: "none",
   },
-});
+})
 
 function OutlinedButtons(props) {
-  const { classes } = props;
+  const { classes } = props
   return (
       <Button 
         variant={props.variant} 
@@ -26,7 +26,7 @@ function OutlinedButtons(props) {
     >
         <span>{props.text}</span>
     </Button>
-  );
+  )
 }
 
 OutlinedButtons.propTypes = {
@@ -36,6 +36,6 @@ OutlinedButtons.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   fullWidth: PropTypes.bool.isRequired,
-};
+}
 
-export default withStyles(styles)(OutlinedButtons);
+export default withStyles(styles)(OutlinedButtons)

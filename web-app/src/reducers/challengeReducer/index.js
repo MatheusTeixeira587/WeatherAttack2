@@ -1,4 +1,4 @@
-import { challengeEvents } from "../../constants";
+import { challengeEvents, types } from "../../constants"
 
 const initialState = {
     loggedUsers: []
@@ -13,23 +13,25 @@ export function challengeReducer(state = initialState, action) {
             
             return Object.assign({},{...state}, {
                 loggedUsers: new_users
-            });
+            })
 
         case challengeEvents.USER_JOINED_CHANNEL:
-            const users = state.loggedUsers;
+            const users = state.loggedUsers
             users.push(action.payload)
             
             return Object.assign({},{...state}, {
                 loggedUsers: users
-            });
+            })
 
         case challengeEvents.GET_ONLINE_USERS:
             return Object.assign({}, {...state}, {
                 loggedUsers: action.payload
             })
 
+        case types.USER_RECEIVED_CHALLENGE:
+            return Object.assign({}, state, action.command)
 
         default:
-            return state;
+            return state
     }
 }

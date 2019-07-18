@@ -1,34 +1,34 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { FormControl, InputLabel, Select, Input, Chip, MenuItem, TextField } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
-import { elementList } from '../../../constants';  
-import { AddRulesComponent, Button } from '..';
-import { addSpellAction } from '../../../actions';
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { withStyles } from "@material-ui/core/styles"
+import { FormControl, InputLabel, Select, Input, Chip, MenuItem, TextField } from "@material-ui/core"
+import { elementList, APP_TEXTS } from "../../../constants"  
+import { addSpellAction } from "../../../actions"
+import { AddRulesComponent, Button } from ".."
 
 const styles = {
     menuItem: {
     },
     formWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '80%',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "80%",
     },
     numericInputWrapper: {
-        display: 'flex',
-        justifyContent: 'space-between',
-        width: '100%'
+        display: "flex",
+        justifyContent: "space-between",
+        width: "100%"
     },
     numericInput: {
-        width: '45%',
+        width: "45%",
     },
     addRulesComponentWrapper: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignSelf: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignSelf: "center",
     }
 }
 
@@ -63,9 +63,9 @@ class AddSpellComponent extends Component {
             Rules: [...this.props.rules.rules]
         }
 
-        spell.Rules.forEach(r => r.value = parseInt(r.value));
+        spell.Rules.forEach(r => r.value = parseInt(r.value))
 
-        this.props.addSpellAction(spell);
+        this.props.addSpellAction(spell)
     }
 
     setElement(event) {
@@ -75,28 +75,28 @@ class AddSpellComponent extends Component {
     }
 
     handleChange(event) {
-        this.setElement(event.target.value);
+        this.setElement(event.target.value)
     }
 
     onChangeInput(event) {
         this.setState({
             [event.target.name]: event.target.value
-        });
+        })
     }
 
     sumSelectedElements() {
-        return this.state.selectedElements.map(e => e.value).reduce((e1, e2) => e1 + e2);
+        return this.state.selectedElements.map(e => e.value).reduce((e1, e2) => e1 + e2)
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
         return (
             <div className={classes.formWrapper}>
                 <TextField 
                     id="name"
                     type="text"
-                    value={this.state.spellname || ''}
-                    label="spell name"
+                    value={this.state.spellname || ""}
+                    label={APP_TEXTS.spellnameLabel[this.props.language.selected]}
                     required
                     name="spellname"
                     margin="dense"
@@ -109,7 +109,7 @@ class AddSpellComponent extends Component {
                         id="name"
                         type="number"
                         value={this.state.baseDamage || 0}
-                        label="base damage"
+                        label={APP_TEXTS.baseDamageLabel[this.props.language.selected]}
                         required
                         name="baseDamage"
                         margin="dense"
@@ -121,7 +121,7 @@ class AddSpellComponent extends Component {
                         id="name"
                         type="number"
                         value={this.state.baseManaCost || 0}
-                        label="base mana cost"
+                        label={APP_TEXTS.baseManaCostLabel[this.props.language.selected]}
                         required
                         name="baseManaCost"
                         margin="dense"
@@ -133,7 +133,7 @@ class AddSpellComponent extends Component {
                     fullWidth={true}
                 >
                     <InputLabel htmlFor="select-multiple-chip">
-                        Elements 
+                        {APP_TEXTS.elementsText[this.props.language.selected]}
                     </InputLabel>
                     <Select
                         className={classes.menuItem}
@@ -146,7 +146,7 @@ class AddSpellComponent extends Component {
                             selected => (
                                 <div>
                                 {
-                                    selected.map((i, k) => <Chip key={k} label={i.name} />)
+                                    selected.map((i, k) => <Chip key={k} label={i.name[this.props.language.selected]} />)
                                 }
                                 </div>
                             )
@@ -155,7 +155,7 @@ class AddSpellComponent extends Component {
                         {
                             elementList.map((i, k) => (
                                 <MenuItem key={k} value={i}>
-                                    {i.name}
+                                    {i.name[this.props.language.selected]}
                                 </MenuItem>))
                         }
                     </Select>
@@ -170,7 +170,7 @@ class AddSpellComponent extends Component {
                     color="primary"
                     onClick={this.submitSpell}
                     fullWidth={false}
-                    text={"Done"}
+                    text={APP_TEXTS.doneText[this.props.language.selected]}
                 />
             </div>
         )
@@ -179,6 +179,7 @@ class AddSpellComponent extends Component {
 
 const mapStateToProps = state => ({
     rules: state.rulesReducer,
+    language: state.languageReducer
 })
 
 const mapDispatchToProps = dispath =>

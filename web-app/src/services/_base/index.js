@@ -1,23 +1,23 @@
-import axios from "axios";
+import axios from "axios"
 
 export class BaseService {
     constructor(baseUrl) {
-        this.baseUrl = process.env.REACT_APP_API_URL + baseUrl;
+        this.baseUrl = process.env.REACT_APP_API_URL + baseUrl
     }
 
     get(query, token = "") {
         return axios
             .get(`${this.baseUrl}${token}`, query)
-            .then(result => result.data);
+            .then(result => result.data)
     }
 
     pagedGet(token = "", page = 0) {
         return axios.get(`${this.baseUrl}/Page-${page}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
-                'Content-type': 'application/json'
+                "Content-type": "application/json"
             }
-        }).then(result => result.data);
+        }).then(result => result.data)
     }
 
     getById(id, token = "") {
@@ -25,28 +25,28 @@ export class BaseService {
             .get(`${this.baseUrl}/${id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`,
-                    'Content-type': 'application/json'
+                    "Content-type": "application/json"
                 }
             })
-            .then(result => result.data);
+            .then(result => result.data)
     }
 
     rawGet(url, query) {
-        return axios.get(url, query).then(result => result.data);
+        return axios.get(url, query).then(result => result.data)
     }
 
   post(object, token = "") {
     if (!token) {
-        return axios.post(this.baseUrl, object).then(result => result.data);
+        return axios.post(this.baseUrl, object).then(result => result.data)
     }
 
     return axios.post(this.baseUrl, {
         headers: {
             Authorization: `Bearer ${token}`,
-            'Content-type': 'application/json'
+            "Content-type": "application/json"
         },
         object
-    }).then(result => result.data);
+    }).then(result => result.data)
   }
 
   save(object, token = "") {
@@ -54,30 +54,30 @@ export class BaseService {
     const data = {
         headers: {
             Authorization: `Bearer ${token}`,
-            'Content-type': 'application/json'
+            "Content-type": "application/json"
         },
         object
     }
 
     const saveAction = object.id
       ? axios.put(this.baseUrl, token ? data : object)
-      : axios.post(this.baseUrl, token ? data : object);
+      : axios.post(this.baseUrl, token ? data : object)
 
-    return saveAction.then(result => result.data);
+    return saveAction.then(result => result.data)
   }
 
   delete(id) {
-    return axios.delete(`${this.baseUrl}/${id}`);
+    return axios.delete(`${this.baseUrl}/${id}`)
   }
 
   rawPut(url, object) {
-    return axios.put(url, object).then(result => result.data);
+    return axios.put(url, object).then(result => result.data)
   }
 
   put(object, token = "") {
 
     if (!token) {
-        return axios.put(this.baseUrl, object).then(result => result.data);
+        return axios.put(this.baseUrl, object).then(result => result.data)
     }
 
     return axios.put(this.baseUrl, 
@@ -85,9 +85,9 @@ export class BaseService {
         {
             headers: {
             Authorization: `Bearer ${token}`,
-            'Content-type': 'application/json'
+            "Content-type": "application/json"
             },
         }
-    ).then(result => result.data);
+    ).then(result => result.data)
   }
 }

@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-import { TextField, Grid, FormLabel } from '@material-ui/core'
-import { Button } from '../';
+import React, { Component } from "react"
+import { TextField, Grid, FormLabel } from "@material-ui/core"
+import { Button } from "../"
+import { APP_TEXTS } from "../../../constants";
 
 export class LoginComponent extends Component {
   
@@ -34,7 +35,7 @@ export class LoginComponent extends Component {
             sm={12}
           >
             <FormLabel          >
-              <h1>Log in!</h1>
+              <h1>{APP_TEXTS.loginPageText[this.props.language]}</h1>
             </FormLabel>
           </Grid>
           <Grid
@@ -46,8 +47,8 @@ export class LoginComponent extends Component {
             <TextField
               id="username"
               type="text"
-              value={this.props.login.username || ''}
-              label="username"
+              value={this.props.login.username || ""}
+              label={APP_TEXTS.usernameLabelText[this.props.language]}
               required
               name="username"
               margin="dense"
@@ -64,8 +65,8 @@ export class LoginComponent extends Component {
             <TextField
               id="password"
               type="password"
-              value={this.props.login.password || ''}
-              label="password"
+              value={this.props.login.password || ""}
+              label={APP_TEXTS.passwordLabelText[this.props.language]}
               required
               name="password"
               margin="dense"

@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { TextField, Select, FormControl, MenuItem, InputLabel } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
-import { DeleteOutlined, AddBoxOutlined } from '@material-ui/icons';
-import { operators, weatherConditions } from '../../../constants';
-import { changeRuleAction, addRuleAction, removeRuleAction } from '../../../actions';
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { TextField, Select, FormControl, MenuItem, InputLabel } from "@material-ui/core"
+import { withStyles } from "@material-ui/core/styles"
+import { DeleteOutlined, AddBoxOutlined } from "@material-ui/icons"
+import { operators, weatherConditions, APP_TEXTS } from "../../../constants"
+import { changeRuleAction, addRuleAction, removeRuleAction } from "../../../actions"
 
 const styles = {
     ruleForm: {
@@ -14,7 +14,7 @@ const styles = {
         margin: 2
     },
     ruleFormFields: {
-        minWidth: '30%',
+        minWidth: "30%",
     },
     valueInput: {
         margin: 0,
@@ -58,7 +58,7 @@ class AddRulesComponent extends Component {
             value: 0
         }
 
-        this.props.addRuleAction(rule);
+        this.props.addRuleAction(rule)
     }
 
     renderFormRule() {
@@ -67,26 +67,26 @@ class AddRulesComponent extends Component {
             return (
                 <div key={k} className={this.props.classes.ruleForm}>
                     <FormControl className={this.props.classes.ruleFormFields}>
-                        <InputLabel htmlFor="weatherCondition"> Weather condition  </InputLabel>
+                        <InputLabel htmlFor="weatherCondition"> {APP_TEXTS.weatherConditionLabel[this.props.language.selected]}  </InputLabel>
                         <Select
                             value={this.props.rules.rules[k].weatherCondition || 0}
                             onChange={(event => this.props.changeRuleAction(event, k))}
                             inputProps={{name: "weatherCondition", id:"weatherCondition"}}
                         >
                             {
-                                weatherConditions.map((c, i) => <MenuItem key={i} value={c.value}>{c.name}</MenuItem>)
+                                weatherConditions.map((c, i) => <MenuItem key={i} value={c.value}>{c.name[this.props.language.selected]}</MenuItem>)
                             }
                         </Select>
                     </FormControl>
                     <FormControl className={this.props.classes.ruleFormFields}>
-                        <InputLabel htmlFor="operator"> Operator  </InputLabel>
+                        <InputLabel htmlFor="operator">{APP_TEXTS.operatorLabel[this.props.language.selected]}</InputLabel>
                         <Select
                             value={this.props.rules.rules[k].operator || 0}
                             onChange={(event => this.props.changeRuleAction(event, k))}
                             inputProps={{name: "operator", id:"operator"}}
                         >
                             {
-                                operators.map((c,i) => <MenuItem key={i} value={c.value}>{c.name}</MenuItem>)
+                                operators.map((c,i) => <MenuItem key={i} value={c.value}>{c.name[this.props.language.selected]}</MenuItem>)
                             }
                         </Select>
                     </FormControl>
@@ -94,7 +94,7 @@ class AddRulesComponent extends Component {
                         id="name"
                         type="number"
                         value={this.props.rules.rules[k].value || 0}
-                        label="value"
+                        label={APP_TEXTS.valueLabel[this.props.language.selected]}
                         required
                         name="value"
                         margin="dense"
@@ -130,7 +130,7 @@ class AddRulesComponent extends Component {
                         titleAccess="add new rule button"
                     />
                     <span className={this.props.classes.addRuleButtonText}>
-                        Add rule
+                        {APP_TEXTS.addRuleText[this.props.language.selected]}
                     </span>
                 </button>
                 {
@@ -142,7 +142,8 @@ class AddRulesComponent extends Component {
 }
 
 const mapStateToProps = state => ({
-    rules: state.rulesReducer
+    rules: state.rulesReducer,
+    language: state.languageReducer
 })
 
 const mapDispatchToProps = dispath =>

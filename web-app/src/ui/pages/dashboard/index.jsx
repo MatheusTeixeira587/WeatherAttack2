@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import { Redirect } from 'react-router-dom'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { showLoaderAction, hideLoaderAction } from '../../../actions';
-import { Grid, withStyles } from '@material-ui/core';
-import { AppBarWithMenu, DashboardContent } from '../../';
-import { BACKGROUND } from '../../../static'
+import React, { Component } from "react"
+import { Redirect } from "react-router-dom"
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import { showLoaderAction, hideLoaderAction } from "../../../actions"
+import { Grid, withStyles } from "@material-ui/core"
+import { AppBarWithMenu, DashboardContent } from "../../"
+import { BACKGROUND } from "../../../static"
 
 const styles = {
     page: {
-        height: '100%',
+        height: "100%",
     },
     contentWrapper: {
-        background:`url('${BACKGROUND}')`,
-        height: '100%',
-        width: '100%',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat'
+        background:`url("${BACKGROUND}")`,
+        height: "100%",
+        width: "100%",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat"
     }
 }
 
@@ -29,7 +29,7 @@ class DashboardPage extends Component {
 
     requiredAuthorization() {
         if (!this.props.login.token) {
-            return <Redirect to='/'/>
+            return <Redirect to="/"/>
         }
     }
 
@@ -57,7 +57,7 @@ const mapStateToProps = state => ({
     loader: state.loaderReducer,
     login: state.loginReducer,
     challenge: state.challengeReducer
-  });
+  })
   
 const mapDispatchToProps = dispath =>
   bindActionCreators(
@@ -66,4 +66,4 @@ const mapDispatchToProps = dispath =>
       hideLoaderAction
     }, dispath)
   
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardPage));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardPage))

@@ -1,47 +1,47 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import { Card, Typography } from '@material-ui/core'
-import { Loop } from '@material-ui/icons'
-import { withStyles } from '@material-ui/core/styles'
-import { getLocationAction } from '../../../actions'
-import { RAINY_ICON, SUNNY_ICON, STORMY_ICON, CLOUDY_ICON, SNOWY_ICON, MISTY_ICON } from '../../../static'
-import { bindActionCreators } from 'redux'
+import React from "react"
+import { connect } from "react-redux"
+import { Card, Typography } from "@material-ui/core"
+import { Loop } from "@material-ui/icons"
+import { withStyles } from "@material-ui/core/styles"
+import { getLocationAction } from "../../../actions"
+import { RAINY_ICON, SUNNY_ICON, STORMY_ICON, CLOUDY_ICON, SNOWY_ICON, MISTY_ICON } from "../../../static"
+import { bindActionCreators } from "redux"
 
 const styles = () => ({
     card: {
-        width: '40%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-evenly',
-        color: 'white',
-        backgroundColor: 'inherit'
+        width: "40%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-evenly",
+        color: "white",
+        backgroundColor: "inherit"
     },
     icon: {
-        backgroundSize: 'cover',
-        maxWidth: '50px',
+        backgroundSize: "cover",
+        maxWidth: "50px",
     },
     iconWrapper : {
         padding: 4,
-        width: '30%'
+        width: "30%"
     },
     content: {
-        width: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-around'
+        width: "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-around"
     },
     button: {
         height: 20
     },
     contentColumn: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        display: 'flex',
-        flexDirection: 'column',
+        alignItems: "center",
+        justifyContent: "center",
+        display: "flex",
+        flexDirection: "column",
     },
     reloadIcon: {
-        '&:hover': {
-            cursor: 'pointer'
+        "&:hover": {
+            cursor: "pointer"
         }
     }
 })
@@ -49,12 +49,12 @@ const styles = () => ({
 const WeatherBarComponent = props => {
 
     const { classes } = props
-    let icon;
+    let icon
 
     if(!!props.weather.weather.length && props.weather.weather[0].icon) {
         icon = props.weather.weather[0].icon.substring(0,2)
     } else {
-        props.getLocationAction();
+        props.getLocationAction()
 
         return (<></>)
     }
@@ -62,28 +62,28 @@ const WeatherBarComponent = props => {
     switch (icon) {
 
         case "03" || "04":
-            icon = CLOUDY_ICON;
-            break;
+            icon = CLOUDY_ICON
+            break
 
         case "09" || "10":
-            icon = RAINY_ICON;
-            break;
+            icon = RAINY_ICON
+            break
 
         case "11":
             icon = STORMY_ICON
-            break;
+            break
 
         case "13":
             icon = SNOWY_ICON
-            break;
+            break
 
         case "50":
             icon = MISTY_ICON
-            break;
+            break
 
         default:
-            icon = SUNNY_ICON;
-            break;
+            icon = SUNNY_ICON
+            break
     }
     
     return (
@@ -126,7 +126,7 @@ const WeatherBarComponent = props => {
 
 const mapStateToProps = state => ({ 
     weather: state.weatherReducer,
-  });
+  })
   
 const mapDispatchToProps = dispath =>
     bindActionCreators(
@@ -135,4 +135,4 @@ const mapDispatchToProps = dispath =>
         }, dispath
     )
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(WeatherBarComponent));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(WeatherBarComponent))

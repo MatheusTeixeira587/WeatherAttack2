@@ -1,27 +1,27 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { withStyles } from '@material-ui/core/styles'
-import { withRouter } from 'react-router-dom'
-import { UserTableComponent } from '../';
-import { getPagedUsersAction } from '../../../actions';
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { withStyles } from "@material-ui/core/styles"
+import { withRouter } from "react-router-dom"
+import { UserTableComponent } from "../"
+import { getPagedUsersAction } from "../../../actions"
 
 const styles = ({
     component: {
-        width: '90%',
+        width: "90%",
         flex: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        backgroundColor: 'white',
+        display: "flex",
+        flexDirection: "column",
+        backgroundColor: "white",
         marginTop: 10,
         bordeRadius: 4
     },
-});
+})
 
 class UserArea extends Component {
    
     render() {
-        const { classes } = this.props;
+        const { classes } = this.props
         return (
            <div className={classes.component}>
                <div className={classes.content}>
@@ -41,4 +41,4 @@ const mapDispatchToProps = dispath =>
         getPagedUsersAction
     }, dispath)
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserArea)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserArea)))

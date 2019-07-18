@@ -1,4 +1,4 @@
-import { types } from "../../constants";
+import { types } from "../../constants"
 
 export const requestLoginAction = (user) => ({
     type: types.LOGIN_REQUEST,

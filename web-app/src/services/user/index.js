@@ -1,14 +1,14 @@
-import { BaseService } from "../_base";
+import { BaseService } from "../_base"
 
 export class UserService extends BaseService {
     
     constructor() {
-        super("api/User");
+        super("api/User")
     }
 
     add(command) {
         this.post({
             user: command
-        });
+        })
     }
 }

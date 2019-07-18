@@ -1,28 +1,28 @@
-import React, { Component } from 'react'
-import { Grid, withStyles } from '@material-ui/core';
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import { UserCard, PlayerProfile } from '../';
-import { showLoaderAction, hideLoaderAction } from '../../../actions';
+import React, { Component } from "react"
+import { Grid, withStyles } from "@material-ui/core"
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import { UserCard, PlayerProfile } from "../"
+import { showLoaderAction, hideLoaderAction } from "../../../actions"
 
 const styles = {
     dashboardContentWrapper: {
         flex: 1,
-        display: 'flex',
-        maxWidth: '100%',
-        alignItems: 'start',
-        flexWrap: 'wrap',
+        display: "flex",
+        maxWidth: "100%",
+        alignItems: "start",
+        flexWrap: "wrap",
         margin: 10,
-        overflowY: 'scroll',
-        maxHeight: '40%',
-        '&::-webkit-scrollbar': {
+        overflowY: "scroll",
+        maxHeight: "40%",
+        "&::-webkit-scrollbar": {
             width: 7
         },
-        '&::-webkit-scrollbar-thumb': {
-            background: '#dbdbdb',
+        "&::-webkit-scrollbar-thumb": {
+            background: "#dbdbdb",
         },
-        '&::-webkit-scrollbar-track': {
-            background: '#efeded',
+        "&::-webkit-scrollbar-track": {
+            background: "#efeded",
         },
     },
     profileWrapper: {
@@ -35,8 +35,8 @@ class DashboardContentComponent extends Component {
 
     constructor(props) {
         super(props)
-        this.renderOnlinePlayers = this.renderOnlinePlayers.bind(this);
-        this.renderUserProfile = this.renderUserProfile.bind(this);
+        this.renderOnlinePlayers = this.renderOnlinePlayers.bind(this)
+        this.renderUserProfile = this.renderUserProfile.bind(this)
     }
     
     renderOnlinePlayers() {
@@ -48,6 +48,7 @@ class DashboardContentComponent extends Component {
     renderUserProfile() {
         return (
             <PlayerProfile 
+                language={this.props.language.selected}
                 user={{
                         username: this.props.login.username,
                     }} 
@@ -58,7 +59,7 @@ class DashboardContentComponent extends Component {
 
     render() {
 
-        const { classes } = this.props;
+        const { classes } = this.props
 
         return (
             <div>
@@ -80,8 +81,9 @@ class DashboardContentComponent extends Component {
 const mapStateToProps = state => ({ 
     login: state.loginReducer,
     challenge: state.challengeReducer,
-    character: state.characterReducer
-  });
+    character: state.characterReducer,
+    language: state.languageReducer,
+  })
   
 const mapDispatchToProps = dispath =>
   bindActionCreators(
@@ -90,4 +92,4 @@ const mapDispatchToProps = dispath =>
       hideLoaderAction
     }, dispath)
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardContentComponent));
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DashboardContentComponent))

@@ -1,46 +1,47 @@
-import React from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from '@material-ui/core';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { getPagedUsersAction, changeRowsPerPageAction } from '../../../actions';
-import { withRouter } from 'react-router-dom'
-import { withStyles } from '@material-ui/core/styles';
-import { KeyboardArrowLeftOutlined, KeyboardArrowRightOutlined } from '@material-ui/icons';
+import React from "react"
+import { Table, TableBody, TableCell, TableHead, TableRow, Paper } from "@material-ui/core"
+import { connect } from "react-redux"
+import { bindActionCreators } from "redux"
+import { withRouter } from "react-router-dom"
+import { withStyles } from "@material-ui/core/styles"
+import { KeyboardArrowLeftOutlined, KeyboardArrowRightOutlined } from "@material-ui/icons"
+import { getPagedUsersAction, changeRowsPerPageAction } from "../../../actions"
+import { APP_TEXTS } from "../../../constants"
 
 const styles = theme => ({
     root: {
-        width: '100%',
+        width: "100%",
         marginTop:3,
-        overflowX: 'auto',
+        overflowX: "auto",
     },
     table: {
         minWidth: 650,
     },
     actionButton: {
-        border: 'none',
-        outline: 'none',
-        background: 'unset'
+        border: "none",
+        outline: "none",
+        background: "unset"
     },
     tableControl: {
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center'
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
     }
-});
+})
 
 class UserTableComponent extends React.Component {
 
     constructor(props) {
-        super(props);
+        super(props)
 
-        this._calculateWinRate = this._calculateWinRate.bind(this);
-        this._renderTable = this._renderTable.bind(this);
+        this._calculateWinRate = this._calculateWinRate.bind(this)
+        this._renderTable = this._renderTable.bind(this)
         this._renderTableControls = this._renderTableControls.bind(this)
         this._getPage = this._getPage.bind(this)
     }
 
     componentDidMount() {
-       this._getPage();
+       this._getPage()
     }
 
     _getPage(page = 1) {
@@ -51,7 +52,7 @@ class UserTableComponent extends React.Component {
     }
 
      _calculateWinRate = row => 
-        (((row.character.wins * 100) / row.character.battles) || 0).toPrecision(2);
+        (((row.character.wins * 100) / row.character.battles) || 0).toPrecision(2)
 
     _renderTableControls(classes) {
         return (
@@ -65,7 +66,7 @@ class UserTableComponent extends React.Component {
                         <KeyboardArrowLeftOutlined/> 
                     }
                 </button>
-                <button className={classes.actionButton}> {this.props.userArea.pageNumber} of {this.props.userArea.pageCount} </button>
+                <button className={classes.actionButton}> {this.props.userArea.pageNumber} {APP_TEXTS.ofLabel[this.props.language.selected]} {this.props.userArea.pageCount} </button>
                 <button className={classes.actionButton} onClick={() => 
                     this._getPage(this.props.userArea.pageNumber + 1)
                 }
@@ -84,13 +85,13 @@ class UserTableComponent extends React.Component {
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell align="center"> Username </TableCell>
-                        <TableCell align="center"> Permission </TableCell>
-                        <TableCell align="center"> Medals </TableCell>
-                        <TableCell align="center"> Battles </TableCell>
-                        <TableCell align="center"> Wins </TableCell>
-                        <TableCell align="center"> Loses </TableCell>
-                        <TableCell align="center"> WinRate </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.usernameTableHeadLabel[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.permissionLabel[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.medalsLabeltext[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.battlesLabelText[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.winsLabelText[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.lossesLabelText[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.winRateLabel[this.props.language.selected]} </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -100,7 +101,7 @@ class UserTableComponent extends React.Component {
                                 {row.username}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
-                                {row.permissionLevel === 0 ? <span> None </span> : <span> Admin </span>}
+                                {row.permissionLevel === 0 ? <span> {APP_TEXTS.noneLabel[this.props.language.selected]} </span> : <span> Admin </span>}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
                                 {row.character.medals}
@@ -125,20 +126,21 @@ class UserTableComponent extends React.Component {
     }
 
     render() {
-        const { classes, ...props } = this.props;
-        const rows = props.userArea.users;
+        const { classes, ...props } = this.props
+        const rows = props.userArea.users
 
         return (
             <Paper className={classes.root}>
                 { this._renderTable(classes, rows) }
                 { this._renderTableControls(classes) }
             </Paper>
-        );
+        )
     }
 }
 
 const mapStateToProps = (state) => ({
-    userArea: state.userAreaReducer
+    userArea: state.userAreaReducer,
+    language: state.languageReducer
 })
 
 const mapDispatchToProps = dispath =>
@@ -147,4 +149,4 @@ const mapDispatchToProps = dispath =>
         changeRowsPerPageAction
     }, dispath)
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserTableComponent)));
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(UserTableComponent)))

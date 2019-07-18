@@ -1,29 +1,41 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { withStyles } from '@material-ui/core/styles'
-import { Tabs, Tab } from '@material-ui/core'
-import { bindActionCreators } from 'redux';
-import { SpellAreaComponent, UserAreaComponent } from '../../components'
+import React, { Component } from "react"
+import { connect } from "react-redux"
+import { withStyles } from "@material-ui/core/styles"
+import { Tabs, Tab } from "@material-ui/core"
+import { bindActionCreators } from "redux"
+import { SpellAreaComponent, UserAreaComponent } from "../../components"
 
 const styles = {
     page: {
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
         flex: 1,
         padding: 10,
     },
     tabsWrapper: {
-        backgroundColor: 'white',
+        backgroundColor: "white",
         borderRadius: 4,
-        display: 'flex'
+        display: "flex"
     }
 
 }
 
 const tabs = [
-    { name:"Spells", id: 1 },
-    { name:"Users", id: 2 },
+    { 
+        name: {
+            EN_US: "Spells",
+            PT_BR: "Magias"
+        }, 
+        id: 1 
+    },
+    { 
+        name: {
+            EN_US: "Users",
+            PT_BR: "Usuários"
+        }, 
+        id: 2 
+    },
 ]
 
 class AdministrationContent extends Component {
@@ -35,14 +47,14 @@ class AdministrationContent extends Component {
             currentTab: 1
         }
 
-        this.classes = props.classes;
+        this.classes = props.classes
 
-        this.renderTabs = this.renderTabs.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.renderTabContent = this.renderTabContent.bind(this);
+        this.renderTabs = this.renderTabs.bind(this)
+        this.handleChange = this.handleChange.bind(this)
+        this.renderTabContent = this.renderTabContent.bind(this)
     }
 
-    handleChange = (event, newValue) => this.setState({currentTab: newValue});
+    handleChange = (event, newValue) => this.setState({currentTab: newValue})
 
     renderTabs() {
 
@@ -56,7 +68,7 @@ class AdministrationContent extends Component {
                     indicatorColor="primary"
                     >
                     {
-                        tabs.map((i, k) => <Tab key={k} label={i.name} value={i.id}></Tab>)
+                        tabs.map((i, k) => <Tab key={k} label={i.name[this.props.language.selected]} value={i.id}></Tab>)
                     }
                 </Tabs>
             </div>
@@ -86,7 +98,7 @@ class AdministrationContent extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    
+    language: state.languageReducer
 })
 
 const mapDispatchToProps = dispath =>

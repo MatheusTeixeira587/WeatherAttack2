@@ -1,4 +1,4 @@
-import { types } from '../../constants';
+import { types } from "../../constants"
 
 const initialState = {
     cityName:"",
@@ -24,6 +24,6 @@ export function weatherReducer(state = initialState, action) {
             })
 
         default:
-            return state;
+            return state
     }
 }

@@ -1,9 +1,9 @@
-import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr";
-import { eventChannel } from "redux-saga";
-import { challengeEvents } from "../../constants";
-import { requestLogoutAction } from "../../actions";
+import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr"
+import { eventChannel } from "redux-saga"
+import { challengeEvents } from "../../constants"
+import { requestLogoutAction } from "../../actions"
 
-const challengeChannel = "challenge";
+const challengeChannel = "challenge"
 
 export class HubService {
 
@@ -11,7 +11,7 @@ export class HubService {
         const connection =  new HubConnectionBuilder()
             .withUrl(process.env.REACT_APP_API_URL + channel, { accessTokenFactory: () => token })
             .configureLogging(LogLevel.Information)
-            .build();
+            .build()
 
         return new Promise(resolve => {
             connection.start()
@@ -23,17 +23,17 @@ export class HubService {
     static createHubChannel(hub) {
         return eventChannel(emit => {
             const eventHandler = event => {
-                emit(event);
-            };
-
-            const channelName = hub.connection.baseUrl.split('/').pop();
-
-            if (channelName === challengeChannel) {
-                hub = HubService._subscribeToChallengeEvents(hub, eventHandler);
+                emit(event)
             }
 
-            return () => hub;
-        });
+            const channelName = hub.connection.baseUrl.split("/").pop()
+
+            if (channelName === challengeChannel) {
+                hub = HubService._subscribeToChallengeEvents(hub, eventHandler)
+            }
+
+            return () => hub
+        })
     }
 
     static _subscribeToChallengeEvents(hub, eventHandler) {
@@ -44,12 +44,12 @@ export class HubService {
                     type: prop,
                     payload: payload
                 }))
-            });
+            })
 
         hub.onclose(e => {
-            eventHandler(requestLogoutAction());
-        });
+            eventHandler(requestLogoutAction())
+        })
 
-        return hub;
+        return hub
     }
 }
