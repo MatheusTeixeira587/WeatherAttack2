@@ -71,7 +71,7 @@ namespace WeatherAttack.Security.Services
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role, permissionLevel)
                 },
-                expires: DateTime.Now.AddMinutes(1),
+                expires: DateTime.Now.AddMinutes(Options.Value.TokenExpirationTime),
                 signingCredentials: signingCredentials
             );
         }

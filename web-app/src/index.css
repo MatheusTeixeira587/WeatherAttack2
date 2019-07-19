@@ -13,11 +13,11 @@ code {
     monospace;
 }
 
-html::-webkit-scrollbar {
+*::-webkit-scrollbar {
     width: 6px;
 	background-color: #efeded;
 }
 
-html::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
 	background-color: #adaeb2;
 }

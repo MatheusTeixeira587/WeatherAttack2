@@ -3,5 +3,7 @@
     public class SecuritySettings
     {
         public string SigningKey { get; set; }
+
+        public int TokenExpirationTime { get; set; }
     }
 }

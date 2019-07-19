@@ -1,5 +1,4 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using WeatherAttack.Contracts.Command;
+﻿using WeatherAttack.Contracts.Command;
 
 namespace WeatherAttack.Security.Commands
 {

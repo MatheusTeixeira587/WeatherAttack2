@@ -10,33 +10,41 @@ import { routes, APP_TEXTS } from "../../../constants"
 import { BACKGROUND, APP_LOGO } from "../../../static"
 
 const styles = ({
-  divStyle: {
-    height: "100vh",
-    boxShadow: "0 0px 80px rgba(0, 0, 0, 0.7)",
-    zIndex: 1,
-  },
-  background: {
-    background: `url("${BACKGROUND}")`,
-    backgroundSize: "cover 100%",
-    backgroundRepeat: "no-repeat",
-    backgroundPosition: "center",
-    overflow: "hidden",
-  },
-  logo: {
-    background: `url("${APP_LOGO}")`,
-    backgroundSize:"cover 100%",
-    backgroundRepeat:"no-repeat",
-    backgroundPosition: "center",
-    height: "100%",
-  },
-  logoContainer: {
-    height: 200, 
-  },
-  languageSelectorWrapper: {
-    display: "flex",
-    justifyContent: "flex-end",
-    padding: 5
-  }
+    mainDiv: {
+        height: "100%"
+    },
+    divStyle: {
+        height: "100%",
+        boxShadow: "0 0px 80px rgba(0, 0, 0, 0.7)",
+        zIndex: 1,
+    },
+    background: {
+        background: `url("${BACKGROUND}")`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundPosition: "center",
+        overflow: "hidden",
+    },
+    logo: {
+        background: `url("${APP_LOGO}")`,
+        backgroundSize:"contain",
+        backgroundRepeat:"no-repeat",
+        backgroundPosition: "center",
+        height: "100%",
+    },
+    logoContainer: {
+        height: 200,
+    },
+    languageSelectorWrapper: {
+        display: "flex",
+        justifyContent: "flex-end",
+        padding: 5,
+    },
+    [`@media (max-height: ${1000}px)`]: {
+        logoContainer: {
+            height: 150,
+        }
+    },
 })
 
 class LoginPage extends Component {
@@ -98,6 +106,7 @@ class LoginPage extends Component {
                     justify="center"
                     lg={12}
                     sm={12}
+                    className={this.props.classes.mainDiv}
                 >
                     <Grid
                         component="div"
@@ -107,6 +116,7 @@ class LoginPage extends Component {
                         alignItems="center"
                         justify="center"
                         lg={4}
+                        md={4}
                         sm={12}
                         item
                         className={this.props.classes.divStyle}
