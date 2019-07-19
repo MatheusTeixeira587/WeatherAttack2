@@ -22,7 +22,8 @@ const styles = {
     },
     rulesFormListWrapper: {
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        paddingTop: 5
     },
     deleteIcon: {
         border: "none",

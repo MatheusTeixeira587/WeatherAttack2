@@ -10,44 +10,13 @@ class Interceptor extends React.PureComponent {
     constructor(props) {
         super(props)
 
-        this.configureRequestInterceptor = this.configureRequestInterceptor.bind(this)
-
-        this.configureRequestInterceptor()
+        this.configureRequestInterceptor = this.configureRequestInterceptor.bind(this);
     }
 
-    handleGetLocationError() {
-        if (this.props.geolocation.error) {
-    
-            const error = this.props.geolocation.error
-            let notification = {}
-    
-            switch (this.props.geolocation.error) {
-    
-                case error.PERMISSION_DENIED:
-                notification = LOCATION_PERMISSION_DENIED
-                break
-        
-                case error.POSITION_UNAVAILABLE:
-                notification = LOCATION_UNAVAILABLE
-                break
-        
-                case error.TIMEOUT:
-                notification = LOCATION_TIMEOUT
-                break
-        
-                case error.UNKNOWN_ERROR:
-                notification = LOCATION_UNKNOWN_ERROR
-                break
-        
-                default:
-                break
-            }
-    
-            if (notification.code) {
-                this.props.addNotificationAction([notification])
-            }
-        }
+    componentDidMount() {
+        this.configureRequestInterceptor();
     }
+
 
     configureRequestInterceptor() {
         axios.interceptors.request.use((config) => {
@@ -57,9 +26,8 @@ class Interceptor extends React.PureComponent {
             return config
         }, (error) => {
             debugger
-
-            this.props.hideLoaderAction()
             console.log(error)
+            this.props.hideLoaderAction()
         })
     
         axios.interceptors.response.use((response) => {
@@ -69,21 +37,17 @@ class Interceptor extends React.PureComponent {
 
         }, (error) => {
 
-            debugger
             if (!!error.response) {
     
                 if (error.response.status === 401) {
                     this.props.requestLogoutAction()
                 }
         
-                if (error.response.data.notifications.length) {
+                if (error.response.data && error.response.data.notifications.length) {
                     this.props.addNotificationAction(error.response.data.notifications)
                 }
 
             }
-
-            debugger
-
     
             this.props.hideLoaderAction()
     

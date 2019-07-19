@@ -9,11 +9,12 @@ import { BACKGROUND } from "../../../static"
 
 const styles = {
     page: {
-        height: "100%",
+        height: "100vh",
+        display: "flex",
     },
     contentWrapper: {
         background:`url("${BACKGROUND}")`,
-        height: "100%",
+        flex: 1,
         width: "100%",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat"

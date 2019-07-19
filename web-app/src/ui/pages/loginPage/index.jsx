@@ -11,10 +11,9 @@ import { BACKGROUND, APP_LOGO } from "../../../static"
 
 const styles = ({
     mainDiv: {
-        height: "100%"
+        minHeight: "100vh"
     },
     divStyle: {
-        height: "100%",
         boxShadow: "0 0px 80px rgba(0, 0, 0, 0.7)",
         zIndex: 1,
     },
@@ -40,9 +39,14 @@ const styles = ({
         justifyContent: "flex-end",
         padding: 5,
     },
-    [`@media (max-height: ${1000}px)`]: {
+    [`@media (max-height: ${800}px)`]: {
         logoContainer: {
             height: 150,
+        }
+    },
+    [`@media (max-width: ${960}px)`]: {
+        background: {
+            display: "none",
         }
     },
 })
@@ -149,6 +153,8 @@ class LoginPage extends Component {
                     <Grid
                         item
                         lg={8}
+                        md={8}
+                        sm={false}
                         container
                         className={this.props.classes.background}
                     >

@@ -14,8 +14,8 @@ export class LoginComponent extends Component {
         alignContent="center"
         alignItems="center"
         justify="center"
-        lg={12}
-        sm={12}
+        lg={10}
+        sm={10}
         item
       >
         <Grid
@@ -24,8 +24,8 @@ export class LoginComponent extends Component {
           justify="space-around"
           alignItems="center"
           item
-          lg={10}
-          sm={10}
+          lg={12}
+          sm={12}
         >
           <Grid
             justify="center"

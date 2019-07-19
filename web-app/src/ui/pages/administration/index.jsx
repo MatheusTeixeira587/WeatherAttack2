@@ -10,14 +10,17 @@ import { routes, permissionLevel } from "../../../constants"
 
 const styles = {
     page: {
-        height: "100%"
+        minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
     },
     contentWrapper: {
         background:`url("${BACKGROUND}")`,
         width: "100%",
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        minHeight: "100%"
+        minHeight: "100%",
+        flex: 1
     }
 }
 
