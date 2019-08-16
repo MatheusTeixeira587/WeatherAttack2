@@ -14,8 +14,9 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
         public DeleteSpellCommand ExecuteAction(DeleteSpellCommand command)
         {
-            var result = Context.FindBy(c => c.Id == command.Id)
-                .FirstOrDefault();
+            var result = Context
+                .Find(c => c.Id == command.Id)
+                .SingleOrDefault();
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);

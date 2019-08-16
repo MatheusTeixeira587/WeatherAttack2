@@ -25,6 +25,9 @@ namespace WeatherAttack.Domain.Entities
         public void AddNotification(ImmutableArray<string> codeArray)
             => AddNotification(WeatherAttackNotifications.Get(codeArray));
 
+        public void AddNotification(List<Notification> notifications)
+            => notifications.ForEach(n => AddNotification(n));
+
         public void AddNotification(Notification notification)
         {
             if(!Notifications.Contains(notification))
@@ -33,12 +36,6 @@ namespace WeatherAttack.Domain.Entities
 
         public bool HasNotification()
             => Notifications.Count > 0;
-
-        public void AddNotification(List<Notification> notifications)
-        {
-            if (HasNotification())
-                notifications.ForEach(n => AddNotification(n));
-        }      
 
         protected virtual bool Validate()
             => !HasNotification();

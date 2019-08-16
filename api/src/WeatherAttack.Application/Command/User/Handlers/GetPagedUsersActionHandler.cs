@@ -29,7 +29,10 @@ namespace WeatherAttack.Application.Command.User.Handlers
             int skip = (int)(command.PageSize * (command.PageNumber - 1));
             int take = (int)command.PageSize;
 
-            var result = Context.PagedGet(skip, take).ToList();
+            var result = Context
+                .Get(skip, take)
+                ?.Select(r => Mapper.ToDto(r))
+                .ToList();
 
             if (result is null)
                 return command;
@@ -44,7 +47,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
             command.TotalRecords = totalRecords;
 
-            command.Result = result.Select(r => Mapper.ToDto(r)).ToList();
+            command.Result = result;
 
             return command;
         }

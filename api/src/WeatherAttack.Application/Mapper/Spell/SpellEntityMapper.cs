@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
 using WeatherAttack.Contracts.Dtos.SpellRule.Request;
 using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Enums;
@@ -7,7 +8,7 @@ using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Mapper.Spell
 {
-    public class SpellEntityMapper : IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto>
+    public class SpellEntityMapper : IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto>
     {
         private IMapper<Entities.SpellRule, SpellRuleRequestDto, SpellRuleRequestDto> SpellRuleMapper { get; }
 
@@ -15,20 +16,6 @@ namespace WeatherAttack.Application.Mapper.Spell
         {
             SpellRuleMapper = spellRuleMapper;
         }
-
-        public SpellRequestDto ToDto(Entities.Spell entity)
-        {
-            return new SpellRequestDto()
-            {
-                Id = entity.Id,
-                BaseDamage = entity.BaseDamage,
-                BaseManaCost = entity.BaseManaCost,
-                Element = (byte)entity.Element,
-                Name = entity.Name,
-                Rules = entity.Rules.Select(r => SpellRuleMapper.ToDto(r)).ToList()
-            };
-        }
-
 
         public Entities.Spell ToEntity(SpellRequestDto request)
         {
@@ -39,6 +26,19 @@ namespace WeatherAttack.Application.Mapper.Spell
                 request.BaseManaCost,
                 (Element)request.Element,
                 request.Rules.Select(r => SpellRuleMapper.ToEntity(r)).ToList());
+        }
+
+        SpellResponseDto IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto>.ToDto(Entities.Spell entity)
+        {
+            return new SpellResponseDto()
+            {
+                Id = entity.Id,
+                BaseDamage = entity.BaseDamage,
+                BaseManaCost = entity.BaseManaCost,
+                Element = entity.Element.ToString(),
+                Name = entity.Name,
+                Rules = entity.Rules.Select(r => SpellRuleMapper.ToDto(r)).ToList()
+            };
         }
     }
 }

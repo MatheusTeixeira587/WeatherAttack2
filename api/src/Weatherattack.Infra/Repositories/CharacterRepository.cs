@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WeatherAttack.Domain.Contracts;
+﻿using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Repositories

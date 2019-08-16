@@ -5,7 +5,7 @@ import { withStyles } from "@material-ui/core/styles"
 import { FormControl, InputLabel, Select, Input, Chip, MenuItem, TextField } from "@material-ui/core"
 import { elementList, APP_TEXTS } from "../../../constants"  
 import { addSpellAction } from "../../../actions"
-import { AddRulesComponent, Button } from ".."
+import { AddRules, Button } from ".."
 
 const styles = {
     menuItem: {
@@ -161,11 +161,11 @@ class AddSpellComponent extends Component {
                     </Select>
                 </FormControl>
                 <div className={this.props.classes.addRulesComponentWrapper}>
-                    <AddRulesComponent 
+                    <AddRules 
                     />
                 </div>
                 <Button 
-                    disabled={!this.state.selectedElements.length || !this.state.spellname || this.state.baseDamage || this.state.baseManaCost}
+                    disabled={!this.state.selectedElements.length || !this.state.spellname || !this.state.baseDamage || !this.state.baseManaCost}
                     variant="outlined"
                     color="primary"
                     onClick={this.submitSpell}

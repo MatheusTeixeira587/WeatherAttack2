@@ -10,19 +10,13 @@ namespace WeatherAttack.Hub.Repositories
     {
         private readonly Dictionary<UserResponseDto, string> _connections;
 
-        public void Add(UserResponseDto key, string value)
-        {
-            if (_connections.ContainsKey(key))
-                _connections.Remove(key);
+        public int Count => _connections.Count;
 
-              _connections.Add(key, value);
-        }
+        public void Add(UserResponseDto key, string value)
+            => _connections[key] = value;
 
         public void Remove(UserResponseDto key)
-        {
-            if (_connections.ContainsKey(key))
-                _connections.Remove(key);
-        }
+            => _connections.Remove(key);
 
         public string GetConnection(UserResponseDto key) 
             => _connections.GetValueOrDefault(key);
@@ -33,11 +27,8 @@ namespace WeatherAttack.Hub.Repositories
         public UserResponseDto Find(UserResponseDto key)
             => _connections.Keys.SingleOrDefault(u => u.Id == key.Id);
 
-        public ICollection<UserResponseDto> Find(ICollection<UserResponseDto> key)
-            => _connections.Keys.Where(u => key.Select(k => k.Id).Contains(u.Id)).ToList();
-
-        int IConnectionRepository<UserResponseDto>.Count()
-            => _connections.Count;
+        public UserResponseDto Find(string connection)
+            => _connections.Where(r => r.Value == connection)?.Select(r => r.Key)?.FirstOrDefault();
 
         public ConnectionInMemoryDatabase(IEqualityComparer<UserResponseDto> comparer)
         {

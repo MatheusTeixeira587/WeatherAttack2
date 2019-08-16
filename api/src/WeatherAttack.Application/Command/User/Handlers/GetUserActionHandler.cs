@@ -23,13 +23,13 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         public GetUserCommand ExecuteAction(GetUserCommand command)
         {
-            var result = Context.FindBy(u => u.Id == command.Id)
-                            .SingleOrDefault();
+            var result = Context
+                .Find(command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.User.UserNotFound);
-
-            command.Result = result is null ? null : Mapper.ToDto(result);
+            else
+                command.Result = Mapper.ToDto(result);
 
             return command;
         }

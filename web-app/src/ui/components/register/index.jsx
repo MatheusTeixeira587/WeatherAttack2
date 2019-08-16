@@ -3,7 +3,7 @@ import { Grid, TextField, FormLabel } from "@material-ui/core"
 import { Button } from "../"
 import { APP_TEXTS } from "../../../constants";
 
-export class RegisterComponent extends Component {
+export class Register extends Component {
   
     constructor(props){
       super(props)

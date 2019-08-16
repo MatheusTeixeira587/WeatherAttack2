@@ -40,9 +40,9 @@ export class HubService {
 
         Object.keys(challengeEvents)
             .forEach(prop => {
-                hub.on(prop, (payload) => eventHandler({
+                hub.on(prop, (command) => eventHandler({
                     type: prop,
-                    payload: payload
+                    command
                 }))
             })
 

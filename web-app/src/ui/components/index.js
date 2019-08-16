@@ -1,7 +1,7 @@
 import SnackBarContentWrapper from "./snackbar"
 import Link from "./link"
-import WeatherCardComponent from "./weatherCard"
-import WeatherBarComponent from "./weatherBar"
+import WeatherCard from "./weatherCard"
+import WeatherBar from "./weatherBar"
 import Interceptor from "./interceptor"
 import Button from "./button"
 import AppBarWithMenu from "./appBarWithMenu"
@@ -9,32 +9,36 @@ import DashboardContent from "./dashboardContent"
 import UserCard from "./userCard"
 import PlayerProfile from "./playerProfile"
 import AdministrationContent from "./administrationContent"
-import AddSpellComponent from "./addSpellComponent"
-import SpellAreaComponent from "./spellArea"
-import AddRulesComponent from "./addRulesComponent"
-import UserTableComponent from "./userTable"
-import UserAreaComponent from "./userArea"
-import LanguageSelectorComponent from "./languageSelector"
+import AddSpell from "./addSpell"
+import SpellArea from "./spellArea"
+import AddRules from "./addRules"
+import UserTable from "./userTable"
+import UserArea from "./userArea"
+import LanguageSelector from "./languageSelector"
+import ChallengeInvite from "./challengeInvite"
+import SpellTable from "./spellTable"
 
 export { Loader } from "./loader"
-export { LoginComponent } from "./login"
-export { RegisterComponent } from "./register"
+export { Login } from "./login"
+export { Register } from "./register"
 export { 
     SnackBarContentWrapper, 
     Button, 
     Link, 
-    WeatherCardComponent,
-    WeatherBarComponent,
+    WeatherCard,
+    WeatherBar,
     Interceptor, 
     AppBarWithMenu,
     DashboardContent,
     UserCard,
     PlayerProfile,
     AdministrationContent,
-    AddSpellComponent,
-    SpellAreaComponent,
-    AddRulesComponent,
-    UserTableComponent,
-    UserAreaComponent,
-    LanguageSelectorComponent
+    AddSpell,
+    SpellArea,
+    AddRules,
+    UserTable,
+    UserArea,
+    LanguageSelector,
+    ChallengeInvite,
+    SpellTable
 }

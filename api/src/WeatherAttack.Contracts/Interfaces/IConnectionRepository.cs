@@ -4,8 +4,6 @@ namespace WeatherAttack.Contracts.Interfaces
 {
     public interface IConnectionRepository<Entity>
     {
-        int Count();
-
         void Add(Entity key, string value);
 
         void Remove(Entity key);
@@ -15,7 +13,5 @@ namespace WeatherAttack.Contracts.Interfaces
         ICollection<Entity> Get();
 
         Entity Find(Entity key);
-
-        ICollection<Entity> Find(ICollection<Entity> key);
     }
 }

@@ -3,7 +3,7 @@ import { TextField, Grid, FormLabel } from "@material-ui/core"
 import { Button } from "../"
 import { APP_TEXTS } from "../../../constants";
 
-export class LoginComponent extends Component {
+export class Login extends Component {
   
   render() {
     return (

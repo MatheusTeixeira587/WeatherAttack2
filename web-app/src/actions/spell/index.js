@@ -6,3 +6,17 @@ export const addSpellAction = spell => {
         spell
     }
 }
+
+export const getPagedSpellsAction = command => {
+    return {
+        type: types.GET_PAGED_SPELLS,
+        command
+    }
+}
+
+export const assignPagedSpells = command => {
+    return {
+        type: types.ASSIGN_PAGED_SPELLS,
+        command
+    }
+}

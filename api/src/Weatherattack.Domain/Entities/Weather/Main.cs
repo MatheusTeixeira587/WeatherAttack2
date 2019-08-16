@@ -2,7 +2,7 @@
 {
     public class Main
     {
-        public Main(double temperature, int pressure, int humidity)
+        public Main(double temperature, double pressure, double humidity)
         {
             Temperature = temperature;
             Pressure = pressure;
@@ -11,8 +11,8 @@
 
         public double Temperature { get; private set; }
 
-        public int Pressure { get; private set; }
+        public double Pressure { get; private set; }
 
-        public int Humidity { get; private set; }
+        public double Humidity { get; private set; }
     }
 }

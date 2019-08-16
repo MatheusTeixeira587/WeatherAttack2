@@ -4,7 +4,7 @@ import { connect } from "react-redux"
 import { Switch, Route, Redirect, withRouter } from "react-router-dom"
 import { bindActionCreators } from "redux"
 import { Snackbar } from "@material-ui/core"
-import { Loader, SnackBarContentWrapper, LoginPage, AdministratorPage, Interceptor, DashboardPage } from "./ui"
+import { Loader, SnackBarContentWrapper, LoginPage, AdministratorPage, Interceptor, DashboardPage, ChallengeInvite } from "./ui"
 import { startChannelAction, showLoaderAction, hideLoaderAction, addNotificationAction, removeNotificationAction, getLocationAction } from "./actions"
 import { routes } from "./constants"
 
@@ -14,6 +14,7 @@ class App extends Component {
         super(props)
 
         this.renderNotifications = this.renderNotifications.bind(this)
+        this.renderChallenges = this.renderChallenges.bind(this)
     }
 
     componentDidMount() {
@@ -29,27 +30,44 @@ class App extends Component {
             return this.props.notification.notifications.map((n, k) => {
                 return (
                 <Snackbar
-                id={k}
-                open={true}
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
+                    id={k}
+                    key={`notification-id:${k}`}
+                    open={true}
+                    anchorOrigin={{ vertical: "top", horizontal: "right" }}
                 >
-                <SnackBarContentWrapper
-                    variant="error"
-                    message={n.message[this.props.language.selected] || n.message[getProperLanguageName(this.props.language.selected)]}
-                />
+                    <SnackBarContentWrapper
+                        variant="error"
+                        message={n.message[this.props.language.selected] || n.message[getProperLanguageName(this.props.language.selected)]}
+                    />
                 </Snackbar>
                 )
             })
         }
     }
 
+    renderChallenges() {
+        return this.props.challenge.invites.map((i, k) => {
+            return (
+                <ChallengeInvite
+                    invite={i}
+                    key={`challenge-id:${k}`}
+                    id={k}
+                />
+            )
+        })
+    }
+
     render() {
         return (
             <div className="App">
+                
                 <Interceptor/>
                 <Loader showLoader={this.props.loader.showLoader} />
                 {
                     this.renderNotifications()
+                }
+                {
+                    this.renderChallenges()
                 }
                 <Switch>
                     <Route path={routes.LOGIN_PAGE} exact component={LoginPage} />

@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { withStyles } from "@material-ui/core/styles"
 import { withRouter } from "react-router-dom"
-import { UserTableComponent } from "../"
+import { UserTable } from "../"
 import { getPagedUsersAction } from "../../../actions"
 
 const styles = ({
@@ -25,7 +25,7 @@ class UserArea extends Component {
         return (
            <div className={classes.component}>
                <div className={classes.content}>
-                    <UserTableComponent/>
+                    <UserTable />
                </div>
 
            </div>

@@ -17,8 +17,9 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         public DeleteUserCommand ExecuteAction(DeleteUserCommand entity)
         {
-            var user = Context.FindBy(u => u.Id == entity.Id)
-                        .FirstOrDefault();
+            var user = Context
+                .Find(u => u.Id == entity.Id)
+                .SingleOrDefault();
 
             if (user != null)
                 Context.Delete(user);

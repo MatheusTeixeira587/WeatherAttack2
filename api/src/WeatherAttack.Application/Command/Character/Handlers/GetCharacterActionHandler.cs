@@ -22,7 +22,9 @@ namespace WeatherAttack.Application.Command.Character.Handlers
 
         public GetCharacterCommand ExecuteAction(GetCharacterCommand command)
         {
-            var result = Context.FindBy(c => c.UserId == command.Id).SingleOrDefault();
+            var result = Context
+                .Find(c => c.UserId == command.Id)
+                .SingleOrDefault();
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Character.InvalidCharacter);

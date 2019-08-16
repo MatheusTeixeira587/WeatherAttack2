@@ -8,11 +8,11 @@ const userService = new UserService()
 
 function* loginSaga(action) {
     try {
-        const response = yield loginService.login(action.user)
-        localStorage.setItem("logged_user", response.token)
+        const command = yield loginService.login(action.user)
+        localStorage.setItem("logged_user", command.token)
 
         yield all([
-            put(onLoginSucessAction(response)),
+            put(onLoginSucessAction(command)),
             put(startChannelAction()),
             put(getCharacterAction()),
         ])
@@ -23,13 +23,13 @@ function* loginSaga(action) {
 
 function* registerSaga(action) {
     try {
-        const response = yield userService.post({user:action.user})
+        const command = yield userService.post({user:action.user})
         
-        if (!!response.notifications.length) {
+        if (!!command.notifications.length) {
             return
         }
         
-        yield put(requestLoginAction(response.user))
+        yield put(requestLoginAction(command.user))
     } catch(e) {
         console.error(e)
     }

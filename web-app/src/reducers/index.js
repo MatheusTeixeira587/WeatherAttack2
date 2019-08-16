@@ -9,6 +9,7 @@ import { characterReducer } from "./characterReducer"
 import { rulesReducer } from "./rulesReducer"
 import { userAreaReducer } from "./userAreaReducer"
 import { languageReducer } from "./language"
+import { spellAreaReducer } from "./spellAreaReducer"
 
 const rootState = combineReducers({
     loaderReducer,
@@ -20,7 +21,8 @@ const rootState = combineReducers({
     characterReducer,
     rulesReducer,
     userAreaReducer,
-    languageReducer
+    languageReducer,
+    spellAreaReducer
 })
 
 export default rootState

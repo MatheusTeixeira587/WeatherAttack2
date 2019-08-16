@@ -21,9 +21,10 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
         public GetAllSpellsCommand ExecuteAction(GetAllSpellsCommand command)
         {
-            var result = Context.GetAll()
-                .ToList()
-                .Select(s => Mapper.ToDto(s));
+            var result = Context
+                .Get()?
+                .Select(s => Mapper.ToDto(s))
+                .ToList();
 
             command.Result = result as ICollection<SpellRequestDto>;
 

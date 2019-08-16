@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import { Tabs, Tab } from "@material-ui/core"
 import { bindActionCreators } from "redux"
-import { SpellAreaComponent, UserAreaComponent } from "../../components"
+import { SpellArea, UserArea } from "../../components"
 
 const styles = {
     page: {
@@ -77,9 +77,9 @@ class AdministrationContent extends Component {
 
     renderTabContent() {
         if(this.state.currentTab === 1) {
-            return <SpellAreaComponent/>
+            return <SpellArea/>
         } else if (this.state.currentTab === 2) {
-            return (<UserAreaComponent/>)
+            return <UserArea/>
         }
     }
 

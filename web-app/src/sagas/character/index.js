@@ -9,8 +9,8 @@ function* getCharacterSaga() {
 
     try {  
         const loginState =  yield select(state => state.loginReducer)
-        const response = yield characterService.getById(loginState.id, loginState.token)
-        yield put(assignCharacterAction(response.result))
+        const command = yield characterService.getById(loginState.id, loginState.token)
+        yield put(assignCharacterAction(command.result))
         
     } catch(e) {
         console.error(e)

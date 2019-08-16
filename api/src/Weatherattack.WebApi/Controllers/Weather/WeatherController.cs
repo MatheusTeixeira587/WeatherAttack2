@@ -11,9 +11,9 @@ namespace WeatherAttack.WebApi.Controllers.Weather
     [ApiController, AllowAnonymous]
     public class WeatherController : ControllerBase
     {
-        private IActionHandler<GetCurrentWeatherCommand> GetCurrentWeatherActionHandler { get; }
+        private IActionHandlerAsync<GetCurrentWeatherCommand> GetCurrentWeatherActionHandler { get; }
 
-        public WeatherController(IActionHandler<GetCurrentWeatherCommand> getCurrentWeatherActionHandler)
+        public WeatherController(IActionHandlerAsync<GetCurrentWeatherCommand> getCurrentWeatherActionHandler)
         {
             GetCurrentWeatherActionHandler = getCurrentWeatherActionHandler;
         }
@@ -21,9 +21,9 @@ namespace WeatherAttack.WebApi.Controllers.Weather
         [HttpPost]
         public async Task<IActionResult> Get([FromBody] GetCurrentWeatherCommand command)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
-                return this.Response(GetCurrentWeatherActionHandler.ExecuteAction(command));
+                return this.Response(await GetCurrentWeatherActionHandler.ExecuteAction(command));
             });
         }
     }

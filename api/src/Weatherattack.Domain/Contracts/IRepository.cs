@@ -8,19 +8,13 @@ namespace WeatherAttack.Domain.Contracts
 {
     public interface IRepository<Entity> where Entity : class
     {
-        IQueryable<Entity> GetAll();
+        IQueryable<Entity> Get();
 
-        IQueryable<Entity> FindBy(Expression<Func<Entity, bool>> predicate);
+        IQueryable<Entity> Get(int skip, int take);
 
-        IQueryable<Entity> FindBy(Expression<Func<Entity, bool>> predicate, Expression<Func<Entity, Entity>> selectField);
+        Entity Find(long primaryKey);
 
-        IQueryable<Entity> Include(Expression<Func<Entity, object>> predicate);
-
-        IQueryable<Entity> Take(int count);
-
-        IQueryable<Entity> Skip(int count);
-
-        IQueryable<Entity> PagedGet(int skip, int take);
+        IQueryable<Entity> Find(Expression<Func<Entity, bool>> predicate);
 
         long Count();
 

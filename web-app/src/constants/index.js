@@ -8,9 +8,9 @@ import { GET_CHARACTER, ASSIGN_CHARACTER } from "./character"
 import { NOT_FOUND, LOGIN_PAGE, DASHBOARD_PAGE, ADMINISTRATION_PAGE } from "./routes"
 import { USER, ADMIN } from "./permissions"
 import { ADD_RULE, REMOVE_RULE, CHANGE_RULE } from "./rules"
-import { ADD_SPELL } from "./spell"
+import { ADD_SPELL, GET_PAGED_SPELLS, ASSIGN_PAGED_SPELLS } from "./spell"
 import { GET_PAGED_USERS, ASSIGN_PAGED_USERS, CHANGE_ROWS_PAGE } from "./userArea"
-import { USER_RECEIVED_CHALLENGE } from "./challenge"
+import { USER_RECEIVED_CHALLENGE, REMOVE_CHALLENGE } from "./challenge"
 import { CHANGE_LANGUAGE } from "./language"
 
 export * from "./colors"
@@ -30,9 +30,9 @@ export const types = {
     START_CHALLENGE_CHANNEL, STOP_CHALLENGE_CHANNEL,
     GET_CHARACTER, ASSIGN_CHARACTER,
     ADD_RULE, REMOVE_RULE, CHANGE_RULE,
-    ADD_SPELL,
+    ADD_SPELL, GET_PAGED_SPELLS, ASSIGN_PAGED_SPELLS,
     GET_PAGED_USERS, ASSIGN_PAGED_USERS, CHANGE_ROWS_PAGE,
-    USER_RECEIVED_CHALLENGE,
+    USER_RECEIVED_CHALLENGE, REMOVE_CHALLENGE,
     CHANGE_LANGUAGE
 }
 

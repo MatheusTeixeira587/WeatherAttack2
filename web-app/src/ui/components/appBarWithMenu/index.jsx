@@ -8,7 +8,7 @@ import { AppBar, Toolbar } from "@material-ui/core"
 import { HomeOutlined, Person, ExitToAppOutlined } from "@material-ui/icons";
 import { THEME_COLOR, routes, permissionLevel } from "../../../constants"
 import { startChannelAction, requestLogoutAction } from "../../../actions"
-import { WeatherBarComponent, LanguageSelectorComponent } from ".."
+import { WeatherBar, LanguageSelector } from ".."
 
 const styles = {
     root: {    
@@ -104,7 +104,7 @@ class MenuAppBar extends React.Component {
         <div className={classes.root}>
             <AppBar position="static" color="inherit" className={classes.menuColor}>
                 <Toolbar className={classes.menuBar}>
-                    <WeatherBarComponent />
+                    <WeatherBar />
                     <div className={classes.menuItemsWrapper}>
                         <div className={classes.iconItem}>
                             <Link to={routes.DASHBOARD_PAGE} className={classes.link}>
@@ -112,7 +112,7 @@ class MenuAppBar extends React.Component {
                             </Link>
                         </div>
                         <div className={classes.iconItem}>
-                            <LanguageSelectorComponent />
+                            <LanguageSelector />
                         </div>
                         {this.props.login.permissionLevel === permissionLevel.ADMIN ? this.renderMenu() : <></>}
                     </div>

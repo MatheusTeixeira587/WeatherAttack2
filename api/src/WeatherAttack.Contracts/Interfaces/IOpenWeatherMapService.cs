@@ -1,9 +1,10 @@
-﻿using WeatherAttack.Contracts.Dtos.Weather.Request;
+﻿using System.Threading.Tasks;
+using WeatherAttack.Contracts.Dtos.Weather.Request;
 
 namespace WeatherAttack.Contracts.Interfaces
 {
     public interface IOpenWeatherMapService
     {
-        CurrentWeatherRequestDto GetCurrentWeatherByCoordinates(double latitude, double longitude);
+        Task<CurrentWeatherRequestDto> GetCurrentWeatherByCoordinates(double latitude, double longitude);
     }
 }

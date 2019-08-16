@@ -21,14 +21,13 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
         public GetSpellCommand ExecuteAction(GetSpellCommand command)
         {
-            var result = Context.FindBy(c => c.Id == command.Id)?
-                .Select(c => Mapper.ToDto(c))
-                .First();
+            var result = Context
+                .Find(command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);
-
-            command.Result = result;
+            else
+                command.Result = Mapper.ToDto(result);
 
             return command;
         }

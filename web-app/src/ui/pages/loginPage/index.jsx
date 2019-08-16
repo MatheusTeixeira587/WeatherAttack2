@@ -4,7 +4,7 @@ import { withRouter, Redirect } from "react-router-dom"
 import { bindActionCreators } from "redux"
 import { getLocationAction, showLoaderAction, hideLoaderAction, changeFieldAction, requestLoginAction, requestRegisterAction, triggerRegisterDisplayAction } from "../../../actions"
 import { Grid } from "@material-ui/core"
-import { LoginComponent, RegisterComponent, Link, WeatherCardComponent, LanguageSelectorComponent } from "../../"
+import { Login, Register, Link, WeatherCard, LanguageSelector } from "../../"
 import { withStyles } from "@material-ui/core/styles"
 import { routes, APP_TEXTS } from "../../../constants"
 import { BACKGROUND, APP_LOGO } from "../../../static"
@@ -63,7 +63,7 @@ class LoginPage extends Component {
         if (this.props.login.shouldRenderRegister) {
 
             return (
-                <RegisterComponent
+                <Register
                     language={this.props.language.selected}
                     login={this.props.login}
                     changeField={this.props.changeFieldAction}
@@ -73,7 +73,7 @@ class LoginPage extends Component {
         }
 
         return (
-            <LoginComponent
+            <Login
                 language={this.props.language.selected}
                 login={this.props.login}
                 changeField={this.props.changeFieldAction}
@@ -85,7 +85,7 @@ class LoginPage extends Component {
     renderWeatherCard() {
         if (this.props.weather.cityName) {
             return (
-                <WeatherCardComponent
+                <WeatherCard
                     language={this.props.language.selected}
                     city={this.props.weather.cityName}
                     wind={parseInt(this.props.weather.wind.speed, 10)}
@@ -132,7 +132,7 @@ class LoginPage extends Component {
                             sm={12}
                         >
                             <div className={this.props.classes.languageSelectorWrapper}>
-                                <LanguageSelectorComponent />
+                                <LanguageSelector />
                             </div>
                             <Grid
                                 component="div"
@@ -144,7 +144,9 @@ class LoginPage extends Component {
                                 </div>
                             </Grid>
                         </Grid>
-                        {this.renderLoginOrRegisterComponent()}
+                        {
+                            this.renderLoginOrRegisterComponent()
+                        }
                         <Link
                             onClick={this.props.triggerRegisterDisplayAction}
                             message={this.props.login.shouldRenderRegister ? APP_TEXTS.alreadyHaveAccountMessage[this.props.language.selected] : APP_TEXTS.createAccountMessage[this.props.language.selected]}

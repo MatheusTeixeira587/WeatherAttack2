@@ -4,7 +4,6 @@ using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.Interfaces;
 using SignalRHub = Microsoft.AspNetCore.SignalR.Hub;
-using Microsoft.AspNetCore.SignalR;
 
 namespace WeatherAttack.Hub.Hubs
 {

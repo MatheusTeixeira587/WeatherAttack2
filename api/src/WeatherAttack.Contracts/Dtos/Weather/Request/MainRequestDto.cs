@@ -10,9 +10,9 @@ namespace WeatherAttack.Contracts.Dtos.Weather.Request
         public double Temperature { get; set; }
 
         [JsonProperty(PropertyName = "pressure")]
-        public int Pressure { get; set; }
+        public double Pressure { get; set; }
 
         [JsonProperty(PropertyName = "humidity")]
-        public int Humidity { get; set; }
+        public double Humidity { get; set; }
     }
 }

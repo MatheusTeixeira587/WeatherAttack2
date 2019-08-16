@@ -41,7 +41,13 @@ class DashboardContentComponent extends Component {
     
     renderOnlinePlayers() {
         return this.props.challenge.loggedUsers.filter(u => u.id !== this.props.login.id).map((i, k) => {
-            return <UserCard user={i} key={k}/>
+            return (
+                <UserCard 
+                    user={i} 
+                    key={k} 
+                    language={this.props.language.selected}
+                />
+            )
         })
     }
 

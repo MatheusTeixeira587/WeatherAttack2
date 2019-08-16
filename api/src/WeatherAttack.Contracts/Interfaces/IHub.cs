@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WeatherAttack.Contracts.Dtos.User.Response;
+﻿using WeatherAttack.Contracts.Dtos.User.Response;
 
 namespace WeatherAttack.Contracts.Interfaces
 {

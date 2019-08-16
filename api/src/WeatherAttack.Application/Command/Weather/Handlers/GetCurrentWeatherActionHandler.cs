@@ -1,4 +1,5 @@
-﻿using WeatherAttack.Contracts.Command;
+﻿using System.Threading.Tasks;
+using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Weather.Request;
 using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Contracts.Mapper;
@@ -6,7 +7,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.Weather.Handlers
 {
-    public class GetCurrentWeatherActionHandler : IActionHandler<GetCurrentWeatherCommand>
+    public class GetCurrentWeatherActionHandler : IActionHandlerAsync<GetCurrentWeatherCommand>
     {
         private IOpenWeatherMapService OpenWeatherMap { get; }
 
@@ -19,14 +20,12 @@ namespace WeatherAttack.Application.Command.Weather.Handlers
             Mapper = mapper;
         }
 
-        public GetCurrentWeatherCommand ExecuteAction(GetCurrentWeatherCommand command)
+        public async Task<GetCurrentWeatherCommand> ExecuteAction(GetCurrentWeatherCommand command)
         {
             if (!command.IsValid)
-            {
                 return command;
-            }
 
-            var result = OpenWeatherMap.GetCurrentWeatherByCoordinates(command.Latitude, command.Longitude);
+            var result = await OpenWeatherMap.GetCurrentWeatherByCoordinates(command.Latitude, command.Longitude);
 
             command.Result = Mapper.ToEntity(result);
 

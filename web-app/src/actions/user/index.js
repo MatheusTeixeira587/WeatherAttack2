@@ -7,16 +7,16 @@ export const getPagedUsersAction = command => {
     }
 }
 
-export const assignPagedUserAction = result => {
+export const assignPagedUserAction = command => {
     return { 
         type: types.ASSIGN_PAGED_USERS,
-        payload: result
+        command
     }
 }
 
-export const changeRowsPerPageAction = rows => {
+export const changeRowsPerPageAction = command => {
     return {
         type: types.CHANGE_ROWS_PAGE,
-        rows
+        command
     }
 }

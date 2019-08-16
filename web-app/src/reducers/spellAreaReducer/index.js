@@ -4,16 +4,16 @@ const initialState = {
     pageCount: 0,
     pageSize: 20,
     pageNumber: 1,
-    users: [],
+    spells: [],
     totalRecords: 0
 }
 
-export function userAreaReducer(state = initialState, action) {
+export function spellAreaReducer(state = initialState, action) {
 
     switch(action.type) {
-        case types.ASSIGN_PAGED_USERS:
+        case types.ASSIGN_PAGED_SPELLS:
             return Object.assign({}, {
-                users: action.command.result,
+                spells: action.command.result,
                 pageNumber: action.command.pageNumber,
                 pageCount: action.command.pageCount,
                 pageSize: action.command.pageSize,

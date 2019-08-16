@@ -2,7 +2,6 @@ import React from "react"
 import axios from "axios"
 import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
-import { LOCATION_PERMISSION_DENIED, LOCATION_UNAVAILABLE, LOCATION_TIMEOUT, LOCATION_UNKNOWN_ERROR } from "../../../constants"
 import { showLoaderAction, hideLoaderAction, requestLogoutAction, addNotificationAction, removeNotificationAction } from "../../../actions"
 
 class Interceptor extends React.PureComponent {

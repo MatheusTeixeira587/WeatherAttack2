@@ -38,11 +38,10 @@ namespace WeatherAttack.Application.Mapper.Weather
 
         public CurrentWeatherRequestDto ToDto(Entities.CurrentWeather entity)
         {
-            var a = entity.Weather.Select(w => WeatherMapper.ToDto(w)).ToList();
             return new CurrentWeatherRequestDto()
             {
                 Main = MainMapper.ToDto(entity.Main),
-                Weather = a,
+                Weather = entity.Weather.Select(w => WeatherMapper.ToDto(w)).ToList(),
                 Wind = WindMapper.ToDto(entity.Wind),
                 Rain = RainMapper.ToDto(entity.Rain),
                 Coordinates = CoordinatesMapper.ToDto(entity.Coordinates),

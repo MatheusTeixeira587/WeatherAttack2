@@ -11,9 +11,10 @@ namespace WeatherAttack.Infra.Repositories
     {
         public SpellRepository(WeatherAttackContext context) : base(context) { }
 
-        public override IQueryable<Spell> FindBy(Expression<Func<Spell, bool>> predicate)
-        {
-            return base.FindBy(predicate).Include(s => s.Rules);
-        }
+        public override IQueryable<Spell> Find(Expression<Func<Spell, bool>> predicate)
+            => base.Find(predicate).Include(s => s.Rules);
+
+        public override IQueryable<Spell> Get()
+            => base.Get().Include(r => r.Rules);
     }
 }

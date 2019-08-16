@@ -1,30 +1,17 @@
-import { call, takeEvery, take, race, select, put, all, takeLatest } from "redux-saga/effects"
+import { call, takeEvery, take, race, select, put, all } from "redux-saga/effects"
 import { HubService } from "../../services"
 import { types, challengeEvents } from "../../constants"
+import { userReceivedChallengeAction, removeChallengeAction } from "../../actions"
 
 const challengeEventsArray = Object.values(challengeEvents)
-
-function* challengeInviteSaga(action) {
-    try {
-        const userId = yield select(state => state.loginReducer.id)
-        if (action.to.id === userId) {
-            yield put(types)
-        }
-    } catch (e) {
-        console.log(e)
-    }
-}
-
 
 function* listenServerSaga(hubChannel) {
     try {
         while(true) {
             console.info("waiting for upcoming messages...") 
-            const payload = yield take(hubChannel)
-            console.info("received:")
-            console.info(payload)
-            payload.dispatchedByServer = true
-            yield put(payload)
+            const action = yield take(hubChannel)
+            action.dispatchedByServer = true
+            yield put(action)
         }
     } catch(e) {
         console.error(e)
@@ -36,6 +23,7 @@ function* sendToServerSaga(hub) {
         while(true) {
             console.info("waiting to send messages...")
             const action = yield take(challengeEventsArray)
+            debugger
             if (!action.dispatchedByServer) {
                 hub.invoke(action.type, action.command)
             }
@@ -55,6 +43,36 @@ function* closeConnectionSaga(hub) {
     }
 }
 
+function* challengeInviteSaga() {
+    try {
+        const userId = yield select(state => state.loginReducer.id)
+        while(true) {
+            const action = yield take(challengeEvents.CHALLENGE_USER)
+            if(action.command.to.id === userId) {
+                yield put(userReceivedChallengeAction(action.command))
+            }
+        }
+    } catch {
+        debugger
+    }
+}
+
+function* removeChallengeInviteSaga() {
+    try {
+        const userId = yield select(state => state.loginReducer.id)
+        while(true) {
+            debugger
+            const action = yield take([challengeEvents.ACCEPT_CHALLENGE, challengeEvents.REFUSE_CHALLENGE])
+            debugger
+            if(action.command.to.id === userId) {
+                yield put(removeChallengeAction(action.command))
+            }
+        }
+    } catch {
+        debugger
+    }
+}
+
 function* startConnectionSaga() {
     try {
         console.info("starting connection...")
@@ -66,7 +84,8 @@ function* startConnectionSaga() {
             task: all([
                 call(listenServerSaga, hubChannel), 
                 call(sendToServerSaga, hub),
-                takeLatest(challengeEvents.CHALLENGE_USER, challengeInviteSaga)
+                call(challengeInviteSaga),
+                call(removeChallengeInviteSaga)
                 ]),
             cancel: call(closeConnectionSaga, hub)
             })

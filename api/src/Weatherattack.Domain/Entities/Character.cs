@@ -6,7 +6,7 @@ namespace WeatherAttack.Domain.Entities
     {
         public Character() { }
 
-        public Character(long id, long userId, long healthPoints, long manaPoints, long battles, long wins, long losses, long medals)
+        public Character(long id, long userId, long healthPoints, long manaPoints, long battles, long wins, long losses, long medals) : base(id)
         {
             Id = id;
             UserId = userId;

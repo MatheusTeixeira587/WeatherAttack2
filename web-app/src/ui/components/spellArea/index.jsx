@@ -3,7 +3,7 @@ import { connect } from "react-redux"
 import { bindActionCreators } from "redux"
 import { withStyles } from "@material-ui/core/styles"
 import { withRouter } from "react-router-dom"
-import { AddSpellComponent, Button } from "../../components"
+import { AddSpell, Button } from "../../components"
 import { APP_TEXTS } from "../../../constants"
 
 const styles = {
@@ -43,7 +43,7 @@ class SpellArea extends Component {
                     />
                 </div>
                 <div className={classes.spellComponentWrapper}>
-                    <AddSpellComponent />
+                    <AddSpell />
                 </div>                
             </div>
         )

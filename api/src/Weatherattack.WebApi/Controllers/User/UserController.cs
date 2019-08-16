@@ -11,20 +11,10 @@ namespace Weatherattack.WebApi.Controllers
     [ApiController, Authorize]
     public class UserController : ControllerBase
     {
-        private IActionHandler<GetAllUsersCommand> GetAllUserHandler { get; }
         private IActionHandler<GetPagedUsersCommand> GetPagedUsersHandler { get; }
         private IActionHandler<AddUserCommand> AddUserHandler { get; }
         private IActionHandler<GetUserCommand> GetUserHandler { get; }
         private IActionHandler<DeleteUserCommand> DeleteUserHandler { get; }
-
-        [HttpGet]
-        public async Task<IActionResult> Get([FromRoute]GetAllUsersCommand command)
-        {
-            return await Task.Run(() =>
-            {
-                return this.Response(GetAllUserHandler.ExecuteAction(command));
-            });
-        }
 
         [HttpGet("Page-{Page:min(1)}")]
         public async Task<IActionResult> Get([FromRoute]GetPagedUsersCommand command, long page)
@@ -77,14 +67,12 @@ namespace Weatherattack.WebApi.Controllers
         }
 
         public UserController(
-            IActionHandler<GetAllUsersCommand> getAllUsersActionHandler,
             IActionHandler<AddUserCommand> addUserActionHandler,
             IActionHandler<GetUserCommand> getUserActionHandler,
             IActionHandler<DeleteUserCommand> deleteUserActionHandler,
             IActionHandler<GetPagedUsersCommand> getPagedUsersHandler
         )
         {
-            GetAllUserHandler = getAllUsersActionHandler;
             AddUserHandler = addUserActionHandler;
             GetUserHandler = getUserActionHandler;
             DeleteUserHandler = deleteUserActionHandler;

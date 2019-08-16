@@ -11,14 +11,10 @@ namespace WeatherAttack.Infra.Repositories
     {
         public UserRepository(WeatherAttackContext context) : base(context) { }
 
-        public override IQueryable<User> FindBy(Expression<Func<User, bool>> predicate)
-        {
-            return base.FindBy(predicate).Include(i => i.Character);
-        }
+        public override IQueryable<User> Find(Expression<Func<User, bool>> predicate)
+            => base.Find(predicate).Include(i => i.Character);
 
-        public override IQueryable<User> PagedGet(int skip, int take)
-        {
-            return base.PagedGet(skip, take).Include(u => u.Character);
-        }
+        public override IQueryable<User> Get()
+            => base.Get().Include(u => u.Character);
     }
 }

@@ -28,6 +28,7 @@ using WeatherAttack.Application.Mapper.Weather;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Character;
 using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
 using WeatherAttack.Contracts.Dtos.SpellRule.Request;
 using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Contracts.Dtos.User.Response;
@@ -140,7 +141,6 @@ namespace Weatherattack.WebApi
             var connectionString = Configuration.GetConnectionString("WeatherAttack");
 
             services.AddDbContext<WeatherAttackContext>(options => options.UseSqlServer(connectionString));
-            services.AddDbContext<DbContext, WeatherAttackContext>(options => options.UseSqlServer(connectionString));
         }
 
         public void ConfigureCommonServices(IServiceCollection services)
@@ -158,7 +158,7 @@ namespace Weatherattack.WebApi
         {
             services.AddTransient<IMapper<User, UserRequestDto, UserResponseDto>, UserEntityMapper>();
             services.AddTransient<IMapper<SpellRule, SpellRuleRequestDto, SpellRuleRequestDto>, SpellRuleEntityMapper>();
-            services.AddTransient<IMapper<Spell, SpellRequestDto, SpellRequestDto>, SpellEntityMapper>();
+            services.AddTransient<IMapper<Spell, SpellRequestDto, SpellResponseDto>, SpellEntityMapper>();
             services.AddTransient<IMapper<Character, CharacterDto, CharacterDto>, CharacterEntityMapper>();
             services.AddTransient<IMapper<Wind, WindRequestDto, WindRequestDto>, WindEntityMapper>();
             services.AddTransient<IMapper<Rain, RainRequestDto, RainRequestDto>, RainEntityMapper>();
@@ -179,22 +179,22 @@ namespace Weatherattack.WebApi
             services.AddTransient<IActionHandler<LoginCommand>, LoginActionHandler>();
 
             services.AddTransient<IActionHandler<AddUserCommand>, AddUserActionHandler>();
-            services.AddTransient<IActionHandler<GetAllUsersCommand>, GetAllUsersActionHandler>();
             services.AddTransient<IActionHandler<GetPagedUsersCommand>, GetPagedUsersActionHandler>();
             services.AddTransient<IActionHandler<GetUserCommand>, GetUserActionHandler>();
             services.AddTransient<IActionHandler<DeleteUserCommand>, DeleteUserActionHandler>();
 
             services.AddTransient<IActionHandler<GetSpellCommand>, GetSpellActionHandler>();
+            services.AddTransient<IActionHandler<GetPagedSpellsCommand>, GetPagedSpellsActionHandler>();
             services.AddTransient<IActionHandler<GetAllSpellsCommand>, GetAllSpellsActionHandler>();
             services.AddTransient<IActionHandler<AddSpellCommand>, AddSpellActionHandler>();
             services.AddTransient<IActionHandler<DeleteSpellCommand>, DeleteSpellActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetSpellsForLocationCommand>, GetSpellsForLocationActionHandler>();
 
             services.AddTransient<IActionHandler<GetCharacterCommand>, GetCharacterActionHandler>();
 
-            services.AddTransient<IActionHandler<GetCurrentWeatherCommand>, GetCurrentWeatherActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetCurrentWeatherCommand>, GetCurrentWeatherActionHandler>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
@@ -209,7 +209,7 @@ namespace Weatherattack.WebApi
             app.UseAuthentication();
 
             app.UseCors(builder => 
-                builder.WithOrigins("http://localhost:3000")
+                builder.AllowAnyOrigin()
                 .AllowAnyMethod()
                 .AllowAnyHeader()
                 .AllowCredentials());

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Spell;
 using WeatherAttack.Contracts.Command;
@@ -18,12 +19,26 @@ namespace WeatherAttack.WebApi.Controllers.Spell
 
         private IActionHandler<DeleteSpellCommand> DeleteSpellActionHandler { get; }
 
+        private IActionHandler<GetSpellsForLocationCommand> GetSpellsForLocationActionHandler { get; }
+
+        private IActionHandler<GetPagedSpellsCommand> GetPagedSpellActionHandler { get; }
+
         [HttpGet]
         public async Task<IActionResult> Get([FromRoute] GetAllSpellsCommand command)
         {
             return await Task.Run(() => 
             {
                 return this.Response(GetAllSpellsActionHandler.ExecuteAction(command));
+            });
+        }
+
+        [HttpGet("Page-{Page:min(1)}")]
+        public async Task<IActionResult> Get([FromRoute]GetPagedSpellsCommand command, long page)
+        {
+            return await Task.Run(() =>
+            {
+                command.PageNumber = page;
+                return this.Response(GetPagedSpellActionHandler.ExecuteAction(command));
             });
         }
 
@@ -58,15 +73,28 @@ namespace WeatherAttack.WebApi.Controllers.Spell
             });
         }
 
+        [HttpPost("[action]")]
+        public async Task<IActionResult> GetSpellsForLocation([FromBody] GetSpellsForLocationCommand command)
+        {
+            return await Task.Run(() =>
+            {
+                return this.Response(GetSpellsForLocationActionHandler.ExecuteAction(command));
+            });
+        }
+
         public SpellController(IActionHandler<AddSpellCommand> addSpellActionHandler,
             IActionHandler<GetSpellCommand> getSpellActionHandler,
             IActionHandler<GetAllSpellsCommand> getAllSpellsActionHandler,
-            IActionHandler<DeleteSpellCommand> deleteSpellActionHandler)
+            IActionHandler<DeleteSpellCommand> deleteSpellActionHandler,
+            IActionHandler<GetSpellsForLocationCommand> getSpellsForLocationActionHandler,
+            IActionHandler<GetPagedSpellsCommand> getPagedSpellActionHandler)
         {
             AddSpellActionHandler = addSpellActionHandler;
             GetSpellActionHandler = getSpellActionHandler;
             GetAllSpellsActionHandler = getAllSpellsActionHandler;
             DeleteSpellActionHandler = deleteSpellActionHandler;
+            GetSpellsForLocationActionHandler = getSpellsForLocationActionHandler;
+            GetPagedSpellActionHandler = getPagedSpellActionHandler;
         }
     }
 }

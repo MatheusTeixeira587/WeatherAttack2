@@ -114,5 +114,25 @@ export const APP_TEXTS = {
     ofLabel: {
         EN_US: "of",
         PT_BR: "de"
+    },
+    challengeText: {
+        EN_US: "Challenge",
+        PT_BR: "Desafiar"
+    },
+    acceptText: {
+        EN_US: "Accept",
+        PT_BR: "Aceitar"
+    },
+    refuseText: {
+        EN_US: "Refuse",
+        PT_BR: "Recusar"
+    },
+    challengeInviteCardText: {
+        EN_US: "You received a new challenge",
+        PT_BR: "Você recebeu um novo desafio"
+    },
+    byText: {
+        EN_US: "By",
+        PT_BR: "Por"
     }
 }

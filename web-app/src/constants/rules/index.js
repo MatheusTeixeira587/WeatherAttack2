@@ -1,7 +1,7 @@
 export const weatherConditions = [
     { name: {
-            EN_US: "Temperature",
-            PT_BR: "Temperatura"
+        EN_US: "Temperature",
+        PT_BR: "Temperatura"
     }, value: 0 },
     { name: {
         EN_US: "Rain",

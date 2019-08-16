@@ -1,6 +1,6 @@
 export class GeolocationService {
 
-    get() {
+    async get() {
 
         if (navigator.geolocation) {
 

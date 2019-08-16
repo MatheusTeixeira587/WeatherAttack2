@@ -4,10 +4,8 @@ using WeatherAttack.Contracts.Dtos.Spell.Request;
 
 namespace WeatherAttack.Application.Command.Spell
 {
-    public class GetAllSpellsCommand : CommandBase
+    public class GetPagedSpellsCommand : PagedCommand
     {
-        public GetAllSpellsCommand(long id) : base(id) { }
-
         public ICollection<SpellRequestDto> Result;
     }
 }

@@ -42,3 +42,7 @@ export const elementList = [
 ]
 
 export const ADD_SPELL = "ADD_SPELL"
+
+export const GET_PAGED_SPELLS = "GET_PAGED_SPELLS"
+
+export const ASSIGN_PAGED_SPELLS = "ASSIGN_PAGED_SPELLS"

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
-using WeatherAttack.Application.Command.Character;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
@@ -14,8 +13,6 @@ namespace WeatherAttack.Hub.Hubs.Challenge
     public class Challenge : HubBase
     {
         private IActionHandler<GetUserCommand> GetUserActionHandler { get; }
-
-        private IActionHandler<GetCharacterCommand> GetCharacterActionHandler { get; }
 
         private IConnectionRepository<UserResponseDto> ConnectionRepository { get; }
 
@@ -90,12 +87,10 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         public Challenge(
             IActionHandler<GetUserCommand> getUserActionHandler, 
-            IActionHandler<GetCharacterCommand> getCharacterActionHandler,
             IConnectionRepository<UserResponseDto> connectionRepository
             ) : base(getUserActionHandler)
         {
             GetUserActionHandler = getUserActionHandler;
-            GetCharacterActionHandler = getCharacterActionHandler;
             ConnectionRepository = connectionRepository;
         }
     }
