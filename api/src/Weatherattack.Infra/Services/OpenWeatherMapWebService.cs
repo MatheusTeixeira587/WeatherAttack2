@@ -26,11 +26,7 @@ namespace WeatherAttack.Infra.Services
         {
             var uriString = $"{OpenWeatherMapUrl}?lat={latitude.ToString()}&lon={longitude.ToString()}&units=metric&appid={OpenWeatherMapKey}";
 
-            Uri uri = new Uri(uriString);
-
-            var request = WebRequest.CreateHttp(uri);
-            request.Accept = ApplicationJson;
-            request.ContentType = ApplicationJson;
+            var request = CreateRequest(uriString);
 
             using (var response = await request.GetResponseAsync())
             {
@@ -38,7 +34,7 @@ namespace WeatherAttack.Infra.Services
                 {
                     using (var streamReader = new StreamReader(responseContent))
                     {
-                        var jsonResponse = streamReader.ReadToEnd();
+                        var jsonResponse = await streamReader.ReadToEndAsync();
                         return JsonConvert.DeserializeObject<CurrentWeatherRequestDto>(
                             jsonResponse
                         );
@@ -46,5 +42,18 @@ namespace WeatherAttack.Infra.Services
                 }
             }
         }
+
+        private HttpWebRequest CreateRequest(Uri uri)
+        {
+            var request = WebRequest.CreateHttp(uri);
+            request.Accept = ApplicationJson;
+            request.ContentType = ApplicationJson;
+
+            return request;
+        }
+
+        private HttpWebRequest CreateRequest(string uri)
+            => CreateRequest(new Uri(uri));
+
     }
 }

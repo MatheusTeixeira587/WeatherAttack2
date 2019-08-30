@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Contracts.Dtos.User.Response;
@@ -9,7 +10,7 @@ using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
-    public class GetUserActionHandler : IActionHandler<GetUserCommand>
+    public class GetUserActionHandler : IActionHandlerAsync<GetUserCommand>
     {
         private IUserRepository Context { get; }
 
@@ -21,9 +22,9 @@ namespace WeatherAttack.Application.Command.User.Handlers
             Mapper = mapper;
         }
 
-        public GetUserCommand ExecuteAction(GetUserCommand command)
+        public async Task<GetUserCommand> ExecuteActionAsync(GetUserCommand command)
         {
-            var result = Context
+            var result = await Context
                 .Find(command.Id);
 
             if (result is null)

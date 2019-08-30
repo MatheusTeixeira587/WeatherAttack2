@@ -2,13 +2,12 @@
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Security.Commands;
-using WeatherAttack.WebApi.Extensions.Controller;
 
 namespace WeatherAttack.WebApi.Controllers.Authorization
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthenticationController : ControllerBase
+    public class AuthenticationController : BaseController
     {
         private IActionHandler<LoginCommand> LoginActionHandler { get; }
 
@@ -19,11 +18,7 @@ namespace WeatherAttack.WebApi.Controllers.Authorization
 
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginCommand command)
-        {
-            return await Task.Run(() =>
-            {
-                return this.Response(LoginActionHandler.ExecuteAction(command));
-            });          
-        }
+            => await Task.Run(()
+                => GetResponse(LoginActionHandler.ExecuteAction(command)));
     }
 }

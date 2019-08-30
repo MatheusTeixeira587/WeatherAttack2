@@ -20,7 +20,7 @@ namespace WeatherAttack.Application.Command.Weather.Handlers
             Mapper = mapper;
         }
 
-        public async Task<GetCurrentWeatherCommand> ExecuteAction(GetCurrentWeatherCommand command)
+        public async Task<GetCurrentWeatherCommand> ExecuteActionAsync(GetCurrentWeatherCommand command)
         {
             if (!command.IsValid)
                 return command;

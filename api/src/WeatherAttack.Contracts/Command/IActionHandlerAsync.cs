@@ -4,6 +4,6 @@ namespace WeatherAttack.Contracts.Command
 {
     public interface IActionHandlerAsync<T> where T : CommandBase
     {
-        Task<T> ExecuteAction(T command);
+        Task<T> ExecuteActionAsync(T command);
     }
 }

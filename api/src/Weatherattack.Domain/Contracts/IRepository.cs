@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace WeatherAttack.Domain.Contracts
 {
@@ -12,11 +13,11 @@ namespace WeatherAttack.Domain.Contracts
 
         IQueryable<Entity> Get(int skip, int take);
 
-        Entity Find(long primaryKey);
+        Task<Entity> Find(long primaryKey);
 
         IQueryable<Entity> Find(Expression<Func<Entity, bool>> predicate);
 
-        long Count();
+        Task<long> Count();
 
         void Add(Entity entity);
 

@@ -2,6 +2,7 @@
 using System;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using WeatherAttack.Domain.Contracts;
 
 namespace WeatherAttack.Infra.Repositories
@@ -21,11 +22,11 @@ namespace WeatherAttack.Infra.Repositories
         public virtual IQueryable<Entity> Find(Expression<Func<Entity, bool>> predicate)
             => Context.Set<Entity>().AsNoTracking().Where(predicate);
 
-        public virtual Entity Find(long primaryKey) 
-            => Context.Set<Entity>().Find(primaryKey);
+        public virtual Task<Entity> Find(long primaryKey) 
+            => Context.Set<Entity>().FindAsync(primaryKey);
 
-        public virtual long Count()
-            => Context.Set<Entity>().LongCount(u => 1==1);
+        public virtual Task<long> Count()
+            => Context.Set<Entity>().LongCountAsync(u => 1==1);
 
         public virtual void Add(Entity entity)
             => Context.Set<Entity>().Add(entity);
@@ -37,7 +38,7 @@ namespace WeatherAttack.Infra.Repositories
             => Context.Entry(entity).State = EntityState.Modified;
 
         public virtual void Save()
-            => Context.SaveChanges();
+            => Context.SaveChangesAsync();
 
         protected Repository(DbContext context)
         {

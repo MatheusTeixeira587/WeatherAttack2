@@ -29,7 +29,7 @@ const styles = theme => ({
     }
 })
 
-class SpellTableComponent extends React.Component {
+class SpellTable extends React.Component {
 
     constructor(props) {
         super(props)
@@ -100,7 +100,10 @@ class SpellTableComponent extends React.Component {
                                 {row.baseDamage}
                             </TableCell>
                             <TableCell component="th" scope="row" align="center">
-                                {row.BaseManaCost}
+                                {row.baseManaCost}
+                            </TableCell>
+                            <TableCell component="th" scope="row" align="center">
+                                {row.elements}
                             </TableCell>
                         </TableRow>
                     ))}
@@ -133,4 +136,4 @@ const mapDispatchToProps = dispath =>
         changeRowsPerPageAction
     }, dispath)
 
-export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SpellTableComponent)))
+export default withStyles(styles)(withRouter(connect(mapStateToProps, mapDispatchToProps)(SpellTable)))

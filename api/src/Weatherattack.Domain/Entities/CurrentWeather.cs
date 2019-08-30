@@ -36,6 +36,6 @@ namespace WeatherAttack.Domain.Entities
 
         public WeatherEntities.CountryInfo CountryInfo { get; private set; }
 
-        public string CityName { get; set; }
+        public string CityName { get; private set; }
     }
 }

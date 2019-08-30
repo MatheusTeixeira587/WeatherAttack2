@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Request;
 using WeatherAttack.Contracts.Dtos.User.Response;
@@ -12,7 +13,7 @@ using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
-    public class GetPagedUsersActionHandler : IActionHandler<GetPagedUsersCommand>
+    public class GetPagedUsersActionHandler : IActionHandlerAsync<GetPagedUsersCommand>
     {
         private IUserRepository Context { get; }
 
@@ -24,7 +25,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
             Mapper = mapper;
         }
 
-        public GetPagedUsersCommand ExecuteAction(GetPagedUsersCommand command)
+        public async Task<GetPagedUsersCommand> ExecuteActionAsync(GetPagedUsersCommand command)
         {
             int skip = (int)(command.PageSize * (command.PageNumber - 1));
             int take = (int)command.PageSize;
@@ -37,17 +38,17 @@ namespace WeatherAttack.Application.Command.User.Handlers
             if (result is null)
                 return command;
 
-            long totalRecords = Context.Count();
-
             command.PageNumber = (skip + take) / command.PageSize;
+            command.Result = result;
+
+            long totalRecords = await Context.Count();
+
             command.PageCount = 
                 totalRecords / command.PageSize < 1 
                     ? 1
                     : totalRecords / command.PageSize;
 
             command.TotalRecords = totalRecords;
-
-            command.Result = result;
 
             return command;
         }

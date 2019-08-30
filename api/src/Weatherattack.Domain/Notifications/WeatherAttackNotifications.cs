@@ -20,7 +20,7 @@ namespace WeatherAttack.Domain.Notifications
             public const string UsernameAlreadyInUse = "USN-007";
             public const string EmailAlreadyInUse = "USN-008";
 
-            public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
+            public static readonly IReadOnlyList<Notification> Messages = new Notification[]
             {
                 new Notification(InvalidEmail, "Invalid email.", "Email inválido.") ,
                 new Notification(InvalidUsername, "Invalid Username.", "Username inválido."),
@@ -37,7 +37,7 @@ namespace WeatherAttack.Domain.Notifications
         {
             public const string InvalidCharacter = "CRN-001";
 
-            public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
+            public static readonly IReadOnlyList<Notification> Messages = new Notification[]
             {
                 new Notification(InvalidCharacter, "Invalid character.", "Personagem inválido."),
             };
@@ -53,7 +53,7 @@ namespace WeatherAttack.Domain.Notifications
             public const string NameIsRequired = "SPL-006";
             public const string NotFound = "SPL-007";
 
-            public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
+            public static readonly IReadOnlyList<Notification> Messages = new Notification[]
             {
                 new Notification(BaseDamageShouldBeHigherThan, $"Base Damage must be higher than {Rules.Spell.BaseDamage.MinDamage}.", $"O Dano base deve ser maior que {Rules.Spell.BaseDamage.MinDamage}."),
                 new Notification(BaseDamageShouldBeLowerThan, $"Base Damage must be lower than {Rules.Spell.BaseDamage.MaxDamage}.", $"O Dano base deve ser menor que {Rules.Spell.BaseDamage.MaxDamage}."),
@@ -63,6 +63,7 @@ namespace WeatherAttack.Domain.Notifications
                 new Notification(NameIsRequired, "Name is required", "Nome é obrigatório."),
                 new Notification(NotFound, "Spell not found.", "Magia não encontrada."),
             };
+
         }
 
         public static class Command
@@ -72,7 +73,7 @@ namespace WeatherAttack.Domain.Notifications
             public const string InvalidValue = "COM-003";
             public const string InvalidCredentials = "COM-004";
 
-            public static readonly IReadOnlyList<Notification> Messages = new List<Notification>
+            public static readonly IReadOnlyList<Notification> Messages = new Notification[]
             {
                 new Notification(InvalidId, "Invalid Id.", "Id inválido."),
                 new Notification(UserIsRequired, "User is required.", "Usuário é obrigatório."),
@@ -82,14 +83,10 @@ namespace WeatherAttack.Domain.Notifications
         }
 
         public static Notification Get(string cod)
-        {            
-            return List.FirstOrDefault(c => c.Code == cod);
-        }
+            => List.FirstOrDefault(c => c.Code == cod);
 
         public static List<Notification> Get(ImmutableArray<string> codArray)
-        {
-            return List.FindAll(c => codArray.Contains(c.Code));
-        }
+            => List.FindAll(c => codArray.Contains(c.Code));
 
 
         private static List<Notification> GetFullNotificationList()

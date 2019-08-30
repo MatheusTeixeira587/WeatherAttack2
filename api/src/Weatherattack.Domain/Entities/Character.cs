@@ -18,7 +18,7 @@ namespace WeatherAttack.Domain.Entities
             Medals = medals;
         }
 
-        public long UserId { get; set; }
+        public long UserId { get; private set; }
 
         public long HealthPoints { get; private set; } = Rules.Character.HealthPoints.InitialValue;
 

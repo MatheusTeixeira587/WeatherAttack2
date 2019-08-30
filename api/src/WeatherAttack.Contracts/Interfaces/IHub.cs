@@ -1,4 +1,5 @@
-﻿using WeatherAttack.Contracts.Dtos.User.Response;
+﻿using System.Threading.Tasks;
+using WeatherAttack.Contracts.Dtos.User.Response;
 
 namespace WeatherAttack.Contracts.Interfaces
 {
@@ -6,6 +7,6 @@ namespace WeatherAttack.Contracts.Interfaces
     {
         long GetUserId();
 
-        UserResponseDto GetUser();
+        Task<UserResponseDto> GetUser();
     }
 }

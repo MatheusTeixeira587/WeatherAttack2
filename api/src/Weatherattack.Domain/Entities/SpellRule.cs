@@ -1,5 +1,4 @@
-﻿using Valit;
-using WeatherAttack.Domain.Enums;
+﻿using WeatherAttack.Domain.Enums;
 
 namespace WeatherAttack.Domain.Entities
 {
@@ -22,17 +21,12 @@ namespace WeatherAttack.Domain.Entities
 
         public Spell Spell { get; private set; }
 
-        public long SpellId { get; set; }
+        public long SpellId { get; private set; }
 
         public int Value { get; private set; }
 
         public Operator Operator { get; private set; }
 
         public WeatherCondition WeatherCondition { get; private set; }
-
-        protected override bool Validate()
-        {
-            return !HasNotification();
-        }
     }
 }

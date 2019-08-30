@@ -10,13 +10,9 @@ namespace WeatherAttack.Security.Services
         private byte SaltWorkFactor;
 
         public string HashPassword(string password)
-        {
-            return BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt(SaltWorkFactor));
-        }
+            => BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt(SaltWorkFactor));
 
         public bool CheckPassword(string password, string hashed)
-        {
-            return BCryptHelper.CheckPassword(password, hashed);
-        }
+            => BCryptHelper.CheckPassword(password, hashed);
     }
 }

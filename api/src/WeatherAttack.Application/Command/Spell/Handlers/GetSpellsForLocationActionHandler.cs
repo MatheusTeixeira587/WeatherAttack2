@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
 using WeatherAttack.Contracts.Dtos.Weather.Request;
 using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Contracts.Mapper;
@@ -23,7 +24,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
         private ISpellRepository Context { get; }
 
-        private IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto> SpellMapper { get; }
+        private IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto> SpellMapper { get; }
 
         private static readonly IReadOnlyCollection<long> StormIdList = new ReadOnlyCollection<long>(
                 new List<long>()
@@ -31,7 +32,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
                     200, 201, 202, 210, 211, 212, 221, 230, 231, 232
                 });
 
-        public GetSpellsForLocationActionHandler(IOpenWeatherMapService openWeatherMap, IMapper<CurrentWeather, CurrentWeatherRequestDto, CurrentWeatherRequestDto> weatherMapper, ISpellRepository context, IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto> spellMapper)
+        public GetSpellsForLocationActionHandler(IOpenWeatherMapService openWeatherMap, IMapper<CurrentWeather, CurrentWeatherRequestDto, CurrentWeatherRequestDto> weatherMapper, ISpellRepository context, IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto> spellMapper)
         {
             OpenWeatherMap = openWeatherMap;
             WeatherMapper = weatherMapper;
@@ -39,7 +40,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
             SpellMapper = spellMapper;
         }
 
-        public async Task<GetSpellsForLocationCommand> ExecuteAction(GetSpellsForLocationCommand command)
+        public async Task<GetSpellsForLocationCommand> ExecuteActionAsync(GetSpellsForLocationCommand command)
         {
             if (!command.IsValid)
                 return command;

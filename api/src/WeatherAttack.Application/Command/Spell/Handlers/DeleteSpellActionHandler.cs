@@ -2,21 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Spell.Handlers
 {
-    public class DeleteSpellActionHandler : IActionHandler<DeleteSpellCommand>
+    public class DeleteSpellActionHandler : IActionHandlerAsync<DeleteSpellCommand>
     {
         private ISpellRepository Context { get; }
 
-        public DeleteSpellCommand ExecuteAction(DeleteSpellCommand command)
+        public async Task<DeleteSpellCommand> ExecuteActionAsync(DeleteSpellCommand command)
         {
-            var result = Context
-                .Find(c => c.Id == command.Id)
-                .SingleOrDefault();
+            var result = await Context
+                .Find(command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);

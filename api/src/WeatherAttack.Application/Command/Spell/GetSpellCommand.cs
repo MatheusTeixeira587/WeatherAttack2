@@ -1,10 +1,10 @@
 ﻿using WeatherAttack.Contracts.Command;
-using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
 
 namespace WeatherAttack.Application.Command.Spell
 {
     public class GetSpellCommand : CommandBase
     {
-        public SpellRequestDto Result { get; set; }
+        public SpellResponseDto Result { get; set; }
     }
 }

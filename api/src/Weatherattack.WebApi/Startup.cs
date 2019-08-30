@@ -179,15 +179,15 @@ namespace Weatherattack.WebApi
             services.AddTransient<IActionHandler<LoginCommand>, LoginActionHandler>();
 
             services.AddTransient<IActionHandler<AddUserCommand>, AddUserActionHandler>();
-            services.AddTransient<IActionHandler<GetPagedUsersCommand>, GetPagedUsersActionHandler>();
-            services.AddTransient<IActionHandler<GetUserCommand>, GetUserActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetPagedUsersCommand>, GetPagedUsersActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetUserCommand>, GetUserActionHandler>();
             services.AddTransient<IActionHandler<DeleteUserCommand>, DeleteUserActionHandler>();
 
-            services.AddTransient<IActionHandler<GetSpellCommand>, GetSpellActionHandler>();
-            services.AddTransient<IActionHandler<GetPagedSpellsCommand>, GetPagedSpellsActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetSpellCommand>, GetSpellActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetPagedSpellsCommand>, GetPagedSpellsActionHandler>();
             services.AddTransient<IActionHandler<GetAllSpellsCommand>, GetAllSpellsActionHandler>();
             services.AddTransient<IActionHandler<AddSpellCommand>, AddSpellActionHandler>();
-            services.AddTransient<IActionHandler<DeleteSpellCommand>, DeleteSpellActionHandler>();
+            services.AddTransient<IActionHandlerAsync<DeleteSpellCommand>, DeleteSpellActionHandler>();
             services.AddTransient<IActionHandlerAsync<GetSpellsForLocationCommand>, GetSpellsForLocationActionHandler>();
 
             services.AddTransient<IActionHandler<GetCharacterCommand>, GetCharacterActionHandler>();
@@ -208,26 +208,20 @@ namespace Weatherattack.WebApi
 
             app.UseAuthentication();
 
-            app.UseCors(builder => 
+            app.UseCors(builder =>
                 builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader()
-                .AllowCredentials());
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials());
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherAttack API");
-            });
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherAttack API"));
 
-            app.UseRewriter(new RewriteOptions().AddRedirect("^$", "swagger"));
             app.UseHttpsRedirection();
             app.UseMvc();
 
-            app.UseSignalR(routes =>
-            {
-                routes.MapHub<Challenge>("/challenge");
-            });
+            app.UseSignalR(routes => routes.MapHub<Challenge>("/challenge"));
+            app.UseRewriter(new RewriteOptions().AddRedirect("^$", "swagger"));
         }
     }
 }

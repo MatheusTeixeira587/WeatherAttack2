@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using WeatherAttack.Contracts.Command;
-using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
 
 namespace WeatherAttack.Application.Command.Spell
 {
@@ -8,6 +8,6 @@ namespace WeatherAttack.Application.Command.Spell
     {
         public GetAllSpellsCommand(long id) : base(id) { }
 
-        public ICollection<SpellRequestDto> Result;
+        public ICollection<SpellResponseDto> Result;
     }
 }

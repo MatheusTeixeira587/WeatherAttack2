@@ -1,93 +1,75 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Spell;
 using WeatherAttack.Contracts.Command;
-using WeatherAttack.WebApi.Extensions.Controller;
 
 namespace WeatherAttack.WebApi.Controllers.Spell
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SpellController : ControllerBase
+    public class SpellController : BaseController
     {
         private IActionHandler<AddSpellCommand> AddSpellActionHandler { get; }
 
-        private IActionHandler<GetSpellCommand> GetSpellActionHandler { get; }
+        private IActionHandlerAsync<GetSpellCommand> GetSpellActionHandler { get; }
 
         private IActionHandler<GetAllSpellsCommand> GetAllSpellsActionHandler { get; }
 
-        private IActionHandler<DeleteSpellCommand> DeleteSpellActionHandler { get; }
+        private IActionHandlerAsync<DeleteSpellCommand> DeleteSpellActionHandler { get; }
 
-        private IActionHandler<GetSpellsForLocationCommand> GetSpellsForLocationActionHandler { get; }
+        private IActionHandlerAsync<GetSpellsForLocationCommand> GetSpellsForLocationActionHandler { get; }
 
-        private IActionHandler<GetPagedSpellsCommand> GetPagedSpellActionHandler { get; }
+        private IActionHandlerAsync<GetPagedSpellsCommand> GetPagedSpellActionHandler { get; }
 
         [HttpGet]
         public async Task<IActionResult> Get([FromRoute] GetAllSpellsCommand command)
-        {
-            return await Task.Run(() => 
-            {
-                return this.Response(GetAllSpellsActionHandler.ExecuteAction(command));
-            });
-        }
+            => await Task.Run(() 
+                => GetResponse(GetAllSpellsActionHandler.ExecuteAction(command)));
 
         [HttpGet("Page-{Page:min(1)}")]
         public async Task<IActionResult> Get([FromRoute]GetPagedSpellsCommand command, long page)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
                 command.PageNumber = page;
-                return this.Response(GetPagedSpellActionHandler.ExecuteAction(command));
+                return GetResponse(await GetPagedSpellActionHandler.ExecuteActionAsync(command));
             });
         }
 
         [HttpGet("{Id:min(1)}")]
         public async Task<IActionResult> Get([FromRoute] GetSpellCommand command, long id)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
                 command.Id = id;
-
-                return this.Response(GetSpellActionHandler.ExecuteAction(command));
+                return GetResponse(await GetSpellActionHandler.ExecuteActionAsync(command));
             });
         }
 
         [HttpPut]
         public async Task<IActionResult> Add([FromBody] AddSpellCommand command)
-        {
-            return await Task.Run(() =>
-            {
-                return this.Response(AddSpellActionHandler.ExecuteAction(command));
-            });
-        }
+            => await Task.Run(()
+                => GetResponse(AddSpellActionHandler.ExecuteAction(command)));
 
         [HttpDelete("{Id:min(1)}")]
         public async Task<IActionResult> Delete([FromRoute] DeleteSpellCommand command, long id)
-        {
-            return await Task.Run(() => 
-            {
-                command.Id = id;
-
-                return this.Response(DeleteSpellActionHandler.ExecuteAction(command));
-            });
-        }
+        => GetResponse(await DeleteSpellActionHandler.ExecuteActionAsync(command));
 
         [HttpPost("[action]")]
         public async Task<IActionResult> GetSpellsForLocation([FromBody] GetSpellsForLocationCommand command)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
-                return this.Response(GetSpellsForLocationActionHandler.ExecuteAction(command));
+                return GetResponse(await GetSpellsForLocationActionHandler.ExecuteActionAsync(command));
             });
         }
 
         public SpellController(IActionHandler<AddSpellCommand> addSpellActionHandler,
-            IActionHandler<GetSpellCommand> getSpellActionHandler,
             IActionHandler<GetAllSpellsCommand> getAllSpellsActionHandler,
-            IActionHandler<DeleteSpellCommand> deleteSpellActionHandler,
-            IActionHandler<GetSpellsForLocationCommand> getSpellsForLocationActionHandler,
-            IActionHandler<GetPagedSpellsCommand> getPagedSpellActionHandler)
+            IActionHandlerAsync<GetSpellCommand> getSpellActionHandler,
+            IActionHandlerAsync<DeleteSpellCommand> deleteSpellActionHandler,
+            IActionHandlerAsync<GetSpellsForLocationCommand> getSpellsForLocationActionHandler,
+            IActionHandlerAsync<GetPagedSpellsCommand> getPagedSpellActionHandler)
         {
             AddSpellActionHandler = addSpellActionHandler;
             GetSpellActionHandler = getSpellActionHandler;

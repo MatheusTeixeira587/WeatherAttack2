@@ -1,4 +1,5 @@
 ﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using WeatherAttack.Application.Command.User;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
@@ -9,7 +10,7 @@ namespace WeatherAttack.Hub.Hubs
 {
     public abstract class HubBase : SignalRHub, IHub
     {
-        private IActionHandler<GetUserCommand> GetUserActionHandler { get; }
+        private IActionHandlerAsync<GetUserCommand> GetUserActionHandler { get; }
 
         public virtual long GetUserId()
         {
@@ -20,17 +21,16 @@ namespace WeatherAttack.Hub.Hubs
                     .Value);
         }
 
-        public virtual UserResponseDto GetUser()
+        public async virtual Task<UserResponseDto> GetUser()
         {
             var id = GetUserId();
 
-            var user = GetUserActionHandler.ExecuteAction(new GetUserCommand() { Id = id }).Result;
-            user.Email = null;
-
-            return user;
+            var command = await GetUserActionHandler.ExecuteActionAsync(new GetUserCommand() { Id = id });
+            command.Result.Email = null;
+            return command.Result;
         }
 
-        protected HubBase(IActionHandler<GetUserCommand> getUserActionHandler)
+        protected HubBase(IActionHandlerAsync<GetUserCommand> getUserActionHandler)
         {
             GetUserActionHandler = getUserActionHandler;
         }

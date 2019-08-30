@@ -3,13 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Weather;
 using WeatherAttack.Contracts.Command;
-using WeatherAttack.WebApi.Extensions.Controller;
 
 namespace WeatherAttack.WebApi.Controllers.Weather
 {
     [Route("api/[controller]")]
     [ApiController, AllowAnonymous]
-    public class WeatherController : ControllerBase
+    public class WeatherController : BaseController
     {
         private IActionHandlerAsync<GetCurrentWeatherCommand> GetCurrentWeatherActionHandler { get; }
 
@@ -23,7 +22,7 @@ namespace WeatherAttack.WebApi.Controllers.Weather
         {
             return await Task.Run(async () =>
             {
-                return this.Response(await GetCurrentWeatherActionHandler.ExecuteAction(command));
+                return GetResponse(await GetCurrentWeatherActionHandler.ExecuteActionAsync(command));
             });
         }
     }

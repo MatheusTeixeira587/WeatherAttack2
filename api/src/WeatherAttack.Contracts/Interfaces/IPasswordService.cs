@@ -1,4 +1,6 @@
-﻿namespace WeatherAttack.Contracts.interfaces
+﻿using System.Threading.Tasks;
+
+namespace WeatherAttack.Contracts.interfaces
 {
     public interface IPasswordService
     {

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Valit;
 using WeatherAttack.Contracts.Command;
-using WeatherAttack.Contracts.Dtos.Spell.Request;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Spell
@@ -12,11 +12,11 @@ namespace WeatherAttack.Application.Command.Spell
 
         public double Longitude { get; set; }
 
-        public ICollection<SpellRequestDto> Result { get; set; }
+        public ICollection<SpellResponseDto> Result { get; set; }
 
         public GetSpellsForLocationCommand(long id): base(id)
         {
-            Result = new List<SpellRequestDto>();
+            Result = new List<SpellResponseDto>();
         }
 
         protected override bool Validate()

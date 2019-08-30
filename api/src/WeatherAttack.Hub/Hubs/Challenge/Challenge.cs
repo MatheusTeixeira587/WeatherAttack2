@@ -12,7 +12,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 {
     public class Challenge : HubBase
     {
-        private IActionHandler<GetUserCommand> GetUserActionHandler { get; }
+        private IActionHandlerAsync<GetUserCommand> GetUserActionHandler { get; }
 
         private IConnectionRepository<UserResponseDto> ConnectionRepository { get; }
 
@@ -62,7 +62,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         public override async Task OnConnectedAsync()
         {
-            var user = GetUser();
+            var user = await GetUser();
 
             ConnectionRepository.Add(user, Context.ConnectionId);
 
@@ -76,7 +76,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
 
         public override async Task OnDisconnectedAsync(Exception exception)
         {
-            var user = GetUser();
+            var user = await GetUser();
 
             ConnectionRepository.Remove(user);
 
@@ -86,7 +86,7 @@ namespace WeatherAttack.Hub.Hubs.Challenge
         }
 
         public Challenge(
-            IActionHandler<GetUserCommand> getUserActionHandler, 
+            IActionHandlerAsync<GetUserCommand> getUserActionHandler, 
             IConnectionRepository<UserResponseDto> connectionRepository
             ) : base(getUserActionHandler)
         {

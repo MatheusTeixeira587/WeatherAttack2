@@ -2,7 +2,6 @@
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
-using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
