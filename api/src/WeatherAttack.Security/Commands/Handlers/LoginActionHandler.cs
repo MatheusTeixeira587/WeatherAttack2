@@ -3,7 +3,7 @@ using WeatherAttack.Contracts.Interfaces;
 
 namespace WeatherAttack.Security.Commands.Handlers
 {
-    public class LoginActionHandler : IActionHandler<LoginCommand>
+    public class LoginActionHandler : IActionHandlerAsync<LoginCommand>
     {
         private IAuthenticationService AuthenticationService { get; }
 
@@ -12,9 +12,9 @@ namespace WeatherAttack.Security.Commands.Handlers
             AuthenticationService = authenticationService;
         }
 
-        public LoginCommand ExecuteAction(LoginCommand command)
+        public async System.Threading.Tasks.Task<LoginCommand> ExecuteActionAsync(LoginCommand command)
         {
-            return AuthenticationService.GrantAuthorization(command) as LoginCommand;
+            return (await AuthenticationService.GrantAuthorizationAsync(command)) as LoginCommand;
         }
     }
 }

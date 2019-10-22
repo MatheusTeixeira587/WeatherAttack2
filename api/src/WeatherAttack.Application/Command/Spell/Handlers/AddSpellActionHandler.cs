@@ -6,12 +6,14 @@ using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Entities;
 using System.Linq;
 using Entities = WeatherAttack.Domain.Entities;
+using WeatherAttack.Contracts.Dtos.Spell.Response;
+using System.Threading.Tasks;
 
 namespace WeatherAttack.Application.Command.Spell.Handlers
 {
-    public class AddSpellActionHandler : IActionHandler<AddSpellCommand>
+    public class AddSpellActionHandler : IActionHandlerAsync<AddSpellCommand>
     {
-        public AddSpellActionHandler(ISpellRepository context, IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto> mapper)
+        public AddSpellActionHandler(ISpellRepository context, IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto> mapper)
         {
             Context = context;
             Mapper = mapper;
@@ -19,9 +21,9 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
         private ISpellRepository Context { get; }
 
-        private IMapper<Entities.Spell, SpellRequestDto, SpellRequestDto> Mapper { get; }
+        private IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto> Mapper { get; }
 
-        public AddSpellCommand ExecuteAction(AddSpellCommand command)
+        public async Task<AddSpellCommand> ExecuteActionAsync(AddSpellCommand command)
         {
             if (!command.IsValid)
                 return command;
@@ -31,11 +33,11 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
             if (spell.IsValid)
             {
                 if (spell.IsNew)
-                    Context.Add(spell);
+                    await Context.AddAsync(spell);
                 else
                     Context.Edit(spell);
 
-                Context.Save();
+                Context.SaveAsync();
             }
 
             command.AddNotification(spell.Notifications);

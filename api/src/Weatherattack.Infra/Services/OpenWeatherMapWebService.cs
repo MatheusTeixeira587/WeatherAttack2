@@ -5,6 +5,7 @@ using System.Net;
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Dtos.Weather.Request;
 using WeatherAttack.Contracts.Interfaces;
+using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Services
 {

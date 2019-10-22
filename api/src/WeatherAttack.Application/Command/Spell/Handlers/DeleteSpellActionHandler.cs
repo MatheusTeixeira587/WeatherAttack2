@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
@@ -16,14 +12,14 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
         public async Task<DeleteSpellCommand> ExecuteActionAsync(DeleteSpellCommand command)
         {
             var result = await Context
-                .Find(command.Id);
+                .FindAsync(command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);
             else
                 Context.Delete(result);
 
-            Context.Save();
+            Context.SaveAsync();
 
             return command;
         }

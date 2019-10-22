@@ -7,6 +7,10 @@
             Volume = volume;
         }
 
+        public Rain()
+        {
+        }
+
         public double Volume { get; private set; }
     }
 }

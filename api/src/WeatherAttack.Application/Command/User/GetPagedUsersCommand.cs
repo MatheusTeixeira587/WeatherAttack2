@@ -6,6 +6,6 @@ namespace WeatherAttack.Application.Command.User
 {
     public class GetPagedUsersCommand : PagedCommand
     {
-        public ICollection<UserResponseDto> Result { get; set; }
+        public IEnumerable<UserResponseDto> Result { get; set; }
     }
 }

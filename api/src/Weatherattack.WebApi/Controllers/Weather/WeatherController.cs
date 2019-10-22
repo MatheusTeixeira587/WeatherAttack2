@@ -13,17 +13,13 @@ namespace WeatherAttack.WebApi.Controllers.Weather
         private IActionHandlerAsync<GetCurrentWeatherCommand> GetCurrentWeatherActionHandler { get; }
 
         public WeatherController(IActionHandlerAsync<GetCurrentWeatherCommand> getCurrentWeatherActionHandler)
-        {
-            GetCurrentWeatherActionHandler = getCurrentWeatherActionHandler;
-        }
+            => GetCurrentWeatherActionHandler = getCurrentWeatherActionHandler;
 
         [HttpPost]
-        public async Task<IActionResult> Get([FromBody] GetCurrentWeatherCommand command)
-        {
-            return await Task.Run(async () =>
-            {
-                return GetResponse(await GetCurrentWeatherActionHandler.ExecuteActionAsync(command));
-            });
+        public async Task<IActionResult> GetAsync([FromBody] GetCurrentWeatherCommand command)
+        { 
+            var a = GetResponse(await GetCurrentWeatherActionHandler.ExecuteActionAsync(command));
+            return a;
         }
     }
 }

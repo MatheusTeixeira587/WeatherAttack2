@@ -5,6 +5,8 @@ namespace WeatherAttack.Domain.Entities
 {
     public class CurrentWeather : EntityBase
     {
+        public CurrentWeather() { }
+
         public CurrentWeather(
             long id, 
             string cityName, 

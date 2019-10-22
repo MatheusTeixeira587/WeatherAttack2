@@ -19,6 +19,8 @@ namespace WeatherAttack.Domain.Notifications
             public const string UserNotFound = "USN-006";
             public const string UsernameAlreadyInUse = "USN-007";
             public const string EmailAlreadyInUse = "USN-008";
+            public const string EmailCannotBeChanged = "USN-009";
+            public const string UsernameCannotBeChanged = "USN-010";
 
             public static readonly IReadOnlyList<Notification> Messages = new Notification[]
             {
@@ -30,6 +32,8 @@ namespace WeatherAttack.Domain.Notifications
                 new Notification(UserNotFound, "User not found.", "Usuario não encontrado."),
                 new Notification(UsernameAlreadyInUse, "This username was already being taken.", "Nome já está em uso."),
                 new Notification(EmailAlreadyInUse, "Email already in use.", "Email já está em uso."),
+                new Notification(EmailCannotBeChanged, "Email adress cannot be changed.", "Endereço de email não pode ser alterado"),
+                new Notification(UsernameCannotBeChanged, "Username cannot be changed.", "Nome de usuário não pode ser alterado")
             };
         }
 

@@ -27,13 +27,11 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
         public async Task<GetPagedUsersCommand> ExecuteActionAsync(GetPagedUsersCommand command)
         {
-            int skip = (int)(command.PageSize * (command.PageNumber - 1));
-            int take = (int)command.PageSize;
+            int skip = (int) (command.PageSize * (command.PageNumber - 1));
+            int take = (int) command.PageSize;
 
-            var result = Context
-                .Get(skip, take)
-                ?.Select(r => Mapper.ToDto(r))
-                .ToList();
+            var result = (await Context.GetAsync(skip, take))
+                .Select(r => Mapper.ToDto(r));
 
             if (result is null)
                 return command;
@@ -41,10 +39,10 @@ namespace WeatherAttack.Application.Command.User.Handlers
             command.PageNumber = (skip + take) / command.PageSize;
             command.Result = result;
 
-            long totalRecords = await Context.Count();
+            long totalRecords = await Context.CountAsync();
 
             command.PageCount = 
-                totalRecords / command.PageSize < 1 
+                (totalRecords / command.PageSize) < 1 
                     ? 1
                     : totalRecords / command.PageSize;
 

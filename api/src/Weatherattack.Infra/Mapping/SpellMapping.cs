@@ -14,10 +14,10 @@ namespace WeatherAttack.Infra.Mapping
             builder.ToTable("Spells");
 
             builder.HasKey(m => m.Id)
-                .ForSqlServerIsClustered();
+                .IsClustered();
 
             builder.Property(m => m.Id)
-                .UseSqlServerIdentityColumn()
+                .UseIdentityColumn()
                 .ValueGeneratedOnAdd();
 
             builder.Property(m => m.BaseDamage)

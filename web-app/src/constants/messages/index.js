@@ -56,7 +56,7 @@ export const APP_TEXTS = {
         PT_BR: "Faça seu login!"
     },
     addText: {
-        EN_US: "Add new",
+        EN_US: "New",
         PT_BR: "Adicionar novo"
     },
     doneText: {

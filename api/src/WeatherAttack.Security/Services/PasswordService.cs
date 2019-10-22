@@ -1,16 +1,20 @@
 ﻿using BCrypt;
 using WeatherAttack.Contracts.interfaces;
+using WeatherAttack.Security.Entities;
 
 namespace WeatherAttack.Security.Services
 {
     public class PasswordService : IPasswordService
     {
-        public PasswordService(byte workFactor) => SaltWorkFactor = workFactor;
+        private SecuritySettings SecuritySettings { get; }
 
-        private byte SaltWorkFactor;
+        public PasswordService(SecuritySettings securitySettings)
+        {
+            SecuritySettings = securitySettings;
+        }
 
         public string HashPassword(string password)
-            => BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt(SaltWorkFactor));
+            => BCryptHelper.HashPassword(password, BCryptHelper.GenerateSalt(SecuritySettings.SaltWorkFactor));
 
         public bool CheckPassword(string password, string hashed)
             => BCryptHelper.CheckPassword(password, hashed);

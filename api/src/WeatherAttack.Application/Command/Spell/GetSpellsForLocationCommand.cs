@@ -12,7 +12,7 @@ namespace WeatherAttack.Application.Command.Spell
 
         public double Longitude { get; set; }
 
-        public ICollection<SpellResponseDto> Result { get; set; }
+        public IEnumerable<SpellResponseDto> Result { get; set; }
 
         public GetSpellsForLocationCommand(long id): base(id)
         {

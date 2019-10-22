@@ -9,6 +9,10 @@
             Humidity = humidity;
         }
 
+        public Main()
+        {
+        }
+
         public double Temperature { get; private set; }
 
         public double Pressure { get; private set; }

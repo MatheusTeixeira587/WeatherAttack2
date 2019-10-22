@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
@@ -17,7 +18,23 @@ namespace WeatherAttack.Domain.Entities
 
         public bool IsValid => Validate();
 
-        public List<Notification> Notifications { get; private set; } = new List<Notification>();
+        private List<Notification> _notifications;
+
+        public List<Notification> Notifications {
+            get
+            {
+                if (_notifications is null)
+                    _notifications = new List<Notification>();
+
+                return _notifications;
+            }
+
+            private set
+            {
+                _notifications = value;
+            }
+        }
+
 
         public void AddNotification(string code)
             => AddNotification(WeatherAttackNotifications.Get(code));
@@ -25,8 +42,8 @@ namespace WeatherAttack.Domain.Entities
         public void AddNotification(ImmutableArray<string> codeArray)
             => AddNotification(WeatherAttackNotifications.Get(codeArray));
 
-        public void AddNotification(List<Notification> notifications)
-            => notifications.ForEach(n => AddNotification(n));
+        public void AddNotification(IEnumerable<Notification> notifications)
+            => Notifications.AddRange(notifications.Where(n => !Notifications.Contains(n)));
 
         public void AddNotification(Notification notification)
         {

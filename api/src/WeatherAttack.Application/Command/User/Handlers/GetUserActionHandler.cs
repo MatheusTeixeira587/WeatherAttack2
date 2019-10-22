@@ -25,7 +25,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
         public async Task<GetUserCommand> ExecuteActionAsync(GetUserCommand command)
         {
             var result = await Context
-                .Find(command.Id);
+                .FindAsync(command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.User.UserNotFound);

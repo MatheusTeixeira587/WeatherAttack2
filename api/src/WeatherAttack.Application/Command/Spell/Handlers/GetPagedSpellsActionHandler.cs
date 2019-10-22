@@ -26,10 +26,8 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
             int skip = (int)(command.PageSize * (command.PageNumber - 1));
             int take = (int)command.PageSize;
 
-            var result = Context
-                .Get(skip, take)
-                ?.Select(r => Mapper.ToDto(r))
-                .ToList();
+            var result = (await Context.GetAsync(skip, take))
+                .Select(r => Mapper.ToDto(r));
 
             if (result is null)
                 return command;
@@ -39,7 +37,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
 
             command.Result = result;
 
-            long totalRecords = await Context.Count();
+            long totalRecords = await Context.CountAsync();
 
             command.PageCount =
                 totalRecords / command.PageSize < 1

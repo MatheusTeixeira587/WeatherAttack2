@@ -11,7 +11,7 @@ using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
-    public class AddUserActionHandler : IActionHandler<AddUserCommand>
+    public class AddUserActionHandler : IActionHandlerAsync<AddUserCommand>
     {
         private IUserRepository Context { get; }
 
@@ -26,30 +26,35 @@ namespace WeatherAttack.Application.Command.User.Handlers
             PasswordService = passwordService;
         }
 
-        public AddUserCommand ExecuteAction(AddUserCommand command)
+        public async Task<AddUserCommand> ExecuteActionAsync(AddUserCommand command)
         {
             var user = Mapper.ToEntity(command.User);
-
-            user.SetPassword(PasswordService.HashPassword(user.Password));
-
+           
             if (user.IsValid)
             {
+                user.SetPassword(PasswordService.HashPassword(user.Password));
+
                 if (user.IsNew)
                 {
-                    user = EnsureUniquenessOfEmailAndUsername(user);
+                    user = await EnsureUniquenessOfEmailAndUsernameOnAddAsync(user);
 
-                    if (user.HasNotification())
+                    if (!user.HasNotification())
                     {
                         user.SetCharacter(new Entity.Character());
-                        Context.Add(user);
+                        Context.AddAsync(user);
                     }                  
                 }
                 else
                 {
-                    Context.Edit(user);
+                    user = await EnsureUniquenessOfEmailAndUsernameOnEditAsync(user);
+
+                    if (!user.HasNotification())
+                    {
+                        Context.Edit(user);
+                    }
                 }
 
-                Context.Save();
+                Context.SaveAsync();
             }
 
             command.AddNotification(user.Notifications);
@@ -57,11 +62,10 @@ namespace WeatherAttack.Application.Command.User.Handlers
             return command;
         }
 
-        private Entity.User EnsureUniquenessOfEmailAndUsername(Entity.User user)
+        private async Task<Entity.User> EnsureUniquenessOfEmailAndUsernameOnAddAsync(Entity.User user)
         {
-            var result = Context
-                .Find(u => u.Username == user.Username || u.Email == user.Email)?
-                .ToList();
+            var result = await Context
+                .GetAsync(u => u.Username == user.Username || u.Email == user.Email);
 
             if (result != null)
             {
@@ -70,6 +74,23 @@ namespace WeatherAttack.Application.Command.User.Handlers
 
                 if (result.Any(r => r.Username == user.Username))
                     user.AddNotification(WeatherAttackNotifications.User.UsernameAlreadyInUse);
+            }
+
+            return user;
+        }
+
+        private async Task<Entity.User> EnsureUniquenessOfEmailAndUsernameOnEditAsync(Entity.User user)
+        {
+            var result = await Context
+                .FindAsync(s => s.Id == user.Id);
+
+            if (result != null)
+            {
+                if (result.Email != user.Email)
+                    user.AddNotification(WeatherAttackNotifications.User.EmailCannotBeChanged);
+
+                if (result.Username != user.Username)
+                    user.AddNotification(WeatherAttackNotifications.User.UsernameCannotBeChanged);
             }
 
             return user;

@@ -1,11 +1,12 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
-    public class DeleteUserActionHandler : IActionHandler<DeleteUserCommand>
+    public class DeleteUserActionHandler : IActionHandlerAsync<DeleteUserCommand>
     {
         private IUserRepository Context { get; }
 
@@ -14,11 +15,10 @@ namespace WeatherAttack.Application.Command.User.Handlers
             Context = context;
         }
 
-        public DeleteUserCommand ExecuteAction(DeleteUserCommand entity)
+        public async Task<DeleteUserCommand> ExecuteActionAsync(DeleteUserCommand entity)
         {
-            var user = Context
-                .Find(u => u.Id == entity.Id)
-                .SingleOrDefault();
+            var user = await Context
+                .FindAsync(entity.Id);
 
             if (user != null)
                 Context.Delete(user);

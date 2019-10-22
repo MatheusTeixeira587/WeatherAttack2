@@ -10,13 +10,13 @@ namespace WeatherAttack.WebApi.Controllers.Character
     [ApiController, Authorize]
     public class CharacterController : BaseController
     {
-        private IActionHandler<GetCharacterCommand> GetCharacterActionHandler { get; }
+        private IActionHandlerAsync<GetCharacterCommand> GetCharacterActionHandler { get; }
 
-        public CharacterController(IActionHandler<GetCharacterCommand> getCharacterActionHandler)
-        => GetCharacterActionHandler = getCharacterActionHandler;
+        public CharacterController(IActionHandlerAsync<GetCharacterCommand> getCharacterActionHandler)
+            => GetCharacterActionHandler = getCharacterActionHandler;
 
         [HttpGet("{Id:min(1)}")]
-        public async Task<IActionResult> Get([FromRoute] GetCharacterCommand command)
-            => await Task.Run(() => GetResponse(GetCharacterActionHandler.ExecuteAction(command)));
+        public async Task<IActionResult> GetAsync([FromRoute] GetCharacterCommand command)
+            => GetResponse(await GetCharacterActionHandler.ExecuteActionAsync(command));
     }
 }

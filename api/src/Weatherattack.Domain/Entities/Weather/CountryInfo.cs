@@ -11,6 +11,10 @@ namespace WeatherAttack.Domain.Entities.Weather
             CountryName = countryName;
         }
 
+        public CountryInfo()
+        {
+        }
+
         public string CountryName { get; private set; }
     }
 }

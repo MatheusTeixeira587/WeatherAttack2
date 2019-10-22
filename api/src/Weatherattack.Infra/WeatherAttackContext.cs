@@ -22,7 +22,7 @@ namespace WeatherAttack.Infra
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
-            modelBuilder.ForSqlServerUseIdentityColumns();
+            modelBuilder.UseIdentityColumns();
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new CharacterMapping());
             modelBuilder.ApplyConfiguration(new SpellMapping());

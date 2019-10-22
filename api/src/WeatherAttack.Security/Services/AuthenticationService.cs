@@ -32,14 +32,12 @@ namespace WeatherAttack.Security.Services
             PasswordService = passwordService;
         }
 
-        public CommandBase GrantAuthorization(CommandBase command)
+        public async System.Threading.Tasks.Task<CommandBase> GrantAuthorizationAsync(CommandBase command)
         {
             var loginCommand = command as LoginCommand;
 
-            var result = Context
-                .Find(u => u.Username == loginCommand.Username)
-                .Select(s => new User(s.Id, s.Username, s.PermissionLevel, s.Password))
-                .SingleOrDefault();
+            var result = await Context
+                .FindAsync(u => u.Username == loginCommand.Username);
 
             if (result != null && PasswordService.CheckPassword(loginCommand.Password, result.Password))
             {
@@ -57,8 +55,6 @@ namespace WeatherAttack.Security.Services
 
         private JwtSecurityToken CreateToken(long id, string username, byte userPermissionLevel)
         {
-            var claimIdentity = new IdentityOptions();
-
             var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Options.Value.SigningKey));
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 

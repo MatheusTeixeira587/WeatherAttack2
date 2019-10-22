@@ -10,6 +10,10 @@
             Icon = icon;
         }
 
+        public Weather()
+        {
+        }
+
         public long Id { get; private set; }
 
         public string Main { get; private set; }

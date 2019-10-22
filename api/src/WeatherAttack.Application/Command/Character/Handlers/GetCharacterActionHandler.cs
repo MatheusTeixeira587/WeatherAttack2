@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Character;
@@ -9,7 +10,7 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Character.Handlers
 {
-    public class GetCharacterActionHandler : IActionHandler<GetCharacterCommand>
+    public class GetCharacterActionHandler : IActionHandlerAsync<GetCharacterCommand>
     {
         private ICharacterRepository Context { get; }
 
@@ -21,11 +22,10 @@ namespace WeatherAttack.Application.Command.Character.Handlers
             Mapper = mapper;
         }
 
-        public GetCharacterCommand ExecuteAction(GetCharacterCommand command)
+        public async Task<GetCharacterCommand> ExecuteActionAsync(GetCharacterCommand command)
         {
-            var result = Context
-                .Find(c => c.UserId == command.Id)
-                .SingleOrDefault();
+            var result = await Context
+                .FindAsync(c => c.UserId == command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Character.InvalidCharacter);

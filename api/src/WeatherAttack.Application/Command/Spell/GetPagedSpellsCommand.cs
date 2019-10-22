@@ -6,6 +6,6 @@ namespace WeatherAttack.Application.Command.Spell
 {
     public class GetPagedSpellsCommand : PagedCommand
     {
-        public ICollection<SpellResponseDto> Result;
+        public IEnumerable<SpellResponseDto> Result;
     }
 }

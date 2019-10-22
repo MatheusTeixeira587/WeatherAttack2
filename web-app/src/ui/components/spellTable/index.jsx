@@ -81,13 +81,15 @@ class SpellTable extends React.Component {
     }
 
     _renderTable(classes, rows) {
+        debugger
         return (
             <Table className={classes.table}>
                 <TableHead>
                     <TableRow>
-                        <TableCell align="center"> {APP_TEXTS.usernameTableHeadLabel[this.props.language.selected]} </TableCell>
-                        <TableCell align="center"> {APP_TEXTS.permissionLabel[this.props.language.selected]} </TableCell>
-                        <TableCell align="center"> {APP_TEXTS.medalsLabeltext[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.spellnameLabel[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.baseDamageLabel[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.baseManaCostLabel[this.props.language.selected]} </TableCell>
+                        <TableCell align="center"> {APP_TEXTS.elementsText[this.props.language.selected]} </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>

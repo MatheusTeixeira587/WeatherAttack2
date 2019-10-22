@@ -76,11 +76,9 @@ class AdministrationContent extends Component {
     }
 
     renderTabContent() {
-        if(this.state.currentTab === 1) {
-            return <SpellArea/>
-        } else if (this.state.currentTab === 2) {
-            return <UserArea/>
-        }
+        return this.state.currentTab === 1 
+            ? <SpellArea/>
+            : <UserArea/>
     }
 
     render() {

@@ -7,6 +7,10 @@
             Speed = speed;
         }
 
+        public Wind()
+        {
+        }
+
         public double Speed { get; private set; }
     }
 }

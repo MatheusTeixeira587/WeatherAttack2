@@ -37,6 +37,8 @@ namespace WeatherAttack.Domain.Entities
 
         public List<SpellRule> Rules { get; private set; } = new List<SpellRule>();
 
+        public bool AssertRules(CurrentWeather weather) => Rules.TrueForAll(r => r.Assert(weather));
+
         protected override bool Validate()
         {
             var result = ValitRules<Spell>

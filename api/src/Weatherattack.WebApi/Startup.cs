@@ -1,13 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using Swashbuckle.AspNetCore.Swagger;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,26 +93,28 @@ namespace Weatherattack.WebApi
                     };
                 });
 
-            services.Configure<SecuritySettings>(options => Configuration.GetSection("SecuritySettings").Bind(options));            
+            services.Configure<SecuritySettings>(options => Configuration.GetSection("SecuritySettings").Bind(options));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Info { Title = "WeatherAttackAPI", Version = "v1" });
+            services.AddControllers();
+            services.AddMvc();
 
-                c.AddSecurityDefinition("Bearer", new ApiKeyScheme
-                {
-                    Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
-                    Name = "Authorization",
-                    In = "header",
-                    Type = "apiKey"
-                });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Info { Title = "WeatherAttackAPI", Version = "v1" });
 
-                c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
-                {
-                    { "Bearer", new string[] { } } 
-                });
-            });
+            //    c.AddSecurityDefinition("Bearer", new ApiKeyScheme
+            //    {
+            //        Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
+            //        Name = "Authorization",
+            //        In = "header",
+            //        Type = "apiKey"
+            //    });
+
+            //    c.AddSecurityRequirement(new Dictionary<string, IEnumerable<string>>
+            //    {
+            //        { "Bearer", new string[] { } } 
+            //    });
+            //});
 
             ConfigureDatabase(services);
             ConfigureRepositories(services);
@@ -124,8 +124,6 @@ namespace Weatherattack.WebApi
             ConfigureComparers(services);
 
             services.AddSignalR(s => s.EnableDetailedErrors = true);
-
-            services.AddCors();
         }
 
         public void ConfigureRepositories(IServiceCollection services)
@@ -147,9 +145,8 @@ namespace Weatherattack.WebApi
         {
             string OpenWeatherMapApiKey = Configuration["WebServices:OpenWeatherMap:ApiKey"];
             string OpenWeatherMapUrl = Configuration["WebServices:OpenWeatherMap:Url"];
-            byte WorkFactor = byte.Parse(Configuration["SecuritySettings:SaltWorkFactor"]);
 
-            services.AddTransient<IPasswordService, PasswordService>(p => new PasswordService(WorkFactor));
+            services.AddTransient<IPasswordService, PasswordService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IOpenWeatherMapService, OpenWeatherMapWebService>(p => new OpenWeatherMapWebService(OpenWeatherMapUrl, OpenWeatherMapApiKey));
         }
@@ -176,52 +173,46 @@ namespace Weatherattack.WebApi
 
         public void ConfigureActionHandlers(IServiceCollection services)
         {
-            services.AddTransient<IActionHandler<LoginCommand>, LoginActionHandler>();
+            services.AddTransient<IActionHandlerAsync<LoginCommand>, LoginActionHandler>();
 
-            services.AddTransient<IActionHandler<AddUserCommand>, AddUserActionHandler>();
+            services.AddTransient<IActionHandlerAsync<AddUserCommand>, AddUserActionHandler>();
             services.AddTransient<IActionHandlerAsync<GetPagedUsersCommand>, GetPagedUsersActionHandler>();
             services.AddTransient<IActionHandlerAsync<GetUserCommand>, GetUserActionHandler>();
-            services.AddTransient<IActionHandler<DeleteUserCommand>, DeleteUserActionHandler>();
+            services.AddTransient<IActionHandlerAsync<DeleteUserCommand>, DeleteUserActionHandler>();
 
+            services.AddTransient<IActionHandlerAsync<AddSpellCommand>, AddSpellActionHandler>();
             services.AddTransient<IActionHandlerAsync<GetSpellCommand>, GetSpellActionHandler>();
-            services.AddTransient<IActionHandlerAsync<GetPagedSpellsCommand>, GetPagedSpellsActionHandler>();
-            services.AddTransient<IActionHandler<GetAllSpellsCommand>, GetAllSpellsActionHandler>();
-            services.AddTransient<IActionHandler<AddSpellCommand>, AddSpellActionHandler>();
             services.AddTransient<IActionHandlerAsync<DeleteSpellCommand>, DeleteSpellActionHandler>();
             services.AddTransient<IActionHandlerAsync<GetSpellsForLocationCommand>, GetSpellsForLocationActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetPagedSpellsCommand>, GetPagedSpellsActionHandler>();
 
-            services.AddTransient<IActionHandler<GetCharacterCommand>, GetCharacterActionHandler>();
+            services.AddTransient<IActionHandlerAsync<GetCharacterCommand>, GetCharacterActionHandler>();
 
             services.AddTransient<IActionHandlerAsync<GetCurrentWeatherCommand>, GetCurrentWeatherActionHandler>();
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                app.UseHsts();
-            }
+            app.UseRouting();
 
-            app.UseAuthentication();
 
             app.UseCors(builder =>
-                builder.AllowAnyOrigin()
+                builder.WithOrigins("http://localhost:3000", "http://api.openweathermap.org")
+                    .SetPreflightMaxAge(TimeSpan.FromSeconds(5000))
+                    .SetIsOriginAllowedToAllowWildcardSubdomains()
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
 
-            app.UseSwagger();
-            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WeatherAttack API"));
+            app.UseAuthentication();
 
             app.UseHttpsRedirection();
-            app.UseMvc();
 
-            app.UseSignalR(routes => routes.MapHub<Challenge>("/challenge"));
-            app.UseRewriter(new RewriteOptions().AddRedirect("^$", "swagger"));
+            app.UseEndpoints(app =>
+            {
+                app.MapHub<Challenge>("/challenge");
+                app.MapControllers();
+            });
         }
     }
 }

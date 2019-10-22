@@ -9,16 +9,13 @@ namespace WeatherAttack.WebApi.Controllers.Authorization
     [ApiController]
     public class AuthenticationController : BaseController
     {
-        private IActionHandler<LoginCommand> LoginActionHandler { get; }
+        private IActionHandlerAsync<LoginCommand> LoginActionHandler { get; }
 
-        public AuthenticationController(IActionHandler<LoginCommand> loginActionHandler)
-        {
-            LoginActionHandler = loginActionHandler;
-        }
+        public AuthenticationController(IActionHandlerAsync<LoginCommand> loginActionHandler)
+            => LoginActionHandler = loginActionHandler;
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginCommand command)
-            => await Task.Run(()
-                => GetResponse(LoginActionHandler.ExecuteAction(command)));
+        public async Task<IActionResult> LoginAsync([FromBody] LoginCommand command)
+            => GetResponse(await LoginActionHandler.ExecuteActionAsync(command));
     }
 }

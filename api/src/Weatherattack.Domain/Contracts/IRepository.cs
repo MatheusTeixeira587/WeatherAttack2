@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -9,22 +8,25 @@ namespace WeatherAttack.Domain.Contracts
 {
     public interface IRepository<Entity> where Entity : class
     {
-        IQueryable<Entity> Get();
+        Task<IList<Entity>> GetAsync();
 
-        IQueryable<Entity> Get(int skip, int take);
+        Task<IList<Entity>> GetAsync(int skip, int take);
 
-        Task<Entity> Find(long primaryKey);
+        Task<IList<Entity>> GetAsync(Expression<Func<Entity, bool>> predicate);
 
-        IQueryable<Entity> Find(Expression<Func<Entity, bool>> predicate);
+        Task<IList<Entity>> GetAsync(int skip, int take, Expression<Func<Entity, bool>> predicate);
+        Task<Entity> FindAsync(Expression<Func<Entity, bool>> predicate);
 
-        Task<long> Count();
+        Task<Entity> FindAsync(long primaryKey);
 
-        void Add(Entity entity);
+        Task<long> CountAsync();
 
-        void Delete(Entity entity);
+        Task<Entity> AddAsync(Entity entity);
 
-        void Edit(Entity entity);
+        Entity Delete(Entity entity);
 
-        void Save();
+        Entity Edit(Entity entity);
+
+        void SaveAsync();
     }
 }

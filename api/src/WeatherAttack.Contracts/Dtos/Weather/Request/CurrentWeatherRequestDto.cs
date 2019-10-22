@@ -27,5 +27,7 @@ namespace WeatherAttack.Contracts.Dtos.Weather.Request
 
         [JsonProperty(PropertyName = "name")]
         public string CityName { get; set; }
+
+        public CurrentWeatherRequestDto() { }
     }
 }

@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Contracts.Command
 {
     public abstract class CommandBase
     {
-        protected CommandBase(long id) => Id = id;
+        public CommandBase(long id) => Id = id;
 
-        protected CommandBase() { }
+        public CommandBase() { }
 
         public long Id { get; set; }
 
@@ -16,7 +17,23 @@ namespace WeatherAttack.Contracts.Command
 
         public bool IsValid => Validate();
 
-        public List<Notification> Notifications { get; private set; } = new List<Notification>();
+        private List<Notification> _notifications;
+
+        public List<Notification> Notifications
+        {
+            get
+            {
+                if (_notifications is null)
+                    _notifications = new List<Notification>();
+
+                return _notifications;
+            }
+
+            private set
+            {
+                _notifications = value;
+            }
+        }
 
         public void AddNotification(string code)
             => AddNotification(WeatherAttackNotifications.Get(code));
@@ -33,7 +50,7 @@ namespace WeatherAttack.Contracts.Command
         public void AddNotification(List<Notification> notifications)
         {
             if (notifications.Count > 0)
-                notifications.ForEach(n => AddNotification(n));
+                Notifications.AddRange(notifications.Where(n => !Notifications.Contains(n)));
         }
 
         protected virtual bool Validate()

@@ -12,7 +12,7 @@ namespace WeatherAttack.Infra.Mapping
             builder.ToTable("Users");
 
             builder.HasKey(u => u.Id)
-                .ForSqlServerIsClustered();
+                .IsClustered();
 
             builder.Property(u => u.Email)
                 .IsRequired()

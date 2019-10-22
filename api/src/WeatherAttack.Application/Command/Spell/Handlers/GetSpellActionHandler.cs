@@ -24,7 +24,7 @@ namespace WeatherAttack.Application.Command.Spell.Handlers
         public async Task<GetSpellCommand> ExecuteActionAsync(GetSpellCommand command)
         {
             var result = await Context
-                .Find(command.Id);
+                .FindAsync(command.Id);
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);

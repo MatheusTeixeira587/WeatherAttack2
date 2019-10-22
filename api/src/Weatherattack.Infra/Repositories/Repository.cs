@@ -1,44 +1,64 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WeatherAttack.Domain.Contracts;
+using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Repositories
 {
-    public abstract class Repository<Db, Entity> : IRepository<Entity> 
-        where Entity : class 
+    public abstract class Repository<Db, Entity> : IRepository<Entity>
+        where Entity : EntityBase 
         where Db: DbContext
     {
         protected DbContext Context { get; set; }
 
-        public virtual IQueryable<Entity> Get()
+        protected virtual IQueryable<Entity> RawGet()
             => Context.Set<Entity>().AsNoTracking();
 
-        public virtual IQueryable<Entity> Get(int skip, int take)
-            => Get().Skip(skip).Take(take);
+        public virtual async Task<IList<Entity>> GetAsync()
+            => await RawGet().ToListAsync();
 
-        public virtual IQueryable<Entity> Find(Expression<Func<Entity, bool>> predicate)
-            => Context.Set<Entity>().AsNoTracking().Where(predicate);
+        public virtual async Task<IList<Entity>> GetAsync(int skip, int take)
+            => await RawGet().Skip(skip).Take(take).ToListAsync();
 
-        public virtual Task<Entity> Find(long primaryKey) 
-            => Context.Set<Entity>().FindAsync(primaryKey);
+        public virtual async Task<IList<Entity>> GetAsync(int skip, int take, Expression<Func<Entity, bool>> predicate)
+            => await RawGet().Where(predicate).Skip(skip).Take(take).ToListAsync();
 
-        public virtual Task<long> Count()
-            => Context.Set<Entity>().LongCountAsync(u => 1==1);
+        public virtual async Task<IList<Entity>> GetAsync(Expression<Func<Entity, bool>> predicate)
+            => await RawGet().Where(predicate).ToListAsync();
 
-        public virtual void Add(Entity entity)
-            => Context.Set<Entity>().Add(entity);
+        public virtual async Task<Entity> FindAsync(Expression<Func<Entity, bool>> predicate)
+            => await RawGet().Where(predicate).SingleOrDefaultAsync();
 
-        public virtual void Delete(Entity entity)
-            => Context.Set<Entity>().Remove(entity);
+        public virtual async Task<Entity> FindAsync(long primaryKey) 
+            => await RawGet().SingleOrDefaultAsync(e => e.Id == primaryKey);
 
-        public virtual void Edit(Entity entity)
-            => Context.Entry(entity).State = EntityState.Modified;
+        public virtual async Task<long> CountAsync()
+            => await Context.Set<Entity>().LongCountAsync(u => 1==1);
 
-        public virtual void Save()
-            => Context.SaveChangesAsync();
+        public virtual async Task<Entity> AddAsync(Entity entity)
+        { 
+            await Context.Set<Entity>().AddAsync(entity);
+            return entity;
+        }
+
+        public virtual Entity Delete(Entity entity)
+        {
+            Context.Set<Entity>().Remove(entity);
+            return entity;
+        }
+
+        public virtual Entity Edit(Entity entity)
+        {
+            Context.Entry(entity).State = EntityState.Modified;
+            return entity;
+        }
+
+        public virtual async void SaveAsync()
+            => await Context.SaveChangesAsync();
 
         protected Repository(DbContext context)
         {
