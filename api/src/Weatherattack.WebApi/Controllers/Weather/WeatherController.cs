@@ -17,9 +17,6 @@ namespace WeatherAttack.WebApi.Controllers.Weather
 
         [HttpPost]
         public async Task<IActionResult> GetAsync([FromBody] GetCurrentWeatherCommand command)
-        { 
-            var a = GetResponse(await GetCurrentWeatherActionHandler.ExecuteActionAsync(command));
-            return a;
-        }
+            => GetResponse(await GetCurrentWeatherActionHandler.ExecuteActionAsync(command));
     }
 }

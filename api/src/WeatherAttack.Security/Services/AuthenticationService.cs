@@ -1,7 +1,6 @@
 ﻿using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Interfaces;
 using WeatherAttack.Domain.Contracts;
-using WeatherAttack.Domain.Entities;
 using WeatherAttack.Security.Commands;
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
@@ -9,11 +8,10 @@ using System.Security.Claims;
 using System.Linq;
 using System;
 using System.Text;
-using Microsoft.Extensions.Options;
 using WeatherAttack.Security.Entities;
 using WeatherAttack.Contracts.interfaces;
 using WeatherAttack.Domain.Notifications;
-using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
 
 namespace WeatherAttack.Security.Services
 {
@@ -21,41 +19,39 @@ namespace WeatherAttack.Security.Services
     {
         public IUserRepository Context { get; }
 
-        public IOptions<SecuritySettings> Options { get; }
+        public SecuritySettings Options { get; }
 
         public IPasswordService PasswordService { get; }
 
-        public AuthenticationService(IUserRepository context, IOptions<SecuritySettings> options, IPasswordService passwordService)
+        public AuthenticationService(IUserRepository context, SecuritySettings options, IPasswordService passwordService)
         {
             Context = context;
             Options = options;
             PasswordService = passwordService;
         }
 
-        public async System.Threading.Tasks.Task<CommandBase> GrantAuthorizationAsync(CommandBase command)
+        public async Task<LoginCommand> GrantAuthorizationAsync(LoginCommand command)
         {
-            var loginCommand = command as LoginCommand;
-
             var result = await Context
-                .FindAsync(u => u.Username == loginCommand.Username);
+                .FindAsync(u => u.Username == command.Username);
 
-            if (result != null && PasswordService.CheckPassword(loginCommand.Password, result.Password))
+            if (result != null && PasswordService.CheckPassword(command.Password, result.Password))
             {
-                loginCommand.Token = new JwtSecurityTokenHandler().WriteToken(
+                command.Token = new JwtSecurityTokenHandler().WriteToken(
                     CreateToken(result.Id, result.Username, result.PermissionLevel)
                 );
             }
             else
             {
-                loginCommand.AddNotification(WeatherAttackNotifications.Command.InvalidCredentials);
+                command.AddNotification(WeatherAttackNotifications.Command.InvalidCredentials);
             }
 
-            return loginCommand;
+            return command;
         }
 
         private JwtSecurityToken CreateToken(long id, string username, byte userPermissionLevel)
         {
-            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Options.Value.SigningKey));
+            var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Options.SigningKey));
             var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
             var permissionLevel = userPermissionLevel == 1 ? "Admin" : "User";
@@ -67,7 +63,7 @@ namespace WeatherAttack.Security.Services
                     new Claim(ClaimTypes.Name, username),
                     new Claim(ClaimTypes.Role, permissionLevel)
                 },
-                expires: DateTime.Now.AddMinutes(Options.Value.TokenExpirationTime),
+                expires: DateTime.Now.AddMinutes(Options.TokenExpirationTime),
                 signingCredentials: signingCredentials
             );
         }

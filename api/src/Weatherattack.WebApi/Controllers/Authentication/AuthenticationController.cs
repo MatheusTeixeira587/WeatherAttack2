@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Security.Commands;
@@ -6,7 +7,7 @@ using WeatherAttack.Security.Commands;
 namespace WeatherAttack.WebApi.Controllers.Authorization
 {
     [Route("api/[controller]")]
-    [ApiController]
+    [ApiController, AllowAnonymous]
     public class AuthenticationController : BaseController
     {
         private IActionHandlerAsync<LoginCommand> LoginActionHandler { get; }

@@ -7,14 +7,9 @@ namespace WeatherAttack.Security.Commands.Handlers
     {
         private IAuthenticationService AuthenticationService { get; }
 
-        public LoginActionHandler(IAuthenticationService authenticationService)
-        {
-            AuthenticationService = authenticationService;
-        }
+        public LoginActionHandler(IAuthenticationService authenticationService) => AuthenticationService = authenticationService;
 
         public async System.Threading.Tasks.Task<LoginCommand> ExecuteActionAsync(LoginCommand command)
-        {
-            return (await AuthenticationService.GrantAuthorizationAsync(command)) as LoginCommand;
-        }
+            => (await AuthenticationService.GrantAuthorizationAsync(command)) as LoginCommand;
     }
 }

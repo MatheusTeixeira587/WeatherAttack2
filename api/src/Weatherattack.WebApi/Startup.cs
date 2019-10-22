@@ -51,10 +51,7 @@ namespace Weatherattack.WebApi
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
+        public Startup(IConfiguration configuration) => Configuration = configuration;
 
         public IConfiguration Configuration { get; }
 
@@ -92,8 +89,6 @@ namespace Weatherattack.WebApi
                         },
                     };
                 });
-
-            services.Configure<SecuritySettings>(options => Configuration.GetSection("SecuritySettings").Bind(options));
 
             services.AddControllers();
             services.AddMvc();
@@ -149,6 +144,13 @@ namespace Weatherattack.WebApi
             services.AddTransient<IPasswordService, PasswordService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IOpenWeatherMapService, OpenWeatherMapWebService>(p => new OpenWeatherMapWebService(OpenWeatherMapUrl, OpenWeatherMapApiKey));
+            services.AddSingleton<SecuritySettings>(options => 
+                new SecuritySettings 
+                { 
+                    SaltWorkFactor = int.Parse(Configuration["SecuritySettings:SaltWorkFactor"]),
+                    SigningKey = Configuration["SecuritySettings:SigningKey"],
+                    TokenExpirationTime = int.Parse(Configuration["SecuritySettings:TokenExpirationTime"])
+                });
         }
 
         public void ConfigureMappers(IServiceCollection services)
@@ -195,7 +197,6 @@ namespace Weatherattack.WebApi
         {
             app.UseRouting();
 
-
             app.UseCors(builder =>
                 builder.WithOrigins("http://localhost:3000", "http://api.openweathermap.org")
                     .SetPreflightMaxAge(TimeSpan.FromSeconds(5000))
@@ -203,6 +204,12 @@ namespace Weatherattack.WebApi
                     .AllowAnyMethod()
                     .AllowAnyHeader()
                     .AllowCredentials());
+
+            // app.UseCors(builder => builder
+            //     .AllowAnyHeader()
+            //     .AllowAnyMethod()
+            //     .AllowAnyOrigin()
+            //     .Build());
 
             app.UseAuthentication();
 
