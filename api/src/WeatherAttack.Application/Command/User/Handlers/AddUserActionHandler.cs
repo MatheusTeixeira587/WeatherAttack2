@@ -11,7 +11,7 @@ using Entity = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.User.Handlers
 {
-    public class AddUserActionHandler : IActionHandlerAsync<AddUserCommand>
+    public sealed class AddUserActionHandler : IActionHandlerAsync<AddUserCommand>
     {
         private IUserRepository Context { get; }
 
@@ -41,7 +41,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
                     if (!user.HasNotification())
                     {
                         user.SetCharacter(new Entity.Character());
-                        Context.AddAsync(user);
+                        await Context.AddAsync(user);
                     }                  
                 }
                 else
@@ -82,7 +82,7 @@ namespace WeatherAttack.Application.Command.User.Handlers
         private async Task<Entity.User> EnsureUniquenessOfEmailAndUsernameOnEditAsync(Entity.User user)
         {
             var result = await Context
-                .FindAsync(s => s.Id == user.Id);
+                .FindAsync(user.Id);
 
             if (result != null)
             {

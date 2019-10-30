@@ -2,7 +2,7 @@
 
 namespace WeatherAttack.Domain.Entities
 {
-    public class Character : EntityBase
+    public sealed class Character : EntityBase
     {
         public Character() { }
 

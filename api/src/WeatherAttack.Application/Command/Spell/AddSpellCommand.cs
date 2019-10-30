@@ -8,7 +8,7 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Spell
 {
-    public class AddSpellCommand : CommandBase
+    public sealed class AddSpellCommand : CommandBase
     {
         public SpellRequestDto Spell { get; set; }
 

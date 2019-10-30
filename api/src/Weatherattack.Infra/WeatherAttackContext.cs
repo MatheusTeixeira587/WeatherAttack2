@@ -4,7 +4,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra
 {
-    public class WeatherAttackContext : DbContext
+    public sealed class WeatherAttackContext : DbContext
     {
         public WeatherAttackContext(DbContextOptions optionsBuilder) : base(optionsBuilder)
         {
@@ -21,7 +21,6 @@ namespace WeatherAttack.Infra
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.UseIdentityColumns();
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new CharacterMapping());

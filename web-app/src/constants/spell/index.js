@@ -1,26 +1,26 @@
 const NONE = { name: {
-    EN_US: "None",
-    PT_BR: "Nenhum"
+    en_us: "None",
+    pt_br: "Nenhum"
 }, value: 0 }
 const FIRE = { name: {
-    EN_US: "Fire",
-    PT_BR: "Fogo"
+    en_us: "Fire",
+    pt_br: "Fogo"
 }, value: 1 }
 const ICE = { name: {
-    EN_US: "Ice",
-    PT_BR: "Gelo"
+    en_us: "Ice",
+    pt_br: "Gelo"
 }, value: 2 }
 const LIGHTNING = { name: {
-    EN_US: "Lightning",
-    PT_BR: "Raio"
+    en_us: "Lightning",
+    pt_br: "Raio"
 }, value: 4 }
 const WATER = { name: {
-    EN_US: "Water",
-    PT_BR: "Agua"
+    en_us: "Water",
+    pt_br: "Agua"
 }, value: 8 }
 const WIND = { name: {
-    EN_US: "Wind",
-    PT_BR: "Vento"
+    en_us: "Wind",
+    pt_br: "Vento"
 }, value: 16 }
 
 export const elements = {

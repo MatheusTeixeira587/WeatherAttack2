@@ -10,27 +10,34 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Character.Handlers
 {
-    public class GetCharacterActionHandler : IActionHandlerAsync<GetCharacterCommand>
+    public sealed class GetCharacterActionHandler : IActionHandlerAsync<GetCharacterCommand>
     {
         private ICharacterRepository Context { get; }
 
-        private IMapper<Domain.Entities.Character, CharacterDto, CharacterDto> Mapper { get; }
-
-        public GetCharacterActionHandler(ICharacterRepository context, IMapper<Domain.Entities.Character, CharacterDto, CharacterDto> mapper)
+        public GetCharacterActionHandler(ICharacterRepository context)
         {
             Context = context;
-            Mapper = mapper;
         }
 
         public async Task<GetCharacterCommand> ExecuteActionAsync(GetCharacterCommand command)
         {
             var result = await Context
-                .FindAsync(c => c.UserId == command.Id);
+                .FindAsync(c => c.UserId == command.Id, c => new CharacterDto()
+                {
+                    Id = c.Id,
+                    Losses = c.Losses,
+                    Battles = c.Battles,
+                    Wins = c.Wins,
+                    UserId = c.UserId,
+                    Medals = c.Medals,
+                    HealthPoints = c.HealthPoints,
+                    ManaPoints = c.ManaPoints
+                });
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Character.InvalidCharacter);
-            else 
-                command.Result = Mapper.ToDto(result);
+
+            command.Result = result;
 
             return command;
         }

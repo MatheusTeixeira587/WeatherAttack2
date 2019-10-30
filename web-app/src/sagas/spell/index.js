@@ -1,12 +1,11 @@
-import { takeLatest, select, put, take, all } from "redux-saga/effects"
+import { takeLatest, select, put, take, all, call, takeEvery } from "redux-saga/effects"
 import { types } from "../../constants"
 import { assignPagedSpells } from "../../actions"
 import { SpellService } from "../../services"
 
 const spellService = new SpellService()
 
-function* addSpellSaga(action){
-    debugger
+function* addSpellSaga(action) {
     const token = yield select(state => state.loginReducer.token)
     try {
         yield spellService.put(action, token)
@@ -16,7 +15,6 @@ function* addSpellSaga(action){
 }
 
 function* getPagedSpellSaga(action) {
-    debugger
     const token = yield select(state => state.loginReducer.token)
     try {
         const response = yield spellService.pagedGet(token, action.command.pageNumber)
@@ -28,6 +26,8 @@ function* getPagedSpellSaga(action) {
 }
 
 export function* watchSpellSaga() {
-    yield takeLatest(types.ADD_SPELL, addSpellSaga)
-    yield take(types.GET_PAGED_SPELLS, getPagedSpellSaga)
+    yield all([
+            takeLatest(types.ADD_SPELL, addSpellSaga),
+            takeEvery(types.GET_PAGED_SPELLS, getPagedSpellSaga)
+        ])
 }

@@ -2,6 +2,8 @@ import { call, takeEvery, take, race, select, put, all } from "redux-saga/effect
 import { HubService } from "../../services"
 import { types, challengeEvents } from "../../constants"
 import { userReceivedChallengeAction, removeChallengeAction } from "../../actions"
+import { HubConnectionState } from "@aspnet/signalr"
+
 
 const challengeEventsArray = Object.values(challengeEvents)
 
@@ -23,8 +25,7 @@ function* sendToServerSaga(hub) {
         while(true) {
             console.info("waiting to send messages...")
             const action = yield take(challengeEventsArray)
-            debugger
-            if (!action.dispatchedByServer) {
+            if (!action.dispatchedByServer && hub.connection.state === HubConnectionState.Connected) {
                 hub.invoke(action.type, action.command)
             }
         }
@@ -37,7 +38,11 @@ function* closeConnectionSaga(hub) {
     yield take(types.STOP_CHALLENGE_CHANNEL)
     const id = yield select(state => state.loginReducer.id)
     try {
-        hub.invoke(challengeEvents.USER_LEFT_CHANNEL, { id }).then(r => hub.stop())
+        console.log("hub ->")
+        console.log(hub)
+        if (hub.connection.state === HubConnectionState.Connected) {
+            hub.invoke(challengeEvents.USER_LEFT_CHANNEL, { id }).then(r => hub.stop())
+        }
     } catch {
         console.log("connection closed...")
     }
@@ -53,7 +58,6 @@ function* challengeInviteSaga() {
             }
         }
     } catch {
-        debugger
     }
 }
 
@@ -61,15 +65,12 @@ function* removeChallengeInviteSaga() {
     try {
         const userId = yield select(state => state.loginReducer.id)
         while(true) {
-            debugger
             const action = yield take([challengeEvents.ACCEPT_CHALLENGE, challengeEvents.REFUSE_CHALLENGE])
-            debugger
             if(action.command.to.id === userId) {
                 yield put(removeChallengeAction(action.command))
             }
         }
     } catch {
-        debugger
     }
 }
 

@@ -6,7 +6,7 @@ using ValidationRules = WeatherAttack.Domain.EntityValidation.Rules.Rules;
 
 namespace WeatherAttack.Domain.Entities
 {
-    public class Spell : EntityBase
+    public sealed class Spell : EntityBase
     {
         public Spell(long id) : base(id) => Id = id;
 

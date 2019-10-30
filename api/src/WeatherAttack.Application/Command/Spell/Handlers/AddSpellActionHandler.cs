@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace WeatherAttack.Application.Command.Spell.Handlers
 {
-    public class AddSpellActionHandler : IActionHandlerAsync<AddSpellCommand>
+    public sealed class AddSpellActionHandler : IActionHandlerAsync<AddSpellCommand>
     {
         public AddSpellActionHandler(ISpellRepository context, IMapper<Entities.Spell, SpellRequestDto, SpellResponseDto> mapper)
         {

@@ -6,18 +6,13 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Spell
 {
-    public class GetSpellsForLocationCommand : CommandBase
+    public sealed class GetSpellsForLocationCommand : CommandBase
     {
         public double Latitude { get; set; }
 
         public double Longitude { get; set; }
 
         public IEnumerable<SpellResponseDto> Result { get; set; }
-
-        public GetSpellsForLocationCommand(long id): base(id)
-        {
-            Result = new List<SpellResponseDto>();
-        }
 
         protected override bool Validate()
         {

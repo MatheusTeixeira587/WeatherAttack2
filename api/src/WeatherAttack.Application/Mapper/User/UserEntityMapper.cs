@@ -6,7 +6,7 @@ using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Mapper.User
 {
-    public class UserEntityMapper : IMapper<Entities.User, UserRequestDto, UserResponseDto>
+    public sealed class UserEntityMapper : IMapper<Entities.User, UserRequestDto, UserResponseDto>
     {
         IMapper<Entities.Character, CharacterDto, CharacterDto> CharacterMapper { get; }
 

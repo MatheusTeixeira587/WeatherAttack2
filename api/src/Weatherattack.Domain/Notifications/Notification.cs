@@ -2,19 +2,21 @@
 
 namespace WeatherAttack.Domain.Notifications
 {
-    public class Notification
+    public sealed class Notification
     {
-        public Notification(string code, string message_EN_US, string message_PT_BR)
+         public Notification(string code, Message message)
         {
-            Code = code;
-            Message = new Message { EN_US = message_EN_US, PT_BR = message_PT_BR };
-        }
-
-        public Notification(NotificationType type, string code, Message message)
-        {
-            Type = type;
             Code = code;
             Message = message;
+        }
+        public Notification(string code, string message_En_us, string message_Pt_br) : this(code, new Message { En_us = message_En_us, Pt_br = message_Pt_br }) 
+        {
+            
+        }
+
+        public Notification(NotificationType type, string code, Message message) : this(code, message)
+        {
+            Type = type;
         }
 
         public NotificationType Type { get; } = NotificationType.Error;

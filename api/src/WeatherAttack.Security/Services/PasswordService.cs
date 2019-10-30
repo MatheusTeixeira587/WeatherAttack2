@@ -4,7 +4,7 @@ using WeatherAttack.Security.Entities;
 
 namespace WeatherAttack.Security.Services
 {
-    public class PasswordService : IPasswordService
+    public sealed class PasswordService : IPasswordService
     {
         private SecuritySettings SecuritySettings { get; }
 

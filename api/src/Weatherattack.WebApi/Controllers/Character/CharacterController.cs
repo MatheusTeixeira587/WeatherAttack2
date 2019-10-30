@@ -8,7 +8,7 @@ namespace WeatherAttack.WebApi.Controllers.Character
 {
     [Route("api/[controller]")]
     [ApiController, Authorize]
-    public class CharacterController : BaseController
+    public sealed class CharacterController : BaseController
     {
         private IActionHandlerAsync<GetCharacterCommand> GetCharacterActionHandler { get; }
 

@@ -7,7 +7,7 @@ using WeatherAttack.Domain.Entities.Weather;
 
 namespace WeatherAttack.Application.Mapper.Weather
 {
-    public class WindEntityMapper : IMapper<Wind, WindRequestDto, WindRequestDto>
+    public sealed class WindEntityMapper : IMapper<Wind, WindRequestDto, WindRequestDto>
     {
         public WindRequestDto ToDto(Wind entity)
         {

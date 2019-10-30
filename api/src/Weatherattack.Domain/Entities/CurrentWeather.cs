@@ -3,7 +3,7 @@ using WeatherEntities = WeatherAttack.Domain.Entities.Weather;
 
 namespace WeatherAttack.Domain.Entities
 {
-    public class CurrentWeather : EntityBase
+    public sealed class CurrentWeather : EntityBase
     {
         public CurrentWeather() { }
 

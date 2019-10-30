@@ -7,7 +7,17 @@ namespace WeatherAttack.Domain.Notifications
 {
     public static class WeatherAttackNotifications
     {
-        private static List<Notification> List  => GetFullNotificationList();
+        private static Dictionary<string, Notification> _notifications;
+        private static Dictionary<string, Notification> Notifications 
+        { 
+            get 
+            {
+                if(_notifications is null)
+                    _notifications = GetAllNotifications();
+
+                return _notifications;
+            } 
+        }
 
         public static class User
         {
@@ -86,23 +96,28 @@ namespace WeatherAttack.Domain.Notifications
             };
         }
 
-        public static Notification Get(string cod)
-            => List.FirstOrDefault(c => c.Code == cod);
+        public static Notification Get(string code)
+            => Notifications[code];
 
         public static List<Notification> Get(ImmutableArray<string> codArray)
-            => List.FindAll(c => codArray.Contains(c.Code));
+            => codArray.Select(code => Get(code)).ToList();
 
-
-        private static List<Notification> GetFullNotificationList()
+        private static Dictionary<string, Notification> GetAllNotifications()
         {
-            var list = new List<Notification>();
+            var dict = Merge(new Dictionary<string, Notification>(), User.Messages);
+            dict = Merge(dict, Command.Messages);
+            dict = Merge(dict, Spell.Messages);
+            return Merge(dict, Character.Messages);
+        }
 
-            list.AddRange(User.Messages);
-            list.AddRange(Command.Messages);
-            list.AddRange(Character.Messages);
-            list.AddRange(Spell.Messages);
+        private static Dictionary<string, Notification> Merge(Dictionary<string, Notification> first, IReadOnlyList<Notification> second)
+        {
+            foreach (var notification in second)
+            {
+                first.Add(notification.Code, notification);
+            }
 
-            return list;
+            return first;
         }
     }    
 }

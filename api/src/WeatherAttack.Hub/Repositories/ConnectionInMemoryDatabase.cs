@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.Interfaces;
 
 namespace WeatherAttack.Hub.Repositories
 {
-    public class ConnectionInMemoryDatabase : IConnectionRepository<UserResponseDto>
+    public sealed class ConnectionInMemoryDatabase : IConnectionRepository<UserResponseDto>
     {
         private readonly Dictionary<UserResponseDto, string> _connections;
 
@@ -25,7 +24,8 @@ namespace WeatherAttack.Hub.Repositories
             => _connections.Keys;
 
         public UserResponseDto Find(UserResponseDto key)
-            => _connections.Keys.SingleOrDefault(u => u.Id == key.Id);
+           =>  _connections.Keys.SingleOrDefault(u => u.Id == key.Id);
+            
 
         public UserResponseDto Find(string connection)
             => _connections.Where(r => r.Value == connection)?.Select(r => r.Key)?.FirstOrDefault();

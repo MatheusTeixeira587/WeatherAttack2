@@ -11,13 +11,15 @@ export class BaseService {
             .then(result => result.data)
     }
 
-    pagedGet(token = "", page = 0) {
-        return axios.get(`${this.baseUrl}/Page-${page}`, {
+    async pagedGet(token = "", page = 0) {
+        const response = await axios.get(`${this.baseUrl}/Page-${page}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
                 "Content-type": "application/json"
             }
-        }).then(result => result.data)
+        })
+
+        return response.data
     }
 
     getById(id, token = "") {

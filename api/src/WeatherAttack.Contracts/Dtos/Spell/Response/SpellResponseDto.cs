@@ -3,7 +3,7 @@ using WeatherAttack.Contracts.Dtos.SpellRule.Request;
 
 namespace WeatherAttack.Contracts.Dtos.Spell.Response
 {
-    public class SpellResponseDto
+    public sealed class SpellResponseDto
     {
         public long Id { get; set; }
 
@@ -15,6 +15,6 @@ namespace WeatherAttack.Contracts.Dtos.Spell.Response
 
         public string Element { get; set; }
 
-        public List<SpellRuleRequestDto> Rules { get; set; }
+        public IEnumerable<SpellRuleRequestDto> Rules { get; set; }
     }
 }

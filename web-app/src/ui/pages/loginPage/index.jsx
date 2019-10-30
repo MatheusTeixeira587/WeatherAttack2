@@ -160,7 +160,9 @@ class LoginPage extends Component {
                         container
                         className={this.props.classes.background}
                     >
-                        {this.renderWeatherCard()}
+                        {
+                            this.renderWeatherCard()
+                        }
                     </Grid>     
                 </Grid>
             )

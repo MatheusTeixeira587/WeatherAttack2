@@ -1,15 +1,16 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
+using System.Text.Json;
 
 namespace WeatherAttack.Contracts.Dtos.Weather.Request
 {
     [Serializable]
-    public class CoordinatesRequestDto
+    public sealed class CoordinatesRequestDto
     {
-        [JsonProperty(PropertyName = "lon")]
+        //[JsonProperty(PropertyName = "lon")]
+        //[JsonProperty(Name = "Name")]
         public string Longitude { get; set; }
 
-        [JsonProperty(PropertyName = "lat")]
+        //[JsonProperty(PropertyName = "lat")]
         public string Latitude { get; set; }
     }
 }

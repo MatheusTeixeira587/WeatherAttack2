@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using System;
 using System.Threading.Tasks;
-using WeatherAttack.Application.Command.User;
-using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
 using WeatherAttack.Contracts.Interfaces;
+using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Hub.Commands.Challenge;
 using WeatherAttack.Hub.Events.Challenge;
 
 namespace WeatherAttack.Hub.Hubs.Challenge
 {
-    public class Challenge : HubBase
+    public sealed class Challenge : HubBase
     {
-        private IActionHandlerAsync<GetUserCommand> GetUserActionHandler { get; }
-
         private IConnectionRepository<UserResponseDto> ConnectionRepository { get; }
 
         [HubMethodName(ChallengeEvents.GET_ONLINE_USERS)]
@@ -85,12 +82,8 @@ namespace WeatherAttack.Hub.Hubs.Challenge
             await base.OnDisconnectedAsync(exception);
         }
 
-        public Challenge(
-            IActionHandlerAsync<GetUserCommand> getUserActionHandler, 
-            IConnectionRepository<UserResponseDto> connectionRepository
-            ) : base(getUserActionHandler)
+        public Challenge(IUserRepository userRepository, IConnectionRepository<UserResponseDto> connectionRepository) : base(userRepository)
         {
-            GetUserActionHandler = getUserActionHandler;
             ConnectionRepository = connectionRepository;
         }
     }

@@ -7,16 +7,16 @@ const challengeChannel = "challenge"
 
 export class HubService {
 
-    static connect(token, channel) {
+    static async connect(token, channel) {
         const connection =  new HubConnectionBuilder()
             .withUrl(process.env.REACT_APP_API_URL + channel, { accessTokenFactory: () => token })
+            .withAutomaticReconnect()
             .configureLogging(LogLevel.Information)
             .build()
 
-        return new Promise(resolve => {
-            connection.start()
-                .then(() => resolve(connection))
-        })
+        await connection.start();
+
+        return connection;
     }
 
     
@@ -32,6 +32,8 @@ export class HubService {
                 hub = HubService._subscribeToChallengeEvents(hub, eventHandler)
             }
 
+            hub.onclose(e => eventHandler(requestLogoutAction()))
+
             return () => hub
         })
     }
@@ -45,10 +47,6 @@ export class HubService {
                     command
                 }))
             })
-
-        hub.onclose(e => {
-            eventHandler(requestLogoutAction())
-        })
 
         return hub
     }

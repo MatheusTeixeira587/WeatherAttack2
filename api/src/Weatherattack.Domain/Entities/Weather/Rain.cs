@@ -1,6 +1,6 @@
 ﻿namespace WeatherAttack.Domain.Entities.Weather
 {
-    public class Rain
+    public sealed class Rain
     {
         public Rain(double volume)
         {

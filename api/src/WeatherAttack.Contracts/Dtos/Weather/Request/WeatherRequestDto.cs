@@ -4,7 +4,7 @@ using System;
 namespace WeatherAttack.Contracts.Dtos.Weather.Request
 {
     [Serializable]
-    public class WeatherRequestDto
+    public sealed class WeatherRequestDto
     {
         [JsonProperty(PropertyName = "id")]
         public long Id { get; set; }

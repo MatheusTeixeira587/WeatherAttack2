@@ -1,9 +1,9 @@
 ﻿namespace WeatherAttack.Domain.Notifications
 {
-    public class Message
+    public sealed class Message
     {
-        public string PT_BR { get; set; }
+        public string Pt_br { get; set; }
 
-        public string EN_US { get; set; }
+        public string En_us { get; set; }
     }
 }

@@ -1,15 +1,14 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.IO;
 using System.Net;
+using System.Text.Json;
 using System.Threading.Tasks;
 using WeatherAttack.Contracts.Dtos.Weather.Request;
 using WeatherAttack.Contracts.Interfaces;
-using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Services
 {
-    public class OpenWeatherMapWebService : IOpenWeatherMapService
+    public sealed class OpenWeatherMapWebService : IOpenWeatherMapService
     {
         private string OpenWeatherMapUrl { get; }
 
@@ -33,17 +32,12 @@ namespace WeatherAttack.Infra.Services
             {
                 using (var responseContent = response.GetResponseStream())
                 {
-                    using (var streamReader = new StreamReader(responseContent))
-                    {
-                        var jsonResponse = await streamReader.ReadToEndAsync();
-                        return JsonConvert.DeserializeObject<CurrentWeatherRequestDto>(
-                            jsonResponse
-                        );
-                    }
+                    return await JsonSerializer.DeserializeAsync<CurrentWeatherRequestDto>(responseContent);
                 }
             }
         }
 
+        private HttpWebRequest CreateRequest(string uri) => CreateRequest(new Uri(uri));
         private HttpWebRequest CreateRequest(Uri uri)
         {
             var request = WebRequest.CreateHttp(uri);
@@ -52,9 +46,5 @@ namespace WeatherAttack.Infra.Services
 
             return request;
         }
-
-        private HttpWebRequest CreateRequest(string uri)
-            => CreateRequest(new Uri(uri));
-
     }
 }

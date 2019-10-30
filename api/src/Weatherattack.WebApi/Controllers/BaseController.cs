@@ -6,9 +6,9 @@ namespace WeatherAttack.WebApi.Controllers
     public abstract class BaseController : ControllerBase
     {
         [NonAction]
-        protected virtual IActionResult GetResponse(CommandBase command)
+        protected virtual IActionResult GetResponse<T>(T command) where T : CommandBase
         {
-            if (command.IsValid)
+            if (!command.HasNotification())
                 return Ok(command);
             else
                 return BadRequest(command);

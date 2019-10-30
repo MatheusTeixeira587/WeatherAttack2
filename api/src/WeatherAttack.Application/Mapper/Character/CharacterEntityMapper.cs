@@ -3,7 +3,7 @@ using WeatherAttack.Contracts.Mapper;
 
 namespace WeatherAttack.Application.Mapper.Character
 {
-    public class CharacterEntityMapper : IMapper<Domain.Entities.Character, CharacterDto, CharacterDto>
+    public sealed class CharacterEntityMapper : IMapper<Domain.Entities.Character, CharacterDto, CharacterDto>
     {
         public CharacterDto ToDto(Domain.Entities.Character entity)
         {

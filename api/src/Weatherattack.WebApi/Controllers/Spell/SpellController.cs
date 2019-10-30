@@ -9,7 +9,7 @@ namespace WeatherAttack.WebApi.Controllers.Spell
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(Roles = "Admin")]
-    public class SpellController : BaseController
+    public sealed class SpellController : BaseController
     {
         private IActionHandlerAsync<AddSpellCommand> AddSpellActionHandler { get; }
 

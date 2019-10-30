@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace WeatherAttack.Contracts.Dtos.Weather.Request
 {
     [Serializable]
-    public class CurrentWeatherRequestDto
+    public sealed class CurrentWeatherRequestDto
     {
         [JsonProperty(PropertyName = "coord")]
         public CoordinatesRequestDto Coordinates { get; set; }

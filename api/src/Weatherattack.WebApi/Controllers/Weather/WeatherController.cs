@@ -8,7 +8,7 @@ namespace WeatherAttack.WebApi.Controllers.Weather
 {
     [Route("api/[controller]")]
     [ApiController, AllowAnonymous]
-    public class WeatherController : BaseController
+    public sealed class WeatherController : BaseController
     {
         private IActionHandlerAsync<GetCurrentWeatherCommand> GetCurrentWeatherActionHandler { get; }
 

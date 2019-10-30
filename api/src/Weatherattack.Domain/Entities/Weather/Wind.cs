@@ -1,6 +1,6 @@
 ﻿namespace WeatherAttack.Domain.Entities.Weather
 {
-    public class Wind
+    public sealed class Wind
     {
         public Wind(double speed)
         {

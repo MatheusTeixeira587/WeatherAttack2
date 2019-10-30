@@ -41,7 +41,7 @@ class SpellTable extends React.Component {
     }
 
     componentDidMount() {
-       this._getPage()
+       this._getPage();
     }
 
     _getPage(page = 1) {
@@ -57,9 +57,7 @@ class SpellTable extends React.Component {
     _renderTableControls(classes) {
         return (
             <div className={classes.tableControl}>
-                <button className={classes.actionButton} onClick={() => 
-                    this._getPage(this.props.spellArea.pageNumber - 1 ? this.props.spellArea.pageNumber - 1 : 1)
-                }
+                <button className={classes.actionButton} onClick={() => this._getPage(this.props.spellArea.pageNumber - 1 ? this.props.spellArea.pageNumber - 1 : 1)}
                     disabled={this.props.spellArea.pageNumber <= 1}
                 >
                     {
@@ -67,9 +65,7 @@ class SpellTable extends React.Component {
                     }
                 </button>
                 <button className={classes.actionButton}> {this.props.spellArea.pageNumber} {APP_TEXTS.ofLabel[this.props.language.selected]} {this.props.spellArea.pageCount} </button>
-                <button className={classes.actionButton} onClick={() => 
-                    this._getPage(this.props.spellArea.pageNumber + 1)
-                }
+                <button className={classes.actionButton} onClick={() => this._getPage(this.props.spellArea.pageNumber + 1)}
                     disabled={this.props.spellArea.pageNumber === this.props.spellArea.pageCount}
                 >
                     {
@@ -80,8 +76,30 @@ class SpellTable extends React.Component {
         )
     }
 
+    _renderTableContent(rows) {
+        if (!!rows) {
+            return rows.map(row => (
+                <TableRow key={row.name}>
+                    <TableCell component="th" scope="row" align="center">
+                        {row.name}
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="center">
+                        {row.baseDamage}
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="center">
+                        {row.baseManaCost}
+                    </TableCell>
+                    <TableCell component="th" scope="row" align="center">
+                        {row.elements}
+                    </TableCell>
+                </TableRow>
+                ))           
+        }
+
+        return null
+    }
+
     _renderTable(classes, rows) {
-        debugger
         return (
             <Table className={classes.table}>
                 <TableHead>
@@ -93,22 +111,9 @@ class SpellTable extends React.Component {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map(row => (
-                        <TableRow key={row.name}>
-                            <TableCell component="th" scope="row" align="center">
-                                {row.name}
-                            </TableCell>
-                            <TableCell component="th" scope="row" align="center">
-                                {row.baseDamage}
-                            </TableCell>
-                            <TableCell component="th" scope="row" align="center">
-                                {row.baseManaCost}
-                            </TableCell>
-                            <TableCell component="th" scope="row" align="center">
-                                {row.elements}
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                    {
+                        this._renderTableContent(rows)
+                    }
                 </TableBody>
             </Table>
         )

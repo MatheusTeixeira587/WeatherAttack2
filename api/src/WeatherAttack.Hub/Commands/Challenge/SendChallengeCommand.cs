@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using WeatherAttack.Contracts.Command;
+﻿using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.User.Response;
 
 namespace WeatherAttack.Hub.Commands.Challenge
 {
-    public class SendChallengeCommand : CommandBase
+    public sealed class SendChallengeCommand : CommandBase
     {
         public UserResponseDto By { get; set; }
 

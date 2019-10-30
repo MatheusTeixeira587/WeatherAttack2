@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace WeatherAttack.Application.Mapper.Weather
 {
-    public class CurrentWeatherEntityMapper : IMapper<Entities.CurrentWeather, CurrentWeatherRequestDto, CurrentWeatherRequestDto>
+    public sealed class CurrentWeatherEntityMapper : IMapper<Entities.CurrentWeather, CurrentWeatherRequestDto, CurrentWeatherRequestDto>
     {
         private IMapper<Main, MainRequestDto, MainRequestDto> MainMapper { get; }
 

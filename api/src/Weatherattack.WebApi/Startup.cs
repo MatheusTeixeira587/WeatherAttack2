@@ -1,14 +1,14 @@
-﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using WeatherAttack.Application.Command.Character;
 using WeatherAttack.Application.Command.Character.Handlers;
 using WeatherAttack.Application.Command.Spell;
@@ -49,7 +49,7 @@ using WeatherAttack.Security.Services;
 
 namespace Weatherattack.WebApi
 {
-    public class Startup
+    public sealed class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
@@ -62,13 +62,13 @@ namespace Weatherattack.WebApi
                 {
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidateAudience = false,
-                        ValidateIssuer = false,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(
-                            Encoding.UTF8.GetBytes(Configuration["SecuritySettings:SigningKey"])
-                        )
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(
+                    Encoding.UTF8.GetBytes(Configuration["SecuritySettings:SigningKey"])
+                    )
                     };
 
                     options.Events = new JwtBearerEvents
@@ -79,8 +79,8 @@ namespace Weatherattack.WebApi
 
                             var path = context.HttpContext.Request.Path;
 
-                            if (!string.IsNullOrEmpty(accessToken) 
-                                && path.StartsWithSegments("/challenge"))
+                            if (!string.IsNullOrEmpty(accessToken) &&
+                                path.StartsWithSegments("/challenge"))
                             {
                                 context.Token = accessToken;
                             }
@@ -144,12 +144,12 @@ namespace Weatherattack.WebApi
             services.AddTransient<IPasswordService, PasswordService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IOpenWeatherMapService, OpenWeatherMapWebService>(p => new OpenWeatherMapWebService(OpenWeatherMapUrl, OpenWeatherMapApiKey));
-            services.AddSingleton<SecuritySettings>(options => 
-                new SecuritySettings 
-                { 
+            services.AddSingleton(options =>
+                new SecuritySettings
+                {
                     SaltWorkFactor = int.Parse(Configuration["SecuritySettings:SaltWorkFactor"]),
-                    SigningKey = Configuration["SecuritySettings:SigningKey"],
-                    TokenExpirationTime = int.Parse(Configuration["SecuritySettings:TokenExpirationTime"])
+                        SigningKey = Configuration["SecuritySettings:SigningKey"],
+                        TokenExpirationTime = int.Parse(Configuration["SecuritySettings:TokenExpirationTime"])
                 });
         }
 
@@ -199,19 +199,14 @@ namespace Weatherattack.WebApi
 
             app.UseCors(builder =>
                 builder.WithOrigins("http://localhost:3000", "http://api.openweathermap.org")
-                    .SetPreflightMaxAge(TimeSpan.FromSeconds(5000))
-                    .SetIsOriginAllowedToAllowWildcardSubdomains()
-                    .AllowAnyMethod()
-                    .AllowAnyHeader()
-                    .AllowCredentials());
-
-            // app.UseCors(builder => builder
-            //     .AllowAnyHeader()
-            //     .AllowAnyMethod()
-            //     .AllowAnyOrigin()
-            //     .Build());
+                .SetPreflightMaxAge(TimeSpan.FromSeconds(5000))
+                .SetIsOriginAllowedToAllowWildcardSubdomains()
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials());
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseHttpsRedirection();
 

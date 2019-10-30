@@ -8,7 +8,7 @@ namespace WeatherAttack.WebApi.Controllers.Authorization
 {
     [Route("api/[controller]")]
     [ApiController, AllowAnonymous]
-    public class AuthenticationController : BaseController
+    public sealed class AuthenticationController : BaseController
     {
         private IActionHandlerAsync<LoginCommand> LoginActionHandler { get; }
 
