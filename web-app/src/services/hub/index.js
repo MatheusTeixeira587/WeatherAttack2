@@ -32,6 +32,8 @@ export class HubService {
                 hub = HubService._subscribeToChallengeEvents(hub, eventHandler)
             }
 
+            hub.onclose(e => eventHandler(requestLogoutAction()))
+
             return () => hub
         })
     }
@@ -45,10 +47,6 @@ export class HubService {
                     command
                 }))
             })
-
-        hub.onclose(e => {
-            eventHandler(requestLogoutAction())
-        })
 
         return hub
     }

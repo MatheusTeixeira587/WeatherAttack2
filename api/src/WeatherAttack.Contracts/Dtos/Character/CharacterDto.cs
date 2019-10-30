@@ -2,7 +2,7 @@
 
 namespace WeatherAttack.Contracts.Dtos.Character
 {
-    public class CharacterDto
+    public sealed class CharacterDto
     {
         public long Id { get; set; }
 

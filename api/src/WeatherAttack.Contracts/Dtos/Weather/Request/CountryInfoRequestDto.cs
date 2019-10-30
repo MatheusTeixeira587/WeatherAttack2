@@ -6,7 +6,7 @@ using System.Text;
 namespace WeatherAttack.Contracts.Dtos.Weather.Request
 {
     [Serializable]
-    public class CountryInfoRequestDto
+    public sealed class CountryInfoRequestDto
     {
         [JsonProperty(PropertyName = "country")]
         public string Country { get; set; }

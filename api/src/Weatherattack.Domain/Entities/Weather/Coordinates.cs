@@ -1,6 +1,6 @@
 ﻿namespace WeatherAttack.Domain.Entities.Weather
 {
-    public class Coordinates
+    public sealed class Coordinates
     {
         public Coordinates(string longitude, string latitude)
         {

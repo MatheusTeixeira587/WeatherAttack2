@@ -2,17 +2,18 @@
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
+using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.Spell.Handlers
 {
-    public class DeleteSpellActionHandler : IActionHandlerAsync<DeleteSpellCommand>
+    public sealed class DeleteSpellActionHandler : IActionHandlerAsync<DeleteSpellCommand>
     {
         private ISpellRepository Context { get; }
 
         public async Task<DeleteSpellCommand> ExecuteActionAsync(DeleteSpellCommand command)
         {
             var result = await Context
-                .FindAsync(command.Id);
+                .FindAsync(command.Id, s => new Entities.Spell(s.Id));
 
             if (result is null)
                 command.AddNotification(WeatherAttackNotifications.Spell.NotFound);

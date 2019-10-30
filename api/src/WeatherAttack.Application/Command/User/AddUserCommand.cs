@@ -5,7 +5,7 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.User
 {
-    public class AddUserCommand : CommandBase
+    public sealed class AddUserCommand : CommandBase
     {
         public UserRequestDto User { get; set; }
 

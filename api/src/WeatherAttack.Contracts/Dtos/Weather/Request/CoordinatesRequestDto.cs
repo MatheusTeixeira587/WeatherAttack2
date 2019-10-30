@@ -4,7 +4,7 @@ using System;
 namespace WeatherAttack.Contracts.Dtos.Weather.Request
 {
     [Serializable]
-    public class CoordinatesRequestDto
+    public sealed class CoordinatesRequestDto
     {
         [JsonProperty(PropertyName = "lon")]
         public string Longitude { get; set; }

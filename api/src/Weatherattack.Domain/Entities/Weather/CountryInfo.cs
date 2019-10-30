@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeatherAttack.Domain.Entities.Weather
 {
-    public class CountryInfo
+    public sealed class CountryInfo
     {
         public CountryInfo(string countryName)
         {

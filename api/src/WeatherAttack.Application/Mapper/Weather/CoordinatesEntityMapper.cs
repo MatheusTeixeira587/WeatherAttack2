@@ -7,7 +7,7 @@ using WeatherAttack.Domain.Entities.Weather;
 
 namespace WeatherAttack.Application.Mapper.Weather
 {
-    public class CoordinatesEntityMapper : IMapper<Coordinates, CoordinatesRequestDto, CoordinatesRequestDto>
+    public sealed class CoordinatesEntityMapper : IMapper<Coordinates, CoordinatesRequestDto, CoordinatesRequestDto>
     {
         public CoordinatesRequestDto ToDto(Coordinates entity)
         {

@@ -1,6 +1,6 @@
 ﻿namespace WeatherAttack.Domain.Entities.Weather
 {
-    public class Weather
+    public sealed class Weather
     {
         public Weather(long id, string main, string description, string icon)
         {

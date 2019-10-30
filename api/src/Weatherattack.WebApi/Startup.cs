@@ -49,7 +49,7 @@ using WeatherAttack.Security.Services;
 
 namespace Weatherattack.WebApi
 {
-    public class Startup
+    public sealed class Startup
     {
         public Startup(IConfiguration configuration) => Configuration = configuration;
 
@@ -144,7 +144,7 @@ namespace Weatherattack.WebApi
             services.AddTransient<IPasswordService, PasswordService>();
             services.AddTransient<IAuthenticationService, AuthenticationService>();
             services.AddTransient<IOpenWeatherMapService, OpenWeatherMapWebService>(p => new OpenWeatherMapWebService(OpenWeatherMapUrl, OpenWeatherMapApiKey));
-            services.AddSingleton<SecuritySettings>(options => 
+            services.AddSingleton(options => 
                 new SecuritySettings 
                 { 
                     SaltWorkFactor = int.Parse(Configuration["SecuritySettings:SaltWorkFactor"]),
@@ -212,6 +212,7 @@ namespace Weatherattack.WebApi
             //     .Build());
 
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseHttpsRedirection();
 

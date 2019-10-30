@@ -4,7 +4,7 @@ using WeatherAttack.Contracts.Dtos.User.Response;
 
 namespace WeatherAttack.Application.Comparer.User
 {
-    public class UserDtoComparer : IEqualityComparer<UserResponseDto>
+    public sealed class UserDtoComparer : IEqualityComparer<UserResponseDto>
     {
         public bool Equals(UserResponseDto x, UserResponseDto y)
             => x.Id == y.Id;

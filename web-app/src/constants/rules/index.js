@@ -1,42 +1,42 @@
 export const weatherConditions = [
     { name: {
-        EN_US: "Temperature",
-        PT_BR: "Temperatura"
+        en_us: "Temperature",
+        pt_br: "Temperatura"
     }, value: 0 },
     { name: {
-        EN_US: "Rain",
-        PT_BR: "Chuva"
+        en_us: "Rain",
+        pt_br: "Chuva"
     }, value: 1 },
     { name: {
-        EN_US: "Storm",
-        PT_BR: "Tempestade"
+        en_us: "Storm",
+        pt_br: "Tempestade"
     }, value: 2 },
     { name: {
-        EN_US: "Wind",
-        PT_BR: "Vento"
+        en_us: "Wind",
+        pt_br: "Vento"
     }, value: 3 },
 ]
 
 export const operators = [
     { name: {
-        EN_US: "higher than",
-        PT_BR: "maior que"
+        en_us: "higher than",
+        pt_br: "maior que"
     }, value: 0 },
     { name: {
-        EN_US: "lower than",
-        PT_BR: "menor que"
+        en_us: "lower than",
+        pt_br: "menor que"
     }, value: 1 },
     { name: {
-        EN_US: "equal to",
-        PT_BR: "igual a"
+        en_us: "equal to",
+        pt_br: "igual a"
     }, value: 2 },
     { name: {
-        EN_US: "higher or equal to",
-        PT_BR: "maior ou igual a"
+        en_us: "higher or equal to",
+        pt_br: "maior ou igual a"
     }, value: 3 },
     { name: {
-        EN_US: "lower or equal to",
-        PT_BR: "menor ou igual a"
+        en_us: "lower or equal to",
+        pt_br: "menor ou igual a"
     }, value: 4 },
 ]
 

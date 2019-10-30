@@ -7,7 +7,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Repositories
 {
-    public class UserRepository : Repository<WeatherAttackContext, User>, IUserRepository
+    public sealed class UserRepository : Repository<WeatherAttackContext, User>, IUserRepository
     {
         public UserRepository(WeatherAttackContext context) : base(context) { }
 

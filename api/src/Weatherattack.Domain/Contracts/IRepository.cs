@@ -10,14 +10,28 @@ namespace WeatherAttack.Domain.Contracts
     {
         Task<IList<Entity>> GetAsync();
 
+        Task<IList<TResult>> GetAsync<TResult>(Expression<Func<Entity, TResult>> selector);
+
+        Task<IList<TResult>> GetAsync<TResult>(Expression<Func<Entity, bool>> predicate, Expression<Func<Entity, TResult>> selector);
+
+        Task<IList<TResult>> GetAsync<TResult>(int skip, int take, Expression<Func<Entity, TResult>> selector);
+
+        Task<IList<TResult>> GetAsync<TResult>(int skip, int take, Expression<Func<Entity, bool>> predicate, Expression<Func<Entity, TResult>> selector);
+
+
         Task<IList<Entity>> GetAsync(int skip, int take);
 
         Task<IList<Entity>> GetAsync(Expression<Func<Entity, bool>> predicate);
 
         Task<IList<Entity>> GetAsync(int skip, int take, Expression<Func<Entity, bool>> predicate);
+
         Task<Entity> FindAsync(Expression<Func<Entity, bool>> predicate);
 
         Task<Entity> FindAsync(long primaryKey);
+
+        Task<TResult> FindAsync<TResult>(long primaryKey, Expression<Func<Entity, TResult>> selector);
+
+        Task<TResult> FindAsync<TResult>(Expression<Func<Entity, bool>> predicate, Expression<Func<Entity, TResult>> selector);
 
         Task<long> CountAsync();
 

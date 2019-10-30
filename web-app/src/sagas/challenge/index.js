@@ -23,7 +23,6 @@ function* sendToServerSaga(hub) {
         while(true) {
             console.info("waiting to send messages...")
             const action = yield take(challengeEventsArray)
-            debugger
             if (!action.dispatchedByServer) {
                 hub.invoke(action.type, action.command)
             }
@@ -53,7 +52,6 @@ function* challengeInviteSaga() {
             }
         }
     } catch {
-        debugger
     }
 }
 
@@ -61,15 +59,12 @@ function* removeChallengeInviteSaga() {
     try {
         const userId = yield select(state => state.loginReducer.id)
         while(true) {
-            debugger
             const action = yield take([challengeEvents.ACCEPT_CHALLENGE, challengeEvents.REFUSE_CHALLENGE])
-            debugger
             if(action.command.to.id === userId) {
                 yield put(removeChallengeAction(action.command))
             }
         }
     } catch {
-        debugger
     }
 }
 

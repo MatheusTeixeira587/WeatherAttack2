@@ -7,7 +7,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Command.Weather.Handlers
 {
-    public class GetCurrentWeatherActionHandler : IActionHandlerAsync<GetCurrentWeatherCommand>
+    public sealed class GetCurrentWeatherActionHandler : IActionHandlerAsync<GetCurrentWeatherCommand>
     {
         private IOpenWeatherMapService OpenWeatherMap { get; }
 

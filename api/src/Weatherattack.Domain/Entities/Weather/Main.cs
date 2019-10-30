@@ -1,6 +1,6 @@
 ﻿namespace WeatherAttack.Domain.Entities.Weather
 {
-    public class Main
+    public sealed class Main
     {
         public Main(double temperature, double pressure, double humidity)
         {

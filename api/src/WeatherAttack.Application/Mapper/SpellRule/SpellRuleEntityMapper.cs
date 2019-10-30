@@ -5,7 +5,7 @@ using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Mapper.SpellRule
 {
-    public class SpellRuleEntityMapper : IMapper<Entities.SpellRule, SpellRuleRequestDto, SpellRuleRequestDto>
+    public sealed class SpellRuleEntityMapper : IMapper<Entities.SpellRule, SpellRuleRequestDto, SpellRuleRequestDto>
     {
         public SpellRuleRequestDto ToDto(Entities.SpellRule entity)
         {

@@ -5,7 +5,7 @@ using WeatherAttack.Contracts.Command;
 
 namespace WeatherAttack.Application.Command.User
 {
-    public class DeleteUserCommand : CommandBase
+    public sealed class DeleteUserCommand : CommandBase
     {
     }
 }

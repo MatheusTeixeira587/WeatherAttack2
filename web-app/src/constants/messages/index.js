@@ -1,138 +1,138 @@
 export const APP_TEXTS = {
     createAccountMessage: {
-        EN_US: "Dont have a account yet? create one!",
-        PT_BR: "Ainda não possui uma conta? clique parar criar uma!"
+        en_us: "Dont have a account yet? create one!",
+        pt_br: "Ainda não possui uma conta? clique parar criar uma!"
     },
     alreadyHaveAccountMessage: {
-        EN_US: "Already have a account? log in!",
-        PT_BR: "Já tem uma conta? faça o login!"
+        en_us: "Already have a account? log in!",
+        pt_br: "Já tem uma conta? faça o login!"
     },
     noWeatherDescriptionAvailableMessage: {
-        EN_US: "No Description available",
-        PT_BR: "Sem descrição disponível"
+        en_us: "No Description available",
+        pt_br: "Sem descrição disponível"
     },
     weatherButtonText: {
-        EN_US: "Update",
-        PT_BR: "Atualizar"
+        en_us: "Update",
+        pt_br: "Atualizar"
     },
     winsLabelText: {
-        EN_US: "Wins",
-        PT_BR: "Vitórias"
+        en_us: "Wins",
+        pt_br: "Vitórias"
     },
     lossesLabelText: {
-        EN_US: "Losses",
-        PT_BR: "Derrotas"
+        en_us: "Losses",
+        pt_br: "Derrotas"
     },
     battlesLabelText: {
-        EN_US: "Battles",
-        PT_BR: "Batalhas"
+        en_us: "Battles",
+        pt_br: "Batalhas"
     },
     medalsLabeltext: {
-        EN_US: "Medals",
-        PT_BR: "Medalhas"
+        en_us: "Medals",
+        pt_br: "Medalhas"
     },
     usernameLabelText: {
-        EN_US: "username",
-        PT_BR: "nome de usuário"
+        en_us: "username",
+        pt_br: "nome de usuário"
     },
     passwordLabelText: {
-        EN_US: "password",
-        PT_BR: "senha",
+        en_us: "password",
+        pt_br: "senha",
     },
     confirmPasswordLabelText: {
-        EN_US: "confirm password",
-        PT_BR: "confirme a senha"
+        en_us: "confirm password",
+        pt_br: "confirme a senha"
     },
     createYourAccountText: {
-        EN_US: "Create your account!",
-        PT_BR: "Crie sua conta!"
+        en_us: "Create your account!",
+        pt_br: "Crie sua conta!"
     },
     createAccountButtonText: {
-        EN_US: "Create",
-        PT_BR: "Criar"
+        en_us: "Create",
+        pt_br: "Criar"
     },
     loginPageText: {
-        EN_US: "Log in!",
-        PT_BR: "Faça seu login!"
+        en_us: "Log in!",
+        pt_br: "Faça seu login!"
     },
     addText: {
-        EN_US: "New",
-        PT_BR: "Adicionar novo"
+        en_us: "New",
+        pt_br: "Adicionar novo"
     },
     doneText: {
-        EN_US: "Done",
-        PT_BR: "Pronto"
+        en_us: "Done",
+        pt_br: "Pronto"
     },
     elementsText: {
-        EN_US: "Elements",
-        PT_BR: "Elementos"
+        en_us: "Elements",
+        pt_br: "Elementos"
     },
     baseManaCostLabel: {
-        EN_US: "Base mana cost",
-        PT_BR: "Custo de mana base"
+        en_us: "Base mana cost",
+        pt_br: "Custo de mana base"
     },
     baseDamageLabel: {
-        EN_US: "Base damage",
-        PT_BR: "Dano base"
+        en_us: "Base damage",
+        pt_br: "Dano base"
     },
     spellnameLabel: {
-        EN_US: "Spellname",
-        PT_BR: "Nome da magia"
+        en_us: "Spellname",
+        pt_br: "Nome da magia"
     },
     addRuleText: {
-        EN_US: "Add rule",
-        PT_BR: "Adicionar regra"
+        en_us: "Add rule",
+        pt_br: "Adicionar regra"
     },
     weatherConditionLabel: {
-        EN_US: "Weather Condition",
-        PT_BR: "Condição climática"
+        en_us: "Weather Condition",
+        pt_br: "Condição climática"
     },
     operatorLabel: {
-        EN_US: "Operator",
-        PT_BR: "Operador"
+        en_us: "Operator",
+        pt_br: "Operador"
     },
     valueLabel: {
-        EN_US: "Value",
-        PT_BR: "Valor"
+        en_us: "Value",
+        pt_br: "Valor"
     },
     winRateLabel: {
-        EN_US: "Win rate",
-        PT_BR: "% de Vitórias"
+        en_us: "Win rate",
+        pt_br: "% de Vitórias"
     },
     permissionLabel: {
-        EN_US: "Permission",
-        PT_BR: "Privilégio"
+        en_us: "Permission",
+        pt_br: "Privilégio"
     },
     noneLabel: {
-        EN_US: "None",
-        PT_BR: "Nenhum"
+        en_us: "None",
+        pt_br: "Nenhum"
     },
     usernameTableHeadLabel: {
-        EN_US: "Username",
-        PT_BR: "Nome de Usuário"
+        en_us: "Username",
+        pt_br: "Nome de Usuário"
     },
     ofLabel: {
-        EN_US: "of",
-        PT_BR: "de"
+        en_us: "of",
+        pt_br: "de"
     },
     challengeText: {
-        EN_US: "Challenge",
-        PT_BR: "Desafiar"
+        en_us: "Challenge",
+        pt_br: "Desafiar"
     },
     acceptText: {
-        EN_US: "Accept",
-        PT_BR: "Aceitar"
+        en_us: "Accept",
+        pt_br: "Aceitar"
     },
     refuseText: {
-        EN_US: "Refuse",
-        PT_BR: "Recusar"
+        en_us: "Refuse",
+        pt_br: "Recusar"
     },
     challengeInviteCardText: {
-        EN_US: "You received a new challenge",
-        PT_BR: "Você recebeu um novo desafio"
+        en_us: "You received a new challenge",
+        pt_br: "Você recebeu um novo desafio"
     },
     byText: {
-        EN_US: "By",
-        PT_BR: "Por"
+        en_us: "By",
+        pt_br: "Por"
     }
 }

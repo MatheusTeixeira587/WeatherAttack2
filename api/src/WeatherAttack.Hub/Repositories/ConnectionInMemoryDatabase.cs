@@ -6,7 +6,7 @@ using WeatherAttack.Contracts.Interfaces;
 
 namespace WeatherAttack.Hub.Repositories
 {
-    public class ConnectionInMemoryDatabase : IConnectionRepository<UserResponseDto>
+    public sealed class ConnectionInMemoryDatabase : IConnectionRepository<UserResponseDto>
     {
         private readonly Dictionary<UserResponseDto, string> _connections;
 

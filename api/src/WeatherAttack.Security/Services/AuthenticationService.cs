@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace WeatherAttack.Security.Services
 {
-    public class AuthenticationService : IAuthenticationService
+    public sealed class AuthenticationService : IAuthenticationService
     {
         public IUserRepository Context { get; }
 

@@ -4,7 +4,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra
 {
-    public class WeatherAttackContext : DbContext
+    public sealed class WeatherAttackContext : DbContext
     {
         public WeatherAttackContext(DbContextOptions optionsBuilder) : base(optionsBuilder)
         {

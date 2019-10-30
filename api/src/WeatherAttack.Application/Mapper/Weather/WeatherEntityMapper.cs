@@ -5,7 +5,7 @@ using Entities = WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Application.Mapper.Weather
 {
-    public class WeatherEntityMapper : IMapper<Entities.Weather.Weather, WeatherRequestDto, WeatherRequestDto>
+    public sealed class WeatherEntityMapper : IMapper<Entities.Weather.Weather, WeatherRequestDto, WeatherRequestDto>
     {
         public WeatherRequestDto ToDto(Entities.Weather.Weather entity)
         {

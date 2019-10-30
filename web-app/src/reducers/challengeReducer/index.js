@@ -12,7 +12,7 @@ export function challengeReducer(state = initialState, action) {
         case challengeEvents.USER_LEFT_CHANNEL:
             const new_users = state.loggedUsers.filter(u => u.id !== action.command.id)
             
-            return Object.assign({},{...state}, {
+            return Object.assign({}, state, {
                 loggedUsers: new_users
             })
 
@@ -20,12 +20,12 @@ export function challengeReducer(state = initialState, action) {
             const users = state.loggedUsers
             users.push(action.command)
             
-            return Object.assign({},{...state}, {
+            return Object.assign({}, state, {
                 loggedUsers: users
             })
 
         case challengeEvents.GET_ONLINE_USERS:
-            return Object.assign({}, {...state}, {
+            return Object.assign({}, state, {
                 loggedUsers: action.command
             })
 
@@ -35,10 +35,9 @@ export function challengeReducer(state = initialState, action) {
             })
 
         case types.REMOVE_CHALLENGE:
-            debugger
             const filterChallenges = action => {
                 return {
-                    invites: [...state.invites].filter(i => i.id !== action.command.id)
+                    invites: state.invites.filter(i => i.id !== action.command.id)
                 }
             }
 

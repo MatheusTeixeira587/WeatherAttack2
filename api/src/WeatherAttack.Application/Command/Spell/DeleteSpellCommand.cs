@@ -2,7 +2,7 @@
 
 namespace WeatherAttack.Application.Command.Spell
 {
-    public class DeleteSpellCommand : CommandBase
+    public sealed class DeleteSpellCommand : CommandBase
     {
     }
 }

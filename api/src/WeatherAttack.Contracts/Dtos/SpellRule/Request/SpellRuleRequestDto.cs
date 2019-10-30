@@ -2,7 +2,7 @@
 
 namespace WeatherAttack.Contracts.Dtos.SpellRule.Request
 {
-    public class SpellRuleRequestDto
+    public sealed class SpellRuleRequestDto
     {
         public long Id { get; set; }
 

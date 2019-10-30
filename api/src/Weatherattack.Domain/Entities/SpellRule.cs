@@ -5,7 +5,7 @@ using WeatherAttack.Domain.Enums;
 
 namespace WeatherAttack.Domain.Entities
 {
-    public class SpellRule : EntityBase
+    public sealed class SpellRule : EntityBase
     {
         public SpellRule(long id, long spellId, int value, Operator @operator, WeatherCondition weatherCondition) : base(id)
         {

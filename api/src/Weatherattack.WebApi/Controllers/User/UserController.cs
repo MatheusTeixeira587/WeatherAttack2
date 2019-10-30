@@ -8,7 +8,7 @@ namespace WeatherAttack.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController, Authorize]
-    public class UserController : BaseController
+    public sealed class UserController : BaseController
     {
         private IActionHandlerAsync<AddUserCommand> AddUserHandler { get; }
         private IActionHandlerAsync<GetPagedUsersCommand> GetPagedUsersHandler { get; }

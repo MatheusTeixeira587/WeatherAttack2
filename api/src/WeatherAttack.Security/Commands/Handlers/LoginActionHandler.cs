@@ -3,7 +3,7 @@ using WeatherAttack.Contracts.Interfaces;
 
 namespace WeatherAttack.Security.Commands.Handlers
 {
-    public class LoginActionHandler : IActionHandlerAsync<LoginCommand>
+    public sealed class LoginActionHandler : IActionHandlerAsync<LoginCommand>
     {
         private IAuthenticationService AuthenticationService { get; }
 

@@ -24,15 +24,15 @@ const styles = {
 const tabs = [
     { 
         name: {
-            EN_US: "Spells",
-            PT_BR: "Magias"
+            en_us: "Spells",
+            pt_br: "Magias"
         }, 
         id: 1 
     },
     { 
         name: {
-            EN_US: "Users",
-            PT_BR: "Usuários"
+            en_us: "Users",
+            pt_br: "Usuários"
         }, 
         id: 2 
     },

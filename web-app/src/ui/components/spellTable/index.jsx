@@ -41,7 +41,7 @@ class SpellTable extends React.Component {
     }
 
     componentDidMount() {
-       this._getPage()
+       this._getPage();
     }
 
     _getPage(page = 1) {

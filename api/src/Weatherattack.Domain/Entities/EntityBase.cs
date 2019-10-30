@@ -2,11 +2,12 @@
 using System.Collections.Immutable;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using WeatherAttack.Domain.Contracts;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
 {
-    public abstract class EntityBase
+    public abstract class EntityBase : INotifiable
     {
         public EntityBase() { }
 

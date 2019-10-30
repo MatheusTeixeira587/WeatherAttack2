@@ -9,7 +9,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Services
 {
-    public class OpenWeatherMapWebService : IOpenWeatherMapService
+    public sealed class OpenWeatherMapWebService : IOpenWeatherMapService
     {
         private string OpenWeatherMapUrl { get; }
 

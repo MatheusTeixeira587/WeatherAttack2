@@ -7,7 +7,7 @@ using WeatherAttack.Domain.Entities;
 
 namespace WeatherAttack.Infra.Repositories
 {
-    public class SpellRepository : Repository<WeatherAttackContext, Spell>, ISpellRepository
+    public sealed class SpellRepository : Repository<WeatherAttackContext, Spell>, ISpellRepository
     {
         public SpellRepository(WeatherAttackContext context) : base(context) { }
 

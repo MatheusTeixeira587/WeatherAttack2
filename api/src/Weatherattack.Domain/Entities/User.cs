@@ -5,7 +5,7 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Domain.Entities
 {
-    public class User : EntityBase
+    public sealed class User : EntityBase
     {
         public string Email { get; private set; }
 
@@ -17,7 +17,20 @@ namespace WeatherAttack.Domain.Entities
 
         public byte PermissionLevel { get; private set; } = Rules.User.PermissionLevel.User;
 
-        public User(long Id, string email, string username) : base(Id)
+        public User(long id) : base(id) { }
+
+        public User(long id, string username) : base(id)
+        {
+            Username = username;
+        }
+
+        public User(long id, string username, Character character) : base(id)
+        {
+            Username = username;
+            Character = character;
+        }
+
+        public User(long id, string email, string username) : base(id)
         {
             Email = email;
             Username = username;

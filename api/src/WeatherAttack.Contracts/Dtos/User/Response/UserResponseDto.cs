@@ -1,6 +1,6 @@
 ﻿namespace WeatherAttack.Contracts.Dtos.User.Response
 {
-    public class UserResponseDto
+    public sealed class UserResponseDto
     {
         public long Id { get; set; }
 

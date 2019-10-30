@@ -2,7 +2,7 @@
 
 namespace WeatherAttack.Security.Commands
 {
-    public class LoginCommand : CommandBase
+    public sealed class LoginCommand : CommandBase
     {
         public string Username { get; set; }
 

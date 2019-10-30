@@ -5,7 +5,7 @@ using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Weather
 {
-    public class GetCurrentWeatherCommand : CommandBase
+    public sealed class GetCurrentWeatherCommand : CommandBase
     {
         public double Latitude { get; set; }
 

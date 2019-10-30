@@ -1,6 +1,6 @@
 export const supportedLanguages = {
-    EN_US: "EN_US",
-    PT_BR: "PT_BR"
+    EN_US: "en_us",
+    PT_BR: "pt_br"
 }
 
 export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";
