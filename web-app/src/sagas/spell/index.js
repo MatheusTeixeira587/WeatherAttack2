@@ -17,7 +17,10 @@ function* addSpellSaga(action) {
 function* getPagedSpellSaga(action) {
     const token = yield select(state => state.loginReducer.token)
     try {
+        debugger
         const response = yield spellService.pagedGet(token, action.command.pageNumber)
+        const resp = yield call(spellService.pagedGet, token, action.command.pageNumber)
+        debugger
         yield put(assignPagedSpells(response))
 
     } catch (e) {
