@@ -1,11 +1,7 @@
-﻿using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using WeatherAttack.Contracts.Command;
 using WeatherAttack.Contracts.Dtos.Character;
-using WeatherAttack.Contracts.Mapper;
 using WeatherAttack.Domain.Contracts;
-using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.Notifications;
 
 namespace WeatherAttack.Application.Command.Character.Handlers

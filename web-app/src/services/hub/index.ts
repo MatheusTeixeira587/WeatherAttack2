@@ -1,4 +1,4 @@
-import { HubConnectionBuilder, LogLevel } from "@aspnet/signalr"
+import { HubConnectionBuilder, LogLevel, HubConnection } from "@aspnet/signalr"
 import { eventChannel } from "redux-saga"
 import { challengeEvents } from "../../constants"
 import { requestLogoutAction } from "../../actions"
@@ -7,10 +7,9 @@ const challengeChannel = "challenge"
 
 export class HubService {
 
-    static async connect(token, channel) {
+    static async connect(token: string, channel: string) {
         const connection =  new HubConnectionBuilder()
             .withUrl(process.env.REACT_APP_API_URL + channel, { accessTokenFactory: () => token })
-            .withAutomaticReconnect()
             .configureLogging(LogLevel.Information)
             .build()
 
@@ -20,15 +19,13 @@ export class HubService {
     }
 
     
-    static createHubChannel(hub) {
+    static createHubChannel(hub: HubConnection, channel: string) {
         return eventChannel(emit => {
-            const eventHandler = event => {
+            const eventHandler = (event: { type: string }) => {
                 emit(event)
             }
 
-            const channelName = hub.connection.baseUrl.split("/").pop()
-
-            if (channelName === challengeChannel) {
+            if (channel === challengeChannel) {
                 hub = HubService._subscribeToChallengeEvents(hub, eventHandler)
             }
 
@@ -38,7 +35,7 @@ export class HubService {
         })
     }
 
-    static _subscribeToChallengeEvents(hub, eventHandler) {
+    static _subscribeToChallengeEvents(hub: HubConnection, eventHandler: Function) {
 
         Object.keys(challengeEvents)
             .forEach(prop => {

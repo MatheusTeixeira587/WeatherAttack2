@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using WeatherAttack.Domain.Entities;
 using WeatherAttack.Domain.EntityValidation.Rules;
 using WeatherAttack.Domain.Enums;

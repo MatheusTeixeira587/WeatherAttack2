@@ -2,7 +2,7 @@ import { call, takeEvery, take, race, select, put, all } from "redux-saga/effect
 import { HubService } from "../../services"
 import { types, challengeEvents } from "../../constants"
 import { userReceivedChallengeAction, removeChallengeAction } from "../../actions"
-import { HubConnectionState } from "@aspnet/signalr"
+import { HubConnectionState, HubConnection } from "@aspnet/signalr"
 
 
 const challengeEventsArray = Object.values(challengeEvents)
@@ -79,7 +79,7 @@ function* startConnectionSaga() {
         console.info("starting connection...")
         const token = yield select(state => state.loginReducer.token)    
         const hub = yield call(HubService.connect, token, "challenge")
-        const hubChannel = yield call(HubService.createHubChannel, hub)
+        const hubChannel = yield call(HubService.createHubChannel, hub, "challenge")
         
         yield race({
             task: all([

@@ -1,9 +1,9 @@
-import React, { Component } from "react"
+import React, { Component, Reducer } from "react"
 import { connect } from "react-redux"
 import { withStyles } from "@material-ui/core/styles"
 import { Tabs, Tab } from "@material-ui/core"
 import { bindActionCreators } from "redux"
-import { SpellArea, UserArea } from "../../components"
+import { SpellArea, UserArea } from ".."
 
 const styles = {
     page: {
@@ -39,6 +39,8 @@ const tabs = [
 ]
 
 class AdministrationContent extends Component {
+
+    private classes: any;
 
     constructor(props) {
         super(props)

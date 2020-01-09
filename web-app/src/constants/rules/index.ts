@@ -1,4 +1,6 @@
-export const weatherConditions = [
+import { WeatherCondition, Operator } from "../../domain"
+
+export const weatherConditions: WeatherCondition[] = [
     { name: {
         en_us: "Temperature",
         pt_br: "Temperatura"
@@ -17,7 +19,7 @@ export const weatherConditions = [
     }, value: 3 },
 ]
 
-export const operators = [
+export const operators: Operator[] = [
     { name: {
         en_us: "higher than",
         pt_br: "maior que"
